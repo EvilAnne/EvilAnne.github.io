@@ -1,0 +1,687 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="八月份要给自己一个交代，给自计划了任务，四周内读完1000个代码审计案例，之后把不懂的还有觉得可学习的归类起来，这个月审计4套系统，2013年-2016年各一套系统。
+可以暂停音乐哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="审计学习笔记三">
+<meta property="og:url" content="http://yoursite.com/2016/08/07/审计学习笔记三/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="八月份要给自己一个交代，给自计划了任务，四周内读完1000个代码审计案例，之后把不懂的还有觉得可学习的归类起来，这个月审计4套系统，2013年-2016年各一套系统。
+可以暂停音乐哦！">
+<meta property="og:image" content="http://i.imgur.com/lYCWurD.jpg">
+<meta property="og:image" content="http://i.imgur.com/UlS8on9.jpg">
+<meta property="og:image" content="http://i.imgur.com/3lSSPOg.jpg">
+<meta property="og:image" content="http://i.imgur.com/NHZtyog.jpg">
+<meta property="og:image" content="http://i.imgur.com/kOiLpWr.jpg">
+<meta property="og:image" content="http://i.imgur.com/fpMxkYO.jpg">
+<meta property="og:updated_time" content="2016-08-07T08:24:00.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="审计学习笔记三">
+<meta name="twitter:description" content="八月份要给自己一个交代，给自计划了任务，四周内读完1000个代码审计案例，之后把不懂的还有觉得可学习的归类起来，这个月审计4套系统，2013年-2016年各一套系统。
+可以暂停音乐哦！">
+<meta name="twitter:image" content="http://i.imgur.com/lYCWurD.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 审计学习笔记三 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                审计学习笔记三
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-07T04:20:00+08:00" content="2016-08-07">
+              2016-08-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码审计/" itemprop="url" rel="index">
+                    <span itemprop="name">代码审计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/07/审计学习笔记三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/07/审计学习笔记三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>八月份要给自己一个交代，给自计划了任务，四周内读完1000个代码审计案例，之后把不懂的还有觉得可学习的归类起来，这个月审计4套系统，2013年-2016年各一套系统。</p>
+<font color="red">可以暂停音乐哦！ </font>
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=31134618&auto=0&height=66"></iframe>
+
+
+<a id="more"></a>
+<p>此次审计的是cutecms3.5，下载完后在阅读的时候有些函数无法定位到，然后看了一些核心文件被加密了：<br><img src="http://i.imgur.com/lYCWurD.jpg" alt=""></p>
+<p>然后通过百度查找了几个软件都无法使用，在线解密的网站中解出来的文件是正常的，我需要批量解密，找了几个软件使用之后解是可以解，但里面具体函数的内容是空的，所以解密不正常。</p>
+<p>zend加密有 zend5.2 5.3 5.4  如果对应的版本不一样，解出来还是无法得到正确的内容，这里再抱怨一下百度，这就是个渣根本无法和别人google比，找出来的内容全是广告或者都是转载的内容。 找了一下午晚上回来google了下，立马发现了神器，可解zend5.2 5.3 5.4还是批量解密：<br><img src="http://i.imgur.com/UlS8on9.jpg" alt=""></p>
+<p>只是系统是英文的，所以软件中文是乱码。</p>
+<p>我在开始审一套程序之类当然要安装，所以先看install/目录下是否有漏洞，cutecms安装完后，目录会自动更改：install_xxx  后面为3位随机数，所以通过burpsuite可以找到安装目录。</p>
+<p>index.php<br><img src="http://i.imgur.com/3lSSPOg.jpg" alt=""></p>
+<p>嗯，＝.= exit() 当我没说。</p>
+<p>安装完后我看了首页文件，查到搜索框就加了个单引号：<br><img src="http://i.imgur.com/NHZtyog.jpg" alt=""></p>
+<p>这很单引号，像这样2013年的老系统当年还是很多漏洞的，不像现在各种过滤。 查看</p>
+<p>search.php<br>Code:9-45</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">$c = intval( $_GET[<span class="string">'c'</span>] );</span><br><span class="line"></span><br><span class="line">$s = strval( trim( $_GET[<span class="string">'s'</span>] ) );</span><br><span class="line"></span><br><span class="line">$hit = intval( $hit );</span><br><span class="line"></span><br><span class="line">$ch = <span class="keyword">new</span> CreateHtml( $db );</span><br><span class="line"></span><br><span class="line">$allChannelArr = $ch-&gt;getChannelCategory( $urlChannelId );</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ( $allChannelArr <span class="keyword">as</span> $key =&gt; $val )</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	$ch-&gt;channelArr1[$val[<span class="string">'id'</span>]] = $val;</span><br><span class="line"></span><br><span class="line">	$ch-&gt;channelParentArr[$val[<span class="string">'pid'</span>]][$val[<span class="string">'id'</span>]] = $val;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$globalData = $ch-&gt;getPublicData( );</span><br><span class="line"></span><br><span class="line">$channelArr = $ch-&gt;channelArr1[$c];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( $c )</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	$bullet = <span class="string">"&lt;img src='"</span>.DOMAINPATH.<span class="string">"template/"</span>.$GLOBALS[<span class="string">'cfg'</span>][<span class="string">'template'</span>].<span class="string">"/images/nav_bullet.gif' width=\"4\" height=\"7\" alt=\"bullet\" /&gt;"</span>;</span><br><span class="line"></span><br><span class="line">	$channelPath = $ch-&gt;getChannelPath( $channelArr );</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( $c == PRODUCT_TOP_CHANNELID )</span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		$channelType = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">		$searchTable = <span class="string">"product"</span>;</span><br><span class="line"></span><br><span class="line">		$condition = <span class="string">" AND (name LIKE '%&#123;$s&#125;%' OR des LIKE '%&#123;$s&#125;%')"</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> ( $c == <span class="number">5</span> )</span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		$channelType = <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line">		$searchTable = <span class="string">"channel_content"</span>;</span><br><span class="line"></span><br><span class="line">		$condition = <span class="string">" AND (title LIKE '%&#123;$s&#125;%' OR des LIKE '%&#123;$s&#125;%')"</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	$ch-&gt;getSubChannelIdArr( $c, $channelType );</span><br><span class="line"></span><br><span class="line">	$ch-&gt;channelSubIdArr[] = $c;</span><br><span class="line"></span><br><span class="line">	$channelSubIds = @join( <span class="string">","</span>, @$ch-&gt;channelSubIdArr );</span><br><span class="line"></span><br><span class="line">	$sql = <span class="string">"SELECT COUNT(*) FROM "</span>.PREFIX.$searchTable.<span class="string">" WHERE pid IN (&#123;$channelSubIds&#125;)"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( $s )</span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		$sql .= $condition;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	$total = $db-&gt;getOne( $sql );</span><br></pre></td></tr></table></figure>
+<p><code>$s = strval( trim( $_GET[&#39;s&#39;] ) );</code></p>
+<p>将变量转成字符串类型。然而直接代入了数据库查询，跟进一下getOne()看是否有啥呢</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getOne</span><span class="params">( $sql, $limited = FALSE )</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> ( $limited == <span class="keyword">TRUE</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		$sql = trim( $sql.<span class="string">" LIMIT 1"</span> );</span><br><span class="line">	&#125;</span><br><span class="line">	$res = $this-&gt;query( $sql );</span><br><span class="line">	<span class="keyword">if</span> ( $res !== <span class="keyword">FALSE</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		$row = mysql_fetch_row( $res );</span><br><span class="line">		<span class="keyword">return</span> $row[<span class="number">0</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">FALSE</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>连毛都没有，所以也就这样子了。</p>
+<p>第二处注入：<br>index.php<br>code:30</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( $staticUrl &amp;&amp; $staticUrl != <span class="string">"index"</span> )</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( preg_match( <span class="string">"/^(.*)_page([0-9]&#123;1,&#125;)\$/i"</span>, $staticUrl ) )</span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		$url = substr( $staticUrl, <span class="number">0</span>, strpos( $staticUrl, <span class="string">"_page"</span> ) ).<span class="string">".html"</span>;  <span class="comment">//查找页面</span></span><br><span class="line"></span><br><span class="line">		$staticUrlRow = getStaticUrlRow( $db, $url );	<span class="comment">//通过getStaticUrlRow处理</span></span><br><span class="line"></span><br><span class="line">		$action = $staticUrlRow[<span class="string">'action'</span>];</span><br><span class="line"></span><br><span class="line">		$urlChannelId = $urlContentId = $staticUrlRow[<span class="string">'rid'</span>];</span><br><span class="line"></span><br><span class="line">		$urlPageNum = substr( $staticUrl, strpos( $staticUrl, <span class="string">"_page"</span> ) + <span class="number">5</span> );</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>跟进getStaticUrlRow</p>
+<p>include/base.inc.php<br>Code:1725</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStaticUrlRow</span><span class="params">( $db, $url = <span class="string">""</span>, $rid = <span class="string">""</span> )</span>  //两个参数，一个<span class="title">url</span>一个<span class="title">rid</span></span><br><span class="line"></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">	$sql = <span class="string">"SELECT * FROM "</span>.PREFIX.<span class="string">"static_url WHERE 1"</span>;  </span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( $url )   </span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		$sql .= <span class="string">" AND url = '"</span>.$url.<span class="string">"'"</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ( $rid )</span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		$sql .= <span class="string">" AND rid = "</span>.$rid;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	$sql .= <span class="string">" LIMIT 1"</span>;</span><br><span class="line"></span><br><span class="line">	$re = $db-&gt;getRow( $sql );</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> $re;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>url等于真则执行下面拼接，$url并没有任何的过滤，直接带入了sql查询</p>
+<p><code>http://localhost/cutecmsss/index.php?staticUrl=-q&#39; union select 1,group_concat(0x3a,version(),0x3a,user(),0x3a,database()),3,4,5%23</code></p>
+<p>然后像留言之类的都有xss。</p>
+<p>后台越权访问：<br>admin/homepage.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( <span class="keyword">empty</span>( $_SESSION[<span class="string">'user'</span>][<span class="string">'id'</span>] ) || $_SESSION[<span class="string">'user'</span>][<span class="string">'id'</span>] == <span class="string">""</span> )</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	header( <span class="string">"location:enter.php"</span> );</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为是跳转所以下面的代码还是会执行:<br><img src="http://i.imgur.com/kOiLpWr.jpg" alt=""></p>
+<p>最后我也不打算写下去了来总结一下：</p>
+<p>如果是日站像这样的cms根本不用去找，直接上扫描器黑盒就够了：<img src="http://i.imgur.com/fpMxkYO.jpg" alt=""><br>，如果不是为了拿来学习审计根本就没有必要这样子，在阅读很多文章的时候，自己还是无法明白许多程序的逻辑，包括一些还没有接触的框架，还有很多自己需要学习的，这个八月份专注学习审计，除此之外不只是sqlinject还有其它许多的漏洞类型。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/02/兼职之华为行/" rel="next" title="兼职之华为行">
+                <i class="fa fa-chevron-left"></i> 兼职之华为行
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/12/ThinkPhP笔记/" rel="prev" title="ThinkPhP笔记">
+                ThinkPhP笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/07/审计学习笔记三/"
+           data-title="审计学习笔记三" data-url="http://yoursite.com/2016/08/07/审计学习笔记三/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

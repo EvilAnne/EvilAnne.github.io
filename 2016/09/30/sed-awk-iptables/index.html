@@ -1,0 +1,862 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="简单写一下这个星期的学习记录，记的不是很详细，还需要整理再发出来，其实笔记还是很乱的。
+参考文章：http://blog.chinaunix.net/uid-26495963-id-3279216.html
+可以播放音乐哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sed awk iptables">
+<meta property="og:url" content="http://yoursite.com/2016/09/30/sed-awk-iptables/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="简单写一下这个星期的学习记录，记的不是很详细，还需要整理再发出来，其实笔记还是很乱的。
+参考文章：http://blog.chinaunix.net/uid-26495963-id-3279216.html
+可以播放音乐哦！">
+<meta property="og:updated_time" content="2016-09-30T10:12:26.343Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sed awk iptables">
+<meta name="twitter:description" content="简单写一下这个星期的学习记录，记的不是很详细，还需要整理再发出来，其实笔记还是很乱的。
+参考文章：http://blog.chinaunix.net/uid-26495963-id-3279216.html
+可以播放音乐哦！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> sed awk iptables | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                sed awk iptables
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-30T18:04:17+08:00" content="2016-09-30">
+              2016-09-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux运维/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/30/sed-awk-iptables/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/sed-awk-iptables/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简单写一下这个星期的学习记录，记的不是很详细，还需要整理再发出来，其实笔记还是很乱的。</p>
+<p>参考文章：<a href="http://blog.chinaunix.net/uid-26495963-id-3279216.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-26495963-id-3279216.html</a></p>
+<font color="red">可以播放音乐哦！ </font>
+
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=3301981&auto=0&height=66"></iframe>
+
+
+<a id="more"></a>
+<h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><p>sed是一种流编辑器,主要用于来处理文本工具。</p>
+<p>sed命令</p>
+<blockquote>
+<p>a\ 在当前行下面插入文本。<br>i\ 在当前行上面插入文本。<br>c\ 把选定的行改为新的文本。<br>d 删除，删除选择的行。<br>D 删除模板块的第一行。<br>s 替换指定字符<br>h 拷贝模板块的内容到内存中的缓冲区。<br>H 追加模板块的内容到内存中的缓冲区。<br>g 获得内存缓冲区的内容，并替代当前模板块中的文本。<br>G 获得内存缓冲区的内容，并追加到当前模板块文本的后面。<br>l 列表不能打印字符的清单。<br>n 读取下一个输入行，用下一个命令处理新的行而不是用第一个命令。<br>N 追加下一个输入行到模板块后面并在二者间嵌入一个新行，改变当前行号码。<br>p 打印模板块的行。<br>P(大写) 打印模板块的第一行。<br>q 退出Sed。<br>b lable 分支到脚本中带有标记的地方，如果分支不存在则分支到脚本的末尾。<br>r file 从file中读行。<br>t label if分支，从最后一行开始，条件一旦满足或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。<br>T label 错误分支，从最后一行开始，一旦发生错误或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。<br> w file 写并追加模板块到file末尾。<br> W file 写并追加模板块的第一行到file末尾。<br> ! 表示后面的命令对所有没有被选定的行发生作用。<br> = 打印当前行号码。<br> # 把注释扩展到下一个换行符以前。</p>
+</blockquote>
+<p> sed替换标记</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">g 表示行内全面替换。 </span><br><span class="line"> p 表示打印行。 </span><br><span class="line"> w 表示把行写入一个文件。 </span><br><span class="line"> x 表示互换模板块中的文本和缓冲区中的文本。 </span><br><span class="line"> y 表示把一个字符翻译为另外的字符（但是不用于正则表达式） </span><br><span class="line"> \1 子串匹配标记 </span><br><span class="line"> &amp; 已匹配字符串标记</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Steve Blenheim:238-923-7366:95 Latham Lane, Easton, PA 83755:11/12/56:20300                                  </span><br><span class="line">Betty Boop:245-836-8357:635 Cutesy Lane, Hollywood, CA ,91464:6/23/23:14500                                  </span><br><span class="line">Igor Chevsky:385-375-8395:3567 Populus Place, Caldwell, NJ 23875:6/18/68:23400                               </span><br><span class="line">Norma Corder:397-857-2735:74 Pine Street, Dearborn, MI 23874:3/28/45:245700                                  </span><br><span class="line">Jennifer Cowan:548-834-2348:583 Laurel Ave., Kingsville, TX 83745:10/1/35:58900                              </span><br><span class="line">Jon DeLoach:408-253-3122:123 Park St., San Jose, CA 04086:7/25/53:85100                                      </span><br><span class="line">Karen Evich:284-758-2857:23 Edgecliff Place, Lincoln, NB 92086:7/25/53:85100                                 </span><br><span class="line">Karen Evich:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200                                 </span><br><span class="line">Karen Evich:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200                                 </span><br><span class="line">Fred Fardbarkle:674-843-1385:20 Parak Lane, DeLuth, MN 23850:4/12/23:780900                                  </span><br><span class="line">Fred Fardbarkle:674-843-1385:20 Parak Lane, DeLuth, MN 23850:4/12/23:780900</span><br><span class="line">Lori Gortz:327-832-5728:3465 Mirlo Street, Peabody, MA 34756:10/2/65:35200</span><br><span class="line">Paco Gutierrez:835-365-1284:454 Easy Street, Decatur, IL 75732:2/28/53:123500</span><br><span class="line">Ephram Hardy:293-259-5395:235 CarltonLane, Joliet, IL 73858:8/12/20:56700</span><br><span class="line">James Ikeda:834-938-8376:23445 Aster Ave., Allentown, NJ 83745:12/1/38:45000</span><br><span class="line">Barbara Kertz:385-573-8326:832 Ponce Drive, Gary, IN 83756:12/1/46:268500</span><br><span class="line">Lesley Kirstin:408-456-1234:4 Harvard Square, Boston, MA 02133:4/22/62:52600</span><br><span class="line">William Kopf:846-836-2837:6937 Ware Road, Milton, PA 93756:9/21/46:43500</span><br><span class="line">Sir Lancelot:837-835-8257:474 Camelot Boulevard, Bath, WY 28356:5/13/69:24500</span><br><span class="line">Jesse Neal:408-233-8971:45 Rose Terrace, San Francisco, CA 92303:2/3/36:25000</span><br><span class="line">Zippy Pinhead:834-823-8319:2356 Bizarro Ave., Farmount, IL 84357:1/1/67:89500</span><br><span class="line">Arthur Putie:923-835-8745:23 Wimp Lane, Kensington, DL 38758:8/31/69:126000</span><br><span class="line">Popeye Sailor:156-454-3322:945 Bluto Street, Anywhere, USA 29358:3/19/35:22350</span><br><span class="line">Jose Santiago:385-898-8357:38 Fife Way, Abilene, TX 39673:1/5/58:95600</span><br><span class="line">Tommy Savage:408-724-0140:1222 Oxbow Court, Sunnyvale, CA 94087:5/19/66:34200</span><br><span class="line">Yukio Takeshida:387-827-1095:13 Uno Lane, Ashville, NC 23556:7/1/29:57000</span><br><span class="line">Vinh Tranh:438-910-7449:8235 Maple Street, Wilmington, VM 29085:9/23/63:68900</span><br></pre></td></tr></table></figure>
+<p>把john名字改成jonathan</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;s/Jon/Jonathan/g&apos; datafile</span><br></pre></td></tr></table></figure>
+<p>删除头3行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;1,3d&apos; datafile</span><br></pre></td></tr></table></figure>
+<p>显示5-10行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n &apos;5,10p&apos; datafile</span><br></pre></td></tr></table></figure>
+<p>删除包含Lane的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &apos;/Lane/d&apos; datafile</span><br></pre></td></tr></table></figure>
+<p>显示生日在November-December之间的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n &apos;/[:::]1[1-2][:/:]/p&apos; datafile</span><br></pre></td></tr></table></figure>
+<p>把3个星号 <em>*</em> 添加到fred开头的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;/^Fred/i\***&apos; datafile</span><br><span class="line">其实是这样：sed -e &apos;s/^Fred/***Fred/&apos; datafile</span><br></pre></td></tr></table></figure>
+<p>用jose has retired取代包含jose的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &apos;s/^.*Jose.*$/Jose Has Retired/g&apos; datafile</span><br></pre></td></tr></table></figure>
+<p>把Popeye的生日改成11/14/46<br>比较傻的办法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed -n &apos;/Popeye/p&apos; datafile|sed &apos;s:3/19/35:11/14/46:g&apos; datafile|grep Popeye</span><br><span class="line">其实这道题考的是正则表达式：</span><br><span class="line">sed -e &apos;/Popeye/s/:[0-9]*\/.*\/.*:/:11\/14\/46:/&apos; datafile |grep Popeye</span><br></pre></td></tr></table></figure>
+<p>删除所有空白行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &apos;/^$/d&apos; datafile</span><br></pre></td></tr></table></figure>
+<p>这些都是基本的功能，想要深入需要熟练掌握。</p>
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><blockquote>
+<p>awk是一种编程语言，用于在linux/unix下对文本和数据进行处理。</p>
+</blockquote>
+<p>1.在/etc/fstab文件中，以空格分隔字段，截取第二段的内容；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;&#123;print $2&#125;&apos; fstab</span><br></pre></td></tr></table></figure>
+<p>2.在/etc/passwd文件中，以/分隔字段，截取最后一段的内容；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F &apos;/&apos; &apos;&#123;print $(NF-1)&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>3.在/etc/passwd文件中，以冒号分隔字段，截取其中的第三段，第四段和最后一段内容，其中第三段和第四段中间分隔符变为#；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F &apos;:&apos; &apos;&#123;print $3&quot;#&quot;$4&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>4.使用awk命令，截取出/etc/passwd文件中，包含root的行；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;/root/&#123;print $0&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>5.使用awk命令，截取出/etc/passwd文件中，以root开头的行；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;/^root/&#123;print $0&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>6.在/etc/passwd文件中，以冒号分隔字段，截取第三段包含数字5的行；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F &apos;:&apos; &apos;&#123;if($3==5)print $0&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>7.在/etc/passwd文件中，截取包含root的行，第一个字段为mail的行和第三个字段含4的行，并打印所有截取出来的行的行号；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &apos;/root|mail/&#123;print $0&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>8.在/etc/passwd文件中，以冒号分隔字段，截取最后一段不为/bin/bash的行；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F : &apos;$7!=&quot;/bin/bash&quot;&#123;print $0&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>9.在/etc/passwd文件中，以冒号分隔字段，截取其中第三字段的值大于或者等于5且最后一段为/sbin/shutdown的行并打印行号；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk -F : &apos;&#123;if($3&gt;=5 &amp;&amp; $7=&quot;/bin/shutdown&quot;)print $0&#125;&apos; passwd</span><br><span class="line">行号：awk -F : &apos;&#123;if($3&gt;=5 &amp;&amp; $7=&quot;/bin/shutdown&quot;)print NR &quot; &quot; $0&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>10.在/etc/passwd文件中，以冒号分隔字段，截取包含root的行或者以mail开头的行或者第三字段包含4的行；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F : &apos;/^root|mail|$3==4/&#123;print $0&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>11.在/etc/passwd文件中，以冒号分隔字段，计算每行有多少字段，并根据行号打印显示字段数，打印格式举例Line:1 7；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F : &apos;&#123;print &quot;Line: &quot;NR&quot; &quot;NF&quot;&quot;&#125;&apos; /etc/passwd</span><br></pre></td></tr></table></figure>
+<p>12.在/etc/passwd文件中，截取第5行到第10行内容；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F : &apos;NR &gt; 4 &amp;&amp; NR &gt; 11&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>13.在/etc/passwd文件中，以冒号分隔字段，将每一行的第后一个字段赋值为第三个字段和第四个字段的和，并打印出来，要求打印出来的内容仍然以冒号为分隔符；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F : &apos;&#123;$NF=($3+$4) ; OFS=&quot;:&quot; ; print $0&#125;&apos; /etc/passwd</span><br></pre></td></tr></table></figure>
+<p>14.在/etc/passwd文件中，以冒号分隔字段，将第4字段求和。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F : &apos;&#123;sum+=$3&#125; END&#123;print &quot;Sum =&quot;,sum&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>15.判断/etc/passwd文件，如果登录shell为/sbin/nologin，就输出如：postfix Not Login;   b</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F : &apos;&#123;if($7=&quot;/bin/nologin&quot;)print &quot;postfix Not Login&quot;&#125;&apos; passwd</span><br></pre></td></tr></table></figure>
+<p>16.打印ps aux第五列累加的总和。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux |awk &apos;&#123;sum+=$5&#125; END&#123;print &quot;PS :&quot;,sum&#125;&apos;</span><br></pre></td></tr></table></figure>
+<p>17.统计/etc/passwd文件中各shell出现的次数。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat passwd|awk -F: &apos;&#123;print $7&#125;&apos;|sort|uniq -c</span><br></pre></td></tr></table></figure>
+<p>想要熟练掌握还需要多练习，awk太灵活了我也只能说了解不敢说掌握。其实能用到sed尽量也可以用，sed和awk各有千秋。 同样的事情中sed并不用写这么复杂的正则就可以处理了。</p>
+<h3 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h3><blockquote>
+<p>iptables可做为防火墙是一个功能非常强大的工具。iptables是从freeBSD上移植过来的,能够工作在内核当中的,也可以叫netfilter.(网络过滤器)</p>
+</blockquote>
+<p>被称为五个钩子函数（hook functions）,也叫五个规则链。</p>
+<ul>
+<li>PREROUTING (路由前)</li>
+<li>INPUT (数据包流入口)</li>
+<li>FORWARD (转发管卡)</li>
+<li>OUTPUT(数据包出口)</li>
+<li>POSTROUTING（路由后）</li>
+</ul>
+<p>用的比较多的：</p>
+<ul>
+<li>filter 定义允许或者不允许的</li>
+<li>nat 定义地址转换的 </li>
+<li>mangle功能:修改报文原数据</li>
+</ul>
+<p>filter有三个链：</p>
+<ul>
+<li>INPUT ，FORWARD ，OUTPUT</li>
+</ul>
+<p>nat也有三个：</p>
+<ul>
+<li>PREROUTING ，OUTPUT ，POSTROUTING</li>
+</ul>
+<p>而mangle则是5个链都可以做</p>
+<ul>
+<li>PREROUTING，INPUT，FORWARD，OUTPUT，POSTROUTING</li>
+</ul>
+<p>命令语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables [ -t TABLE ] COMMAND CHAIN [ num ] 匹配标准 -j  处理办法</span><br></pre></td></tr></table></figure>
+<p>命令：<br>管理规则:</p>
+<ul>
+<li>-A：附加一条规则，添回在链的尾部</li>
+<li>-I：CHAIN [ num ]：插入一条规则，插入为对应chain上的第num条，省略为第一条</li>
+<li>-D  CHAN [ num ]：删除规则</li>
+<li>-R  CHAN [ num ]：替换指定的规则</li>
+</ul>
+<p>管理链：</p>
+<ul>
+<li>-F [ CHAIN ]：flush，用于清除规则链,如果省略CHAIN，则实现删除对应表中的所有链</li>
+<li>-P [ CHAIN ]：设置指定链的默认策略</li>
+<li>-N：自定义一个新的空链</li>
+<li>-X：删除一个自定义的空链</li>
+<li>-Z：置堆指定链中所有规则的计数器</li>
+<li>-E：重命名自定义的链</li>
+</ul>
+<p>查看类：</p>
+<ul>
+<li>-L：显示指定表中的规则：</li>
+<li>-n：以数字格式显示主机地址和端口</li>
+<li>-v：显示链及规则的详细信息</li>
+<li>-vv：</li>
+<li>-x：显示计数器的精确值</li>
+<li>—line-numbers：显示规则号码</li>
+</ul>
+<p>动作：target</p>
+<ul>
+<li>ACCEPT     放行</li>
+<li>DROP         丢弃</li>
+<li>REJECT     拒绝</li>
+<li>DNAT         目标地址转换</li>
+<li>SNAT         源地址转换</li>
+<li>REDIRECT   端口重定向</li>
+<li>MASQUERADE   地址伪装</li>
+<li>LOG             日志</li>
+<li>MARK         打标记</li>
+</ul>
+<p>通用匹配：</p>
+<ul>
+<li>-s, —src  源</li>
+<li>-d, —dst 目标地址</li>
+<li>-p ｛tco | udp | icmp｝指定协议</li>
+<li>-i  interface:指定数据报文流入的接口（网卡）</li>
+<li>-o INTERFACE：指定数据报文流出的接口</li>
+</ul>
+<p>扩展匹配：<br>    隐含扩展：</p>
+<ul>
+<li>-p tcp</li>
+<li>–sport PORT[-PORT]: 源端口</li>
+<li>–dport PORT[-PORT]: 目标端口</li>
+<li>–tcp-flags mask comp: 只检查mask指定的标志位，是逗号分隔的标志位列表；comp：此列表中出现的标记位必须为1，comp中没出现，而mask中出现的，必须为0；</li>
+<li>–tcp-flags SYN,FIN,ACK,RST SYN = –syn</li>
+<li><p>–syn</p>
+</li>
+<li><p>-p icmp</p>
+</li>
+<li>–icmp-type</li>
+<li>0: echo-reply</li>
+<li>8: echo-request</li>
+<li>-p udp</li>
+<li>–sport</li>
+<li>–dport  </li>
+<li>-p tcp –dport</li>
+</ul>
+<p>state: 状态扩展</p>
+<blockquote>
+<p>是一种显式扩展，用于检测会话之间的连接关系的，有了检测我们可以实现会话间功能的扩展<br>        什么是状态检测？对于整个TCP协议来讲，它是一个有连接的协议，三次握手中，第一次握手，我们就叫NEW连接，而从第二次握手以后的，ack都为1，这是正常的数据传输，和tcp的第二次第三次握手，叫做已建立的连接（ESTABLISHED）,还有一种状态，比较诡异的，比如：SYN=1 ACK=1 RST=1,对于这种我们无法识别的，我们都称之为INVALID无法识别的。还有第四种，FTP这种古老的拥有的特征，每个端口都是独立的，21号和20号端口都是一去一回，他们之间是有关系的，这种关系我们称之为RELATED。</p>
+</blockquote>
+<p>一共四种：</p>
+<ul>
+<li>NEW: 新连接请求</li>
+<li>ESTABLISHED：已建立的连接</li>
+<li>INVALID：非法连接</li>
+<li>RELATED：相关联的</li>
+</ul>
+<p>语法：<br><code>-m state --state NEW,ESTABLISHED -j ACCEPT</code></p>
+<p>以及：<br>multiport: 离散的多端口匹配扩展<br>    –source-ports<br>   –destination-ports<br>   –ports</p>
+<p>   设置网段：-p tcp -m ipramge —src-range 172.16.100.3-172.16.100.100 —dport 22 -j ACCEPT</p>
+<p>好了，不贴参数了，太多的东西要记了。</p>
+<p>要求：</p>
+<p>1.192.168.0.0/24这个网段，不允许访问192.168.4.107这个ip地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t filter -A INPUT -s 192.168.0.0/24 -d 192.168.4.107 -j DROP</span><br></pre></td></tr></table></figure>
+<p>因为iptablesl默认都是开放的，这里把INPUT和OUTPUT以及FORWARD来的流量都DROP掉。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iptables -P INPUT DROP</span><br><span class="line">iptables -P OUPUT DROP</span><br><span class="line">iptables -P FORWARD DROP</span><br></pre></td></tr></table></figure>
+<p>2.只开放192.168.4.107 ssh让任何网段访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t filter -A INPUT -d 192.168.4.107 -p tcp --dport 22 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>这里可以省略掉-t filter,因为默认就是这个链，如果想任何网段的话代表0.0.0.0通过－s参数来指定，而这里我不写则代表全部。<br>还需要浅加一条流量出去的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t filter -A INPUT -s 192.168.4.107 -p tcp --sport 22 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>3.当INPUT OUPUT都设置了DROP,127.0.0.1是无法被ping通的，并且要求可以ping通服务器ip。</p>
+<p>开放lo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line">iptables -A OUTPUT -o lo -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>允许icmp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -d 192.168.4.107 -p icmp --icmp-type 8 -j ACCEPT</span><br><span class="line">iptables -A OUTPUT -s 192.168.4.107 -p icmp --icmp-type 0 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>4.一条命令开放21,22,80端口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT 2 -d 192.168.4.107 -p tcp -m multiport —destination-ports 21,22,80 -m state —state NEW -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>在设置ftpm一时，需要装载ip_conntrack_ftp和ip_nat_ftp模块</p>
+<p>5.限制ssh爆力破解。爆力猜解3次以上将限定300秒。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 22 -m connlimit --connlimit-above 3 -j DROP</span><br><span class="line">iptables -I INPUT  -p tcp --dport 22 -m state --state NEW -m recent --set --name SSH</span><br><span class="line">iptables -I INPUT  -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 300 --hitcount 3 --name SSH -j DROP</span><br></pre></td></tr></table></figure>
+<p>也可以通过日志记录下来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --name SSH --second 300 --hitcount 3 -j LOG --log-prefix &quot;SSH Attack&quot;</span><br></pre></td></tr></table></figure>
+<p>6.目标地址转换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -d 网关 -p tcp —dport 80 -j DNAT —to-destination web服务器</span><br></pre></td></tr></table></figure>
+<p>追踪iptables状态<br><code>iptstate</code></p>
+<p>保存规则：</p>
+<ul>
+<li>service iptables save<br>/etc/sysconfig/iptables</li>
+<li>iptables-save &gt; /etc/sysconfig/iptables.2  另存为规则文件</li>
+<li>iptables-restore &lt; /etc/sysconfig/iptables.2   恢复规则</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/24/修炼-－-运维笔记四/" rel="next" title="修炼 － 运维笔记四">
+                <i class="fa fa-chevron-left"></i> 修炼 － 运维笔记四
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/09/心情随笔二/" rel="prev" title="心情随笔二">
+                心情随笔二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/30/sed-awk-iptables/"
+           data-title="sed awk iptables" data-url="http://yoursite.com/2016/09/30/sed-awk-iptables/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#sed"><span class="nav-number">1.</span> <span class="nav-text">sed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk"><span class="nav-number">2.</span> <span class="nav-text">awk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables"><span class="nav-number">3.</span> <span class="nav-text">iptables</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

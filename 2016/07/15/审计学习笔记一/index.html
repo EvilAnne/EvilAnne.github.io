@@ -1,0 +1,686 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近这段时间有空都研究代码审计吧，好加快之后学习python的进度。
+可以暂停音乐哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="审计学习笔记一">
+<meta property="og:url" content="http://yoursite.com/2016/07/15/审计学习笔记一/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="最近这段时间有空都研究代码审计吧，好加快之后学习python的进度。
+可以暂停音乐哦！">
+<meta property="og:updated_time" content="2016-07-14T16:41:02.876Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="审计学习笔记一">
+<meta name="twitter:description" content="最近这段时间有空都研究代码审计吧，好加快之后学习python的进度。
+可以暂停音乐哦！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 审计学习笔记一 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                审计学习笔记一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-15T00:34:33+08:00" content="2016-07-15">
+              2016-07-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码审计/" itemprop="url" rel="index">
+                    <span itemprop="name">代码审计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/15/审计学习笔记一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/15/审计学习笔记一/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近这段时间有空都研究代码审计吧，好加快之后学习python的进度。</p>
+<font color="red">可以暂停音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=29710964&auto=0&height=66"></iframe>
+
+<a id="more"></a>
+<p>找了一套比较比较老的程序阅读了起来</p>
+<p>首先我是从index.php文件开始阅读：</p>
+<p>index.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!file_exists(<span class="string">"data/config.inc.php"</span>))&#123;header(<span class="string">"location:install/index.php"</span>);<span class="keyword">exit</span>();&#125;</span><br><span class="line"><span class="comment">//首选判断config.inc.php文件是否存在，因为这个文件只有安装了程序才会被创建。如果没有则跳转到安装目录。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> dirname(<span class="keyword">__FILE__</span>).<span class="string">'/system/common.inc.php'</span>;</span><br><span class="line"><span class="comment">//加载模板</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>继续读common.inc.php文件<br>smarty配置文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">define(<span class="string">'IN_CMS'</span>,<span class="string">'true'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> dirname(<span class="keyword">__FILE__</span>).<span class="string">'/91736.inc.php'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//系统目录</span></span><br><span class="line"></span><br><span class="line">define(<span class="string">'SYS_DIR'</span>,<span class="string">'system'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'TP_DIR'</span>,<span class="string">'templates'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'CMS_PATH'</span>,str_replace(SYS_DIR,<span class="string">''</span>,str_replace(<span class="string">'\\'</span>,<span class="string">'/'</span>,dirname(<span class="keyword">__FILE__</span>))));</span><br><span class="line"></span><br><span class="line">define(<span class="string">'SYS_PATH'</span>,CMS_PATH.SYS_DIR.<span class="string">"/"</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'DATA_PATH'</span>,CMS_PATH.<span class="string">'data/'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'LIB_PATH'</span>,SYS_PATH.<span class="string">'libs/'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'MOD_PATH'</span>,SYS_PATH.<span class="string">'modules/'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'FUN_PATH'</span>,SYS_PATH.<span class="string">'function/'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'TP_PATH'</span>,SYS_PATH.TP_DIR.<span class="string">"/"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//缓存目录</span></span><br><span class="line"></span><br><span class="line">define(<span class="string">'CACHE_PATH'</span>,CMS_PATH.<span class="string">'cache/'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'CACHE_TP_PATH'</span>,CACHE_PATH.<span class="string">'cache_template/'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'CACHE_SYS_PATH'</span>,CACHE_PATH.<span class="string">'cache_sys/'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//附件目录</span></span><br><span class="line"></span><br><span class="line">define(<span class="string">'UPLOAD_PATH'</span>, CMS_PATH.<span class="string">'uploadfile/'</span>); <span class="comment">//附件保存物理路径</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//Smarty配置</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include_once</span>(SYS_PATH.<span class="string">"Smarty/Smarty.class.php"</span>); <span class="comment">//包含smarty类文件</span></span><br><span class="line"></span><br><span class="line">$smarty = <span class="keyword">new</span> Smarty(); <span class="comment">//建立smarty实例对象$smarty</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;caching=TP_CACHE; <span class="comment">//是否使用缓存</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;template_dir = TP_PATH; <span class="comment">//设置模板目录</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;compile_dir = SYS_PATH.<span class="string">"templates_c"</span>; <span class="comment">//设置编译目录</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;cache_dir = CACHE_TP_PATH; <span class="comment">//缓存文件夹</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;cache_lifetime = <span class="number">300</span>;  <span class="comment">//缓存时间</span></span><br><span class="line"></span><br><span class="line">$smarty-&gt;left_delimiter = <span class="string">"&#123;"</span>;</span><br><span class="line"></span><br><span class="line">$smarty-&gt;right_delimiter = <span class="string">"&#125;"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>(DATA_PATH.<span class="string">"config.inc.php"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>(FUN_PATH.<span class="string">"fun.inc.php"</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>继续阅读config.inc.php文件：<br>这里没有安装所以不存在此文件，所以先查看install文件目录下的index.php文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(file_exists($insLockfile))&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">exit</span>(<span class="string">" 程序已运行安装，如果你确定要重新安装，请先从FTP中删除 install/install_lock.txt！"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>安装文件我只看这部分，如果判断install_lock.txt是否会继续执行，而这些exit已经退出程序了。所以个人觉得不用往下看吧。</p>
+<p>来阅读fun.inc.php文件：<br>Code:32</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">safe_replace</span><span class="params">($string)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'%20'</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'%27'</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'%2527'</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'*'</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'"'</span>,<span class="string">'&amp;quot;'</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">"'"</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'"'</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">';'</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'&lt;'</span>,<span class="string">'&amp;lt;'</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'&gt;'</span>,<span class="string">'&amp;gt;'</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">"&#123;"</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'&#125;'</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	$string = str_replace(<span class="string">'\\'</span>,<span class="string">''</span>,$string);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> $string;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有个安全过滤函数，将提交的字符如果存在%20＼%27相同等都通过str_replace函数替换为空</p>
+<p>Code:50</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function safe_html($str)&#123;</span><br><span class="line"></span><br><span class="line">	if(empty($str))&#123;return;&#125;</span><br><span class="line"></span><br><span class="line">	$str=preg_replace('/select|insert | update | and | in | on | left | joins | delete |\%|\=|\/\*|\*|\.\.\/|\.\/| union | from | where | group | into |load_file</span><br><span class="line"></span><br><span class="line">|outfile/','',$str);</span><br><span class="line"></span><br><span class="line">	return htmlspecialchars($str);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里先检查$str参数是否为空，如果为空则反回，如果不为空则执行下面正则表达式，过滤了常用的sql注入语句。如果存在正则里面的都替换为空。然后反回的结果又通过htmlspecialchars函数再处理一遍。</p>
+<p>system/modules/content/index.php</p>
+<p>code:14</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">lists</span><span class="params">($catid=<span class="string">''</span>,$_page=<span class="string">""</span>)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">global</span> $page;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">empty</span>($catid))&#123;	<span class="comment">//判断是否空，如果为空则通过ＧＥＴ获取，这里调用了safe_html函数处理，再通过intval把获取的转换整型</span></span><br><span class="line"></span><br><span class="line">			$catid=intval(safe_html($_GET[<span class="string">'catid'</span>]));</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">empty</span>($_page))&#123;</span><br><span class="line"></span><br><span class="line">			$page=<span class="keyword">isset</span>($_GET[<span class="string">'page'</span>])?(int)$_GET[<span class="string">'page'</span>]:<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">			$page=$page==<span class="number">0</span>?<span class="number">1</span>:$page;</span><br><span class="line"></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">			$page=$_page;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		$array=get_category($catid);  </span><br><span class="line"></span><br><span class="line">		$catids=get_catids($catid);  <span class="comment">//判断是否有子类</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">empty</span>($catids))&#123;</span><br><span class="line"></span><br><span class="line">			$name=str_replace(<span class="string">'.html'</span>,<span class="string">''</span>,$array[<span class="string">'template_list'</span>]);   <span class="comment">//如果没有小类取出列表页模板名称</span></span><br><span class="line"></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">			$child=explode(<span class="string">","</span>,$catids); </span><br><span class="line"></span><br><span class="line">			assign(<span class="string">'child'</span>,$child);</span><br><span class="line"></span><br><span class="line">			$name=str_replace(<span class="string">'.html'</span>,<span class="string">''</span>,$array[<span class="string">'template_cate'</span>]);   <span class="comment">//如果有小类取出栏目页模板名称</span></span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		$this-&gt;left($catid);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		template($name);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>跟进一下get_category函数是干嘛的：<br>定位函数可以通过Zend Studio工具来定位很方便的。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//根据栏目ID取得栏目数组</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_category</span><span class="params">($id)</span></span>&#123;</span><br><span class="line">	$category=base::load_cache(<span class="string">"cache_category"</span>,<span class="string">"_category"</span>);</span><br><span class="line">	$array=get_array($category,<span class="string">'catid'</span>,$id,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> $array[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好像没什么用。</p>
+<p>code:80</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hits</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		$contentid=intval(safe_html($_GET[<span class="string">'contentid'</span>]));</span><br><span class="line"></span><br><span class="line">		$rs=$this-&gt;mysql-&gt;get_one(<span class="string">"select * from "</span>.DB_PRE.<span class="string">"content where contentid="</span>.$contentid);</span><br><span class="line"></span><br><span class="line">		$count_hits=$rs[<span class="string">'hits'</span>]+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		$this-&gt;mysql-&gt;db_update(<span class="string">"content"</span>,<span class="string">"hits="</span>.$count_hits,<span class="string">"contentid="</span>.$contentid);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"document.write(\""</span>.$count_hits.<span class="string">"\")"</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>都过滤了比较严格</p>
+<p>然而这里我就没开始了，直接用程序去扫。有些并没有调用safe_html之类的，有时候一眼看过去而是自己不细心所以才没有发现漏洞。因为这套程序也看了一些然后没找到洞然后网上找了下，发现别人有挖了一个注入，而为什么自己却没有找到。 自己看代码还是不能静下心来分析。 我会改的。</p>
+<p>直接定位程序：<br>modules/member/index.php：</p>
+<p>Code:139</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">edit_save</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	$this-&gt;member_info();</span><br><span class="line"></span><br><span class="line">	$userid=$_COOKIE[<span class="string">'member_userid'</span>];</span><br><span class="line"></span><br><span class="line">	$fields=$_POST[<span class="string">'fields'</span>];</span><br><span class="line"></span><br><span class="line">	<span class="comment">//修改资料</span></span><br><span class="line"></span><br><span class="line">	$field_sql=<span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">foreach</span>($fields <span class="keyword">as</span> $k=&gt;$v)&#123;</span><br><span class="line"></span><br><span class="line">		$f_value=$v;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(is_array($v))&#123;</span><br><span class="line"></span><br><span class="line">			$f_value=implode(<span class="string">','</span>,$v);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		$field_sql.=<span class="string">",`&#123;$k&#125;`='&#123;$f_value&#125;'"</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	$field_sql=substr($field_sql,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	$field_sql=<span class="string">"update "</span>.DB_PRE.<span class="string">"member set &#123;$field_sql&#125; where userid=&#123;$userid&#125;"</span>;</span><br><span class="line"></span><br><span class="line">	$query=$this-&gt;mysql-&gt;query($field_sql);</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	showmsg(C(<span class="string">'update_success'</span>),<span class="string">'index.php?m=member&amp;f=edit'</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">password</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	$this-&gt;member_info();</span><br><span class="line"></span><br><span class="line">	template(<span class="string">"member/password"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这是一个编辑会员函数，先通过member_info()获取会员信息，member_userid赋值给$userid。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$field_sql=<span class="string">"update "</span>.DB_PRE.<span class="string">"member set &#123;$field_sql&#125; where userid=&#123;$userid&#125;"</span>;</span><br><span class="line"></span><br><span class="line">$query=$this-&gt;mysql-&gt;query($field_sql);</span><br></pre></td></tr></table></figure>
+<p>这里获取的用记id没有过滤进行更新到了数据库中。所以造成了注入</p>
+<p>在修改会员信息的时候抓包，然后放到sqlmap就可以了。</p>
+<p>其实还是有很多自己不理解的，不过我会继续学习的，多少年了我不会放弃的。只是时间的问题。</p>
+<p>不过现在的代审已经不像以前了，各种没有过滤现在代审主要是找到漏洞之后考虑如何绕过过滤函数之类的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/10/社会工程学之我见/" rel="next" title="社会工程学之我见">
+                <i class="fa fa-chevron-left"></i> 社会工程学之我见
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/20/审计学习笔记二/" rel="prev" title="审计学习笔记二">
+                审计学习笔记二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/15/审计学习笔记一/"
+           data-title="审计学习笔记一" data-url="http://yoursite.com/2016/07/15/审计学习笔记一/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

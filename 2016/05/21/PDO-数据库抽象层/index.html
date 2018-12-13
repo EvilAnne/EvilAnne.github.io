@@ -1,0 +1,715 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="学习笔记，东西太多学了又忘学了又忘记，如果不通过实战去总结去运用只是记在脑海里，时间久而久之就忘光了。  深有体会！
+PDO简介PHP Data Object数据库访问抽象层，统一各种数据库的访问接口
+特性：
+
+编码一致性
+
+灵活性
+
+高性能
+
+面向对象特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PDO-数据库抽象层">
+<meta property="og:url" content="http://yoursite.com/2016/05/21/PDO-数据库抽象层/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="学习笔记，东西太多学了又忘学了又忘记，如果不通过实战去总结去运用只是记在脑海里，时间久而久之就忘光了。  深有体会！
+PDO简介PHP Data Object数据库访问抽象层，统一各种数据库的访问接口
+特性：
+
+编码一致性
+
+灵活性
+
+高性能
+
+面向对象特性">
+<meta property="og:updated_time" content="2016-05-21T07:16:22.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PDO-数据库抽象层">
+<meta name="twitter:description" content="学习笔记，东西太多学了又忘学了又忘记，如果不通过实战去总结去运用只是记在脑海里，时间久而久之就忘光了。  深有体会！
+PDO简介PHP Data Object数据库访问抽象层，统一各种数据库的访问接口
+特性：
+
+编码一致性
+
+灵活性
+
+高性能
+
+面向对象特性">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> PDO-数据库抽象层 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PDO-数据库抽象层
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-21T23:15:00+08:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/21/PDO-数据库抽象层/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/21/PDO-数据库抽象层/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学习笔记，东西太多学了又忘学了又忘记，如果不通过实战去总结去运用只是记在脑海里，时间久而久之就忘光了。  深有体会！</p>
+<h2 id="PDO简介"><a href="#PDO简介" class="headerlink" title="PDO简介"></a>PDO简介</h2><p>PHP Data Object数据库访问抽象层，统一各种数据库的访问接口</p>
+<p>特性：</p>
+<ul>
+<li><p>编码一致性</p>
+</li>
+<li><p>灵活性</p>
+</li>
+<li><p>高性能</p>
+</li>
+<li><p>面向对象特性</p>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="PDO链接数据库"><a href="#PDO链接数据库" class="headerlink" title="PDO链接数据库"></a>PDO链接数据库</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过参数形式连接数据库</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">  $dsn=<span class="string">'mysql:host=localhost;dbname=test'</span>;</span><br><span class="line"></span><br><span class="line">  $username=<span class="string">'root'</span>;</span><br><span class="line"></span><br><span class="line">  $password=<span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">  $pdo= <span class="keyword">new</span> PDO($dsn,$username,$password);</span><br><span class="line"></span><br><span class="line">  var_dump($pdo);</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>exec():执行一条sql语句并返回其受影响的记录的条数,如果没有受影响的记录，他返回0</p>
+<p>exec对于select没有作用</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  $pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">  $sql =<span class="string">&lt;&lt;&lt;EOF</span><br><span class="line"></span><br><span class="line">    CREATE TABLE IF NOT EXISTS user(</span><br><span class="line"></span><br><span class="line">    id INT UNSIGNED AUTO_INCREMENT KEY,</span><br><span class="line"></span><br><span class="line">    username VARCHAR(20) NOT NULL UNIQUE,</span><br><span class="line"></span><br><span class="line">    password CHAR(32) NOT NULL,</span><br><span class="line"></span><br><span class="line">    email VARCHAR(30) NOT NULL</span><br><span class="line"></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">EOF;</span></span><br><span class="line"></span><br><span class="line">  $res = $pdo-&gt;exec($sql);</span><br><span class="line"></span><br><span class="line">  var_dump($res);</span><br><span class="line"></span><br><span class="line">  $sqla = <span class="string">'INSERT user(username,password,email) VALUES ("ccav","'</span>.md5(<span class="string">'ccav'</span>).<span class="string">'","ccav@16c.com")'</span>;</span><br><span class="line"></span><br><span class="line">  $resa = $pdo-&gt;exec($sqla);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $resa;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>$pdo-&gt;lastInsertId():得到新插入记录的ID号</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">  $pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//lastInsertId</span></span><br><span class="line"></span><br><span class="line">  $sql = <span class="string">'INSERT user(username,password,email) VALUES ("CCAVA","'</span>.md5(<span class="string">'CCAVA'</span>).<span class="string">'","ccava@123.com")'</span>;</span><br><span class="line"></span><br><span class="line">  $res = $pdo-&gt;exec($sql);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $res . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $pdo-&gt;lastInsertId();</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOexception $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>$pdo-&gt;errorInfo():返回的错误信息的数组，数组中包含3个单元</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  $pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">  $sql = <span class="string">'select * from user1'</span>;</span><br><span class="line"></span><br><span class="line">  $res = $pdo-&gt;exec($sql);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>($res === <span class="keyword">false</span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> $pdo-&gt;errorCode();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'&lt;Hr&gt;'</span>;</span><br><span class="line"></span><br><span class="line">    $errorinfo = $pdo-&gt;errorInfo();</span><br><span class="line"></span><br><span class="line">    print_r($errorinfo);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getmessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>遍历内容：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">'select username,password,email from user'</span>;</span><br><span class="line"></span><br><span class="line">    $res = $pdo-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>($res <span class="keyword">as</span> $userinfo)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'username:'</span>. $userinfo[<span class="string">'username'</span>].<span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'password:'</span>. $userinfo[<span class="string">'password'</span>].<span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'email:'</span>. $userinfo[<span class="string">'email'</span>] . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOexception $e)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">fetch():得到结果集中的一条记录</span><br><span class="line"></span><br><span class="line">  $sql = <span class="string">'select * from user'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  $res = $pdo-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">  var_dump($res);</span><br><span class="line"></span><br><span class="line">  $resa = $res-&gt;execute();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// print_r($resa);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// $row = $res-&gt;fetch();</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// print_r($row);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>($row = $res-&gt;fetch())&#123;</span><br><span class="line"></span><br><span class="line">    $rows[] = $row;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  print_r($rows);</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(<span class="keyword">EXCEPtion</span> $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">获取全部内容fetchAll：</span><br><span class="line"></span><br><span class="line">$sql = <span class="string">'select * from user'</span>;</span><br><span class="line"></span><br><span class="line">    $res  = $pdo-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">    $resulmt = $res-&gt;execute();</span><br><span class="line"></span><br><span class="line">    $row = $res-&gt;fetchAll();</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">遍历二维数组中的内容：</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">    $pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">    $sql = <span class="string">'select * from user'</span>;</span><br><span class="line"></span><br><span class="line">    $res  = $pdo-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">    $resulmt = $res-&gt;execute();</span><br><span class="line"></span><br><span class="line">    $row = $res-&gt;fetchAll();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>($row <span class="keyword">as</span> $ccc)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span>($ccc <span class="keyword">as</span> $bbb)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">echo</span> $bbb . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException $e)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过quote():返回带引号的字符串，过滤字符串中的特殊字符</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">header(<span class="string">'content-type:text/html;charset=utf-8'</span>);</span><br><span class="line"></span><br><span class="line">$username=$_GET[<span class="string">'username'</span>];</span><br><span class="line"></span><br><span class="line">$password=$_GET[<span class="string">'password'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">  $pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">  $username = $pdo-&gt;quote($username);</span><br><span class="line"></span><br><span class="line">  $sql = <span class="string">"select * from user where username='&#123;$username&#125;' and password = '&#123;$password&#125;'"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $sql;</span><br><span class="line"></span><br><span class="line">  $stmt = $pdo-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $stmt-&gt;rowCount();</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOexception $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>预处理语句：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$username = $_POST[<span class="string">'username'</span>];</span><br><span class="line"></span><br><span class="line">$password = $_POST[<span class="string">'password'</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">  $pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">                                  <span class="comment">//=:username站位符 有两种，一种是这样的形式，另外一种是问号？ 形式</span></span><br><span class="line"></span><br><span class="line">  $sql = <span class="string">"select * from user where username=:username and password=:password"</span>;</span><br><span class="line"></span><br><span class="line">  $stmt = $pdo-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $sql;</span><br><span class="line"></span><br><span class="line">  $stmt-&gt;execute(<span class="keyword">array</span>(<span class="string">":username"</span>=&gt;$username,<span class="string">":password"</span>=&gt;$password));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $stmt-&gt;rowCount();</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getmessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//bindParam</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">    $pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">    $sql = <span class="string">"INSERT user(username,password) VALUES (:username,:password)"</span>;</span><br><span class="line"></span><br><span class="line">    $stmt = $pdo-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">    $stmt -&gt;bindParam(<span class="string">":username"</span>,$username,PDO::PARAM_STR);</span><br><span class="line"></span><br><span class="line">    $stmt -&gt;bindParam(<span class="string">":password"</span>,$password,PDO::PARAM_STR);</span><br><span class="line"></span><br><span class="line">    $username =<span class="string">'xxx'</span>;</span><br><span class="line"></span><br><span class="line">    $password = <span class="string">'xxx'</span>;</span><br><span class="line"></span><br><span class="line">    $stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> $sql;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> $stmt-&gt;rowCount();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line">    $sqla = <span class="string">"select * from user"</span>;</span><br><span class="line"></span><br><span class="line">    $stmta = $pdo-&gt;query($sqla);</span><br><span class="line"></span><br><span class="line">    $row = $stmta-&gt;fetchAll();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>($row <span class="keyword">as</span> $info)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span>($info <span class="keyword">as</span> $userinfo)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">echo</span> $userinfo.<span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException $e)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//bindValue</span></span><br><span class="line"></span><br><span class="line">$sql=<span class="string">'INSERT user(username,password,email) VALUES(?,?,?)'</span>;</span><br><span class="line"></span><br><span class="line">	$stmt=$pdo-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">	$username=<span class="string">'imooc_king'</span>;</span><br><span class="line"></span><br><span class="line">	$password=<span class="string">'imooc_king'</span>;</span><br><span class="line"></span><br><span class="line">	$stmt-&gt;bindValue(<span class="number">1</span>,$username);</span><br><span class="line"></span><br><span class="line">	$stmt-&gt;bindValue(<span class="number">2</span>,$password);</span><br><span class="line"></span><br><span class="line">	$stmt-&gt;bindValue(<span class="number">3</span>,<span class="string">'imooc@imooc.com'</span>);</span><br><span class="line"></span><br><span class="line">	$stmt-&gt;execute();</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//bindColumn</span></span><br><span class="line"></span><br><span class="line">$result  = $pdo-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">  $result-&gt;execute();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $result-&gt;columnCount();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  $result-&gt;bindColumn(<span class="number">1</span>,$username);</span><br><span class="line"></span><br><span class="line">  $result-&gt;bindColumn(<span class="number">2</span>,$password);</span><br><span class="line"></span><br><span class="line">  $result-&gt;bindColumn(<span class="number">3</span>,$email);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>($result-&gt;fetch(PDO::FETCH_BOUND))&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"User:"</span>.$username. <span class="string">"Pass:"</span> . $password . <span class="string">"Email："</span>.$email.<span class="string">"&lt;hr&gt;"</span>;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOexception $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//fetchColumn</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">  $pdo = <span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">  $sql=<span class="string">'select username,password,email from user'</span>;</span><br><span class="line"></span><br><span class="line">  $stmt = $pdo-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $stmt-&gt;fetchColumn(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $stmt-&gt;fetchColumn(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="PDO错误处理"><a href="#PDO错误处理" class="headerlink" title="PDO错误处理"></a>PDO错误处理</h3><p>PDO::ERRMODE_SLIENT:默认模式，静默模式</p>
+<p>PDO::ERRMODE_WARNING:警告模式</p>
+<p>PDO::ERRMODE_EXCEPTION:异常模式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line"></span><br><span class="line">  $pdo=<span class="keyword">new</span> PDO(<span class="string">'mysql:host=localhost;dbname=test'</span>,<span class="string">'root'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">  $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);</span><br><span class="line"></span><br><span class="line">  $sql=<span class="string">"select * from nono"</span>;</span><br><span class="line"></span><br><span class="line">  $pdo-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $pdo-&gt;errorCode();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException $e)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="PDO参数绑定与预处理"><a href="#PDO参数绑定与预处理" class="headerlink" title="PDO参数绑定与预处理"></a>PDO参数绑定与预处理</h3><p>PDO事务处理</p>
+<p>beginTransaction()        启动一个事务</p>
+<p>commit()        提交一个事务</p>
+<p>rollBack()        回滚一个事务</p>
+<p>inTransaction()    检测是否在一个内</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/20/要什么安逸/" rel="next" title="要什么安逸">
+                <i class="fa fa-chevron-left"></i> 要什么安逸
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/29/最近的想法/" rel="prev" title="最近的想法">
+                最近的想法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/21/PDO-数据库抽象层/"
+           data-title="PDO-数据库抽象层" data-url="http://yoursite.com/2016/05/21/PDO-数据库抽象层/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PDO简介"><span class="nav-number">1.</span> <span class="nav-text">PDO简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PDO链接数据库"><span class="nav-number">1.1.</span> <span class="nav-text">PDO链接数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDO错误处理"><span class="nav-number">1.2.</span> <span class="nav-text">PDO错误处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDO参数绑定与预处理"><span class="nav-number">1.3.</span> <span class="nav-text">PDO参数绑定与预处理</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

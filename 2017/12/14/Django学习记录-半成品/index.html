@@ -1,0 +1,724 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="PS:本来是想更新Django学习笔记的可是写到一般出差还是干什么事情去了,回来之后想再继续写好像接不上了心累,所以只能完成了一半。等月低做个今年总结再看看啥时候能完成，最近也写了两篇比较长的日记,一个是关于我的成长、一个关于内网渗透整理的笔记可写的时间可能会长达一个月再加上这个月还要写今年的总结。所以可能已经两个星期没有更新博客了其实我一直在想博客是以质量为主,还是以每个星期更新。这也是我思考的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django学习记录---半成品">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/Django学习记录-半成品/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="PS:本来是想更新Django学习笔记的可是写到一般出差还是干什么事情去了,回来之后想再继续写好像接不上了心累,所以只能完成了一半。等月低做个今年总结再看看啥时候能完成，最近也写了两篇比较长的日记,一个是关于我的成长、一个关于内网渗透整理的笔记可写的时间可能会长达一个月再加上这个月还要写今年的总结。所以可能已经两个星期没有更新博客了其实我一直在想博客是以质量为主,还是以每个星期更新。这也是我思考的">
+<meta property="og:image" content="https://i.imgur.com/dKATTEI.jpg">
+<meta property="og:image" content="https://i.imgur.com/ojKaCkk.jpg">
+<meta property="og:image" content="https://i.imgur.com/1ulbpV1.jpg">
+<meta property="og:image" content="https://i.imgur.com/SCBuEpd.jpg">
+<meta property="og:image" content="https://i.imgur.com/4lb6CxQ.jpg">
+<meta property="og:updated_time" content="2017-12-14T15:02:30.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django学习记录---半成品">
+<meta name="twitter:description" content="PS:本来是想更新Django学习笔记的可是写到一般出差还是干什么事情去了,回来之后想再继续写好像接不上了心累,所以只能完成了一半。等月低做个今年总结再看看啥时候能完成，最近也写了两篇比较长的日记,一个是关于我的成长、一个关于内网渗透整理的笔记可写的时间可能会长达一个月再加上这个月还要写今年的总结。所以可能已经两个星期没有更新博客了其实我一直在想博客是以质量为主,还是以每个星期更新。这也是我思考的">
+<meta name="twitter:image" content="https://i.imgur.com/dKATTEI.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Django学习记录---半成品 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django学习记录---半成品
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-14T22:49:09+08:00" content="2017-12-14">
+              2017-12-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/12/14/Django学习记录-半成品/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/12/14/Django学习记录-半成品/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>PS:本来是想更新Django学习笔记的可是写到一般出差还是干什么事情去了,回来之后想再继续写好像接不上了心累,所以只能完成了一半。等月低做个今年总结再看看啥时候能完成，最近也写了两篇比较长的日记,一个是关于我的成长、一个关于内网渗透整理的笔记可写的时间可能会长达一个月再加上这个月还要写今年的总结。所以可能已经两个星期没有更新博客了其实我一直在想博客是以质量为主,还是以每个星期更新。这也是我思考的事。</p>
+<p><img src="https://i.imgur.com/dKATTEI.jpg" alt=""></p>
+<a id="more"></a>
+<p>之前是看马哥视频Django,后面视频有问题很多杂声根本没办法听清然后就网上买了一本关于Django开发实战的书籍看了将近一半前面都大概能懂后面一直到各种修改前端模板没有跟上而且有些解释的不是很清晰直到上个星期在网上找到了一遍比较不错关于Django实战开发Blog把之前看书过程中很多不懂的搞懂了其实利用Django也是有套路的各种套模板步骤只是有些功能需要自己去写。</p>
+<hr>
+<p>Github:<a href="https://github.com/zmrenwu/django-blog-tutorial" target="_blank" rel="external">https://github.com/zmrenwu/django-blog-tutorial</a></p>
+<p>博客前端模板:<a href="https://github.com/zmrenwu/django-blog-tutorial-templates" target="_blank" rel="external">https://github.com/zmrenwu/django-blog-tutorial-templates</a></p>
+<h2 id="塔建开发环境"><a href="#塔建开发环境" class="headerlink" title="塔建开发环境"></a>塔建开发环境</h2><h3 id="Virtualenv"><a href="#Virtualenv" class="headerlink" title="Virtualenv"></a>Virtualenv</h3><p><code>virtualenv</code>就是用来为一个应用创建一套<code>隔离</code>的Python运行环境。</p>
+<p>安装:<br><code>pip3 install virtualenv</code></p>
+<p>创建虚拟环境:<br><code>virtualenv ./blogproject_env</code></p>
+<p>激活:<br><code>source ./blogproject_env/bin/activate</code></p>
+<p>安装Django:<br><code>pip3 install django</code></p>
+<p>如果想指定安装某个版本：<br><code>pip3 install django=1.11.11</code></p>
+<p>测试是否安装成功：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> django</span><br><span class="line">print(django.get_version())</span><br></pre></td></tr></table></figure>
+<h3 id="创建Django项目"><a href="#创建Django项目" class="headerlink" title="创建Django项目"></a>创建Django项目</h3><p>创建：<br><code>django-admin startproject blogprojecta</code></p>
+<p>blogprojecta目录下存Django配置文件</p>
+<h3 id="Django-APP"><a href="#Django-APP" class="headerlink" title="Django APP"></a>Django APP</h3><p>创建：<br><code>python manage.py startapp blog</code></p>
+<p>之前通过<code>django-admin startapp blog</code>来创建后面会遇到各种各样的问题这里不推荐使用此方法。</p>
+<p>settings.py文件找到<code>INSTALLED_APPS</code>将blog添加进去</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'blog'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line"> 	......</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/ojKaCkk.jpg" alt=""></p>
+<p>目录文件介绍</p>
+<h3 id="Hello-Django"><a href="#Hello-Django" class="headerlink" title="Hello Django"></a>Hello Django</h3><p>启动网站：<br><code>python manage.py runserver</code></p>
+<p><img src="https://i.imgur.com/1ulbpV1.jpg" alt=""></p>
+<h2 id="创建数据库模型"><a href="#创建数据库模型" class="headerlink" title="创建数据库模型"></a>创建数据库模型</h2><p>Django 为我们提供了一套 ORM（Object Relational Mapping）系统它有自己一套规定的语法来生成表结构。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">blogprojecta/blog/models.py</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Category</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tag</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">	title = models.CharField(max_length=<span class="number">70</span>)</span><br><span class="line">	body = models.TextField()</span><br><span class="line">	created_time = models.DateTimeField()</span><br><span class="line">	modified_time = models.DateTimeField()</span><br><span class="line">	excerpt = models.CharField(max_length=<span class="number">200</span>,blank=<span class="keyword">True</span>)</span><br><span class="line">	category = models.ForeignKey(Category)</span><br><span class="line">	tags = models.ManyToManyField(Tag,blank=<span class="keyword">True</span>)</span><br><span class="line">	author = models.ForeignKey(User)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> title</span><br></pre></td></tr></table></figure>
+<p><code>Category</code>就是一个标准的 Python 类，它继承了 <code>models.Model</code> 类，类名为 <code>Category</code> 。<code>Category</code> 类有一个属性 <code>name</code>，它是 <code>models.CharField</code> 的一个实例。</p>
+<p><code>CharField(max_length=100)</code>是字符型 <code>max_length</code>指定其最大长度<br><code>TextField()</code> 文本类型<br><code>DateTimeField()</code>存储时间字段<br><code>CharField(max_length=200, blank=True)</code>指定字符型长度100可以为空<br><code>ForeignKey(Category)</code>即一对多的关联关系<br><code>ManyToManyField(Tag, blank=True)</code>多对多的关联关系。</p>
+<ul>
+<li><a href="https://docs.djangoproject.com/en/1.10/ref/models/fields/#field-types" target="_blank" rel="external">类型参考文档</a></li>
+</ul>
+<h3 id="迁移数据库"><a href="#迁移数据库" class="headerlink" title="迁移数据库"></a>迁移数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br></pre></td></tr></table></figure>
+<p>当执行了Django在blog应用的migrations目录下生成一个0001_initial.py文件来记录我们对模型做了哪些修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py sqlmigrate blog 0001</span><br></pre></td></tr></table></figure>
+<p>查看Django将模型翻译出来的sql语句:<br><img src="https://i.imgur.com/SCBuEpd.jpg" alt=""></p>
+<p>Django默认数据库为SQLite3</p>
+<p>增:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> Category, Tag, Post</span><br><span class="line">c = Category(name=<span class="string">'category test'</span>)</span><br><span class="line">c.save()</span><br><span class="line">t = Tag(name=<span class="string">'tag test'</span>)</span><br><span class="line">t.save()</span><br></pre></td></tr></table></figure>
+<p>删:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p = Post.objects.get(title=<span class="string">'title test'</span>)</span><br><span class="line">p.delete()</span><br><span class="line">Post.objects.all()</span><br></pre></td></tr></table></figure>
+<p>改:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = Category.objects.get(name=<span class="string">'category test'</span>)</span><br><span class="line">c.name = <span class="string">'category test new'</span></span><br><span class="line">c.save()</span><br></pre></td></tr></table></figure>
+<p>查:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Category.objects.all()</span><br></pre></td></tr></table></figure>
+<h2 id="首页视图"><a href="#首页视图" class="headerlink" title="首页视图"></a>首页视图</h2><p>首先在 blog 应用的目录下创建一个 urls.py 文件</p>
+<p>urls.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">	url(<span class="string">r'^$'</span>,views.index,name=<span class="string">'index'</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>先从django.conf.urls导入了url函数,又从当前目录下导入views函数,而此时views函数并没有写,然后把网址和处理的函数关系写在了urlpatterns列表里,第一个参数是网址，第二个参数是处理函数,第三个参数是作为处理函数index的另名.</p>
+<p>blog/views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> HttpResponse(<span class="string">"Welcome to Blog Index"</span>)</span><br></pre></td></tr></table></figure>
+<p>index函数参数request是Django为我们封装好的http请求，它是类HttpRequest的一个实例</p>
+<p>blogprojecta/url.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">    url(<span class="string">r''</span>,include(<span class="string">'blog.urls'</span>)),</span><br><span class="line"></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>导入了一个include函数，利用这个函数把blog应用下的urls.py文件包含进来</p>
+<p><img src="https://i.imgur.com/4lb6CxQ.jpg" alt=""></p>
+<h3 id="Django模板系统"><a href="#Django模板系统" class="headerlink" title="Django模板系统"></a>Django模板系统</h3><p>项目目录下创建templates目录再其下创建blog文件夹目录下创建index.html</p>
+<p>blogprojecta/templates/blog/index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>\&#123;\&#123; title &#125;&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>\&#123;\&#123; welcome &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>\{\{ }}</code>这是Django规定的语法，叫做模板变量</p>
+<p>在 settings.py文件设置一下模板文件所在路私，找到TEMPLATES</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">'DIRS'</span>: [os.path.join(BASE_DIR,<span class="string">'templates'</span>)],</span><br><span class="line">        ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>修改视图:</p>
+<p>blog/views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> render(request,<span class="string">'blog/index.html'</span>,context=&#123;</span><br><span class="line">		<span class="string">'title'</span>:<span class="string">'My Blog Index'</span>,</span><br><span class="line">		<span class="string">'welcome'</span>:<span class="string">'Welcome to Blog Index'</span></span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="首页视图函数"><a href="#首页视图函数" class="headerlink" title="首页视图函数"></a>首页视图函数</h3><p>上面只是简单的显示视图中的hello World</p>
+<p>blog/views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Post</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">	post_list = Post.objects.all().order_by(<span class="string">'-created_time'</span>)</span><br><span class="line">	<span class="comment">#获取Post表中的全部内容,按文章发表时间倒序排列 "-"号表示逆序</span></span><br><span class="line">	<span class="keyword">return</span> render(request,<span class="string">'blog/index.html'</span>,context=&#123;</span><br><span class="line">		<span class="string">'post_list'</span>:post_list</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="处理静态文件"><a href="#处理静态文件" class="headerlink" title="处理静态文件"></a>处理静态文件</h3><ul>
+<li><a href="https://github.com/zmrenwu/django-blog-tutorial-templates" target="_blank" rel="external">博客前端模板</a></li>
+</ul>
+<p>将css 与 js放到 blogprojecta/blog/static/blog</p>
+<p>将 index 放到  blogprojecta/templates/blog/index.html</p>
+<p>修改index.html文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\&#123;百分号 load staticfiles 百分号&#125;</span><br><span class="line"> 	<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"\&#123;百分号 static 'blog/css/bootstrap.min.css' 百分号&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"\&#123;百分号 static 'blog/css/pace.css' 百分号&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"\&#123;百分号 static 'blog/css/custom.css' 百分号&#125;"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- js --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"\&#123;百分号 static 'blog/js/jquery-2.1.3.min.js' 百分号&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"\&#123;百分号 static 'blog/js/bootstrap.min.js' 百分号&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"\&#123;百分号 static 'blog/js/pace.min.js' 百分号&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"\&#123;百分号 static 'blog/js/modernizr.custom.js' 百分号&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>用 <code>\{百分号 百分号}</code> 包裹起来的叫做模板标签。<br>static 模板标签</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/30/11月资讯汇总/" rel="next" title="11月资讯汇总">
+                <i class="fa fa-chevron-left"></i> 11月资讯汇总
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/17/一次APT攻击/" rel="prev" title="一次APT攻击">
+                一次APT攻击 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/12/14/Django学习记录-半成品/"
+           data-title="Django学习记录---半成品" data-url="http://yoursite.com/2017/12/14/Django学习记录-半成品/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#塔建开发环境"><span class="nav-number">1.</span> <span class="nav-text">塔建开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Virtualenv"><span class="nav-number">1.1.</span> <span class="nav-text">Virtualenv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建Django项目"><span class="nav-number">1.2.</span> <span class="nav-text">创建Django项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django-APP"><span class="nav-number">1.3.</span> <span class="nav-text">Django APP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hello-Django"><span class="nav-number">1.4.</span> <span class="nav-text">Hello Django</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数据库模型"><span class="nav-number">2.</span> <span class="nav-text">创建数据库模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迁移数据库"><span class="nav-number">2.1.</span> <span class="nav-text">迁移数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首页视图"><span class="nav-number">3.</span> <span class="nav-text">首页视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Django模板系统"><span class="nav-number">3.1.</span> <span class="nav-text">Django模板系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首页视图函数"><span class="nav-number">3.2.</span> <span class="nav-text">首页视图函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理静态文件"><span class="nav-number">3.3.</span> <span class="nav-text">处理静态文件</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

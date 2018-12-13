@@ -1,0 +1,730 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="封装定义一个元组、可以省略小括号封装出来的一定是元组t1 = (1,2)等效于：t2 = 1,2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集合、字典、解析式、迭代器">
+<meta property="og:url" content="http://yoursite.com/2016/12/19/集合、字典、解析式、迭代器/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="封装定义一个元组、可以省略小括号封装出来的一定是元组t1 = (1,2)等效于：t2 = 1,2">
+<meta property="og:updated_time" content="2016-12-19T13:09:33.236Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="集合、字典、解析式、迭代器">
+<meta name="twitter:description" content="封装定义一个元组、可以省略小括号封装出来的一定是元组t1 = (1,2)等效于：t2 = 1,2">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 集合、字典、解析式、迭代器 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                集合、字典、解析式、迭代器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-19T18:31:21+08:00" content="2016-12-19">
+              2016-12-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/19/集合、字典、解析式、迭代器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/19/集合、字典、解析式、迭代器/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>定义一个元组、可以省略小括号<br>封装出来的一定是元组<br><code>t1 = (1,2)</code><br>等效于：<br><code>t2 = 1,2</code></p>
+<a id="more"></a>
+<h3 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h3><p>按照元素顺序，把线性结构的元素赋值给变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lst = list(range(<span class="number">5</span>))</span><br><span class="line">lst</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">lst = [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">a = lst[<span class="number">0</span>]</span><br><span class="line">b = lst[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">a,b = lst</span><br><span class="line">In [<span class="number">75</span>]:</span><br><span class="line"></span><br><span class="line">print(a,b)</span><br><span class="line"><span class="number">1</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h4 id="解构的变化"><a href="#解构的变化" class="headerlink" title="解构的变化"></a>解构的变化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lst = list(range(<span class="number">10</span>))</span><br><span class="line">head, *mid = lst</span><br><span class="line"></span><br><span class="line">head</span><br><span class="line"><span class="number">0</span></span><br><span class="line"></span><br><span class="line">mid</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+<p>这里的<code>head, *mid</code>可以更换为任意字符，<code>head</code>获取第一个，<code>*mid</code>获取head之后所有。<br>不可以加多个星号，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a, *b, *c, d = lst</span><br><span class="line">  File <span class="string">"&lt;ipython-input-80-e3b3d7e616ab&gt;"</span>, line <span class="number">1</span></span><br><span class="line">    a, *b, *c, d = lst</span><br><span class="line">                      ^</span><br><span class="line">SyntaxError: two starred expressions <span class="keyword">in</span> assignment</span><br></pre></td></tr></table></figure>
+<p>元素按照顺序赋值给变量<br>变量和元素必须匹配<br>加星号变量，可以接受任意个数的元素<br>加星号的变量不能单独出现</p>
+<p>Python的一个惯例， 使用单个下划线 _ 表示丢弃该变量<br>单个下划线也是Python合法的标识符， 但是如果不是要丢弃一个变量，通常不要用单个下划线表示一个有意义的变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a, *_,c = lst</span><br></pre></td></tr></table></figure>
+<h5 id="小总结："><a href="#小总结：" class="headerlink" title="小总结："></a>小总结：</h5><p>在解构这一小知识点中，很多还是不理解的，视频才看了一遍， 但是，没有解构，我们也可以活下来， 但是有了解构， 生活很美好，解构这个特性，被很多的语言借鉴。 所以希望自己能理解好。</p>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><p><code>set()</code><br>元素是唯一的<br>元素是无序的<br>数学意义上的集合，可以做集合运算<br>没有重复元素</p>
+<h4 id="定义集合"><a href="#定义集合" class="headerlink" title="定义集合"></a>定义集合</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = set()</span><br><span class="line">b = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">c = set(range(<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="增-改"><a href="#增-改" class="headerlink" title="增\改"></a>增\改</h4><p><code>add()</code><br>增加单个元素，原地修改<br>当add一个已经存在的元素时，不会发生任何改变.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.add(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p><code>update()</code><br>对于已经存在的元素，什么也不做</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.update([<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line">s.update(list(range(<span class="number">1</span>,<span class="number">10</span>)))</span><br></pre></td></tr></table></figure>
+<p>可以增加一组集合、列表、元组、字符串</p>
+<h4 id="删"><a href="#删" class="headerlink" title="删"></a>删</h4><p><code>pop()</code><br>删除并返回一个任意元素。<br>当集合为空时，抛出KeyError</p>
+<p><code>remove()</code><br>删除不存在的元素时，抛出KeyError</p>
+<p><code>discard()</code><br>从集合中删除一个元素，删除不存在的不会抛出异常。</p>
+<p><code>clear()</code><br>删除所有元素</p>
+<p>list set bytearray dict是不可hash的，所以不能作为set的元素，通常来说，内置类型，不可变类型是可hash的，可变类型是不可hash的。</p>
+<h4 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h4><p>在元组中是没有修改的<br>没有一个方法可以直接的修改集合中的某个具体元素，因为没有一个方法<br>可以查找定位其中的某个具体元素。</p>
+<p>查找<br>集合不能通过索引访问<br>集合没有访问单个元素的方法<br>集合不是线性结构，集合元素没有顺序</p>
+<h3 id="集合的集合运算"><a href="#集合的集合运算" class="headerlink" title="集合的集合运算"></a>集合的集合运算</h3><h4 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h4><p><code>union</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">b = &#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">a.union(b)</span><br></pre></td></tr></table></figure>
+<p>重复的不显示。<br>也可以通过 <code>|</code>来进行求并集</p>
+<h4 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h4><p><code>intersection</code>    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">b = &#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">a.intersection(b)</span><br><span class="line"></span><br><span class="line">&#123;<span class="number">2</span>, <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>求a与b都存在的</p>
+<p>可以通过 <code>&amp;</code> 来交集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &amp; b</span><br><span class="line">&#123;<span class="number">2</span>, <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+<p><code>intersection_update</code><br>反回只保留并集</p>
+<h4 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h4><p><code>difference</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.difference(b)</span><br><span class="line">&#123;<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>只反回1,因为交集通过a 是否在b是否 存在，如果不存在则反回1</p>
+<p>可以通过 <code>-</code> 来求差集</p>
+<h4 id="对称差集"><a href="#对称差集" class="headerlink" title="对称差集"></a>对称差集</h4><p><code>symmetric_difference</code>   </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.symmetric_difference(b)</span><br><span class="line"></span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">4</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>1和4都是独立出来的。<br>可以通过<code>^</code>来求对称差集</p>
+<p>是否超集isuperset<br>用来判断前面是否是后面的超集。</p>
+<p>是否子集issubset<br>用来判断前面是否是后面的子集。</p>
+<p>是否不相交isdisjoint<br>用来判断两个 是否是不相交</p>
+<p>复制copy<br>复制集合，本质上是再复制出一段内存。</p>
+<h4 id="集合的用法"><a href="#集合的用法" class="headerlink" title="集合的用法"></a>集合的用法</h4><p>当有一个api需求认证，并且有一定权限才可以访问：例如：A,B,C任意一项， 有一个用户具有B,C,D如何判断有权限访问这些api</p>
+<p>a.isdisjoint(b)<br>当反回False的时候说明是有这个api权限的。</p>
+<p>有一个任务列表，存储全部的任务，有一个列表，存储已经完成的任务，要找出未完成的。<br>用<code>差集</code></p>
+<p>之前我一直以为集合的这些在写代码中没有用处，现在看别人举的例子还是挺有用的。  但是要如何把这些小知识块结合在一起就需要经常写代码时间的磨练了。</p>
+<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><p>字典是一种key-value结构。字典的key必须是可hash的值，并且是唯一的，value可以是任意值。</p>
+<p>定义方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = dict&#123;‘a’:<span class="number">1</span>,’b’:<span class="number">2</span>,’c’:<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">b = dict&#123;a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>赋值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="string">'c'</span>] = <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>如果不存在查询会报错，如果通过get来查询没有则反回空</p>
+<h4 id="字典的下标操作"><a href="#字典的下标操作" class="headerlink" title="字典的下标操作"></a>字典的下标操作</h4><h5 id="访问单个元素"><a href="#访问单个元素" class="headerlink" title="访问单个元素"></a>访问单个元素</h5><h6 id="下标访问"><a href="#下标访问" class="headerlink" title="下标访问"></a>下标访问</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'b'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line">a[<span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
+<h6 id="get-访问"><a href="#get-访问" class="headerlink" title="get()访问"></a>get()访问</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dic = dict(a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>)</span><br><span class="line">dic.get(<span class="string">'a'</span>)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h6 id="setdefault"><a href="#setdefault" class="headerlink" title="setdefault"></a>setdefault</h6><p>设置默认访问。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dic.setdefault(<span class="string">'v'</span>,<span class="string">'default'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="遍历访问"><a href="#遍历访问" class="headerlink" title="遍历访问"></a>遍历访问</h5><h6 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dic.keys():</span><br><span class="line">    print(<span class="string">'&#123;&#125;=&gt;&#123;&#125;'</span>.format(i,dic[i]))</span><br><span class="line">    </span><br><span class="line">c=&gt;<span class="number">3</span></span><br><span class="line">a=&gt;<span class="number">1</span></span><br><span class="line">v=&gt;default</span><br><span class="line">b=&gt;<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h6 id="values"><a href="#values" class="headerlink" title="values"></a>values</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dic.values():</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<h6 id="items"><a href="#items" class="headerlink" title="items"></a>items</h6><p>items遍历kv的二元组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i,v <span class="keyword">in</span> dic.items():</span><br><span class="line">    print(<span class="string">'&#123;&#125;=&gt;&#123;&#125;'</span>.format(i,v))</span><br></pre></td></tr></table></figure>
+<h4 id="增"><a href="#增" class="headerlink" title="增"></a>增</h4><p>update</p>
+<ul>
+<li>字典</li>
+<li>由二元组构成的可迭代对象</li>
+<li>关键字参数</li>
+</ul>
+<p>a.update(d=5,e=6)</p>
+<p>update如果key相同的话，第二个的value会覆盖第一个的value，算是一个改的功能了。</p>
+<h4 id="删-1"><a href="#删-1" class="headerlink" title="删"></a>删</h4><p>pop()<br>根据key来删除键值对，并返回value。<br>如果不存在，则会抛出KeyError。<br>可以指定异常的返回值，这样抛出异常，就会返回那个返回值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a.pop(<span class="string">'i'</span>)  如果没有会抛出异常</span><br><span class="line"></span><br><span class="line">这里可以设置值认值</span><br><span class="line"></span><br><span class="line">a.pop(<span class="number">0</span>,<span class="string">'default'</span>)</span><br><span class="line">当删除不存在的key,并且指定了默认值，不会抛出KeyError,并且反回默认值</span><br></pre></td></tr></table></figure>
+<p>popitem<br>随机删除并返回一个k-v对。（用得不多）</p>
+<p>clear     清空字典</p>
+<p>查<br>单个元素的访问</p>
+<p><code>a[&#39;d&#39;]</code> 通过key访问value</p>
+<p>可以用下标访问，也可以用get，get存在的key，会返回value，get不存在的key，会返回空，可以设置不存在的key的默认的返回值。<br><code>d.get(&#39;a&#39;)</code><br>不存在会反回None，可以加默认值其它。如果没有给默认就是None</p>
+<h4 id="其他几个函数"><a href="#其他几个函数" class="headerlink" title="其他几个函数"></a>其他几个函数</h4><p>copy<br>复制字典，相当于复制了字典那块的内存。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d1 = &#123;‘a’:<span class="number">1</span>,’b’:<span class="number">2</span>&#125;</span><br><span class="line">id(d1)</span><br><span class="line">d2 = d1.copy()</span><br><span class="line">id(d2)</span><br></pre></td></tr></table></figure>
+<p>fromkeys</p>
+<p><code>fromkeys(iterable, value = None)</code></p>
+<p>把可迭代对象中的值当做key，生成一组带默认值的字典。</p>
+<h4 id="解析式"><a href="#解析式" class="headerlink" title="解析式"></a>解析式</h4><h5 id="列表解析式"><a href="#列表解析式" class="headerlink" title="列表解析式"></a>列表解析式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lst = range(<span class="number">10</span>)</span><br><span class="line">ret = []</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> lst:</span><br><span class="line">    ret.append(x ** <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">lst = range(<span class="number">10</span>)</span><br><span class="line">ret = [x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> lst]</span><br></pre></td></tr></table></figure>
+<p>列表解析式反回的结果是列表，以及相同的、生成器、集合、字典解析式。<br>解析式为了代码简结，可读性强，以及效率比普通迭代稍高， 如果代码中有超过3种if语句建议不要使用，否则可读性非常差。使用列表解析式为了让代码更简洁</p>
+<h6 id="生成器解析"><a href="#生成器解析" class="headerlink" title="生成器解析"></a>生成器解析</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g = （x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10000</span>)）</span><br><span class="line">next(g)</span><br></pre></td></tr></table></figure>
+<p>集合解析<br><code>{x for x in range(10)}</code></p>
+<p>字典解析<br><code>{str(x):x for x in range(10)}</code></p>
+<p>总结：这几周看的小知识点的细节太多了，视频看完一遍还是不够。很多知识点都无法理解不够透的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/12/内置数据结构/" rel="next" title="内置数据结构">
+                <i class="fa fa-chevron-left"></i> 内置数据结构
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/24/简单爬取美女图片/" rel="prev" title="简单爬取美女图片">
+                简单爬取美女图片 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/19/集合、字典、解析式、迭代器/"
+           data-title="集合、字典、解析式、迭代器" data-url="http://yoursite.com/2016/12/19/集合、字典、解析式、迭代器/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装"><span class="nav-number">1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解构"><span class="nav-number">2.</span> <span class="nav-text">解构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解构的变化"><span class="nav-number">2.1.</span> <span class="nav-text">解构的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#小总结："><span class="nav-number">2.1.1.</span> <span class="nav-text">小总结：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合"><span class="nav-number">3.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义集合"><span class="nav-number">3.1.</span> <span class="nav-text">定义集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增-改"><span class="nav-number">3.2.</span> <span class="nav-text">增\改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删"><span class="nav-number">3.3.</span> <span class="nav-text">删</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改"><span class="nav-number">3.4.</span> <span class="nav-text">修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合的集合运算"><span class="nav-number">4.</span> <span class="nav-text">集合的集合运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并集"><span class="nav-number">4.1.</span> <span class="nav-text">并集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交集"><span class="nav-number">4.2.</span> <span class="nav-text">交集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#差集"><span class="nav-number">4.3.</span> <span class="nav-text">差集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对称差集"><span class="nav-number">4.4.</span> <span class="nav-text">对称差集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合的用法"><span class="nav-number">4.5.</span> <span class="nav-text">集合的用法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典"><span class="nav-number">5.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字典的下标操作"><span class="nav-number">5.1.</span> <span class="nav-text">字典的下标操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#访问单个元素"><span class="nav-number">5.1.1.</span> <span class="nav-text">访问单个元素</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#下标访问"><span class="nav-number">5.1.1.1.</span> <span class="nav-text">下标访问</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#get-访问"><span class="nav-number">5.1.1.2.</span> <span class="nav-text">get()访问</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#setdefault"><span class="nav-number">5.1.1.3.</span> <span class="nav-text">setdefault</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#遍历访问"><span class="nav-number">5.1.2.</span> <span class="nav-text">遍历访问</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#keys"><span class="nav-number">5.1.2.1.</span> <span class="nav-text">keys</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#values"><span class="nav-number">5.1.2.2.</span> <span class="nav-text">values</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#items"><span class="nav-number">5.1.2.3.</span> <span class="nav-text">items</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增"><span class="nav-number">5.2.</span> <span class="nav-text">增</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删-1"><span class="nav-number">5.3.</span> <span class="nav-text">删</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他几个函数"><span class="nav-number">5.4.</span> <span class="nav-text">其他几个函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析式"><span class="nav-number">5.5.</span> <span class="nav-text">解析式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#列表解析式"><span class="nav-number">5.5.1.</span> <span class="nav-text">列表解析式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#生成器解析"><span class="nav-number">5.5.1.1.</span> <span class="nav-text">生成器解析</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

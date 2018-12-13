@@ -1,0 +1,658 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以播放音乐哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探shell">
+<meta property="og:url" content="http://yoursite.com/2016/10/13/初探shell/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以播放音乐哦！">
+<meta property="og:updated_time" content="2016-10-13T13:51:07.375Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初探shell">
+<meta name="twitter:description" content="可以播放音乐哦！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 初探shell | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                初探shell
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T21:46:23+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux运维/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/13/初探shell/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/初探shell/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以播放音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=28637154&auto=0&height=66"></iframe>
+
+<a id="more"></a>
+<blockquote>
+<p>看到国外关于渗透Tips的文章，然后自己也有想过这个问题，不管你会再多的工具总是会忘记，不管你会再多的东西也有漏掉的地方，最近刚接触shell脚本比我想象中的容易多了，深入总是那么的难需要长时间的编写和总结经验以及积累。</p>
+</blockquote>
+<p>看到文章后也尝试写了个5毛脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">nmapdir=<span class="string">'/usr/share/nmap/scripts'</span></span><br><span class="line"></span><br><span class="line">filevulscan=<span class="variable">$nmapdir</span><span class="string">"/vulscan/vulscan.nse"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#判断vulscan.nse是否存在这个脚本文件，不存在则下载安装</span></span><br><span class="line"><span class="keyword">if</span> [ ! <span class="_">-f</span> <span class="variable">$filevulscan</span> ];<span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">yum -y install nmap</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$nmapdir</span></span><br><span class="line">wget http://www.computec.ch/projekte/vulscan/download/nmap_nse_vulscan-2.0.tar.gz &amp;&amp; tar xzf nmap_nse_vulscan-2.0.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Install...OK!"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1.Default vulscan Scan"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2.Scan DB"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"3.Scan Port 80"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"4.Scan vulscancorrelation Port 80"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"5.Scan All"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"Input Parameter："</span> parameter</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"Input target："</span> target</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$parameter</span> <span class="keyword">in</span></span><br><span class="line">  1)</span><br><span class="line">  nmap <span class="_">-s</span>S <span class="_">-s</span>V --script=vulscan/vulscan.nse <span class="variable">$target</span></span><br><span class="line">  ;;</span><br><span class="line">  2)</span><br><span class="line">  nmap <span class="_">-s</span>S <span class="_">-s</span>V --script=vulscan/vulscan.nse –script-args vulscandb=scipvuldb.csv <span class="variable">$target</span></span><br><span class="line">  ;;</span><br><span class="line">  3)</span><br><span class="line">  nmap <span class="_">-s</span>S <span class="_">-s</span>V --script=vulscan/vulscan.nse –script-args vulscandb=scipvuldb.csv -p80 <span class="variable">$target</span></span><br><span class="line">  ;;</span><br><span class="line">  4)</span><br><span class="line">  nmap -PN <span class="_">-s</span>S <span class="_">-s</span>V --script=vulscan –script-args vulscancorrelation=1 -p80 <span class="variable">$target</span></span><br><span class="line">  ;;</span><br><span class="line">  5)</span><br><span class="line">  nmap <span class="_">-s</span>V --script=vuln <span class="variable">$target</span></span><br><span class="line">  ;;</span><br><span class="line">  6)</span><br><span class="line">  nmap -PN <span class="_">-s</span>S <span class="_">-s</span>V --script=all –script-args vulscancorrelation=1 <span class="variable">$target</span></span><br><span class="line">  ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<p>刚写脚本思路比较死，只用到了一些简单的语问。</p>
+<p>然后本来还想把文章所有的Pentest Tips都写下来的，不过写到一半能力有限被一个BUG卡死了。</p>
+<p>webscan.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">tools=`<span class="built_in">pwd</span>`</span><br><span class="line">last_dir=<span class="variable">$tools</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1.Dirb Directory Scan..."</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2.Nikto Web Scan..."</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"3.WordPress Scanner"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#此函数通过wpscan来扫描wordpress网站程序是否有漏洞或其它插件的问题</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">wpscan</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span>_gitinstall=`dpkg --get-selections |grep git`</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$if_gitinstall</span> ];<span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  yum -y install git</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">cd</span> ../tools</span><br><span class="line">last_dir=`<span class="built_in">pwd</span>`</span><br><span class="line">ls_wpscan_exists=`find <span class="variable">$last_dir</span> -type d -name <span class="string">"wpscan"</span>`</span><br><span class="line"><span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$ls_wpscan_exists</span> ];<span class="keyword">then</span></span><br><span class="line">  <span class="built_in">cd</span> wpscan</span><br><span class="line">  <span class="built_in">read</span> -p <span class="string">"Input IPAddress："</span> IP</span><br><span class="line">  ruby wpscan.rb --url http://<span class="variable">$IP</span>/ –enumerate p</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  git <span class="built_in">clone</span> https://github.com/wpscanteam/wpscan.git &amp;&amp; <span class="built_in">cd</span> wpscan</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#判断是否要识别网站程序指纹</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">httprintinfo</span></span>()</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"httprint info：Y or N"</span> httprint</span><br><span class="line">Y=<span class="string">"Y"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$httprint</span>"</span>x = <span class="string">"<span class="variable">$Y</span>"</span>x ];<span class="keyword">then</span></span><br><span class="line">  <span class="built_in">cd</span> ../tools</span><br><span class="line">  last_dir=`<span class="built_in">pwd</span>`</span><br><span class="line">  ls_httprint_exists=`find $(last_dir) -type f -name <span class="string">"httprint"</span> `</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$ls_httprint_exists</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">cd</span> ../tools</span><br><span class="line">    wget http://www.net-square.com/_assets/httprint_linux_301.zip &amp;&amp; unzip httprint_linux_301.zip</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> <span class="built_in">getopts</span> <span class="string">"h:s:o:help"</span> optname;<span class="keyword">do</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">"<span class="variable">$optname</span>"</span> <span class="keyword">in</span></span><br><span class="line">          <span class="string">"h"</span>)</span><br><span class="line">            HOST=<span class="variable">$OPTARG</span></span><br><span class="line">            ;;</span><br><span class="line">          <span class="string">"s"</span>)</span><br><span class="line">            FILE=<span class="variable">$OPTARG</span></span><br><span class="line">            ;;</span><br><span class="line">          <span class="string">"o"</span>)</span><br><span class="line">            OUTPUTRE=<span class="variable">$OPTARG</span></span><br><span class="line">            ;;</span><br><span class="line">          <span class="string">"?"</span>)</span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"-h setup host info"</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"-s Specify File"</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"-o report"</span></span><br><span class="line">            usage</span><br><span class="line">            ;;</span><br><span class="line">          <span class="string">"help"</span>)</span><br><span class="line">          <span class="built_in">echo</span> <span class="string">"-h setup host info"</span></span><br><span class="line">          <span class="built_in">echo</span> <span class="string">"-s Specify File"</span></span><br><span class="line">          <span class="built_in">echo</span> <span class="string">"-o report"</span></span><br><span class="line">          usage</span><br><span class="line">          ;;</span><br><span class="line">      <span class="keyword">esac</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ -z <span class="variable">$HOST</span> ];<span class="keyword">then</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">"-h setup host info"</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">"-s Specify File"</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">"-o report"</span></span><br><span class="line">    <span class="keyword">elif</span> [ -z <span class="variable">$FILE</span> ];<span class="keyword">then</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">"-h setup host info"</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">"-s Specify File"</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">"-o report"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"1.Default httprint Scaning..."</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"2.customize file..."</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"3.outputre html..."</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">"Input Parameter："</span> parameter</span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">"Input Target IPaddress："</span> IP</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="variable">$parameter</span> <span class="keyword">in</span></span><br><span class="line">      1)</span><br><span class="line">      ./httprint -h <span class="variable">$HOST</span> <span class="_">-s</span> signatures.txt</span><br><span class="line">      ;;</span><br><span class="line">      2)</span><br><span class="line">      ./httprint -h <span class="variable">$HOST</span> <span class="_">-s</span> <span class="variable">$FILE</span></span><br><span class="line">      ;;</span><br><span class="line">      3)</span><br><span class="line">      ./httprint -h <span class="variable">$HOST</span> <span class="_">-s</span> <span class="variable">$FILE</span> -o <span class="variable">$OUTPUTRE</span></span><br><span class="line">      ;;</span><br><span class="line">    <span class="keyword">esac</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"Input parameter："</span> parameter</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$parameter</span> <span class="keyword">in</span></span><br><span class="line">  1)</span><br><span class="line">  <span class="comment">#扫目录，默认设置80端口</span></span><br><span class="line">  <span class="variable">$PORT</span>=<span class="string">"80"</span></span><br><span class="line">  <span class="built_in">read</span> -p <span class="string">"Input IPAddress："</span> IP</span><br><span class="line">  httprintinfo</span><br><span class="line">  dirb http://<span class="variable">$IP</span>:<span class="variable">$PORT</span> /usr/share/dirb/wordlists/common.txt</span><br><span class="line">  ;;</span><br><span class="line">  2)</span><br><span class="line">  <span class="comment">#扫网站</span></span><br><span class="line">  <span class="built_in">read</span> -p <span class="string">"Input IPAddress："</span> IP</span><br><span class="line">  nikto -C all -h http://<span class="variable">$IP</span></span><br><span class="line">  ;;</span><br><span class="line">  3)</span><br><span class="line">  wpscan</span><br><span class="line">  ;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<p>其中这一段脚本有问题暂时还没有找出来：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">httprintinfo</span></span>()</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"httprint info：Y or N"</span> httprint</span><br><span class="line">Y=<span class="string">"Y"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$httprint</span>"</span>x = <span class="string">"<span class="variable">$Y</span>"</span>x ];<span class="keyword">then</span></span><br><span class="line">  <span class="built_in">cd</span> ../tools</span><br><span class="line">  last_dir=`<span class="built_in">pwd</span>`</span><br><span class="line">  ls_httprint_exists=`find $(last_dir) -type f -name <span class="string">"httprint"</span> `</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="variable">$ls_httprint_exists</span> ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">cd</span> ../tools</span><br><span class="line">    wget http://www.net-square.com/_assets/httprint_linux_301.zip &amp;&amp; unzip httprint_linux_301.zip</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>暂时先放着，这个星期把lamp一键安装脚本写完之后，再来写自己一些常用的工具。<br>先这样吧，最近的时间不够用。真希望自己能得一种病连晚上不睡觉也不会困的那种人，不过世界上还真有这样的人。<br>在些过程中我会记录点点滴滴，也要吃遍每处的小吃。<br>来到这座城市，安逸中带着充实~</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/09/心情随笔二/" rel="next" title="心情随笔二">
+                <i class="fa fa-chevron-left"></i> 心情随笔二
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/22/Information-Shell-Script/" rel="prev" title="Information Shell Script">
+                Information Shell Script <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/13/初探shell/"
+           data-title="初探shell" data-url="http://yoursite.com/2016/10/13/初探shell/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

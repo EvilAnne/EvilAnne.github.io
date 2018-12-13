@@ -1,0 +1,724 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以播放音乐哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zabbix笔记">
+<meta property="og:url" content="http://yoursite.com/2016/11/06/zabbix笔记/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以播放音乐哦！">
+<meta property="og:image" content="http://i.imgur.com/D68ZrlR.png">
+<meta property="og:image" content="http://i.imgur.com/kuIMHWP.png">
+<meta property="og:image" content="http://i.imgur.com/pQoo9V5.png">
+<meta property="og:image" content="http://i.imgur.com/PAZnA9o.png">
+<meta property="og:updated_time" content="2016-11-10T13:01:15.963Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zabbix笔记">
+<meta name="twitter:description" content="可以播放音乐哦！">
+<meta name="twitter:image" content="http://i.imgur.com/D68ZrlR.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> zabbix笔记 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                zabbix笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-06T19:11:57+08:00" content="2016-11-06">
+              2016-11-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux运维/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/06/zabbix笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/06/zabbix笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以播放音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=4979587&auto=0&height=66"></iframe>
+
+<a id="more"></a>
+<p>安装lamp</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall <span class="string">"development tools"</span></span><br><span class="line"></span><br><span class="line">mysql5.6</span><br><span class="line">http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.32.tar.gz</span><br></pre></td></tr></table></figure>
+<p>先安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gcc make cmake ncurses-devel libxml2-devel libtool-ltdl-devel gcc-c++ autoconf automake bison zlib-devel</span><br><span class="line"></span><br><span class="line">useradd <span class="_">-s</span> /sbin/nologin -M mysql</span><br><span class="line">mkdir -p /data/mysql</span><br><span class="line">chown -R mysql /data/mysql</span><br><span class="line"></span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr/<span class="built_in">local</span>/mysql/ -DMYSQL_DATADIR=/data/mysql -DMYSQL_UNIX_ADDR=/tmp/mysql.sock -DMYSQL_USER=mysql -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_INNOBASE_STORAGE_ENGINE=1 -DENABLE_DOWNLOADS=1 -DMYSQL_TCP_PORT=3306 -DSYSCONFDIR=/data/etc/</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">chmod +x /usr/<span class="built_in">local</span>/mysql/scripts/mysql_install_db</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/scripts/mysql_install_db --user=mysql --basedir=/usr/<span class="built_in">local</span>/mysql --datadir=/data/mysql/</span><br><span class="line">cp /usr/<span class="built_in">local</span>/mysql/support-files/my-default.cnf /etc/my.cnf</span><br><span class="line">vim /etc/my.cnf</span><br><span class="line">basedir = /usr/<span class="built_in">local</span>/mysql</span><br><span class="line">datadir = /data/mysql</span><br><span class="line">port = 3306</span><br><span class="line">socket = /tmp/mysql.sock</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"export PATH=<span class="variable">$PATH</span>:/usr/local/mysql/bin"</span> &gt;&gt; /etc/profile</span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line">cp mysql.server /etc/init.d/mysqld</span><br><span class="line">chkconfig mysqld --add</span><br><span class="line">chkconfig mysqld on</span><br><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
+<p>设置mysql密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> password=password(‘123456’) <span class="built_in">where</span> user=‘root’;</span><br><span class="line">flush privileges;</span><br><span class="line">quit;</span><br></pre></td></tr></table></figure>
+<p>安装apache</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">wget http://ftp.wayne.edu/apache//apr/apr-util-1.5.4.tar.gz</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/apr-util \</span><br><span class="line">--with-apr=/usr/<span class="built_in">local</span>/apr</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">wget http://mirrors.advancedhosters.com/apache//apr/apr-1.5.2.tar.gz</span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/apr \</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">如果有以下提示：</span><br><span class="line">&gt;config.status: executing libtool commands</span><br><span class="line">rm: cannot remove `libtoolT<span class="string">': No such file or directory</span><br><span class="line"></span><br><span class="line">那么修改 configure的：RM='</span><span class="variable">$RM</span><span class="string">' 改为：RM='</span><span class="variable">$RM</span> <span class="_">-f</span> <span class="string">'</span><br><span class="line">这个要先安装好才能安装apr-util</span><br><span class="line">ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.tar.gz</span><br><span class="line"></span><br><span class="line">mkdir /usr/local/pcre</span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/local/pcre --with-apr=/usr/local/apr/bin/apr-1-config</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http://mirrors.sohu.com/apache/httpd-2.4.23.tar.gz</span><br><span class="line">/usr/local/apr-util/lib/libaprutil-1.so: undefined reference to `apr_os_uuid_get'</span></span><br><span class="line">collect2: ld returned 1 <span class="built_in">exit</span> status</span><br><span class="line"></span><br><span class="line">如果出现这样的情况，说明已经安装了apr  通过yum remove apr</span><br><span class="line"></span><br><span class="line">删除</span><br><span class="line">yum install -y zlib-devel</span><br><span class="line">yum install -y pcre pcre-devel</span><br><span class="line"></span><br><span class="line"> ./configure --prefix=/usr/<span class="built_in">local</span>/apache  --enable-so --enable--ssl --enable-cgi --enable-rewrite --with-zlib --with-pcre --with-apr=/usr/<span class="built_in">local</span>/apr --with-apr-util=/usr/<span class="built_in">local</span>/apr-util --enable-mpms-shared=all  --with-mpm=worker --enable-modules=most</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>php 5.6</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">http://mirrors.sohu.com/php/php-5.6.17.tar.gz</span><br><span class="line"></span><br><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install libmcrypt-devel</span><br><span class="line">yum install -y libxml2-devel</span><br><span class="line">yum install -y openssl openssl-devel</span><br><span class="line">yum install -y bzip2 bzip2-devel</span><br><span class="line">yum install -y libpng libpng-devel</span><br><span class="line">yum install -y freetype freetype-devel</span><br><span class="line">yum -y install libjpeg-devel</span><br><span class="line"></span><br><span class="line">./configure \</span><br><span class="line">--prefix=/usr/<span class="built_in">local</span>/php \</span><br><span class="line">--with-apxs2=/usr/<span class="built_in">local</span>/apache/bin/apxs \</span><br><span class="line">--with-config-file-path=/usr/<span class="built_in">local</span>/php/etc  \</span><br><span class="line">--with-mysql=/usr/<span class="built_in">local</span>/mysql \</span><br><span class="line">--with-libxml-dir \</span><br><span class="line">--with-gd \</span><br><span class="line">--with-jpeg-dir \</span><br><span class="line">--with-png-dir \</span><br><span class="line">--with-freetype-dir \</span><br><span class="line">--with-iconv-dir \</span><br><span class="line">--with-zlib-dir \</span><br><span class="line">--with-bz2 \</span><br><span class="line">--with-mysqli \</span><br><span class="line">--with-openssl \</span><br><span class="line">--with-mcrypt \</span><br><span class="line">--enable-soap \</span><br><span class="line">--enable-gd-native-ttf \</span><br><span class="line">--enable-mbstring \</span><br><span class="line">--enable-sockets \</span><br><span class="line">--enable-exif \</span><br><span class="line">--disable-ipv6</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>要在apache配置目录下加入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">AddType applicaton/x-httpd-php .php</span><br><span class="line">AddType application/x-httpd-php .php</span><br><span class="line">AddType application/x-httpd-php .php .phtml .php3</span><br><span class="line">AddType application/x-httpd-php-source .phps</span><br><span class="line"></span><br><span class="line">cp php.ini-production /usr/<span class="built_in">local</span>/php/etc/php.ini</span><br><span class="line"></span><br><span class="line">配置apache</span><br><span class="line">为了安全性，设置不浏览目录</span><br><span class="line">找到  Options Index FollowSymLinks  去掉Index</span><br><span class="line"></span><br><span class="line">开启虚拟主机，把这一行的<span class="comment">#去掉</span></span><br><span class="line">Include conf/extra/httpd-vhosts.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">打开php.ini配置文件，修改如下参数为如下值，否则zabbix安装不了。</span><br><span class="line"></span><br><span class="line">max_execution_time = 300</span><br><span class="line">memory_<span class="built_in">limit</span> = 128M</span><br><span class="line">post_max_size = 16M</span><br><span class="line">upload_max_filesize = 2M</span><br><span class="line">max_input_time = 300</span><br><span class="line">date.timezone = PRC</span><br></pre></td></tr></table></figure>
+<p>安装zabbix服务端</p>
+<p>一定要先安装依赖包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">yum install net-snmp-devel libxml2-devel libcurl-devel curl curl-devel mysql-devel</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line"></span><br><span class="line">下载</span><br><span class="line">wget http://nchc.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/3.0.5/zabbix-3.0.5.tar.gz</span><br><span class="line"></span><br><span class="line">解压</span><br><span class="line">tar -xzvf zabbix-3.0.5.tar.gz</span><br><span class="line"><span class="built_in">cd</span> zabbix-3.0.5</span><br><span class="line"></span><br><span class="line">编译</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/zabbix/ --enable-server \</span><br><span class="line">--enable-agent --with-mysql --with-net-snmp --with-libcurl --with-libxml2</span><br><span class="line"></span><br><span class="line">（编译 zabbix 如果报 configure: error: Not found mysqlclient library 错误，就做以下操作</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/lib/mysql/</span><br><span class="line"></span><br><span class="line">ln <span class="_">-s</span> libmysqlclient.so.16.0.0 libmysqlclient.so</span><br><span class="line"></span><br><span class="line">ln <span class="_">-s</span> libmysqlclient_r.so.16.0.0 libmysqlclient_r.so）</span><br><span class="line"></span><br><span class="line">安装</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>创建用户</p>
+<blockquote>
+<p>为了安全考虑zabbix只使用普通用户运行，假如你当前用户叫ttlsa，那么你运行他，他便使用ttlsa身份运行。<br>但是如果你在root环境下运行zabbix，那么zabbix将会主动使用zabbix用户来运行。<br>但是如果你的系统没有名叫zabbix的用户，你需要创建一个用户，如下：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd zabbix</span><br><span class="line">useradd -g zabbix zabbix</span><br></pre></td></tr></table></figure>
+<p>初始化数据库</p>
+<blockquote>
+<p>zabbix server与proxy需要数据库，angent不需要。<br>尤其要注意的是proxy只需要导入一个sql文件，而server一共要导入3个sql文件。<br>我当时在搭建proxy的时候导入了3个sql，导致出现报错。后来才发现proxy只需要导入一个表结构即可。<br>安装好了MySQL，授权用户名为zabbix，密码为123456</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -uzabbix -p123456</span><br><span class="line">mysql&gt; grant all on *.* to <span class="string">'zabbix'</span>@<span class="string">'localhost'</span> identified by <span class="string">'123456'</span>;</span><br><span class="line">mysql&gt; create database zabbix default charset utf8;</span><br><span class="line">mysql&gt; quit;</span><br><span class="line">mysql -uzabbix -p123456 --default-character-set=utf8 zabbix &lt; database/mysql/schema.sql</span><br></pre></td></tr></table></figure>
+<p>备注：创建数据库请别忘记加default charset utf8，有可能会导致你出现中文乱码问题<br>如果你仅仅是初始化proxy的数据库，那么够了。如果初始化server，那么接着导入下面两个sql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -uzabbix -p123456 --default-character-set=utf8 zabbix &lt; database/mysql/images.sql</span><br><span class="line">mysql -uzabbix -p123456 --default-character-set=utf8 zabbix &lt; database/mysql/data.sql</span><br></pre></td></tr></table></figure>
+<p>配置zabbix服务端</p>
+<p>配置zabbix_server配置文件,zabbix源码目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/<span class="built_in">local</span>/zabbix/etc/zabbix/zabbix_server.conf</span><br><span class="line"></span><br><span class="line">DBName=zabbix</span><br><span class="line">DBUser=zabbix_user</span><br><span class="line">DBPassword=zabbix_<span class="built_in">pwd</span></span><br><span class="line">DBPort=3306</span><br><span class="line">DBSocket=/tmp/mysql.sock</span><br><span class="line"></span><br><span class="line">添加开机启动脚本</span><br><span class="line">cp /usr/<span class="built_in">local</span>/src/zabbix-3.0.5/misc/init.d/fedora/core/zabbix_server /etc/rc.d/init.d/zabbix_server <span class="comment">#服务端</span></span><br><span class="line"></span><br><span class="line">cp /usr/<span class="built_in">local</span>/src/zabbix-3.0.5/misc/init.d/fedora/core/zabbix_agentd /etc/rc.d/init.d/zabbix_agentd <span class="comment">#客户端</span></span><br><span class="line">chmod +x /etc/rc.d/init.d/zabbix_server <span class="comment">#添加脚本执行权限</span></span><br><span class="line">chmod +x /etc/rc.d/init.d/zabbix_agentd <span class="comment">#添加脚本执行权限</span></span><br><span class="line">chkconfig zabbix_server on <span class="comment">#添加开机启动</span></span><br><span class="line">chkconfig zabbix_agentd on <span class="comment">#添加开机启动</span></span><br><span class="line"></span><br><span class="line">修改vim /etc/init.d/zabbix_server</span><br><span class="line">默认为：</span><br><span class="line">BASEDIR=/usr/<span class="built_in">local</span>/</span><br><span class="line">改成,如果不改会启动不了</span><br><span class="line">BASEDIR=/usr/<span class="built_in">local</span>/zabbix</span><br><span class="line"></span><br><span class="line">vim /etc/init.d/zabbix_agent</span><br><span class="line">默认为：</span><br><span class="line">BASEDIR=/usr/<span class="built_in">local</span>/</span><br><span class="line">改成,如果不改会启动不了</span><br><span class="line">BASEDIR=/usr/<span class="built_in">local</span>/zabbix</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">zabbix server服务端启动</span><br><span class="line">/etc/rc.d/init.d/zabbix_server start</span><br><span class="line">默认端口为10051</span><br><span class="line"></span><br><span class="line">zabbix客户端启动</span><br><span class="line">/usr/<span class="built_in">local</span>/zabbix/sbin/zabbix_agentd start</span><br><span class="line">默认端口10050</span><br><span class="line"></span><br><span class="line">拷贝前端文件</span><br><span class="line">cp -rp /usr/<span class="built_in">local</span>/src/zabbix-3.0.5/frontends/php/* /data/zabbix</span><br><span class="line"></span><br><span class="line">chown -R zabbix:zabbix /data/zabbix</span><br><span class="line">浏览器访问http://ip/zabbix ，默认会有<span class="string">"It is not safe to rely on the system's timezone settings"</span>这样的警告信息，</span><br><span class="line"></span><br><span class="line">需要vim /etc/php.ini ,设置date.timezone=<span class="string">"Asia/Shanghai"</span> 或者 date.timezone=PRC</span><br><span class="line">点击next</span><br><span class="line">![](http://i.imgur.com/8ZUWQde.png)</span><br><span class="line"></span><br><span class="line">提示这样，因为前面编译php的时候我已经把mysqli加进去了，所以这时候你们是看不到第一个错误的</span><br><span class="line"></span><br><span class="line">出现php bamath 错误</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/ php-5.6.17//ext/bcmath</span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">修改php.ini文件</span><br><span class="line">extension=bcmath.so</span><br><span class="line"></span><br><span class="line">当出现PHP gettext extension missing (PHP configuration parameter --with-gettext)错误。同理</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/php-5.6.17/ext/gettext</span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line">./configure --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line">make&amp;&amp;make install</span><br><span class="line"></span><br><span class="line">修改php.ini文件</span><br><span class="line">extension=gettext.so</span><br><span class="line">重启apache解决。</span><br></pre></td></tr></table></figure>
+<p>安装zabbix客户端</p>
+<p>安装依赖包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">yum install net-snmp-devel libxml2-devel libcurl-devel curl curl-devel mysql-devel</span><br><span class="line"></span><br><span class="line">下载安装客户端</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line"></span><br><span class="line">wget http://nchc.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/3.0.5/zabbix-3.0.5.tar.gz</span><br><span class="line">tar -xzvf zabbix-3.0.5.tar.gz</span><br><span class="line"><span class="built_in">cd</span> zabbix-3.0.5</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/zabbix/ --enable-agent</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">zabbix客户端配置</span><br><span class="line"></span><br><span class="line">配置zabbix_server配置文件,zabbix源码目录下</span><br><span class="line">vim /usr/<span class="built_in">local</span>/zabbix/etc/zabbix_agentd.conf</span><br><span class="line">Server=192.168.15.161 <span class="comment">#（服务端IP）</span></span><br><span class="line">ServerActive=0.0.0.0:10050</span><br><span class="line">Hostname=zhang <span class="comment">#自定义，但是要唯一</span></span><br><span class="line">其中Server和ServerActive都指定zabbixserver的IP地址，不同的是，前者是被动后者是主动。</span><br><span class="line">也就是说Server这个配置是用来允许127.0.0.1这个ip来我这取数据。</span><br><span class="line">而serverActive的127.0.0.1的意思是，客户端主动提交数据给他。</span><br><span class="line">其他主机安装客户端记得添加zabbix用户。</span><br><span class="line"></span><br><span class="line">groupadd zabbix</span><br><span class="line">useradd -g zabbix zabbix</span><br><span class="line"></span><br><span class="line">zabbix客户端启动</span><br><span class="line">/usr/<span class="built_in">local</span>/zabbix/sbin/zabbix_agentd start</span><br><span class="line">默认端口10050</span><br><span class="line"></span><br><span class="line">在服务端上运行命令</span><br><span class="line">/usr/<span class="built_in">local</span>/zabbix/bin/zabbix_get <span class="_">-s</span> 客户端ip -p10050 -k <span class="string">"system.hostname"</span></span><br></pre></td></tr></table></figure>
+<p>zabbix3.0和zabbix2.2界面有点不一样，这里我所使用的是zabbix2</p>
+<p>添加一台监控的主机：<br>Zabbix Client安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install epel-release</span><br><span class="line">yum install zabbix20-agent</span><br><span class="line">vim /etc/zabbix_agentd.conf</span><br></pre></td></tr></table></figure>
+<p>更改Server=服务端ip<br>ServerActive=0.0.0.0:10050<br>Hostname=aming(自定义，但要唯一)<br>启动客户端 /etc/init.d/zabbix-agent start</p>
+<p>服务端上命令行测试：zabbix_get -s 客户端ip -p10050 -k “system.hostname”</p>
+<p>创建一个主机组，给于分类：</p>
+<blockquote>
+<p>Configuration -&gt; Host groups -&gt; Create host group</p>
+<p>Configuration -&gt; Hosts -&gt; Create Host<br><img src="http://i.imgur.com/D68ZrlR.png" alt=""></p>
+</blockquote>
+<p>选择模板：</p>
+<blockquote>
+<p>Hosts -&gt; Templates -&gt;  Templates Linux OS</p>
+</blockquote>
+<p>开启声音提示：</p>
+<blockquote>
+<p>Profile -&gt; Messaging</p>
+</blockquote>
+<p>查看机器CPU图形.以及swap空间等：</p>
+<blockquote>
+<p>Monitoring -&gt; Graphs -&gt; cpu jumps</p>
+</blockquote>
+<p>创建用户：</p>
+<blockquote>
+<p>Administration -&gt; Users -&gt; Zabbix Administrators -&gt; Create User</p>
+</blockquote>
+<p>添加mysql监控：<br>在客户端配置文件添加一条：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/zabbix_agentd.conf</span><br><span class="line">mysqladmin ping | grep -c alive</span><br><span class="line">重启service zabbix_agentd restart</span><br></pre></td></tr></table></figure>
+<p>在服务端测试是否反回值为1:</p>
+<blockquote>
+<p>zabbix_get -s 192.168.1.101 -k mysql_alive</p>
+</blockquote>
+<p>创建项：</p>
+<p>Configation -&gt; Hosts -&gt; 192.168.1.101 -&gt; Items -&gt; Create Items<br><img src="http://i.imgur.com/kuIMHWP.png" alt=""><br>最好设置为60秒</p>
+<p>创建触发器：</p>
+<blockquote>
+<p>Configation -&gt; Hosts -&gt; 192.168.1.101 -&gt; Triggers</p>
+</blockquote>
+<p><img src="http://i.imgur.com/pQoo9V5.png" alt=""></p>
+<p><img src="http://i.imgur.com/PAZnA9o.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/02/计算机取证分析学习笔记/" rel="next" title="计算机取证分析学习笔记">
+                <i class="fa fa-chevron-left"></i> 计算机取证分析学习笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/10/hexo出现404/" rel="prev" title="hexo出现404">
+                hexo出现404 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/06/zabbix笔记/"
+           data-title="zabbix笔记" data-url="http://yoursite.com/2016/11/06/zabbix笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

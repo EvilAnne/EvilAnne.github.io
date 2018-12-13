@@ -1,0 +1,910 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="[Ben_Clark]_Rtfm_Red_Team_Field_Manual(b-ok.org).pdf这本手册里面有大量各种实用的命令，本想一一记录下来有用的，但太多了记录了一点点就不想记录了，我觉得还是可以值得打印出来慢慢翻阅的一本手册。在一些实战中非常有用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令Tricks!">
+<meta property="og:url" content="http://yoursite.com/2017/07/16/命令Tricks/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="[Ben_Clark]_Rtfm_Red_Team_Field_Manual(b-ok.org).pdf这本手册里面有大量各种实用的命令，本想一一记录下来有用的，但太多了记录了一点点就不想记录了，我觉得还是可以值得打印出来慢慢翻阅的一本手册。在一些实战中非常有用。">
+<meta property="og:image" content="http://i.imgur.com/wCvT1Zu.jpg">
+<meta property="og:updated_time" content="2017-07-16T06:10:31.978Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="命令Tricks!">
+<meta name="twitter:description" content="[Ben_Clark]_Rtfm_Red_Team_Field_Manual(b-ok.org).pdf这本手册里面有大量各种实用的命令，本想一一记录下来有用的，但太多了记录了一点点就不想记录了，我觉得还是可以值得打印出来慢慢翻阅的一本手册。在一些实战中非常有用。">
+<meta name="twitter:image" content="http://i.imgur.com/wCvT1Zu.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 命令Tricks! | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                命令Tricks!
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-16T14:09:55+08:00" content="2017-07-16">
+              2017-07-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/07/16/命令Tricks/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/16/命令Tricks/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://i.imgur.com/wCvT1Zu.jpg" alt=""></p>
+<p>[Ben_Clark]_Rtfm_Red_Team_Field_Manual(b-ok.org).pdf<br>这本手册里面有大量各种实用的命令，本想一一记录下来有用的，但太多了记录了一点点就不想记录了，我觉得还是可以值得打印出来慢慢翻阅的一本手册。在一些实战中非常有用。</p>
+<a id="more"></a>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="Linux-Network-Commands"><a href="#Linux-Network-Commands" class="headerlink" title="Linux Network Commands"></a>Linux Network Commands</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>watch ss -tp</td>
+<td style="text-align:center">网络连接</td>
+</tr>
+<tr>
+<td>lsof -i</td>
+<td style="text-align:center">建立连接</td>
+</tr>
+<tr>
+<td>iwlist int scan</td>
+<td style="text-align:center">无线wifi扫描</td>
+</tr>
+<tr>
+<td>ip xfrm state list</td>
+<td style="text-align:center">打印vpn密钥</td>
+</tr>
+<tr>
+<td>echo “1” /proc/sys/net/ipv4/ip_forward</td>
+<td style="text-align:center">打开转发</td>
+</tr>
+<tr>
+<td>echo “nameserver x.x.x.x” /etc/resolv.conf</td>
+<td style="text-align:center">添回DNS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Linux-System-Info"><a href="#Linux-System-Info" class="headerlink" title="Linux System Info"></a>Linux System Info</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td style="text-align:center">当前用户权限</td>
+</tr>
+<tr>
+<td>w</td>
+<td style="text-align:center">已登录用户</td>
+</tr>
+<tr>
+<td>who -a</td>
+<td style="text-align:center">User Information</td>
+</tr>
+<tr>
+<td>ps -ef</td>
+<td style="text-align:center">Process Listing</td>
+</tr>
+<tr>
+<td>uname -ar</td>
+<td style="text-align:center">Kernel version</td>
+</tr>
+<tr>
+<td>getent passwd</td>
+<td style="text-align:center">显示用户列表</td>
+</tr>
+<tr>
+<td>/etc/issue</td>
+<td style="text-align:center">OS info</td>
+</tr>
+<tr>
+<td>/etc/release</td>
+<td style="text-align:center">OS version</td>
+</tr>
+<tr>
+<td>/proc/version</td>
+<td style="text-align:center">Kernel info</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Linux-Utility-Commands"><a href="#Linux-Utility-Commands" class="headerlink" title="Linux Utility Commands"></a>Linux Utility Commands</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rdesktip</td>
+<td style="text-align:center">Remote</td>
+</tr>
+<tr>
+<td>scp /tmp/file user@x.x.x.x:/tmp/file</td>
+<td style="text-align:center">Put File</td>
+</tr>
+<tr>
+<td>scp user@x.x.x.x:/tmp/file /tmp/file</td>
+<td style="text-align:center">Get File</td>
+</tr>
+<tr>
+<td>rmuser uname</td>
+<td style="text-align:center">Remove user</td>
+</tr>
+<tr>
+<td>script -t 2&gt;time.file -a output.file</td>
+<td style="text-align:center">Record Shell</td>
+</tr>
+<tr>
+<td>scriptreplay time.file output.file</td>
+<td style="text-align:center">播放</td>
+</tr>
+<tr>
+<td>apropos -k uname</td>
+<td style="text-align:center">查找相关命令</td>
+</tr>
+</tbody>
+</table>
+<p>Record:<br><code>script -t 2&gt;demo.time -a demo.his</code><br><code>scriptreplay demo.time demo.his</code></p>
+<p>利用script记录某人行为:<br><code>script -t -f -q 2&gt;$USER.time -a $USER.his</code></p>
+<p>服务器安全审计:<br>查看记录每个人对线上服务器的操作<br>用户家目录下,修改环境变量，使得用户登录就会触发录像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.profile</span><br><span class="line">script -t <span class="_">-f</span> -q 2&gt;/wow/<span class="variable">$USER</span>-<span class="variable">$UID</span>-`date +%Y%m%d%H%M%S`.time <span class="_">-a</span> /wow/<span class="variable">$USER</span>-<span class="variable">$UID</span>-`date +%Y%m%d%H%M%S`.his</span><br></pre></td></tr></table></figure>
+<h3 id="Linux-File-Commands"><a href="#Linux-File-Commands" class="headerlink" title="Linux File Commands"></a>Linux File Commands</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>diff file1 file2</td>
+<td style="text-align:center">Compare Files</td>
+</tr>
+<tr>
+<td>touch -r ref_file file</td>
+<td style="text-align:center">匹配时间</td>
+</tr>
+<tr>
+<td>md5sum -t file</td>
+<td style="text-align:center">Compute md5 hash</td>
+</tr>
+<tr>
+<td>split -b 1m file</td>
+<td style="text-align:center">切割</td>
+</tr>
+<tr>
+<td>file</td>
+<td style="text-align:center">查看文件信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Linux-Misc-Commands"><a href="#Linux-Misc-Commands" class="headerlink" title="Linux Misc Commands"></a>Linux Misc Commands</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gcc -o exp 1.c</td>
+<td style="text-align:center">编译</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Linux-Files"><a href="#Linux-Files" class="headerlink" title="Linux Files"></a>Linux Files</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/shadow</td>
+<td style="text-align:center">User Hashes</td>
+</tr>
+<tr>
+<td>/etc/passwd</td>
+<td style="text-align:center">User</td>
+</tr>
+<tr>
+<td>/etc/group</td>
+<td style="text-align:center">Groups</td>
+</tr>
+<tr>
+<td>/etc/rc.d</td>
+<td style="text-align:center">Start services</td>
+</tr>
+<tr>
+<td>/etc/init.d</td>
+<td style="text-align:center">services</td>
+</tr>
+<tr>
+<td>/etc/hosts</td>
+<td style="text-align:center">hostname</td>
+</tr>
+<tr>
+<td>/etc/network/interfaces</td>
+<td style="text-align:center">Network config</td>
+</tr>
+<tr>
+<td>/etc/profile</td>
+<td style="text-align:center">system env</td>
+</tr>
+<tr>
+<td>/etc/resolv.conf</td>
+<td style="text-align:center">DNS</td>
+</tr>
+<tr>
+<td>/etc/fstab</td>
+<td style="text-align:center">File System info</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Linux-Scripting"><a href="#Linux-Scripting" class="headerlink" title="Linux Scripting"></a>Linux Scripting</h3><h4 id="Ping-Sweep"><a href="#Ping-Sweep" class="headerlink" title="Ping Sweep"></a>Ping Sweep</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> &#123;1..254..1&#125;;<span class="keyword">do</span> ping -c 1.1.1.<span class="variable">$x</span> |grep <span class="string">"64 b"</span>|cut <span class="_">-d</span> <span class="string">" "</span> <span class="_">-f</span>4 ips.txt;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h4 id="Domain-Resolve"><a href="#Domain-Resolve" class="headerlink" title="Domain Resolve"></a>Domain Resolve</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">read</span> range</span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> &#123;1..254..1&#125;;<span class="keyword">do</span></span><br><span class="line">host <span class="variable">$range</span>.<span class="variable">$ip</span>|grep <span class="string">"name pointer"</span>|cut <span class="_">-d</span> <span class="string">" "</span><span class="_">-f</span>5</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h4 id="Fork-BOMB"><a href="#Fork-BOMB" class="headerlink" title="Fork BOMB"></a>Fork BOMB</h4><p><code>:(){:|:&amp;};:</code></p>
+<h3 id="IPtables"><a href="#IPtables" class="headerlink" title="IPtables"></a>IPtables</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iptables-save -c file</td>
+<td style="text-align:center">dump iptables</td>
+</tr>
+<tr>
+<td>iptables_restore file</td>
+<td style="text-align:center">restore</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Allow-SSH"><a href="#Allow-SSH" class="headerlink" title="Allow SSH"></a>Allow SSH</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -A OUTPUT -o iface -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">iptables -A INPUT -i iface -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><table>
+<thead>
+<tr>
+<th>Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ver</td>
+<td style="text-align:center">os version</td>
+</tr>
+<tr>
+<td>sc query state=all</td>
+<td style="text-align:center">show services</td>
+</tr>
+<tr>
+<td>tasklist /svc</td>
+<td style="text-align:center">show process</td>
+</tr>
+<tr>
+<td>dir /a /s /b c:\ ‘*.pdf’</td>
+<td style="text-align:center">search pdf</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/08/Volume-Shadow小技巧/" rel="next" title="Volume Shadow小技巧">
+                <i class="fa fa-chevron-left"></i> Volume Shadow小技巧
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/24/身体是一切/" rel="prev" title="身体是一切">
+                身体是一切 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/07/16/命令Tricks/"
+           data-title="命令Tricks!" data-url="http://yoursite.com/2017/07/16/命令Tricks/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux"><span class="nav-number">1.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Network-Commands"><span class="nav-number">1.1.</span> <span class="nav-text">Linux Network Commands</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-System-Info"><span class="nav-number">1.2.</span> <span class="nav-text">Linux System Info</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Utility-Commands"><span class="nav-number">1.3.</span> <span class="nav-text">Linux Utility Commands</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-File-Commands"><span class="nav-number">1.4.</span> <span class="nav-text">Linux File Commands</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Misc-Commands"><span class="nav-number">1.5.</span> <span class="nav-text">Linux Misc Commands</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Files"><span class="nav-number">1.6.</span> <span class="nav-text">Linux Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-Scripting"><span class="nav-number">1.7.</span> <span class="nav-text">Linux Scripting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ping-Sweep"><span class="nav-number">1.7.1.</span> <span class="nav-text">Ping Sweep</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Domain-Resolve"><span class="nav-number">1.7.2.</span> <span class="nav-text">Domain Resolve</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fork-BOMB"><span class="nav-number">1.7.3.</span> <span class="nav-text">Fork BOMB</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPtables"><span class="nav-number">1.8.</span> <span class="nav-text">IPtables</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Allow-SSH"><span class="nav-number">1.8.1.</span> <span class="nav-text">Allow SSH</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows"><span class="nav-number">2.</span> <span class="nav-text">Windows</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

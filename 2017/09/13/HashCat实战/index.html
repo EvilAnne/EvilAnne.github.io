@@ -1,0 +1,750 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashCat实战">
+<meta property="og:url" content="http://yoursite.com/2017/09/13/HashCat实战/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description">
+<meta property="og:image" content="https://i.imgur.com/En2m6Xg.jpg">
+<meta property="og:image" content="https://i.imgur.com/ds4Zm1o.jpg">
+<meta property="og:image" content="https://i.imgur.com/h9P6tC3.jpg">
+<meta property="og:image" content="https://i.imgur.com/ShkB0j0.jpg">
+<meta property="og:image" content="https://i.imgur.com/1RRE5ox.jpg">
+<meta property="og:image" content="https://i.imgur.com/DwwYbHO.jpg">
+<meta property="og:image" content="https://i.imgur.com/sz6w73k.jpg">
+<meta property="og:image" content="https://i.imgur.com/QuVC1XX.jpg">
+<meta property="og:image" content="https://i.imgur.com/5EpEXvH.jpg">
+<meta property="og:updated_time" content="2017-09-13T11:42:13.584Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HashCat实战">
+<meta name="twitter:description">
+<meta name="twitter:image" content="https://i.imgur.com/En2m6Xg.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> HashCat实战 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HashCat实战
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-13T19:41:45+08:00" content="2017-09-13">
+              2017-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/13/HashCat实战/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/13/HashCat实战/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/En2m6Xg.jpg" alt=""></p>
+<a id="more"></a>
+<p>如果那位同事看到了请不要说出来，我只想在网络上保留一点自己的空间；不想让别人认出来我是谁；目前这个博客质量没这么高，但就是想坚持写点东西积累还有个人心情。<br>主要内容还是从他博客抄来的，后续自己实战提炼出来再继续写。</p>
+<hr>
+<p>工作需要之前买了一块显卡1080大概7000RMB，显卡太大想装服务器没有插槽，装个人电脑上太大而且很麻烦最后一直装驱动无法成功就退掉了，后来同事组了一套下来三万五左右。</p>
+<blockquote>
+<ul>
+<li>supermicro超微7048GR-TR准系统 双路塔式工作站4 GPU运算服务器 |一台</li>
+<li>Intel/英特尔 XEON至强 E5-2620 V3 15M 2.4G 6核12 |2颗</li>
+<li>金士顿 16G DDR4 REG ECC 2133 服务器内存条 |2根</li>
+<li>三星(SAMSUNG) 850 PRO 512G SATA3 固态硬盘|2块</li>
+<li>NVIDIA技嘉GTX1070 Founders Edition 8G| 4张 32G GPU</li>
+</ul>
+</blockquote>
+<h2 id="HashCat常用选项"><a href="#HashCat常用选项" class="headerlink" title="HashCat常用选项"></a>HashCat常用选项</h2><blockquote>
+<ol>
+<li>-a  指定要使用的破解模式</li>
+<li>-m  指定要破解的hash类型所对应的id[下面有一份完整的hash id对照表],几乎现在市面上常用的一些散列类型它都支持,而且每个版本更新都会增加一些新的算法</li>
+<li>-o  指定破解成功后的hash及所对应的明文密码的存放位置,可以用它把破解成功的hash写到指定的文件中</li>
+<li>–force    忽略破解过程中的警告信息,跑单条hash可能需要加上此选项</li>
+<li>–show    显示已经破解的hash及该hash所对应的明文</li>
+<li>–increment     启用增量破解模式,你可以利用此模式让hashcat在指定的密码长度范围内执行破解过程,其实,并不建议这么用,因为破解时间可能会比较长</li>
+<li>–increment-min  密码最小长度,后面直接等于一个整数即可,配置increment模式一起使用</li>
+<li>–increment-max  密码最大长度,同上</li>
+<li>–outfile-format 指定破解结果的输出格式id,一般自己常用3</li>
+<li>–username      忽略hash文件中的指定的用户名,在破解win和linux系统用户密码hash可能会用到</li>
+<li>–remove      删除已被破解成功的hash</li>
+<li>-r         使用自定义破解规则,这个后期抽空再说吧,比较的复杂,不是一两句话能说完的</li>
+</ol>
+</blockquote>
+<h3 id="破解模式"><a href="#破解模式" class="headerlink" title="破解模式"></a>破解模式</h3><blockquote>
+<ul>
+<li>0 | Straight</li>
+<li>1 | Combination</li>
+<li>3 | Brute-force</li>
+<li>6 | Hybrid Wordlist + Mask</li>
+<li>7 | Hybrid Mask + Wordlist</li>
+</ul>
+<p>0 | Straight</p>
+</blockquote>
+<p>字典破解模式，破解Unix密码<code>$6$</code>机器还不是太强大，必需用此方法才能提高破解成功效率，<code>Hashcat</code>对Unix破解的算法太差了需要运算很久这已经是没有办法中的办法，自己制作了大概有几个G的弱口令字典，共256需要跑一天十几个小时；如果是其它算法ntlm之类的会跑的非常快。</p>
+<blockquote>
+<p>1 | Combination</p>
+</blockquote>
+<p>一种相对智能高效的爆破模式,它的意思是这样的,如果你事先已经明确知道密码中可能包含哪些字符串,你可以把那些字符串事先写到文件中,每行对应一个字符串,然后hashcat会自动根据你所提供的这些字符串,尝试所有可能的组合进行猜解</p>
+<blockquote>
+<p>3 | Brute-force</p>
+</blockquote>
+<p>基于纯掩码的爆破方式,你给定的掩码是多少位它就只破解多少位。</p>
+<blockquote>
+<p>6 | Hybrid Wordlist + Mask</p>
+</blockquote>
+<p>基于字典和掩码配合的爆破模式,每次从前面的字典中取出一个字符串然后和后面掩码的所有组合进行拼接,直到撞到对应的明文。</p>
+<blockquote>
+<p>7 | Hybrid Mask + Wordlist</p>
+</blockquote>
+<p>基于掩码和字典配合的爆破模式,跟6的过程正好相反,只不过这次它是从前面进行拼接</p>
+<h3 id="掩码规则"><a href="#掩码规则" class="headerlink" title="掩码规则"></a>掩码规则</h3><blockquote>
+<ul>
+<li>l | abcdefghijklmnopqrstuvwxyz    纯小写字母</li>
+<li>u | ABCDEFGHIJKLMNOPQRSTUVWXYZ    纯大写字母</li>
+<li>d | 0123456789                         纯数字</li>
+<li>h | 0123456789abcdef                 常见小写子目录和数字</li>
+<li>H | 0123456789ABCDEF                 常见大写字母和数字</li>
+<li>s |  !”#$%&amp;’()*+,-./:;&lt;=&gt;?@[]^_`{|}~    特殊字符</li>
+<li>a | ?l?u?d?s                             以上所有字符</li>
+<li>b | 0x00 - 0xff                        可能是用来匹配像空格这种密码的</li>
+</ul>
+</blockquote>
+<h4 id="自定义字符集规则"><a href="#自定义字符集规则" class="headerlink" title="自定义字符集规则"></a>自定义字符集规则</h4><ul>
+<li>-1, –custom-charset1   | CS   | User-defined charset ?1   | -1 ?l?d?u</li>
+<li>-2, –custom-charset2   | CS   | User-defined charset ?2   | -2 ?l?d?s</li>
+<li>-3, –custom-charset3   | CS   | User-defined charset ?3   |</li>
+<li>-4, –custom-charset4   | CS   | User-defined charset ?4</li>
+</ul>
+<p>例子:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-1 ?l?s	?1?1?1?1?1    表示五位由特殊字符和小写字母组成的密码</span><br><span class="line">-1 ?d?l	-2 ?d?l?u -3 ?l?u ?1?2?3    表示密码的第一位可能是小写字母或者数字,第二位可能是大小写字母或者数字,第三位可能是大或小写字母</span><br></pre></td></tr></table></figure>
+<h2 id="实例测试"><a href="#实例测试" class="headerlink" title="实例测试"></a>实例测试</h2><h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p><code>8a30ec6807f71bc69d096d8e4d501ade</code> 明文：<code>admin666</code></p>
+<p><img src="https://i.imgur.com/ds4Zm1o.jpg" alt=""></p>
+<p>我将明文放至最后一条,一共有2千多万条，具体密码在哪一行我自己也不清楚。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat <span class="_">-a</span> 0 -m 0 md5.txt ../../dic_out/count_uniq.txt --show</span><br></pre></td></tr></table></figure>
+<p>等都不需要等直接秒破。<br><img src="https://i.imgur.com/h9P6tC3.jpg" alt=""></p>
+<p>用了4块1070的显卡，具体主要看hashcat的算法，否则显卡再多也是无用，除非做分布式那种。<br><img src="https://i.imgur.com/ShkB0j0.jpg" alt=""></p>
+<h4 id="MD5掩码破解"><a href="#MD5掩码破解" class="headerlink" title="MD5掩码破解"></a>MD5掩码破解</h4><p>非常不看好此模式，除非你的密码批量的否则通过掩码来换算效率实在是差，在你不知情况下密码有多少位以及中间是否有特殊字符这些都需要靠去猜，如果只破解纯数字或英文那还好点。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat --force <span class="_">-a</span> 3 -m 0 md5.txt ?l?l?l?l?l?d?d?d</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/1RRE5ox.jpg" alt=""></p>
+<h4 id="随机组合"><a href="#随机组合" class="headerlink" title="随机组合"></a>随机组合</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat --force <span class="_">-a</span> 3 -m 0 md5.txt -1 ?l?d ?1?1?1?1?1?1?1?1 --show</span><br></pre></td></tr></table></figure>
+<p>在知道密码长度或者通过脚本来遍历密码长度，可以使用此方法比较看好。<br>因为显卡太强大了，这类密码基本都是秒破。<br><img src="https://i.imgur.com/DwwYbHO.jpg" alt=""></p>
+<h4 id="自动变长模式"><a href="#自动变长模式" class="headerlink" title="自动变长模式"></a>自动变长模式</h4><p>来提高一下难度：</p>
+<p><code>ae0fbaa4de334c4702d1c2ba0c9a6053</code> 明文：<code>EvilAnne!@#...</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat --force <span class="_">-a</span> 3 -m 0 md5.txt --increment --increment-min=8 --increment-max=15 -1 ?a ?1?1?1?1?1?1?1?1?1?1?1?1?1?1</span><br></pre></td></tr></table></figure>
+<p>像这样高难度的密码而且不确定长度从8位到15位，需要3天19个小时<br><img src="https://i.imgur.com/sz6w73k.jpg" alt=""></p>
+<p>已知8位纯英文不知道大小写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat --force <span class="_">-a</span> 3 -m 0 md5.txt --increment --increment-min=6 --increment-max=8 -1 ?l?u ?1?1?1?1?1?1?1?1</span><br></pre></td></tr></table></figure>
+<p>只需48秒<br><img src="https://i.imgur.com/QuVC1XX.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/5EpEXvH.jpg" alt=""></p>
+<h3 id="Linux密码"><a href="#Linux密码" class="headerlink" title="Linux密码"></a>Linux密码</h3><p>除了破解简单的Linux密码外最好是用字典跑，否则会非常慢。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat --force <span class="_">-a</span> 0 -m 1800 hash.txt ./password.txt</span><br></pre></td></tr></table></figure>
+<h3 id="Wifi密码"><a href="#Wifi密码" class="headerlink" title="Wifi密码"></a>Wifi密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wpaclean wpapass.cap sec-01.cap</span><br><span class="line"></span><br><span class="line">aircrack-ng wpapass.cap -J wpahash  把数据包转换成hashcat能认识的<span class="built_in">hash</span>类型</span><br><span class="line"></span><br><span class="line">hashcat -m 2500 <span class="_">-a</span> 3 wpahash.hccap ?u?l?l?l?l?d?d?d</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/03/Scrapy笔记/" rel="next" title="Scrapy笔记">
+                <i class="fa fa-chevron-left"></i> Scrapy笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/17/NodeJS基础/" rel="prev" title="NodeJS基础">
+                NodeJS基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/13/HashCat实战/"
+           data-title="HashCat实战" data-url="http://yoursite.com/2017/09/13/HashCat实战/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashCat常用选项"><span class="nav-number">1.</span> <span class="nav-text">HashCat常用选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#破解模式"><span class="nav-number">1.1.</span> <span class="nav-text">破解模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#掩码规则"><span class="nav-number">1.2.</span> <span class="nav-text">掩码规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义字符集规则"><span class="nav-number">1.2.1.</span> <span class="nav-text">自定义字符集规则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例测试"><span class="nav-number">2.</span> <span class="nav-text">实例测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MD5"><span class="nav-number">2.1.</span> <span class="nav-text">MD5</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MD5掩码破解"><span class="nav-number">2.1.1.</span> <span class="nav-text">MD5掩码破解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#随机组合"><span class="nav-number">2.1.2.</span> <span class="nav-text">随机组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动变长模式"><span class="nav-number">2.1.3.</span> <span class="nav-text">自动变长模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux密码"><span class="nav-number">2.2.</span> <span class="nav-text">Linux密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wifi密码"><span class="nav-number">2.3.</span> <span class="nav-text">Wifi密码</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

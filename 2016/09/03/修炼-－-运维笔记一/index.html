@@ -1,0 +1,699 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="明日复明日，明日何其多,最近嘴里一直念着念着。呜呜呜… 最近在灯光下的镜子看着自己头发好像变色了（屎黄），只不过不是很明显，营养不良嘛…(⊙_⊙;)…，重新修炼Linux。
+辞职了，下半年比较自由，可是自由也是需要付出代价的。
+可以播放音乐听哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修炼 － 运维笔记一">
+<meta property="og:url" content="http://yoursite.com/2016/09/03/修炼-－-运维笔记一/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="明日复明日，明日何其多,最近嘴里一直念着念着。呜呜呜… 最近在灯光下的镜子看着自己头发好像变色了（屎黄），只不过不是很明显，营养不良嘛…(⊙_⊙;)…，重新修炼Linux。
+辞职了，下半年比较自由，可是自由也是需要付出代价的。
+可以播放音乐听哦！">
+<meta property="og:updated_time" content="2016-09-02T16:41:10.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="修炼 － 运维笔记一">
+<meta name="twitter:description" content="明日复明日，明日何其多,最近嘴里一直念着念着。呜呜呜… 最近在灯光下的镜子看着自己头发好像变色了（屎黄），只不过不是很明显，营养不良嘛…(⊙_⊙;)…，重新修炼Linux。
+辞职了，下半年比较自由，可是自由也是需要付出代价的。
+可以播放音乐听哦！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 修炼 － 运维笔记一 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                修炼 － 运维笔记一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-03T00:28:18+08:00" content="2016-09-03">
+              2016-09-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux运维/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/03/修炼-－-运维笔记一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/03/修炼-－-运维笔记一/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>明日复明日，明日何其多,最近嘴里一直念着念着。呜呜呜… 最近在灯光下的镜子看着自己头发好像变色了（屎黄），只不过不是很明显，营养不良嘛…(⊙_⊙;)…，重新修炼Linux。</p>
+<p>辞职了，下半年比较自由，可是自由也是需要付出代价的。</p>
+<font color="red">可以播放音乐听哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=28864344&auto=0&height=66"></iframe>
+
+
+<a id="more"></a>
+<h4 id="获取dhcp地址"><a href="#获取dhcp地址" class="headerlink" title="获取dhcp地址"></a>获取dhcp地址</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dhcpclient</span><br></pre></td></tr></table></figure>
+<h4 id="chattr文件隐藏属性"><a href="#chattr文件隐藏属性" class="headerlink" title="chattr文件隐藏属性"></a>chattr文件隐藏属性</h4><p><code>chatter +i 文件名
+A     文件或目录的atime将不可被修改
+S     会将数据同步写入磁盘中
+a     只能追加不能删除
+i     使文件不能被删除，重命名，设定链接，写入，新增数据</code></p>
+<p><code>lsattr  查看文件特殊属性,ext3和ext4所特有的
+lsattr -R  查看目录下的所有文件特殊权限
+lsattr -d  只查看目录本身</code></p>
+<h4 id="特殊权限之sgid"><a href="#特殊权限之sgid" class="headerlink" title="特殊权限之sgid"></a>特殊权限之sgid</h4><blockquote>
+<p>当设置set gid 后，执行该文件的用户会临时以该文件所属组的身份执行。若目录被设置这个权限后，任何用户在此目录下创建垢文件或目录都具有和该目录所属组相同的组。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mkdir /tmp/<span class="built_in">test</span></span><br><span class="line">chmod 777 /tmp/<span class="built_in">test</span></span><br><span class="line">chmod g+s /tmp/<span class="built_in">test</span></span><br><span class="line">[root@centos tmp]<span class="comment"># ls -ld /tmp/test/</span></span><br><span class="line">drwxrwsrwx 2 root root 4096 Aug 14 16:38 /tmp/<span class="built_in">test</span>/</span><br><span class="line">su ccav</span><br><span class="line"><span class="built_in">cd</span> /tmp/<span class="built_in">test</span></span><br><span class="line">mkdir 123</span><br><span class="line">touch 1.txt</span><br><span class="line">ls <span class="_">-l</span></span><br><span class="line">drwxrwsr-x 2 ccav root 4096 Aug 14 16:40 123</span><br><span class="line">-rw-rw-r-- 1 ccav root    0 Aug 14 16:40 1.txt</span><br></pre></td></tr></table></figure>
+<h4 id="特殊权限之sticky"><a href="#特殊权限之sticky" class="headerlink" title="特殊权限之sticky"></a>特殊权限之sticky</h4><blockquote>
+<p>Stick_bit 可以理解为防删除位，一个文件是否可以被某用户删除，主要取决于该文件所在目录是否对该用户具有写权限。如果没有写权限，则这个目录下的所有文件进取不能被删除。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod o+t 目录</span><br></pre></td></tr></table></figure>
+<h4 id="find搜索命令"><a href="#find搜索命令" class="headerlink" title="find搜索命令"></a>find搜索命令</h4><blockquote>
+<p>-atime +n/-n     访问或执行时间大于/小于n天的文件<br>-ctime +n/-n     写入，更改inode属性<br>-mtime +n/-n     写入时间大于/小于n天的文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos tmp]<span class="comment"># find /tmp/mvxargs/ -type f |xargs -i mv &#123;&#125; &#123;&#125;.bak</span></span><br><span class="line">把查找到的文件，都在后缀更改为bak。</span><br></pre></td></tr></table></figure>
+<h4 id="搭建本地yum仓库"><a href="#搭建本地yum仓库" class="headerlink" title="搭建本地yum仓库"></a>搭建本地yum仓库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">建立文件：</span><br><span class="line">vim /dvd.repo</span><br><span class="line">[dvd]</span><br><span class="line">name=install dvd</span><br><span class="line">baseurl=file:///mnt</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+<h4 id="sed命令"><a href="#sed命令" class="headerlink" title="sed命令"></a>sed命令</h4><p>把aaa和ll替换位置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos ~]<span class="comment"># sed -r 's#(^a+)(.*)(ll)#\3\2\1#' 2.txt</span></span><br></pre></td></tr></table></figure>
+<h4 id="Apache用户认证"><a href="#Apache用户认证" class="headerlink" title="Apache用户认证"></a>Apache用户认证</h4><p>编辑<br>vim /usr/local/apache2/conf/extra/httpd-vhosts.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    DocumentRoot <span class="string">"/data/www"</span></span><br><span class="line">    ServerName www.test.com</span><br><span class="line">    ServerAlias www.testtest.com</span><br><span class="line">    <span class="comment">#ErrorLog "logs/dummy-host.example.com-error_log"</span></span><br><span class="line">    <span class="comment">#CustomLog "logs/dummy-host.example.com-access_log" common</span></span><br><span class="line">    &lt;Directory /data/www/admin.php&gt;</span><br><span class="line">        AllowOverride AuthConfig</span><br><span class="line">        AuthName <span class="string">"test"</span></span><br><span class="line">        AuthType Basic</span><br><span class="line">        AuthUserFile /data/.htpasswd</span><br><span class="line">        require valid-user</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+<p>AuthName自定义，AuthUserFile指定用户密码文件在哪里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/apache2/bin/htpasswd -cm /data/.htpasswd admin</span><br></pre></td></tr></table></figure>
+<p>然后重启apache服务</p>
+<p>/usr/local/apache2/bin/apachectl graceful<br>reload配置</p>
+<h4 id="apache日志切割"><a href="#apache日志切割" class="headerlink" title="apache日志切割"></a>apache日志切割</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ErrorLog <span class="string">"|/usr/local/apache2/bin/rotatelogs -l /usr/local/apache2/logs/test-error_%Y%m%d.log 86400"</span></span><br><span class="line">    CustomLog <span class="string">"|/usr/local/apache2/bin/rotatelogs -l /usr/local/apache2/logs/test-access_%Y%m%d.log 86400"</span> combined</span><br></pre></td></tr></table></figure>
+<h4 id="Apache访问控制"><a href="#Apache访问控制" class="headerlink" title="Apache访问控制"></a>Apache访问控制</h4><p>限制admin这个文件访问.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;filesmatch <span class="string">"(.*)admin(.*)"</span>&gt;</span><br><span class="line">        Order deny,allow</span><br><span class="line">        Deny from all</span><br><span class="line">        Allow from 127.0.0.1</span><br><span class="line">&lt;/filesmatch&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="nginx代理"><a href="#nginx代理" class="headerlink" title="nginx代理"></a>nginx代理</h4><p>配置单个ip代理</p>
+<p>vim /usr/local/nginx/conf/vhosts/proxy.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name www.baidu.com;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">                proxy_pass http://111.13.100.92/;</span><br><span class="line">                proxy_<span class="built_in">set</span>_header Host <span class="variable">$host</span>;</span><br><span class="line">                proxy_<span class="built_in">set</span>_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">                proxy_<span class="built_in">set</span>_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置多个ip代理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">upstream bbb</span><br><span class="line">&#123;</span><br><span class="line">        server 180.149.132.47:80;</span><br><span class="line">        server 111.13.100.92:80;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name www.baidu.com;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">                proxy_pass http://bbb/;</span><br><span class="line">                proxy_<span class="built_in">set</span>_header Host <span class="variable">$host</span>;</span><br><span class="line">                proxy_<span class="built_in">set</span>_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">                proxy_<span class="built_in">set</span>_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后再来说说我对linux运维的一些感想<br>其实上面只是我106篇笔记中的一点，其实这些基础内容我并不知道怎么去整理写出来，写这篇日记相当于一个形式，只是一个开始,基础确实没什么好说。</p>
+<p>2012年我接触了半年的Linux，当时找别人要了好多Linux视频，我天天看夜夜看，看不懂的用手机去查单词之类的，那时我的学习能力是最强的，意志也是最强的，千错万错我还在坚持着。困了就睡，睡醒了又继续。</p>
+<p>我现在认为，像Linux这些不像渗透，不需要多少思考能力， 只需要记很多东西，然后练习练习练习练习。别无他法这样就可以搞懂linux的一些服务了。 这些东西相当于写死了，走的都是前人的路，可以照着步骤来所以觉得贵在一个坚持。</p>
+<hr>
+<p>最近的我：</p>
+<p>失眠依旧,现在睡前会用手机定时播放20分钟轻音乐，睡眠还好有所改善一点点，还是要那么晚的才能睡着，反反复复调了几次20分钟有时候才能入睡。最近自己一直心情很差的状态，魂不守舍的样子。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/27/心情随笔一/" rel="next" title="心情随笔一">
+                <i class="fa fa-chevron-left"></i> 心情随笔一
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/11/修炼-－-运维笔记二/" rel="prev" title="修炼 － 运维笔记二">
+                修炼 － 运维笔记二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/03/修炼-－-运维笔记一/"
+           data-title="修炼 － 运维笔记一" data-url="http://yoursite.com/2016/09/03/修炼-－-运维笔记一/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取dhcp地址"><span class="nav-number">1.</span> <span class="nav-text">获取dhcp地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chattr文件隐藏属性"><span class="nav-number">2.</span> <span class="nav-text">chattr文件隐藏属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊权限之sgid"><span class="nav-number">3.</span> <span class="nav-text">特殊权限之sgid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊权限之sticky"><span class="nav-number">4.</span> <span class="nav-text">特殊权限之sticky</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find搜索命令"><span class="nav-number">5.</span> <span class="nav-text">find搜索命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建本地yum仓库"><span class="nav-number">6.</span> <span class="nav-text">搭建本地yum仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sed命令"><span class="nav-number">7.</span> <span class="nav-text">sed命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache用户认证"><span class="nav-number">8.</span> <span class="nav-text">Apache用户认证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#apache日志切割"><span class="nav-number">9.</span> <span class="nav-text">apache日志切割</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache访问控制"><span class="nav-number">10.</span> <span class="nav-text">Apache访问控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx代理"><span class="nav-number">11.</span> <span class="nav-text">nginx代理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

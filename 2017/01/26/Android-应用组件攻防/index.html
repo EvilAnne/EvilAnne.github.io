@@ -1,0 +1,688 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 应用组件攻防">
+<meta property="og:url" content="http://yoursite.com/2017/01/26/Android-应用组件攻防/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description">
+<meta property="og:image" content="http://i.imgur.com/eIYJeHa.jpg">
+<meta property="og:image" content="http://i.imgur.com/SKQGwnu.png">
+<meta property="og:image" content="http://i.imgur.com/2cGG85Z.png">
+<meta property="og:image" content="http://i.imgur.com/HhC6nNM.png">
+<meta property="og:image" content="http://i.imgur.com/tnlxZbV.png">
+<meta property="og:image" content="http://i.imgur.com/6FbdLgf.png">
+<meta property="og:image" content="http://i.imgur.com/Lj5y8JC.png">
+<meta property="og:image" content="http://i.imgur.com/jXuPuKB.png">
+<meta property="og:updated_time" content="2017-01-26T12:32:46.682Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 应用组件攻防">
+<meta name="twitter:description">
+<meta name="twitter:image" content="http://i.imgur.com/eIYJeHa.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Android 应用组件攻防 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 应用组件攻防
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-26T20:32:15+08:00" content="2017-01-26">
+              2017-01-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/26/Android-应用组件攻防/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/26/Android-应用组件攻防/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://i.imgur.com/eIYJeHa.jpg" alt=""></p>
+<a id="more"></a>
+<p>2014年的文章很多app链接都失效了找不到可以实验的app程序，自己也简单的了解这方面，可能不会再更新Android方面的了。<br>想法很美好，但在过程中总会遇到各种各样的问题。</p>
+<h3 id="什么是安卓应用组件？"><a href="#什么是安卓应用组件？" class="headerlink" title="什么是安卓应用组件？"></a>什么是安卓应用组件？</h3><p>应用组件是组成安卓应用的关键部分。每个应用都是由一个或者多个组件组成，并且每个都是单独调用。这里主要分为4个主要的组件，介绍如下：</p>
+<blockquote>
+<p>Activity: 是一个应用程序组件，提供一个屏幕，用户可以用来交互为了完成某项任务（例如打电话，发短信等）</p>
+<p>Service(服务): 在后台提供持续性服务，并不需要一个用户界面</p>
+<p>Content Providers(内容提供者): 以表格的形式把数据展现给外部的应用。换句话来说Content Providers可以被认为是连接两个处理器的之间的接口。</p>
+<p>Broadcast Receivers(广播接收器): 广播接收器是一个接受系统级广播的组件，（例如电量低，重启，耳机插入等）尽管大部分广播都是由系统发出，应用本身也可以发起广播。</p>
+</blockquote>
+<p>这个应用有两个Activity。第一个Activity接受一个密码输入，如果用户输入了正确的密码他就能够进入“私有区域”，否则他会收到一个密码错误的警告。本文中使用的密码为”password”。我们这里使用黑盒测试的方法来尝试突破密码保护。<br><img src="http://i.imgur.com/SKQGwnu.png" alt=""></p>
+<p>当输入正确密码之后：<br><img src="http://i.imgur.com/2cGG85Z.png" alt=""></p>
+<p>实验环境：<br>一个没有root手机或者安卓虚拟机，或者Emulator虚拟机等<br>apktool反编译工具</p>
+<p>apktool介绍<br>反编译一个apk<br>1.decode<br>该命令用于进行反编译apk文件<br><code>java -jar apktool -d c:\a.apk</code></p>
+<p>语法：apktool d <file.apk> <dir></dir></file.apk></p>
+<p><file.apk> 代表了要反编译的apk路私。</file.apk></p>
+<p><dir> 反编译后存储位置</dir></p>
+<p>如果遇到一些问题用-f强制执行<br><code>apktool d -f  &lt;file.apk&gt; &lt;dir&gt;</code></p>
+<p>2.build<br>打包：<br><code>java -jar apktool -b c:\crack</code></p>
+<p>3.install-framework<br>该命令用于为APKTool安装特定的framework-res.apk文件，以方便进行反编译一些与ROM相互依赖的APK文件</p>
+<p><code>http://www.2cto.com/kf/201606/517304.html</code><br>这里有一份apktool源码分析，说的很不错，但是我看不懂。</p>
+<p>反编译apk文件<br><code>apktool d testapp.apk</code><br><img src="http://i.imgur.com/HhC6nNM.png" alt=""></p>
+<p>会在当前目录下手机 testapp目录。<br><img src="http://i.imgur.com/tnlxZbV.png" alt=""></p>
+<p>其中有一个AndroidManifest.xml文件，通过打开分析<br><img src="http://i.imgur.com/6FbdLgf.png" alt=""></p>
+<p>找到两个Activity组件，通过这个文件获得以下信息：<br>com.isi.testapp  是包的名称<br>com.isi.test.app.MainActivity  主页面，就是登录页<br>com.isi.testapp.Welcome  登录之后的页面</p>
+<p>文件语法参考文档：<br><code>http://blog.csdn.net/zhaoyazhi2129/article/details/27234245</code></p>
+<p>攻击脆弱的Activity组件：<br>有几个实现方法。</p>
+<p>1.使用Activity Manager启动敏感的Activity<br>2.使用Drozer进行攻击</p>
+<p>首先使用Activity Manager启动敏感的Activity<br>连获取一个android的shell<br><img src="http://i.imgur.com/Lj5y8JC.png" alt=""></p>
+<p><img src="http://i.imgur.com/jXuPuKB.png" alt=""></p>
+<p>达到目的.</p>
+<h3 id="保护应用程序组件"><a href="#保护应用程序组件" class="headerlink" title="保护应用程序组件"></a>保护应用程序组件</h3><p>1.设置android:exported属性为false</p>
+<blockquote>
+<p>在AndroidManifest.xml文件中，我们应该设置下面的属性来保护应用。在我们的案例中com.isi.testapp.Welcome是我们要保护的Activity<br>上面的代码限制了其他应用或者系统组件调用这个Activity。只有拥有和这个应用相同的user id才能够访问这个Activity。<br>通过权限控制限制访问</p>
+<blockquote>
+<p>android:exported属性不是唯一的限制措施。我们还可以通过基于权限的方法来定制一个Activity的权限。这个可以限制应用之间的访问权限。</p>
+</blockquote>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/21/Android-Drozer渗透测试框架/" rel="next" title="Android Drozer渗透测试框架">
+                <i class="fa fa-chevron-left"></i> Android Drozer渗透测试框架
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/01/挖洞记录二/" rel="prev" title="挖洞记录二">
+                挖洞记录二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/26/Android-应用组件攻防/"
+           data-title="Android 应用组件攻防" data-url="http://yoursite.com/2017/01/26/Android-应用组件攻防/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是安卓应用组件？"><span class="nav-number">1.</span> <span class="nav-text">什么是安卓应用组件？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保护应用程序组件"><span class="nav-number">2.</span> <span class="nav-text">保护应用程序组件</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

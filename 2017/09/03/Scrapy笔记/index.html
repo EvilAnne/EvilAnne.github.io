@@ -1,0 +1,724 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="通过Scrapy写了三个爬虫抓取了网上的信息发现特别好用，特别是匹配信息通过Xpath简单易用，不像beautifulsoup或者通过正则来匹配，并且爬取速度也非常的差。Scrapy这个坑还很深所以当前只是了解基本的用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy笔记">
+<meta property="og:url" content="http://yoursite.com/2017/09/03/Scrapy笔记/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="通过Scrapy写了三个爬虫抓取了网上的信息发现特别好用，特别是匹配信息通过Xpath简单易用，不像beautifulsoup或者通过正则来匹配，并且爬取速度也非常的差。Scrapy这个坑还很深所以当前只是了解基本的用法">
+<meta property="og:image" content="https://i.imgur.com/eJYOEPh.jpg">
+<meta property="og:image" content="https://i.imgur.com/gpQpMuY.jpg">
+<meta property="og:image" content="https://i.imgur.com/RBh5Xc5.jpg">
+<meta property="og:image" content="https://i.imgur.com/B9oeMrm.jpg">
+<meta property="og:image" content="https://i.imgur.com/G3aGe0c.jpg">
+<meta property="og:image" content="https://i.imgur.com/xhElYUw.jpg">
+<meta property="og:image" content="https://i.imgur.com/JdsQ5bk.jpg">
+<meta property="og:image" content="https://i.imgur.com/WoNRb9S.jpg">
+<meta property="og:image" content="https://i.imgur.com/ZG6nIMm.jpg">
+<meta property="og:image" content="https://i.imgur.com/FEBvO8Z.jpg">
+<meta property="og:updated_time" content="2017-09-03T13:45:10.656Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scrapy笔记">
+<meta name="twitter:description" content="通过Scrapy写了三个爬虫抓取了网上的信息发现特别好用，特别是匹配信息通过Xpath简单易用，不像beautifulsoup或者通过正则来匹配，并且爬取速度也非常的差。Scrapy这个坑还很深所以当前只是了解基本的用法">
+<meta name="twitter:image" content="https://i.imgur.com/eJYOEPh.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Scrapy笔记 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Scrapy笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-03T21:40:12+08:00" content="2017-09-03">
+              2017-09-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/03/Scrapy笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/03/Scrapy笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/eJYOEPh.jpg" alt=""></p>
+<p>通过<code>Scrapy</code>写了三个爬虫抓取了网上的信息发现特别好用，特别是匹配信息通过<code>Xpath</code>简单易用，不像<code>beautifulsoup</code>或者通过正则来匹配，并且爬取速度也非常的差。<br><code>Scrapy</code>这个坑还很深所以当前只是了解基本的用法</p>
+<a id="more"></a>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="安装Scrapy"><a href="#安装Scrapy" class="headerlink" title="安装Scrapy"></a>安装Scrapy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install scrapy</span><br></pre></td></tr></table></figure>
+<h3 id="创建一个项目"><a href="#创建一个项目" class="headerlink" title="创建一个项目"></a>创建一个项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject spideproject</span><br></pre></td></tr></table></figure>
+<h4 id="项目目录节构"><a href="#项目目录节构" class="headerlink" title="项目目录节构"></a>项目目录节构</h4><ul>
+<li><strong>scrapy.cfg</strong>: 项目的配置文件</li>
+<li><strong>spideproject/</strong>: 该项目的python模块。之后您将在此加入代码。</li>
+<li><strong>spideproject/items.py</strong>: 项目中的item文件.</li>
+<li><strong>spideproject/pipelines.py</strong>: 项目中的pipelines文件.</li>
+<li><strong>spideproject/settings.py</strong>: 项目的设置文件.</li>
+<li><strong>spideproject/spiders/</strong>: 放置spider代码的目录.</li>
+</ul>
+<h3 id="定义Item"><a href="#定义Item" class="headerlink" title="定义Item"></a>定义Item</h3><p><code>Item</code>是保存爬取到的数据容器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MoveSpiderItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    name = scrapy.Field()</span><br><span class="line">    pic = scrapy.Field()</span><br><span class="line">    content = scrapy.Field()</span><br><span class="line">    download =scrapy.Field()</span><br></pre></td></tr></table></figure>
+<h3 id="创建爬虫"><a href="#创建爬虫" class="headerlink" title="创建爬虫"></a>创建爬虫</h3><p>在<code>spiders</code>目录下创建文件也可以通过命令来指定：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider name www.domain.com</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/gpQpMuY.jpg" alt=""></p>
+<ul>
+<li><p><strong>name</strong>：用于区别Spider。 该名字必须是唯一的，您不可以为不同的Spider设定相同的名字。</p>
+</li>
+<li><p><strong>start_urls</strong>：包含了Spider在启动时进行爬取的url列表。 因此，第一个被获取到的页面将是其中之一。 后续的URL则从初始的URL获取到的数据中提取。</p>
+</li>
+<li><p><strong>parse()</strong>：是spider的一个方法。 被调用时，每个初始URL完成下载后生成的 Response 对象将会作为唯一的参数传递给该函数。 该方法负责解析返回的数据(response data)，提取数据(生成item)以及生成需要进一步处理的URL的 Request 对象。</p>
+</li>
+</ul>
+<h3 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> spiderproject</span><br><span class="line">scrapy list		<span class="comment">#查看当前爬虫列表</span></span><br><span class="line">scrapy crawl weike	<span class="comment">#运行爬虫</span></span><br><span class="line">scrapy crawl weike --nolog	<span class="comment">#不显示日志</span></span><br></pre></td></tr></table></figure>
+<h3 id="提取数据"><a href="#提取数据" class="headerlink" title="提取数据"></a>提取数据</h3><p>可以先通过<code>Shell scrapy</code>的选择器来先匹配正常的内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell <span class="string">'http://www.weike004.com/'</span></span><br></pre></td></tr></table></figure>
+<p>当<code>shell</code>载入后，您将得到一个包含<code>response</code>数据的本地response 变量。输入 response.body 将输出response的包体， 输出<code>response.headers</code>可以看到<code>response</code>的包头。<br><img src="https://i.imgur.com/RBh5Xc5.jpg" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.xpath(<span class="string">'//'</span>)	<span class="comment">#匹配规则</span></span><br></pre></td></tr></table></figure>
+<p><code>xpath</code>很简单不需要怎么学习就会了。</p>
+<h4 id="爬虫的内容保存"><a href="#爬虫的内容保存" class="headerlink" title="爬虫的内容保存"></a>爬虫的内容保存</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl demo -i file.json</span><br></pre></td></tr></table></figure>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h3><p><img src="https://i.imgur.com/B9oeMrm.jpg" alt=""></p>
+<p>抓取39个相册里面的图片并下载</p>
+<p>首先来分析一下<code>url</code>,<code>https://www.nvshens.com/girl/19705/album/</code>,共有39相册，而每个相册里面有多页。<br><img src="https://i.imgur.com/G3aGe0c.jpg" alt=""></p>
+<p>思路：<br>获取当前所有相册链接，当进入相册之后除了爬取当前图片外需要遍历页面保存下载。</p>
+<h4 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject nvshens	<span class="comment">#创建项目</span></span><br><span class="line"><span class="built_in">cd</span> nvshens</span><br><span class="line">scrapy genspider nvshens www.nvshens.com  <span class="comment">#创建爬虫并指定名称网址</span></span><br></pre></td></tr></table></figure>
+<h4 id="设置settings"><a href="#设置settings" class="headerlink" title="设置settings"></a>设置settings</h4><p>settings.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">BOT_NAME = <span class="string">'nvshens'</span></span><br><span class="line"></span><br><span class="line">SPIDER_MODULES = [<span class="string">'nvshens.spiders'</span>]</span><br><span class="line">NEWSPIDER_MODULE = <span class="string">'nvshens.spiders'</span></span><br><span class="line">ROBOTSTXT_OBEY = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">DOWNLOAD_DELAY = <span class="number">1</span>	<span class="comment">#延迟请求</span></span><br><span class="line"></span><br><span class="line">DEFAULT_REQUEST_HEADERS = &#123;	<span class="comment">#请求带上headers</span></span><br><span class="line">   <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</span>,</span><br><span class="line">   <span class="string">'Accept-Language'</span>: <span class="string">'en'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ITEM_PIPELINES = &#123;	<span class="comment">#启动pipelines类型为字典</span></span><br><span class="line">    <span class="string">'nvshens.pipelines.NvshensPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="定义Items"><a href="#定义Items" class="headerlink" title="定义Items"></a>定义Items</h4><p>items.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NvshensItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    name = scrapy.Field()	<span class="comment">#抓取保存的名称</span></span><br><span class="line">    img = scrapy.Field()</span><br></pre></td></tr></table></figure>
+<h4 id="编写爬虫"><a href="#编写爬虫" class="headerlink" title="编写爬虫"></a>编写爬虫</h4><p>spiders/nvshens.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ..items <span class="keyword">import</span> NvshensItem</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">nvshens_spider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line"></span><br><span class="line">	name = <span class="string">"nvshens"</span></span><br><span class="line">	allowed_domains = [<span class="string">"www.nvshens.com"</span>]</span><br><span class="line">	start_urls = [<span class="string">"https://www.nvshens.com/girl/19705/album/"</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">parse_info</span><span class="params">(self,response)</span>:</span></span><br><span class="line">		nvshens_info = response.meta[<span class="string">'nvshens_info'</span>]</span><br><span class="line">		nvshens_info[<span class="string">'name'</span>] = response.xpath(<span class="string">'//div[@class="albumTitle"]/h1/text()'</span>).extract()</span><br><span class="line">		nvshens_info[<span class="string">'img'</span>] = response.xpath(<span class="string">'//div[@class="gallery_wrapper"]/ul//img/@src'</span>).extract()</span><br><span class="line">		<span class="keyword">return</span> nvshens_info</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">parse_links</span><span class="params">(self,response)</span>:</span>    <span class="comment">#每个相册中的图片URL提取</span></span><br><span class="line">		parse_url = response.xpath(<span class="string">'//div[@id="pages"]//a/@href'</span>).extract()</span><br><span class="line">		url_host = <span class="string">'https://'</span> + response.url.split(<span class="string">'/'</span>)[<span class="number">2</span>]</span><br><span class="line">		parse_url_tmp = []</span><br><span class="line">		nvshens_info = NvshensItem()</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> parse_url:</span><br><span class="line">			<span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> parse_url_tmp:</span><br><span class="line">				parse_url_tmp.append(i)</span><br><span class="line">		<span class="keyword">for</span> x <span class="keyword">in</span> parse_url_tmp:</span><br><span class="line">			url_format = <span class="string">"&#123;&#125;&#123;&#125;"</span>.format(url_host,x)</span><br><span class="line">			<span class="keyword">yield</span> scrapy.Request(url_format,meta=&#123;<span class="string">'nvshens_info'</span>:nvshens_info&#125;,callback=self.parse_info)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">		url = <span class="string">'https://www.nvshens.com&#123;&#125;'</span></span><br><span class="line">		base_link = response.xpath(<span class="string">'//div[@class="res_infobox clearfix"]//li//a/@href'</span>).extract()  <span class="comment">#抓取相册全部URL并去重复，然后拼接URL</span></span><br><span class="line">		last_tmp = []</span><br><span class="line">		<span class="keyword">for</span> x <span class="keyword">in</span> base_link:</span><br><span class="line">			<span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> last_tmp:</span><br><span class="line">				last_tmp.append(x)</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> last_tmp:</span><br><span class="line">			<span class="keyword">yield</span> scrapy.Request(url.format(i),callback=self.parse_links)</span><br></pre></td></tr></table></figure>
+<h4 id="pipelines"><a href="#pipelines" class="headerlink" title="pipelines"></a>pipelines</h4><p>pipelines.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NvshensPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        x = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> img_link <span class="keyword">in</span> item[<span class="string">'img'</span>]:  <span class="comment">#遍历item获取到的img并创建时间保存当前目录下</span></span><br><span class="line">            img_time = datetime.datetime.now().strftime(<span class="string">'%Y-%m-%d %H:%M%S.%f'</span>)</span><br><span class="line">            urllib.request.urlretrieve(img_link,<span class="string">'&#123;&#125;&#123;&#125;.jpg'</span>.format(img_time,x))</span><br><span class="line">            x += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl nvshens</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/xhElYUw.jpg" alt=""></p>
+<h3 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h3><p>获取<code>http://wiki.ioin.in/</code>网站信息并存储到数据库中</p>
+<h4 id="创建项目-1"><a href="#创建项目-1" class="headerlink" title="创建项目"></a>创建项目</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject wiki</span><br><span class="line">scrapy genspider mydomain wiki.ioin.in</span><br></pre></td></tr></table></figure>
+<h4 id="设置settings-1"><a href="#设置settings-1" class="headerlink" title="设置settings"></a>设置settings</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">BOT_NAME = <span class="string">'wiki'</span></span><br><span class="line"></span><br><span class="line">SPIDER_MODULES = [<span class="string">'wiki.spiders'</span>]</span><br><span class="line">NEWSPIDER_MODULE = <span class="string">'wiki.spiders'</span></span><br><span class="line">ROBOTSTXT_OBEY = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">DOWNLOAD_DELAY = <span class="number">3</span></span><br><span class="line">COOKIES_ENABLED = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">DEFAULT_REQUEST_HEADERS = &#123;</span><br><span class="line">   <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</span>,</span><br><span class="line">   <span class="string">'Accept-Language'</span>: <span class="string">'en'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'wiki.pipelines.WikiPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="定义Items-1"><a href="#定义Items-1" class="headerlink" title="定义Items"></a>定义Items</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WikiItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    title = scrapy.Field()	<span class="comment">#标题</span></span><br><span class="line">    link = scrapy.Field()		<span class="comment">#链接</span></span><br><span class="line">    data_time = scrapy.Field()    <span class="comment">#时间</span></span><br><span class="line">    class_another = scrapy.Field()  <span class="comment">#类型</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h4 id="编写爬虫-1"><a href="#编写爬虫-1" class="headerlink" title="编写爬虫"></a>编写爬虫</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">import scrapy</span><br><span class="line">from ..items import WikiItem</span><br><span class="line"></span><br><span class="line">class MydomainSpider(scrapy.Spider):</span><br><span class="line">    name = <span class="string">'mydomain'</span></span><br><span class="line">    allowed_domains = [<span class="string">'wiki.ioin.in'</span>]</span><br><span class="line">    start_urls = [<span class="string">'http://wiki.ioin.in/'</span>]</span><br><span class="line"></span><br><span class="line">    def parse(self, response):</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> range(1,153):</span><br><span class="line">            url = <span class="string">"http://wiki.ioin.in/page-&#123;&#125;"</span>.format(x)</span><br><span class="line">            yield scrapy.Request(url,callback=self.parse_link)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def parse_link(self,response):</span><br><span class="line">        item = WikiItem()  <span class="comment">#获取各类信息并存到item中</span></span><br><span class="line">        item[<span class="string">'title'</span>] = response.xpath(<span class="string">'//a[@class="visit-color"]/text()'</span>).extract()</span><br><span class="line">        item[<span class="string">'link'</span>] = response.xpath(<span class="string">'//a[@class="visit-color"]/@href'</span>).extract()</span><br><span class="line">        item[<span class="string">'data_time'</span>] = response.xpath(<span class="string">'//tbody/tr/td/text()'</span>).extract()</span><br><span class="line">        item[<span class="string">'class_another'</span>] = response.xpath(<span class="string">'//tbody/tr/td//a[@class="color-000"]/text()'</span>).extract()</span><br><span class="line">        yield item</span><br></pre></td></tr></table></figure>
+<h4 id="pipelines-1"><a href="#pipelines-1" class="headerlink" title="pipelines"></a>pipelines</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.getdefaultencoding()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WikiPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>	<span class="comment">#创建数据库连接</span></span><br><span class="line">        self.conn = pymysql.connect(host=<span class="string">"192.168.44.143"</span>,user=<span class="string">"root"</span>,passwd=<span class="string">"123456"</span>,db=<span class="string">"wiki"</span>,charset=<span class="string">'gb2312'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line"></span><br><span class="line">        title = item[<span class="string">'title'</span>]</span><br><span class="line">        link = item[<span class="string">'link'</span>]</span><br><span class="line">        data_time = item[<span class="string">'data_time'</span>]</span><br><span class="line">        class_another = item[<span class="string">'class_another'</span>]</span><br><span class="line"></span><br><span class="line">        wiki_title = []   <span class="comment">#把多出来的空格以及其它杂乱的东西处理掉并保存列表中</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> range(len(title)):</span><br><span class="line">            wiki_title.append(title[x].replace(<span class="string">'\n'</span>,<span class="string">''</span>).replace(<span class="string">' '</span>,<span class="string">''</span>))</span><br><span class="line"></span><br><span class="line">        wiki_link = []</span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> range(len(link)):</span><br><span class="line">            wiki_link.append(link[a])</span><br><span class="line"></span><br><span class="line">        wiki_data_time = []</span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> range(<span class="number">0</span>,len(data_time),<span class="number">3</span>):</span><br><span class="line">            wiki_data_time.append(data_time[b])</span><br><span class="line"></span><br><span class="line">        wiki_class_another = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> range(<span class="number">0</span>,len(class_another),<span class="number">2</span>):</span><br><span class="line">            wiki_class_another.append(class_another[c])</span><br><span class="line"></span><br><span class="line">			<span class="comment">#通过zip把四个列表组合在一起，插入数据库中</span></span><br><span class="line">        <span class="keyword">for</span> insert_q <span class="keyword">in</span> list(zip(wiki_title,wiki_link,wiki_data_time,wiki_class_another)):</span><br><span class="line">            sql_insert = <span class="string">"INSERT INTO wiki_info(title,link,data_time,class_another) VALUES ('&#123;&#125;','http://wiki.ioin.in&#123;&#125;','&#123;&#125;','&#123;&#125;')"</span>.format(insert_q[<span class="number">0</span>],insert_q[<span class="number">1</span>],insert_q[<span class="number">2</span>],insert_q[<span class="number">3</span>])</span><br><span class="line">            print(sql_insert)</span><br><span class="line">            self.conn.query(sql_insert)</span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.conn.close()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/JdsQ5bk.jpg" alt=""></p>
+<p>这里遇到了点坑，就是数据库连接的时候一定要指定<code>charset</code>，否则会报错：<br><code>UnicodeEncodeError: &#39;latin-1&#39; codec can&#39;t encode characters in position 403-404: ordinal not in range(256)</code></p>
+<p>百试 or Google找了好多并没有解决，后面是因为没有设置<code>charset</code></p>
+<h3 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h3><p>获取大宝剑信息，本来是想通过登录之后再抓取的，但是需要了需要验证码找了挺久的资料还是没有搞定，暂时先这样，后续研究出来了再实现。</p>
+<p><img src="https://i.imgur.com/WoNRb9S.jpg" alt=""></p>
+<h4 id="创建项目-2"><a href="#创建项目-2" class="headerlink" title="创建项目"></a>创建项目</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject weike	<span class="comment">#创建项目</span></span><br><span class="line"><span class="built_in">cd</span> nvshens</span><br><span class="line">scrapy genspider weike www.weike004.com  <span class="comment">#创建爬虫并指定名称网址</span></span><br></pre></td></tr></table></figure>
+<h4 id="设置settings-2"><a href="#设置settings-2" class="headerlink" title="设置settings"></a>设置settings</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">BOT_NAME = <span class="string">'wiki'</span></span><br><span class="line"></span><br><span class="line">SPIDER_MODULES = [<span class="string">'wiki.spiders'</span>]</span><br><span class="line">NEWSPIDER_MODULE = <span class="string">'wiki.spiders'</span></span><br><span class="line"></span><br><span class="line">ROBOTSTXT_OBEY = <span class="keyword">False</span></span><br><span class="line">DOWNLOAD_DELAY = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">DEFAULT_REQUEST_HEADERS = &#123;</span><br><span class="line">   <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</span>,</span><br><span class="line">   <span class="string">'Accept-Language'</span>: <span class="string">'en'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'wiki.pipelines.WikiPipeline'</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="定义Items-2"><a href="#定义Items-2" class="headerlink" title="定义Items"></a>定义Items</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeikeItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    region = scrapy.Field()</span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    link = scrapy.Field()</span><br><span class="line">    data_time = scrapy.Field()</span><br><span class="line">    browse_number = scrapy.Field()</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h4 id="编写爬虫-2"><a href="#编写爬虫-2" class="headerlink" title="编写爬虫"></a>编写爬虫</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> ..items <span class="keyword">import</span> WeikeItem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeikeiSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'weikei'</span></span><br><span class="line">    allowed_domains = [<span class="string">'www.weike004.com'</span>]</span><br><span class="line">    start_urls = [<span class="string">'http://www.weike004.com/class.asp?page=1'</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        url = <span class="string">"http://www.weike004.com/class.asp?page=&#123;&#125;"</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">1705</span>):</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(url.format(x),callback=self.page_link)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">page_link</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        item = WeikeItem()</span><br><span class="line">        item[<span class="string">'region'</span>] = response.xpath(<span class="string">'//div[@class="main dq1"]//ul//li[@class="dq7 wd3 hide"]//a[last()]/text()'</span>).extract()</span><br><span class="line">        item[<span class="string">'title'</span>] = response.xpath(<span class="string">'//div[@class="main dq1"]//ul//li[@class="dq7 wd4"]//a/text()'</span>).extract()</span><br><span class="line">        item[<span class="string">'link'</span>] = response.xpath(<span class="string">'//div[@class="main dq1"]//ul//li[@class="dq7 wd4"]//a/@href'</span>).extract()</span><br><span class="line">        item[<span class="string">'data_time'</span>] = response.xpath(<span class="string">'//div[@class="main dq1"]//ul/li[@class="dq7 wd6"]/text()'</span>).extract()</span><br><span class="line">        item[<span class="string">'browse_number'</span>] = response.xpath(<span class="string">'//div[@class="main dq1"]//ul/li[@class="dq8 wd7"]/font/text()'</span>).extract()</span><br><span class="line">        <span class="keyword">yield</span> item</span><br></pre></td></tr></table></figure>
+<h4 id="pipelines-2"><a href="#pipelines-2" class="headerlink" title="pipelines"></a>pipelines</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeikePipeline</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.conn = pymysql.connect(host=<span class="string">"192.168.44.143"</span>,user=<span class="string">"root"</span>,passwd=<span class="string">"123456"</span>,db=<span class="string">"weikei"</span>,charset=<span class="string">'gb2312'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line"></span><br><span class="line">        region = item[<span class="string">'region'</span>]</span><br><span class="line">        title = item[<span class="string">'title'</span>]</span><br><span class="line">        link = item[<span class="string">'link'</span>]</span><br><span class="line">        data_time = item[<span class="string">'data_time'</span>]</span><br><span class="line">        browse_number = item[<span class="string">'browse_number'</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> insert_q <span class="keyword">in</span> list(zip(region,title,link,data_time,browse_number)):</span><br><span class="line">            sql_insert = <span class="string">"INSERT INTO weike_info(region,title,link,data_time,browse_number) VALUES ('&#123;&#125;','&#123;&#125;','http://www.weike004.com/&#123;&#125;','&#123;&#125;','&#123;&#125;')"</span>.format(</span><br><span class="line">                insert_q[<span class="number">0</span>], insert_q[<span class="number">1</span>], insert_q[<span class="number">2</span>], insert_q[<span class="number">3</span>],insert_q[<span class="number">4</span>])</span><br><span class="line">            print(sql_insert)</span><br><span class="line">            self.conn.query(sql_insert)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.conn.close()</span><br></pre></td></tr></table></figure>
+<p>从后往前爬所以数据有点老</p>
+<p><img src="https://i.imgur.com/ZG6nIMm.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/FEBvO8Z.jpg" alt=""></p>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/24882919" target="_blank" rel="external">Scrapy抓取当当网82万册图书数据</a></li>
+<li><a href="http://www.jianshu.com/p/44366e9a2ed5" target="_blank" rel="external">Scrapy入门教程之写入数据库</a></li>
+<li><a href="http://www.jianshu.com/p/034444bc6ff7" target="_blank" rel="external">Scrapy爬虫入门</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/26/Linux后门-持续关注/" rel="next" title="Linux后门(持续关注)">
+                <i class="fa fa-chevron-left"></i> Linux后门(持续关注)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/13/HashCat实战/" rel="prev" title="HashCat实战">
+                HashCat实战 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/03/Scrapy笔记/"
+           data-title="Scrapy笔记" data-url="http://yoursite.com/2017/09/03/Scrapy笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">1.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Scrapy"><span class="nav-number">1.1.</span> <span class="nav-text">安装Scrapy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个项目"><span class="nav-number">1.2.</span> <span class="nav-text">创建一个项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目目录节构"><span class="nav-number">1.2.1.</span> <span class="nav-text">项目目录节构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义Item"><span class="nav-number">1.3.</span> <span class="nav-text">定义Item</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建爬虫"><span class="nav-number">1.4.</span> <span class="nav-text">创建爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行爬虫"><span class="nav-number">1.5.</span> <span class="nav-text">运行爬虫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取数据"><span class="nav-number">1.6.</span> <span class="nav-text">提取数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#爬虫的内容保存"><span class="nav-number">1.6.1.</span> <span class="nav-text">爬虫的内容保存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例一"><span class="nav-number">2.1.</span> <span class="nav-text">实例一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建项目"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置settings"><span class="nav-number">2.1.2.</span> <span class="nav-text">设置settings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义Items"><span class="nav-number">2.1.3.</span> <span class="nav-text">定义Items</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写爬虫"><span class="nav-number">2.1.4.</span> <span class="nav-text">编写爬虫</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pipelines"><span class="nav-number">2.1.5.</span> <span class="nav-text">pipelines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">2.1.6.</span> <span class="nav-text">结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例二"><span class="nav-number">2.2.</span> <span class="nav-text">实例二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建项目-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置settings-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">设置settings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义Items-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">定义Items</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写爬虫-1"><span class="nav-number">2.2.4.</span> <span class="nav-text">编写爬虫</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pipelines-1"><span class="nav-number">2.2.5.</span> <span class="nav-text">pipelines</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例三"><span class="nav-number">2.3.</span> <span class="nav-text">实例三</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建项目-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置settings-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">设置settings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义Items-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">定义Items</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写爬虫-2"><span class="nav-number">2.3.4.</span> <span class="nav-text">编写爬虫</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pipelines-2"><span class="nav-number">2.3.5.</span> <span class="nav-text">pipelines</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other"><span class="nav-number">3.</span> <span class="nav-text">Other</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

@@ -1,0 +1,766 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在学习的过程中，很多理论只是个大概了解，现在应该注重实践，理论后期可以慢慢补。一个月内学个入门应该是没问题，第二个月需要慢慢补充其它深入知识点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修炼 － 运维笔记二">
+<meta property="og:url" content="http://yoursite.com/2016/09/11/修炼-－-运维笔记二/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="在学习的过程中，很多理论只是个大概了解，现在应该注重实践，理论后期可以慢慢补。一个月内学个入门应该是没问题，第二个月需要慢慢补充其它深入知识点。">
+<meta property="og:updated_time" content="2016-09-11T07:55:50.989Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="修炼 － 运维笔记二">
+<meta name="twitter:description" content="在学习的过程中，很多理论只是个大概了解，现在应该注重实践，理论后期可以慢慢补。一个月内学个入门应该是没问题，第二个月需要慢慢补充其它深入知识点。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 修炼 － 运维笔记二 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                修炼 － 运维笔记二
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-11T15:54:49+08:00" content="2016-09-11">
+              2016-09-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux运维/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/11/修炼-－-运维笔记二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/11/修炼-－-运维笔记二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学习的过程中，很多理论只是个大概了解，现在应该注重实践，理论后期可以慢慢补。一个月内学个入门应该是没问题，第二个月需要慢慢补充其它深入知识点。</p>
+<a id="more"></a>
+<h3 id="nfs部署"><a href="#nfs部署" class="headerlink" title="nfs部署"></a>nfs部署</h3><p>nfs安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install nfs-utils</span><br><span class="line">yum -y install rpcbind</span><br></pre></td></tr></table></figure>
+<p>服务端配置NFS</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/<span class="built_in">export</span></span><br><span class="line">/tmp/ 192.168.4.0/24(rw,sync,all_squash,anonuid=501,anongid=501)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>rw     读写<br>ro     只读<br>sync     同步模式，内存中数据时时写入磁盘<br>async     不同步，把内存中数据定期写入磁盘<br>no_root_squash     root用户就会对共享的目录拥有至高的权限控制，就像是对本机的目录操作一样。不安全<br>root_squash     只有普通用户权限<br>all_squash     不管使用nfs的用户是谁，他们的身份都会被限定成为一个指定的普通用户身份<br>anonuid/anongid  要和root_Squash以及all_squash一同使用。用于指定使用nfs的用户限定后的uid和gid</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/rpcbind start ; /etc/init.d/nfs restart</span><br></pre></td></tr></table></figure>
+<p>NFS客户端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install nfs-utils</span><br></pre></td></tr></table></figure>
+<p>查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">showmount <span class="_">-e</span> 192.168.4.102</span><br><span class="line">mount -t nfs -onolock,nfsvers=3 192.168.4.102:/nfs/ /mnt</span><br></pre></td></tr></table></figure>
+<h3 id="pureftp部署"><a href="#pureftp部署" class="headerlink" title="pureftp部署"></a>pureftp部署</h3><p>cd /usr/local/src/<br><a href="https://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-1.0.42.tar.bz2" target="_blank" rel="external">https://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-1.0.42.tar.bz2</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./configure \</span><br><span class="line">--prefix=/usr/<span class="built_in">local</span>/pureftpd \</span><br><span class="line">--without-inetd \</span><br><span class="line">--with-altlog \</span><br><span class="line">--with-puredb \</span><br><span class="line">--with-throttling \</span><br><span class="line">--with-peruserlimits  \</span><br><span class="line">--with-tls</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> configuration-file</span><br><span class="line">mkdir -p /usr/<span class="built_in">local</span>/pureftpd/etc/</span><br><span class="line">cp pure-ftpd.conf    /usr/<span class="built_in">local</span>/pureftpd/etc/pure-ftpd.conf</span><br><span class="line">cp pure-config.pl    /usr/<span class="built_in">local</span>/pureftpd/sbin/pure-config.pl</span><br><span class="line">chmod 755    /usr/<span class="built_in">local</span>/pureftpd/sbin/pure-config.pl</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/<span class="built_in">local</span>/pureftpd/etc/pure-ftpd.conf</span><br><span class="line">ChrootEveryone              yes</span><br><span class="line">BrokenClientsCompatibility  no</span><br><span class="line">MaxClientsNumber            50</span><br><span class="line">Daemonize                   yes</span><br><span class="line">MaxClientsPerIP             8</span><br><span class="line">VerboseLog                  no</span><br><span class="line">DisplayDotFiles             yes</span><br><span class="line">AnonymousOnly               no</span><br><span class="line">NoAnonymous                 no</span><br><span class="line">SyslogFacility              ftp</span><br><span class="line">DontResolve                 yes</span><br><span class="line">MaxIdleTime                 15</span><br><span class="line">PureDB                        /usr/<span class="built_in">local</span>/pureftpd/etc/pureftpd.pdb</span><br><span class="line">LimitRecursion              3136 8</span><br><span class="line">AnonymousCanCreateDirs      no</span><br><span class="line">MaxLoad                     4</span><br><span class="line">AntiWarez                   yes</span><br><span class="line">Umask                       133:022</span><br><span class="line">M<span class="keyword">in</span>UID                      100</span><br><span class="line">AllowUserFXP                no</span><br><span class="line">AllowAnonymousFXP           no</span><br><span class="line">ProhibitDotFilesWrite       no</span><br><span class="line">ProhibitDotFilesRead        no</span><br><span class="line">AutoRename                  no</span><br><span class="line">AnonymousCantUpload         no</span><br><span class="line">PIDFile                     /usr/<span class="built_in">local</span>/pureftpd/var/run/pure-ftpd.pid</span><br><span class="line">MaxDiskUsage               99</span><br><span class="line">CustomerProof              yes</span><br></pre></td></tr></table></figure>
+<p>启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/pureftpd/</span><br><span class="line">./sbin/pure-config.pl ./etc/pure-ftpd.conf</span><br></pre></td></tr></table></figure>
+<p>建立帐号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data/ftp/</span><br><span class="line">useradd www</span><br><span class="line">chown -R www:www /data/ftp/</span><br><span class="line">/usr/<span class="built_in">local</span>/pureftpd/bin/pure-pw useradd ftp_user1 -uwww <span class="_">-d</span> /data/ftp/</span><br></pre></td></tr></table></figure>
+<p>创建数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/pureftpd/bin/pure-pw mkdb</span><br></pre></td></tr></table></figure>
+<p>删除帐号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pure-pw userdel ftp_user2</span><br></pre></td></tr></table></figure>
+<p>列出当前帐号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pure-pw list</span><br></pre></td></tr></table></figure>
+<h3 id="squid"><a href="#squid" class="headerlink" title="squid"></a>squid</h3><blockquote>
+<p>Squid是比较知名的代理软件，它不仅可以跑在linux上还可以跑在windows以及Unix上，它的技术已经非常成熟。目前使用Squid的用户也是十分广泛的。Squid与Linux下其它的代理软件如Apache、Socks、TIS FWTK和delegate相比，下载安装简单，配置简单灵活，支持缓存和多种协议。</p>
+</blockquote>
+<p>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install squid</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/squid/squid.conf</span><br><span class="line">cache_dir ufs /var/spool/squid 100 16 256</span><br><span class="line">cache_mem 128 MB</span><br><span class="line">refresh_pattern \.(jpg|png|gif|mp3|xml) 1449 59% 2880 ignore-reload</span><br><span class="line">visible_hostname <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>有时候限制域名访问：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">acl http proto HTTP</span><br><span class="line">acl good_domain dstdomain .baidu.com</span><br><span class="line">http_access allow http good_domain</span><br><span class="line">http_access deny http !good_domain</span><br></pre></td></tr></table></figure>
+<p>检查是否配置错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">squid -kcheck</span><br></pre></td></tr></table></figure>
+<p>反向代理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http_port 80 accel vhost vport</span><br><span class="line">cache_peer ip parent 80 0 originserver name=a</span><br><span class="line">cache_peer_domain a www.qq.com</span><br></pre></td></tr></table></figure>
+<h3 id="tomcat中JDK安装"><a href="#tomcat中JDK安装" class="headerlink" title="tomcat中JDK安装"></a>tomcat中JDK安装</h3><blockquote>
+<p>jdk 是sun microsystems针对java开发员的产品。jdk是java的核心 包括了java运行环境，java工具和java基础的类库。所以要想运行jsp的程序必须要有jdk的支持。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/</span><br><span class="line">➜  src mv jdk1.8.0_101 /usr/<span class="built_in">local</span></span><br><span class="line">➜  jdk1.8.0_101 vim /etc/profile.d/java.sh</span><br><span class="line">JAVA_HOME=/usr/<span class="built_in">local</span>/jdk1.8.0_101/</span><br><span class="line">JAVA_BIN=/usr/<span class="built_in">local</span>/jdk1.8.0_101/bin</span><br><span class="line">JRE_HOME=/usr/<span class="built_in">local</span>/jdk1.8.0_101/jre</span><br><span class="line">PATH=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/jdk1.8.0_101/bin:/usr/<span class="built_in">local</span>/jdk1.8.0_101/jre/bin</span><br><span class="line">CLASSPATH=/usr/<span class="built_in">local</span>/jdk1.8.0_101O/jre/lib:/usr/<span class="built_in">local</span>/jdk1.8.0_101/lib:/usr/<span class="built_in">local</span>/jdk1.8.0_101/jre/lib/charse</span><br><span class="line">ts.jar</span><br><span class="line"><span class="built_in">export</span>  JAVA_HOME  JAVA_BIN JRE_HOME  PATH  CLASSPATH</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdk1.8.0_101 <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+<h3 id="tomcat安装"><a href="#tomcat安装" class="headerlink" title="tomcat安装"></a>tomcat安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/</span><br><span class="line">wget http://mirrors.cnnic.cn/apache/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz</span><br><span class="line"></span><br><span class="line">mv apache-tomcat-8.0.36 /usr/<span class="built_in">local</span>/tomcat</span><br><span class="line">cp -p /usr/<span class="built_in">local</span>/tomcat/bin/catalina.sh /etc/init.d/tomcat</span><br><span class="line">vim /etc/init.d/tomcat</span><br><span class="line"><span class="comment"># chkconfig: 112 63 37</span></span><br><span class="line"><span class="comment"># description: tomcat server init script</span></span><br><span class="line"><span class="comment"># Source Function Library</span></span><br><span class="line">. /etc/init.d/<span class="built_in">functions</span></span><br><span class="line"></span><br><span class="line">JAVA_HOME=/usr/<span class="built_in">local</span>/jdk1.8.0_101/</span><br><span class="line">CATALINA_HOME=/usr/<span class="built_in">local</span>/tomcat</span><br><span class="line"></span><br><span class="line">chmod 755 /etc/init.d/tomcat</span><br><span class="line">chkconfig --add tomcat</span><br><span class="line">chkconfig tomcat on</span><br><span class="line">service tomcat start</span><br></pre></td></tr></table></figure>
+<p>如果打开是500错误，很有可能是因为jdk版本太新，jdk1.8不支持tomcat7。所以安装tomcat8正常。</p>
+<h3 id="mysql主从配置"><a href="#mysql主从配置" class="headerlink" title="mysql主从配置"></a>mysql主从配置</h3><blockquote>
+<p>mysql主从(mysql Replication) 主要用于mysql的时时备份或者读写分离。</p>
+<p>一台机器上装两个mysql,其实可以不用这么复杂。用两台机器来实现比较简单。</p>
+</blockquote>
+<p>mysql2为主   mysql为从</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</span><br><span class="line">cp -r mysql mysql_2</span><br></pre></td></tr></table></figure>
+<p>初始化mysql2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql_2/bin/mysqld_safe --defaults-file=/usr/<span class="built_in">local</span>/mysql_2/my.cnf</span><br></pre></td></tr></table></figure>
+<p>启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql_2/bin/mysqld_safe —defaults-file=/usr/<span class="built_in">local</span>/mysql_2/my.cnf —user=mysql &amp;</span><br></pre></td></tr></table></figure>
+<p>主：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">port            = 3307</span><br><span class="line">socket          = /tmp/mysql2.sock</span><br><span class="line">datadir        = /data/mysql2</span><br><span class="line"></span><br><span class="line">binlog-do-db=db1</span><br><span class="line">binlog-ignore-db=db1</span><br><span class="line"></span><br><span class="line">给主创建数据库</span><br><span class="line">create database db1;</span><br><span class="line">导出mysql给db1,用于测试</span><br><span class="line"></span><br><span class="line">grant replication slave on *.* to ‘repl’@‘127.0.0.1’ identified by ‘123456’;</span><br><span class="line">flush tables with read lock;</span><br><span class="line">show master status;</span><br></pre></td></tr></table></figure>
+<p>配置从：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br><span class="line">server-id=2</span><br><span class="line">重启数据库</span><br><span class="line">需要把主的数据库给从。</span><br><span class="line">设置从：</span><br><span class="line">mysql:</span><br><span class="line">slave stop;</span><br><span class="line">change master to master_host=‘127.0.0.1’,master_port=3307,master_user=‘repl’,master_password=‘123456’,master_log_file=’ttt’,master_log_post=339;</span><br><span class="line">后面两项，通过主查询出来的设置</span><br><span class="line">skave start;</span><br></pre></td></tr></table></figure>
+<p>主设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unlock tables;</span><br></pre></td></tr></table></figure>
+<p>从：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">show slave status\G;</span><br><span class="line">slave_io_Running;YES</span><br><span class="line">Slave_SQL_Running:YES</span><br><span class="line">如果为yes则表示配置成功</span><br></pre></td></tr></table></figure>
+<p>这个主从呢主要用来处理故障，如果是其它攻击删除了主数据库，那么从的数据也会没有。</p>
+<h3 id="HA集群配置"><a href="#HA集群配置" class="headerlink" title="HA集群配置"></a>HA集群配置</h3><blockquote>
+<p>HA hight available高可用，又被叫做双机热备，用于关键性业务。简单理解就是，A机器无法使用的时候会激活b机器继续使用。</p>
+</blockquote>
+<p>主：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">hostname A</span><br><span class="line">bash</span><br><span class="line">vim /etc/sysconfig/network</span><br><span class="line">HOSTNAME=A</span><br><span class="line">iptables -F</span><br><span class="line">service iptables save</span><br><span class="line">setenforce 0</span><br><span class="line"></span><br><span class="line">vim /etc/hosts</span><br><span class="line">192.168.4.103      A</span><br><span class="line">192.168.4.101     B</span><br><span class="line"></span><br><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install heartbeat* libnet nginx</span><br></pre></td></tr></table></figure>
+<p>从：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">hostname B</span><br><span class="line">bash</span><br><span class="line">vim /etc/sysconfig/network</span><br><span class="line">HOSTNAME=B</span><br><span class="line">iptables -F</span><br><span class="line">service iptables save</span><br><span class="line">setenforce 0</span><br><span class="line"></span><br><span class="line">vim /etc/hosts</span><br><span class="line">192.168.4.103      A</span><br><span class="line">192.168.4.101     B</span><br><span class="line"></span><br><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install heartbeat* libnet nginx</span><br></pre></td></tr></table></figure>
+<p>主：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/doc/heartbeat-3.0.4/</span><br><span class="line">cp authkeys ha.cf haresources /etc/had/</span><br><span class="line"><span class="built_in">cd</span> /etc/ha.d/</span><br><span class="line">vim authkeys</span><br><span class="line">auth 3</span><br><span class="line"></span><br><span class="line">3 md5 Hello!</span><br><span class="line"></span><br><span class="line">chmod 600 authkeys</span><br><span class="line"></span><br><span class="line">vim haresources</span><br><span class="line">A  192.168.31.110/24/eth0:0 nginx</span><br><span class="line"></span><br><span class="line">这里不需要配置网卡，自动生成，而eth0要对应网卡，有些是eth1</span><br><span class="line"></span><br><span class="line">vim ha.cf</span><br><span class="line">  debugfile /var/<span class="built_in">log</span>/ha-debug</span><br><span class="line">logfile /var/<span class="built_in">log</span>/ha-log</span><br><span class="line">logfacility <span class="built_in">local</span>0</span><br><span class="line">keepalive 2</span><br><span class="line">deadtime 30</span><br><span class="line">warntime 10</span><br><span class="line">initdead 60</span><br><span class="line">udpport 694</span><br><span class="line">ucast eth0 192.168.4.101</span><br><span class="line">auto_failback on</span><br><span class="line">node A</span><br><span class="line">node B</span><br><span class="line">ping 192.168.4.1</span><br><span class="line">respawn hacluster /usr/lib/heartbeat/ipfail</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authkeys ha.cf haresources B:/etc/ha.d/</span><br></pre></td></tr></table></figure>
+<p>从：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim ha.cf</span><br><span class="line"> 只需要修改</span><br><span class="line">  ucast eth0 192.168.4.103                                                                                  对应对方的ip</span><br></pre></td></tr></table></figure>
+<p>如果你的网卡是eth1需要修改 haresources改为eth1:0</p>
+<p>启动：<br>先主，后从</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service heartbeat start</span><br></pre></td></tr></table></figure>
+<p>检查测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux|grep nginx</span><br></pre></td></tr></table></figure>
+<p>测试1:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p icmp -j DROP</span><br></pre></td></tr></table></figure>
+<p>这时候从就会启动服务了。</p>
+<h3 id="LVS的NAT模式"><a href="#LVS的NAT模式" class="headerlink" title="LVS的NAT模式"></a>LVS的NAT模式</h3><blockquote>
+<p>LVS是一个实现负载均衡集群的开源软件项目，lvs架构从逻辑上可分为调度层(Director)＼server集群层real server和共享存储。</p>
+</blockquote>
+<p>lvs从实现上分为下面三种模式：</p>
+<blockquote>
+<p>NAT  调度器将请求的目标ip 地址改为real server的ip，返回的数据包也经过调度器，调度器再把源地址修改为vip</p>
+<p>TUN 调度器将请求来的数据包封装加密通过ip 转发到后端的real server上，而real server会直接发把数据反回给客房端</p>
+<p>DR  高度将请求来的数据包的目标mac地址改为real server的mac地址，反回的时候也不经过调度器，直接反回给客房端</p>
+</blockquote>
+<p>主：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">yum -y install nginx</span><br><span class="line">yum -y install ipvsadm</span><br><span class="line"></span><br><span class="line">vim /usr/<span class="built_in">local</span>/sbin/lvs_nat.sh</span><br><span class="line"><span class="comment">#!/bash/bin</span></span><br><span class="line"><span class="comment"># director 服务器上开启路由转发功能：</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line"><span class="comment"># 关闭icmp的重定向</span></span><br><span class="line"><span class="built_in">echo</span> 0 &gt; /proc/sys/net/ipv4/conf/all/send_redirects</span><br><span class="line"><span class="built_in">echo</span> 0 &gt; /proc/sys/net/ipv4/conf/default/send_redirects</span><br><span class="line"><span class="built_in">echo</span> 0 &gt; /proc/sys/net/ipv4/conf/eth0/send_redirects</span><br><span class="line"><span class="built_in">echo</span> 0 &gt; /proc/sys/net/ipv4/conf/eth2/send_redirects</span><br><span class="line"></span><br><span class="line"><span class="comment"># director 设置nat防火墙</span></span><br><span class="line">iptables -t nat -F</span><br><span class="line">iptables -t nat -X               //内网网段</span><br><span class="line">iptables -t nat -A POSTROUTING <span class="_">-s</span> 192.168.5.0/24 -j MASQUERADE</span><br><span class="line"><span class="comment"># director设置ipvsadm</span></span><br><span class="line">IPVSADM=<span class="string">'/sbin/ipvsadm'</span></span><br><span class="line"><span class="variable">$IPVSADM</span> -C     经过</span><br><span class="line"><span class="variable">$IPVSADM</span> -A -t 192.168.6.10:80 <span class="_">-s</span> rr</span><br><span class="line"><span class="variable">$IPVSADM</span> <span class="_">-a</span> -t 192.168.6.10:80 -r 192.168.5.133:80 -m</span><br><span class="line"><span class="variable">$IPVSADM</span> <span class="_">-a</span> -t 192.168.6.10:80 -r 192.168.5.132:80 -m</span><br><span class="line"></span><br><span class="line">sh /usr/<span class="built_in">local</span>/sbin/lvs_nat.sh</span><br></pre></td></tr></table></figure>
+<p>然后要在另外一台的网卡中，把网关设置为服务器的那一台。</p>
+<h3 id="LVS的DR设置"><a href="#LVS的DR设置" class="headerlink" title="LVS的DR设置"></a>LVS的DR设置</h3><blockquote>
+<p>DIP  分发器ip<br>VIP 虚拟IP<br>RIP     直实服务器的IP</p>
+<p>最少要3台， 其中的dip用来做转发器</p>
+</blockquote>
+<p>条件：必需全部是外网ip</p>
+<p>主：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/sbin/lvs_dr.sh</span><br><span class="line"><span class="meta">#! /bin/bash</span><br><span class="line"></span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line">ipv=/sbin/ipvsadm</span><br><span class="line">vip=192.168.4.100</span><br><span class="line">rs1=192.168.4.103</span><br><span class="line">ifconfig eth0:0 <span class="variable">$vip</span> broadcast <span class="variable">$vip</span> netmask 255.255.255.255 up</span><br><span class="line">route add -host <span class="variable">$vip</span> dev eth0:0</span><br><span class="line"><span class="variable">$ipv</span> -C</span><br><span class="line"><span class="variable">$ipv</span> -A -t <span class="variable">$vip</span>:80 <span class="_">-s</span> wrr</span><br><span class="line"><span class="variable">$ipv</span> <span class="_">-a</span> -t <span class="variable">$vip</span>:80 -r <span class="variable">$rs1</span>:80 -g -w 3</span><br><span class="line"><span class="variable">$ipv</span> <span class="_">-a</span> -t <span class="variable">$vip</span>:80 -r <span class="variable">$rs2</span>:80 -g -w 3</span><br></pre></td></tr></table></figure>
+<p>从1：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">vip=192.168.4.100</span><br><span class="line">ifconfig lo:0 <span class="variable">$vip</span> broadcast <span class="variable">$vip</span> netmask 255.255.255.255 up</span><br><span class="line">route add -host <span class="variable">$vip</span> lo:0</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2"</span> &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/conf/all/arp_ignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2"</span> &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br></pre></td></tr></table></figure>
+<p>从2:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">vip=192.168.4.100</span><br><span class="line">ifconfig lo:0 <span class="variable">$vip</span> broadcast <span class="variable">$vip</span> netmask 255.255.255.255 up</span><br><span class="line">route add -host <span class="variable">$vip</span> lo:0</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2"</span> &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/conf/all/arp_ignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2"</span> &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br></pre></td></tr></table></figure>
+<p>清除记录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ipvsadm -C</span><br><span class="line">iptables -F</span><br><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+<h3 id="LVS结合keepalived配置"><a href="#LVS结合keepalived配置" class="headerlink" title="LVS结合keepalived配置"></a>LVS结合keepalived配置</h3><blockquote>
+<p>在做keepalived之前需要清除之前做的记录</p>
+<p>lvs可以实现负衡，可是如果停掉一台服务器之后就不能用了。然后directory照样会把请示转发过去，这样造成了不正常的请示。所以需要一种机制用来检测realserver的状态。<br>keepalived除了可以检测之外还可以检测备用director的状态。</p>
+</blockquote>
+<p>如果直实环境，需要四台环境</p>
+<p>keepalived主</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">yum -y install keepalived</span><br><span class="line">vim /etc/keepalived/keepalived.conf</span><br><span class="line"></span><br><span class="line">vrrp_instance VI_1&#123;</span><br><span class="line">        state MASTER</span><br><span class="line">        interface eth0</span><br><span class="line">        virtual_router_id 51</span><br><span class="line">        priority 100</span><br><span class="line">        advert_int 1</span><br><span class="line">        authentication &#123;</span><br><span class="line">                auth_<span class="built_in">type</span> PASS</span><br><span class="line">                auth_pass 1111</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        virtual_ipaddress &#123;</span><br><span class="line">                192.168.4.100       <span class="comment">#虚拟主机</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">virtual_server 192.168.4.100 80 &#123;    <span class="comment">#虚拟主机，一个虚拟主机下面多个real server</span></span><br><span class="line">        delay_loop 6</span><br><span class="line">        lb_algo wlc</span><br><span class="line">        lb_kind DR</span><br><span class="line">        persistence_timeout 60</span><br><span class="line">        protocol TCP</span><br><span class="line">        real_server 192.168.4.103 80 &#123;</span><br><span class="line">                weight 100</span><br><span class="line">                TCP_CHECK &#123;</span><br><span class="line">                connect_timeout 10</span><br><span class="line">                nb_get_retry 3</span><br><span class="line">                delay_before_retry 3</span><br><span class="line">                connect_port 80</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">        real_server 192.168.4.104 80 &#123;</span><br><span class="line">                weight 100</span><br><span class="line">                TCP_CHECK &#123;</span><br><span class="line">                connect_timeout 10</span><br><span class="line">                nb_get_retry 3</span><br><span class="line">                delay_before_retry 3</span><br><span class="line">                connect_port 80</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>keepalived从</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">vrrp_instance VI_1&#123;</span><br><span class="line">        state BACKUP</span><br><span class="line">        interface eth2</span><br><span class="line">        virtual_router_id 51</span><br><span class="line">        priority 90</span><br><span class="line">        advert_int 1</span><br><span class="line">        authentication &#123;</span><br><span class="line">                auth_<span class="built_in">type</span> PASS</span><br><span class="line">                auth_pass 1111</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        virtual_ipaddress &#123;</span><br><span class="line">                192.168.4.100</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">virtual_server 192.168.4.100 80 &#123;</span><br><span class="line">        delay_loop 6</span><br><span class="line">        lb_algo wlc</span><br><span class="line">        lb_kind DR</span><br><span class="line">        persistence_timeout 60</span><br><span class="line">        protocol TCP</span><br><span class="line">        real_server 192.168.4.103 80 &#123;</span><br><span class="line">                weight 100</span><br><span class="line">                TCP_CHECK &#123;</span><br><span class="line">                connect_timeout 10</span><br><span class="line">                nb_get_retry 3</span><br><span class="line">                delay_before_retry 3</span><br><span class="line">                connect_port 80</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">        real_server 192.168.4.104 80 &#123;</span><br><span class="line">                weight 100</span><br><span class="line">                TCP_CHECK &#123;</span><br><span class="line">                connect_timeout 10</span><br><span class="line">                nb_get_retry 3</span><br><span class="line">                delay_before_retry 3</span><br><span class="line">                connect_port 80</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>real server主</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">vip=192.168.4.100</span><br><span class="line">ifconfig lo:0 <span class="variable">$vip</span> broadcast <span class="variable">$vip</span> netmask 255.255.255.255 up</span><br><span class="line">route add -host <span class="variable">$vip</span> lo:0</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2"</span> &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; /proc/sys/net/ipv4/conf/all/arp_ignore</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2"</span> &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br></pre></td></tr></table></figure>
+<p>real server主</p>
+<figure class="highlight plain"><figcaption><span>/bin/bash</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vip=192.168.4.100</span><br><span class="line">ifconfig lo:0 $vip broadcast $vip netmask 255.255.255.255 up</span><br><span class="line">route add -host $vip lo:0</span><br><span class="line"></span><br><span class="line">echo &quot;1&quot; &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</span><br><span class="line">echo &quot;2&quot; &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</span><br><span class="line">echo &quot;1&quot; &gt; /proc/sys/net/ipv4/conf/all/arp_ignore</span><br><span class="line">echo &quot;2&quot; &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/03/修炼-－-运维笔记一/" rel="next" title="修炼 － 运维笔记一">
+                <i class="fa fa-chevron-left"></i> 修炼 － 运维笔记一
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/11/海上世界/" rel="prev" title="海上世界">
+                海上世界 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/11/修炼-－-运维笔记二/"
+           data-title="修炼 － 运维笔记二" data-url="http://yoursite.com/2016/09/11/修炼-－-运维笔记二/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#nfs部署"><span class="nav-number">1.</span> <span class="nav-text">nfs部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pureftp部署"><span class="nav-number">2.</span> <span class="nav-text">pureftp部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#squid"><span class="nav-number">3.</span> <span class="nav-text">squid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat中JDK安装"><span class="nav-number">4.</span> <span class="nav-text">tomcat中JDK安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat安装"><span class="nav-number">5.</span> <span class="nav-text">tomcat安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql主从配置"><span class="nav-number">6.</span> <span class="nav-text">mysql主从配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HA集群配置"><span class="nav-number">7.</span> <span class="nav-text">HA集群配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVS的NAT模式"><span class="nav-number">8.</span> <span class="nav-text">LVS的NAT模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVS的DR设置"><span class="nav-number">9.</span> <span class="nav-text">LVS的DR设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LVS结合keepalived配置"><span class="nav-number">10.</span> <span class="nav-text">LVS结合keepalived配置</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

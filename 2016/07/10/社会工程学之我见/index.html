@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="社会工程学之我见。闲着无聊也不想做其它事情就想静静的打字，所以我来说说我对所谓社会工程学的了解。
+我发现很多小学生或者某些人将社会工程学误解成另外的东西,比如说，只是猜猜密码、百度查找或者通过社工数据库查找信息，最后进行密码尝试成功后，便在某些论坛发类似《对某某某社工的一次》这样的文章， 看完后不想吐槽了。
+这其实也算是社工的一部分，但只属于依赖网络的狭义社会工程学，而我所认知的社会工程学除了需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="社会工程学之我见">
+<meta property="og:url" content="http://yoursite.com/2016/07/10/社会工程学之我见/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="社会工程学之我见。闲着无聊也不想做其它事情就想静静的打字，所以我来说说我对所谓社会工程学的了解。
+我发现很多小学生或者某些人将社会工程学误解成另外的东西,比如说，只是猜猜密码、百度查找或者通过社工数据库查找信息，最后进行密码尝试成功后，便在某些论坛发类似《对某某某社工的一次》这样的文章， 看完后不想吐槽了。
+这其实也算是社工的一部分，但只属于依赖网络的狭义社会工程学，而我所认知的社会工程学除了需要">
+<meta property="og:updated_time" content="2016-07-10T10:55:58.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="社会工程学之我见">
+<meta name="twitter:description" content="社会工程学之我见。闲着无聊也不想做其它事情就想静静的打字，所以我来说说我对所谓社会工程学的了解。
+我发现很多小学生或者某些人将社会工程学误解成另外的东西,比如说，只是猜猜密码、百度查找或者通过社工数据库查找信息，最后进行密码尝试成功后，便在某些论坛发类似《对某某某社工的一次》这样的文章， 看完后不想吐槽了。
+这其实也算是社工的一部分，但只属于依赖网络的狭义社会工程学，而我所认知的社会工程学除了需要">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 社会工程学之我见 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                社会工程学之我见
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-10T05:15:08+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Default/" itemprop="url" rel="index">
+                    <span itemprop="name">Default</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/社会工程学之我见/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/社会工程学之我见/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="社会工程学之我见。"><a href="#社会工程学之我见。" class="headerlink" title="社会工程学之我见。"></a>社会工程学之我见。</h3><p>闲着无聊也不想做其它事情就想静静的打字，所以我来说说我对所谓社会工程学的了解。</p>
+<p>我发现很多小学生或者某些人将社会工程学误解成另外的东西,比如说，只是猜猜密码、百度查找或者通过社工数据库查找信息，最后进行密码尝试成功后，便在某些论坛发类似《对某某某社工的一次》这样的文章， 看完后不想吐槽了。</p>
+<p>这其实也算是社工的一部分，但只属于依赖网络的狭义社会工程学，而我所认知的社会工程学除了需要搜集前期这些信息之外，还需要和目标进行交互和心理弱点攻击。交互肯定是会有风险的，尽量能在网络里搞定是最好不过了。</p>
+<p>接下来我就要开始进行吹牛了。</p>
+<a id="more"></a>
+<h3 id="社会工程学"><a href="#社会工程学" class="headerlink" title="社会工程学"></a>社会工程学</h3><p>我个人认为在进行一次完整的社会工程学之前最好要有针对性的计划以应对突发情况，在对某些行业人员进行社工前，必须要去了解下该行业所相关的术语，这样进行沟通聊天时才有可能减少别人对你的怀疑。</p>
+<blockquote>
+<p>   比如说，我想获得某个公司的源代码，可是防护做得实在太好了，你无法仅通过远距离的网络进行攻击。可是如果你恰好与这家公司在同一座城市，去实地进行渗透是一个很好的可行方案，先获取wifi无线密码再者通过内网渗透获取一些你无法从正面攻击的敏感信息。<br>这是一种思路，你可以像看电影看剧那样发挥你的想象力去实现，比如进行一些apt攻击。给对方送平板电脑，而电脑中早已经被你植入了木马（没有免费的午餐），而如何让对方欣然接受你的“平板电脑”而不怀疑你也是需要去思考想象的，。</p>
+</blockquote>
+<p>社会工程其实就是心理学，通过和别人沟通让对方相信你，然后把密码交到你的手上。（跟卖保险的销售很像，哈哈）</p>
+<p>之前我所认为的社工：<br>坑蒙拐骗、会点心理学、收集信息就是各种百度查找、数据查找，猜密码等等， 这是我之前所理解的！ 现在来看反而觉得那时的我就是一个傻逼＋脑残。</p>
+<p>来看看维基百科的定义：操纵他人采取特定行动或者泄漏机密信息的行为。它与骗局或欺骗类似，故该词常用于指代欺诈或诈骗，以达到收集信息、欺诈和访问计算机系统的目的，大部分情况下攻击者与受害者不会有面对面的接触</p>
+<h4 id="社会工程人员的类型"><a href="#社会工程人员的类型" class="headerlink" title="社会工程人员的类型"></a>社会工程人员的类型</h4><p><font color="red">黑客：</font>软件厂商生产的软件的安全性能不断提高，攻击软件因些变得越来越难。由于对于软件和网络的攻击越来越困难，现在黑客开始采用社会工程攻击方式。目前在世界各地，通过利用硬件技术和一些个人技巧，黑客在大大小小的攻击中都会使用社会工程。</p>
+<p><font color="red">渗透测试者：</font>因为现实世界的渗透测试者本质上有很强的攻击性，所以此类人员仅次于黑客。真正的渗透测试人员会学习和使用恶意黑客所使用的技巧，帮助确保客户的安全。他们拥有恶意黑客的技巧，但不会利用攻击中所取得的信息获利，也不会伤害目标。</p>
+<p><font color="red">间谍：</font>间谍把社会工程当成一种生活方式，他们通常会利用社会工程框架的每一方面，可以说是这门学科的专家。世界各地间谍都会学习“愚弄”人的方法，能够让人相信他就是某人或不是某人。除了学习社会工程技巧之外，间谍还或多或少地了解所渗透的企业或政府，这样才能得到他们的信任。</p>
+<p><font color="red">高明的骗子：</font>骗子总是利用他人的贪婪等心理，诱发人们“发财致富”的想法。高明的骗子会读心术，通过一些小细节就能确定某人是不是合适的“目标”。他们在造势方面也相当相技巧，让目标认为这是天赐良机。</p>
+<p><font color="red">高端猎头：</font>猎头也必须懂得社会工程的技巧，包括诱导和社会工程的心理原则。他们是读懂人们心理和动机的高手。很多时候，猎头不仅需要考虑和迎合求职者的需求，也要全面审视雇主的想法。</p>
+<p><font color="red">销售人员：</font>与猎头类似，销售人员也必须掌握很多人际效的技能。很多经验丰富的销售人员都说，一名出色的销售人员不需要操纵他人，而应该利用自己的技巧发现人们的需求，并且看看自己是否能满足这些需求。销售的艺术包括信息以、诱导、影响、心理把握以及很多人际效的技能。</p>
+<p><font color="red">医生、心理医生和律师：</font>人事这些职业的人员似乎与其他社会工程人员不一样，但是他们同样使用上述社会工程人员所彩的方法。他们必须彩诱导、正确的谈话方式和底部策略，以及社会工程的许多心理原则，来操纵“目标”采取他们所期望的行动。</p>
+<p>社会工程的各要素相加等于达成的目标：以骗子为例：伪装＋操纵＋贪婪心理＝目标被社会工程套牢</p>
+<h4 id="像社会工程人员一样思考"><a href="#像社会工程人员一样思考" class="headerlink" title="像社会工程人员一样思考"></a>像社会工程人员一样思考</h4><p>信息收集的关键的一步是要转换自己的思维方式。在信息大爆炸的世界，我们必须改变平常的思维方式，学会质疑一切，一看到信息时就按照社会工程人员的思维方式来思考。无意中听到的淡话、论坛上看似无聊的帖子，抑或是一袋垃圾，都应该以不同的角度来审视和对待。</p>
+<blockquote>
+<p>或许这样子，为何要去在意别人说的话。 每次看完一条新闻，我都会想，这新闻是否真实，真假各掺多少？是不是以偏概全了？是不是过于夸张了？因为在国内，一条新闻要想获得关注，首先就是要起一个骇人听闻的标题，再严重点就是进行事实捏造以博眼球，误导群众。如果你想去了解事实， 那么一定要学会质疑。不能被别人牵着鼻子走，总的来说就是要具备独立思考的能力。 这很重要，也需要长时间的学习和练习。<br>我个人理解这句话大概的意思就是：不要相信一切！（我觉得改成“学会质疑一切”）</p>
+</blockquote>
+<h4 id="掌握交流的艺术"><a href="#掌握交流的艺术" class="headerlink" title="掌握交流的艺术"></a>掌握交流的艺术</h4><p>1.表现得自然<br>2.拥有足够的知识<br>3.切忌贪婪</p>
+<blockquote>
+<p>如果你得到了一些信息，就适可而止，不要贪婪地不断深挖，否则会引起对方的警觉。<br>（所以第一次谈论不要问别人太多东西。）</p>
+</blockquote>
+<h4 id="心理战"><a href="#心理战" class="headerlink" title="心理战"></a>心理战</h4><p>心理战术、心理弱点、本能反应、好胜极必衰、信任、贪婪心理陷阱</p>
+<p>顺从你的意愿、</p>
+<p>满足你的欲望是一门艺术与学问 是一种利用人性脆弱点。贪婪</p>
+<p>很多之前都是看书做的笔记，但是那本书所讲的内容并适合国内。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/10/MacBook-Pro/" rel="next" title="MacBook Pro">
+                <i class="fa fa-chevron-left"></i> MacBook Pro
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/15/审计学习笔记一/" rel="prev" title="审计学习笔记一">
+                审计学习笔记一 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/10/社会工程学之我见/"
+           data-title="社会工程学之我见" data-url="http://yoursite.com/2016/07/10/社会工程学之我见/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#社会工程学之我见。"><span class="nav-number">1.</span> <span class="nav-text">社会工程学之我见。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社会工程学"><span class="nav-number">2.</span> <span class="nav-text">社会工程学</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#社会工程人员的类型"><span class="nav-number">2.1.</span> <span class="nav-text">社会工程人员的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#像社会工程人员一样思考"><span class="nav-number">2.2.</span> <span class="nav-text">像社会工程人员一样思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#掌握交流的艺术"><span class="nav-number">2.3.</span> <span class="nav-text">掌握交流的艺术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#心理战"><span class="nav-number">2.4.</span> <span class="nav-text">心理战</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

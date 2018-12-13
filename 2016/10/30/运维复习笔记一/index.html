@@ -1,0 +1,774 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以播放音乐哦！ 
+
+
+
+打开MWeb发呆了好久不知道从何写起好，不是很想写那些烂东西我简称这些为步骤狗都是套路有步骤可寻，预计11月份中旬就可以完成复习完自己想要的内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运维复习笔记一">
+<meta property="og:url" content="http://yoursite.com/2016/10/30/运维复习笔记一/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以播放音乐哦！ 
+
+
+
+打开MWeb发呆了好久不知道从何写起好，不是很想写那些烂东西我简称这些为步骤狗都是套路有步骤可寻，预计11月份中旬就可以完成复习完自己想要的内容。">
+<meta property="og:updated_time" content="2016-11-02T09:28:34.526Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运维复习笔记一">
+<meta name="twitter:description" content="可以播放音乐哦！ 
+
+
+
+打开MWeb发呆了好久不知道从何写起好，不是很想写那些烂东西我简称这些为步骤狗都是套路有步骤可寻，预计11月份中旬就可以完成复习完自己想要的内容。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 运维复习笔记一 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                运维复习笔记一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-30T12:13:31+08:00" content="2016-10-30">
+              2016-10-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux运维/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/30/运维复习笔记一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/30/运维复习笔记一/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以播放音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=35625825&auto=0&height=66"></iframe>
+
+<p>打开MWeb发呆了好久不知道从何写起好，不是很想写那些烂东西我简称这些为步骤狗都是套路有步骤可寻，预计11月份中旬就可以完成复习完自己想要的内容。</p>
+<a id="more"></a>
+<h3 id="lnmp＋配置ha"><a href="#lnmp＋配置ha" class="headerlink" title="lnmp＋配置ha"></a>lnmp＋配置ha</h3><p>mysql安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget http://mirrors.sohu.com/mysql/MySQL-5.1/mysql-5.1.73-linux-i686-glibc23.tar.gz</span><br><span class="line"></span><br><span class="line">mv mysql.tar.gz /usr/local/mysql</span><br><span class="line">useradd -s /sbin/nologin -M mysql</span><br><span class="line">mkdir -p /data/mysql</span><br><span class="line">chown -R mysql /data/mysql</span><br><span class="line">./scripts/mysql_install_db —user=mysql —datadir=/data/mysql</span><br><span class="line"></span><br><span class="line">cp support-files/my-large.cnf  /etc/my.cnf</span><br><span class="line">cp support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">chmod 755 /etc/init.d/mysqld</span><br></pre></td></tr></table></figure>
+<p>修改启动脚本：<br>vim /etc/init.d/mysqld<br>加入：<br><code>basedir = /usr/local/mysql
+datadir = /data/mysql</code></p>
+<p>加载开机启动：<br><code>chkconfig —add mysqld
+chkconfig mysqld on
+service mysqld start</code></p>
+<p>安装nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://nginx.org/download/nginx-1.8.1.tar.gz</span><br><span class="line"></span><br><span class="line"> yum -y install pcre-devel</span><br></pre></td></tr></table></figure>
+<p><code>/usr/local/nginx/sbin/nginx 启动</code></p>
+<p>安装php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://mirrors.sohu.com/php/php-5.4.44.tar.gz</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install libmcrypt-devel</span><br><span class="line">yum install -y libxml2-devel</span><br><span class="line">yum install -y openssl openssl-devel</span><br><span class="line">yum install -y bzip2 bzip2-devel</span><br><span class="line">yum install -y libpng libpng-devel</span><br><span class="line">yum install -y freetype freetype-devel</span><br><span class="line">yum -y install libcurl-devel</span><br><span class="line">yum -y install libtool-ltdl-devel</span><br><span class="line">yum -y install curl-devel</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -s /sbin/nologin php-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">./configure \</span><br><span class="line">--prefix=/usr/<span class="built_in">local</span>/php \</span><br><span class="line">--with-config-file-path=/usr/<span class="built_in">local</span>/php/etc \</span><br><span class="line">--enable-fpm \</span><br><span class="line">--with-fpm-user=php-fpm \</span><br><span class="line">--with-fpm-group=php-fpm \</span><br><span class="line">--with-mysql=/usr/<span class="built_in">local</span>/mysql \</span><br><span class="line">--with-mysql-sock=/tmp/mysql.sock \</span><br><span class="line">--with-libxml-dir \</span><br><span class="line">--with-gd \</span><br><span class="line">--with-jpeg-dir \</span><br><span class="line">--with-png-dir \</span><br><span class="line">--with-freetype-dir \</span><br><span class="line">--with-iconv-dir \</span><br><span class="line">--with-zlib-dir \</span><br><span class="line">--with-mcrypt \</span><br><span class="line">--enable-soap \</span><br><span class="line">--enable-gd-native-ttf \</span><br><span class="line">--enable-ftp \</span><br><span class="line">--enable-mbstring \</span><br><span class="line">--enable-exif \</span><br><span class="line">--enable-exif \</span><br><span class="line">--enable-zend-multibyte \</span><br><span class="line">--disable-ipv6 \</span><br><span class="line">--with-pear \</span><br><span class="line">--with-curl \</span><br><span class="line">--with-openssl</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf</span><br><span class="line">cp /sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /etc/init.d/php-fpm</span><br><span class="line">chkconfig —add php-fpm</span><br><span class="line">chkconfig php-fpm on</span><br><span class="line">service php-fpm start</span><br></pre></td></tr></table></figure>
+<p>nginx开启php解析：<br>vim /usr/local/nginx/conf/nginx.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">            root          html;</span><br><span class="line">            fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">            fastcgi_index  index.php;</span><br><span class="line">            fastcgi_param  SCRIPT_FILENAME  /usr/<span class="built_in">local</span>/nginx/html<span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">            include        fastcgi_params;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>设置虚拟主机：<br>vim /usr/local/nginx/conf/nginx.conf</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">user nobody nobody;</span><br><span class="line">worker_processes 2;</span><br><span class="line">error_log /usr/local/nginx/logs/nginx_error.log crit;</span><br><span class="line">pid /usr/local/nginx/logs/nginx.pid;</span><br><span class="line">worker_rlimit_nofile 51200;</span><br><span class="line"></span><br><span class="line">events</span><br><span class="line">&#123;</span><br><span class="line">    use epoll;</span><br><span class="line">    worker_connections 6000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http</span><br><span class="line">&#123;</span><br><span class="line">    include mime.types;</span><br><span class="line">    default_type application/octet-stream;</span><br><span class="line">    server_names_hash_bucket_size 3526;</span><br><span class="line">    server_names_hash_max_size 4096;</span><br><span class="line">    log_format combined_realip '$remote_addr $http_x_forwarded_for [$time_local]'</span><br><span class="line">    '$host "$request_uri" $status'</span><br><span class="line">    '"$http_referer" "$http_user_agent"';</span><br><span class="line">    sendfile on;</span><br><span class="line">    tcp_nopush on;</span><br><span class="line">    keepalive_timeout 30;</span><br><span class="line">    client_header_timeout 3m;</span><br><span class="line">    client_body_timeout 3m;</span><br><span class="line">    send_timeout 3m;</span><br><span class="line">    connection_pool_size 256;</span><br><span class="line">    client_header_buffer_size 1k;</span><br><span class="line">    large_client_header_buffers 8 4k;</span><br><span class="line">    request_pool_size 4k;</span><br><span class="line">    output_buffers 4 32k;</span><br><span class="line">    postpone_output 1460;</span><br><span class="line">    client_max_body_size 10m;</span><br><span class="line">    client_body_buffer_size 256k;</span><br><span class="line">    client_body_temp_path /usr/local/nginx/client_body_temp;</span><br><span class="line">    proxy_temp_path /usr/local/nginx/proxy_temp;</span><br><span class="line">    fastcgi_temp_path /usr/local/nginx/fastcgi_temp;</span><br><span class="line">    fastcgi_intercept_errors on;</span><br><span class="line">    tcp_nodelay on;</span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length 1k;</span><br><span class="line">    gzip_buffers 4 8k;</span><br><span class="line">    gzip_comp_level 5;</span><br><span class="line">    gzip_http_version 1.1;</span><br><span class="line">    gzip_types text/plain application/x-javascript text/css text/htm application/xml;</span><br><span class="line">    include vhosts/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>设置vhosts</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mkdir vhosts</span><br><span class="line">vim default.conf</span><br><span class="line">server</span><br><span class="line">&#123;</span><br><span class="line">    listen 80 default_server;    <span class="comment">#设置默认的主机</span></span><br><span class="line">    server_name localhost;</span><br><span class="line">    index index.html index.htm index.php;</span><br><span class="line">    root /data/www/default;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">        <span class="comment">#fastcgi_pass unix:/tmp/php-fcgi.sock;</span></span><br><span class="line">        fastcgi_pass 127.0.0.1:9000</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME /data/www/default<span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HA集群配置：</p>
+<p>HA hight available高可用，又被叫做双机热备，用于关键性业务。简单理解就是，A机器无法使用的时候会激活b机器继续使用。</p>
+<p>主：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hostname master</span><br><span class="line">bash</span><br><span class="line">vim /etc/sysconfig/network</span><br><span class="line">iptables -F</span><br><span class="line">service iptables save</span><br><span class="line">setenforce 0</span><br><span class="line"></span><br><span class="line">vim /etc/hosts</span><br><span class="line">192.168.1.110      master</span><br><span class="line">192.168.1.105     salve</span><br><span class="line"></span><br><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install heartbeat* libnet nginx</span><br></pre></td></tr></table></figure>
+<p>从：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hostname slave</span><br><span class="line">bash</span><br><span class="line">vim /etc/sysconfig/network  改名</span><br><span class="line">iptables -F</span><br><span class="line">service iptables save</span><br><span class="line">setenforce 0</span><br><span class="line"></span><br><span class="line">vim /etc/hosts</span><br><span class="line">192.168.1.111      master</span><br><span class="line">192.168.1.105     salve</span><br><span class="line"></span><br><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install heartbeat* libnet nginx</span><br></pre></td></tr></table></figure>
+<p>主：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/doc/heartbeat-3.0.4/</span><br><span class="line">cp authkeys ha.cf haresources /etc/ha.d/</span><br><span class="line">cd /etc/ha.d/</span><br><span class="line">vim authkeys</span><br><span class="line">auth 3</span><br><span class="line"></span><br><span class="line">3 md5 Hello!</span><br><span class="line"></span><br><span class="line">chmod 600 authkeys</span><br></pre></td></tr></table></figure>
+<p>最后还是另外一张网卡实现，不要用eth0:0<br>vim haresources<br><code>master  192.168.1.110/24/eth0:0 nginx</code><br>这里不需要配置网卡，自动生成，而eth0要对应网卡，有些是eth1</p>
+<p>vim ha.cf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">debugfile /var/log/ha-debug</span><br><span class="line">logfile /var/log/ha-log</span><br><span class="line">logfacility local0</span><br><span class="line">keepalive 2</span><br><span class="line">deadtime 30</span><br><span class="line">warntime 10</span><br><span class="line">initdead 60</span><br><span class="line">udpport 694</span><br><span class="line">ucast eth0 192.168.1.105   从ip地址</span><br><span class="line">auto_failback on</span><br><span class="line">node master</span><br><span class="line">node slave</span><br><span class="line">ping 192.168.1.1</span><br><span class="line">respawn hacluster /usr/lib/heartbeat/ipfail</span><br></pre></td></tr></table></figure>
+<p>配置完成后，把3个文件拷到slave服务器下<br><code>scp authkeys ha.cf haresources slave:/etc/ha.d/</code></p>
+<p>从：<br>vim ha.cf<br> 只需要修改<br> <code>ucast eth0 192.168.1.111   #主IP</code><br> 对应对方的ip</p>
+<p>如果你的网卡是eth1需要修改 haresources改为eth1:0  #mastet不需要改</p>
+<p>启动：<br>先主，后从<br><code>service heartbeat start</code><br>检查测试：<br><code>ps aux|grep nginx</code></p>
+<p>测试1:<br><code>iptables -I INPUT -p icmp -j DROP</code></p>
+<h3 id="mysql配置主从"><a href="#mysql配置主从" class="headerlink" title="mysql配置主从"></a>mysql配置主从</h3><p>先通过编译或者yum安装好mysql,两台机器上都需要安装。<br>然后在两台机器需要设置密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">update user set password=password(‘123456’) where user=‘root’;</span><br><span class="line">flush privileges;</span><br><span class="line">quit;</span><br></pre></td></tr></table></figure>
+<p>修改主配置文件：<br>vim /etc/my.cnf<br>master:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">log</span>-bin=mysql-bin   //[必须]启用二进制日志</span><br><span class="line">server-id=222      //[必须]服务器唯一ID，默认是1，一般取IP最后一段</span><br></pre></td></tr></table></figure>
+<p>修改从配置文件：<br>vim /etc/my.cnf<br>slave:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">log</span>-bin=mysql-bin   //[不是必须]启用二进制日志</span><br><span class="line">server-id=226      //[必须]服务器唯一ID，默认是1，一般取IP最后一段</span><br></pre></td></tr></table></figure>
+<p><code>配置完之后需要重启两台机器</code></p>
+<p>在主服务器上创建一个mysql用户：<br>如果是真实情况的话，最好吧%设置为从slave服务器可以连接，为了安全起见<br>master:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">grant replication slave on *.* to ‘repl’@‘%’ identified by ‘123456’;</span><br><span class="line"></span><br><span class="line">查看状态：</span><br><span class="line">show master status;</span><br><span class="line">mysql&gt; show master status;</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br><span class="line">| mysql-bin.000001 |      248 |              |                  |</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br></pre></td></tr></table></figure>
+<p>配置从服务器：<br>slave<br>192.168.1.111为主服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=&apos;192.168.1.111&apos;,master_port=3306,master_user=&apos;repl&apos;,master_</span><br><span class="line">password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000001&apos;,master_log_pos=248;</span><br><span class="line">start slave;    //启动从服务器复制功能</span><br></pre></td></tr></table></figure>
+<p>查看状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show slave status\G</span><br></pre></td></tr></table></figure>
+<p><code>Slave_IO_Running: Yes
+Slave_SQL_Running: Yes</code><br>则为表示配置成功。</p>
+<h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><p>里面原理的东西真是大学问，看过视频后只是一时懂了，但让我讲出来可能讲不出来原理以及算法</p>
+<p>lvs分为两种类型：一种是研件，一种是软件类型</p>
+<p>硬件比较有名的：<br><code>Hardware
+F5  BIG IP
+Citrix , Netscaler
+A10</code></p>
+<p>软件：Software<br>四层中的：lvs</p>
+<p>以及七层中的：nginx和haproxy</p>
+<p>lvs中也有三种类型，也可以说是3种模式：<br><code>NAT：地址转换
+DR: 直接路由
+TUN：隧道</code></p>
+<p>NAT:<br><code>集群节点跟director必须在同一个IP网络中；
+RIP通常是私有地址，仅用于各集群节点间的通信；
+director位于client和real server之间，并负责处理进出的所有通信；
+realserver必须将网关指向DIP；
+支持端口映射；
+realserver可以使用任意OS；
+较大规模应该场景中，director易成为系统瓶颈；</code></p>
+<p>DR:<br><code>集群节点跟director必须在同一个物理网络中；
+RIP可以使用公网地址，实现便捷的远程管理和监控；
+director仅负责处理入站请求，响应报文则由realserver直接发往客户端；
+realserver不能将网关指向DIP；
+不支持端口映射；</code></p>
+<p>TUN：<br><code>集群节点可以跨越Internet；
+RIP必须是公网地址；
+director仅负责处理入站请求，响应报文则由realserver直接发往客户端；
+realserver网关不能指向director；
+只有支持隧道功能的OS才能用于realserver；
+不支持端口映射；</code></p>
+<p>有十种算法：<br>固定调度<br><code>rr: 轮叫，轮询
+wrr: Weight, 加权
+sh: source hash, 源地址hash    用于session affinity
+dh：destination hashing 目标地址hash</code></p>
+<p>动态调度方法：<br><code>lc: 最少连接
+    active*256+inactive
+    谁的小，挑谁
+wlc: 加权最少连接
+    (active*256+inactive)/weight
+sed: 最短期望延迟
+   （active+1)*256/weight
+nq: never queue
+LBLC: 基于本地的最少连接
+    DH:
+LBLCR: 基于本地的带复制功能的最少连接</code></p>
+<p>ipvsadm：管理集群服务的命令行工具<br>命令：</p>
+<p>ipvsadm：</p>
+<p>管理集群服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">添加：-A -t|u|f service-address [<span class="_">-s</span> scheduler]</span><br><span class="line">     -t: TCP协议的集群</span><br><span class="line">     -u: UDP协议的集群</span><br><span class="line">     service-address:     IP:PORT</span><br><span class="line">    	<span class="_">-f</span>: FWM: 防火墙标记</span><br><span class="line">     service-address: Mark Number</span><br><span class="line">     修改：-E</span><br><span class="line">     删除：-D -t|u|f service-address</span><br><span class="line"></span><br><span class="line"><span class="comment"># ipvsadm -A -t 172.16.100.1:80 -s rr</span></span><br></pre></td></tr></table></figure>
+<p>管理集群服务中的RS</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">添加：<span class="_">-a</span> -t|u|f service-address -r server-address [-g|i|m] [-w weight]</span><br><span class="line">     -t|u|f service-address：事先定义好的某集群服务</span><br><span class="line">     -r server-address: 某RS的地址，在NAT模型中，可使用IP：PORT实现端口映射；</span><br><span class="line">        [-g|i|m]: LVS类型</span><br><span class="line">         -g: DR</span><br><span class="line">         -i: TUN</span><br><span class="line">         -m: NAT</span><br><span class="line">            [-w weight]: 定义服务器权重</span><br><span class="line">        修改：<span class="_">-e</span></span><br><span class="line">        删除：<span class="_">-d</span> -t|u|f service-address -r server-address</span><br><span class="line"></span><br><span class="line"><span class="comment"># ipvsadm -a -t 172.16.100.1:80 -r 192.168.10.8 -m</span></span><br><span class="line"><span class="comment"># ipvsadm -a -t 172.16.100.1:80 -r 192.168.10.9 -m</span></span><br><span class="line"></span><br><span class="line">```        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">查看</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">	-L|l</span><br><span class="line">   -n: 数字格式显示主机地址和端口</span><br><span class="line">        --stats：统计数据</span><br><span class="line">        --rate: 速率</span><br><span class="line">        --timeout: 显示tcp、tcpfin和udp的会话超时时长</span><br><span class="line">        -c: 显示当前的ipvs连接状况</span><br><span class="line"></span><br><span class="line"> 删除所有集群服务</span><br><span class="line">        -C：清空ipvs规则</span><br><span class="line"> </span><br><span class="line"> 保存规则</span><br><span class="line">        -S</span><br><span class="line"><span class="comment"># ipvsadm -S &gt; /path/to/somefile</span></span><br><span class="line"></span><br><span class="line">载入此前的规则：</span><br><span class="line">        -R</span><br><span class="line"><span class="comment"># ipvsadm -R &lt; /path/form/somefile</span></span><br></pre></td></tr></table></figure>
+<p>LVS NAT整体实验<br>Director需要两张网卡，需要一个公网地址<br>Real Server两台，只需一张内网网卡<br>Director是调度器</p>
+<p>只需安装ipvsadm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line">ipvsadm -A -t 192.168.1.110:80 -s rr</span><br><span class="line">ipvsadm -a -t 192.168.1.110:80 -r 192.168.78.140:80 -m</span><br><span class="line">ipvsadm -a -t 192.168.1.110:80 -r 192.168.78.140:80 -m</span><br></pre></td></tr></table></figure>
+<p>关闭iptables</p>
+<p>两台real server服务器 安装httpd服务<br>网关指向director的内网卡</p>
+<p>lvs_dr</p>
+<p>realserver 192.168.1.117<br>realserver 192.168.1.115</p>
+<p>/usr/local/sbin/lvs_dr.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line">ipv=/sbin/ipvsadm</span><br><span class="line">vip=192.168.1.107</span><br><span class="line"></span><br><span class="line">rs1=192.168.1.117</span><br><span class="line">rs2=192.168.1.115</span><br><span class="line">ifconfig eth0:0 <span class="variable">$vip</span> broadcast <span class="variable">$vip</span> netmask 255.255.255.255 up</span><br><span class="line">route add -host <span class="variable">$vip</span> dev eth0:0</span><br><span class="line"><span class="variable">$ipv</span> -C</span><br><span class="line"><span class="variable">$ipv</span> -A -t <span class="variable">$vip</span>:80 <span class="_">-s</span> wrr</span><br><span class="line"><span class="variable">$ipv</span> <span class="_">-a</span> -t <span class="variable">$vip</span>:80 -r <span class="variable">$rs1</span>:80 -g -w 3</span><br><span class="line"><span class="variable">$ipv</span> <span class="_">-a</span> -t <span class="variable">$vip</span>:80 -r <span class="variable">$rs2</span>:80 -g -w 3</span><br></pre></td></tr></table></figure>
+<p>real server两台都是这样设置：<br>从1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">vip=192.168.1.107</span><br><span class="line"></span><br><span class="line">ifconfig lo:0 $vip broadcast $vip netmask 255.255.255.255 up</span><br><span class="line">route add -host $vip lo:0</span><br><span class="line"></span><br><span class="line">echo &quot;1&quot; &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</span><br><span class="line">echo &quot;2&quot; &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</span><br><span class="line">echo &quot;1&quot; &gt; /proc/sys/net/ipv4/conf/all/arp_ignore</span><br><span class="line">echo &quot;2&quot; &gt; /proc/sys/net/ipv4/conf/all/arp_announce</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/25/心情随笔三/" rel="next" title="心情随笔三">
+                <i class="fa fa-chevron-left"></i> 心情随笔三
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/02/计算机取证分析学习笔记/" rel="prev" title="计算机取证分析学习笔记">
+                计算机取证分析学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/30/运维复习笔记一/"
+           data-title="运维复习笔记一" data-url="http://yoursite.com/2016/10/30/运维复习笔记一/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#lnmp＋配置ha"><span class="nav-number">1.</span> <span class="nav-text">lnmp＋配置ha</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql配置主从"><span class="nav-number">2.</span> <span class="nav-text">mysql配置主从</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群"><span class="nav-number">3.</span> <span class="nav-text">集群</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

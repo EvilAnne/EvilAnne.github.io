@@ -1,0 +1,741 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以播放音乐哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机取证分析学习笔记">
+<meta property="og:url" content="http://yoursite.com/2016/11/02/计算机取证分析学习笔记/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以播放音乐哦！">
+<meta property="og:image" content="http://i.imgur.com/QZzm8lx.jpg">
+<meta property="og:image" content="http://i.imgur.com/bTBYmXY.jpg">
+<meta property="og:image" content="http://i.imgur.com/ayqmrHx.jpg">
+<meta property="og:image" content="http://i.imgur.com/Drz6auA.jpg">
+<meta property="og:image" content="http://i.imgur.com/IvEpLuX.jpg">
+<meta property="og:image" content="http://i.imgur.com/50Q6iWZ.jpg">
+<meta property="og:image" content="http://i.imgur.com/LfmCmie.jpg">
+<meta property="og:image" content="http://i.imgur.com/wujb3jt.jpg">
+<meta property="og:image" content="http://i.imgur.com/zTxvnmu.jpg">
+<meta property="og:image" content="http://i.imgur.com/tMxvDTe.jpg">
+<meta property="og:updated_time" content="2016-11-02T09:51:38.168Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机取证分析学习笔记">
+<meta name="twitter:description" content="可以播放音乐哦！">
+<meta name="twitter:image" content="http://i.imgur.com/QZzm8lx.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 计算机取证分析学习笔记 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                计算机取证分析学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T17:24:33+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Default/" itemprop="url" rel="index">
+                    <span itemprop="name">Default</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/02/计算机取证分析学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/计算机取证分析学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以播放音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=424060163&auto=0&height=66"></iframe>
+
+<a id="more"></a>
+<p>取证方法：</p>
+<p>看到计算机取证一直都是自己感兴趣的，在家里还有一本厚厚取证的书放着还没有看，准备一时闲着无聊可以看看的，看完前辈的文章后自己也做了实验下面是笔记。</p>
+<p>活取证</p>
+<blockquote>
+<p>抓取文件metadata，创建时间线， 命令历史，分析日志文件，哈希摘要，转存内存信息<br>  使用未受感受的干净程序执行取证<br>  U盘、网络存储收集到的数据</p>
+</blockquote>
+<p>  在没有关机之前提取最新的数据证据<br>  提取内存里的信息 命令历史 命令日志等</p>
+<p>死取证</p>
+<blockquote>
+<p>关机后制作硬盘镜像、分析镜像（MBR、GPT、LVM）</p>
+</blockquote>
+<p>  死取证则是关机之后</p>
+<hr>
+<ul>
+<li>内存dump工具<br>Windows：Dumpit，直接在u盘运行，如果拷贝到电脑中可能会改变。<br>看取证能获得多少信息这就要看知识技术功低取决于你分析出来的东西<br><img src="http://i.imgur.com/QZzm8lx.jpg" alt=""></li>
+</ul>
+<p>如果是正确情况下不要考到电脑上，而是直接在u盘运行，会生成一个<br><img src="http://i.imgur.com/bTBYmXY.jpg" alt=""><br>到当前目录下。把这个raw镜像放Kali通过volatility分析</p>
+<p>分析内存文件：<br>volatility这个工具在Kali自带，这个工具功能十分的强大。</p>
+<p>查看这个文件信息，检测这个文件是在什么系统下的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f win7.raw imageinfo</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.imgur.com/ayqmrHx.jpg" alt=""><br>这里会提示此操作系统的版本后续都需要用到</p>
+<p>获取操作系统之后指定，查看文件进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f win7.raw --profile=Win7SP1x86 pslist</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.imgur.com/Drz6auA.jpg" alt=""></p>
+<p>以另外一种方式显示，更直观,以及父进和和子进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility <span class="_">-f</span> win7.raw --profile=W<span class="keyword">in</span>7SP1x86 pstree</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Volatility Foundation Volatility Framework 2.5</span><br><span class="line">Name                                                  Pid   PPid   Thds   Hnds Time</span><br><span class="line">-------------------------------------------------- ------ ------ ------ ------ ----</span><br><span class="line"> 0x84255628:csrss.exe                                 384    376     10    809 2016-08-20 12:08:14 UTC+0000</span><br><span class="line"> 0x846cb030:wininit.exe                               440    376      3     79 2016-08-20 12:08:14 UTC+0000</span><br><span class="line">. 0x8474e4e0:lsass.exe                                512    440     10    826 2016-08-20 12:08:15 UTC+0000</span><br><span class="line">. 0x8474ed40:lsm.exe                                  520    440     11    159 2016-08-20 12:08:15 UTC+0000</span><br><span class="line">. 0x84742808:services.exe                             496    440     21    279 2016-08-20 12:08:15 UTC+0000</span><br><span class="line">.. 0x84a8ed40:svchost.exe                            2064    496     15    408 2016-08-20 12:08:17 UTC+0000</span><br><span class="line">.. 0x84976030:svchost.exe                            1592    496     28    386 2016-08-20 12:08:16 UTC+0000</span><br><span class="line">.. 0x833cea88:WVSScheduler.e                         6736    496     32    176 2016-10-01 08:47:29 UTC+0000</span><br><span class="line">.. 0x84aa2030:svchost.exe                            2148    496      6    103 2016-08-20 12:08:17 UTC+0000</span><br><span class="line">.. 0x847e4338:vmacthlp.exe                            720    496      3     56 2016-08-20 12:08:15 UTC+0000</span><br><span class="line">.. 0x8499d6b0:prl_tools_serv                         1676    496     11    315 2016-08-20 12:08:16 UTC+0000</span><br><span class="line">... 0x8499bd40:prl_tools.exe                         1744   1676     11    161 2016-08-20 12:08:16 UTC+0000</span><br><span class="line">.... 0x84b3b5b8:prl_cc.exe                           3148   1744     40    529 2016-08-20 12:08:27 UTC+0000</span><br><span class="line">.. 0x847d33d8:svchost.exe                             660    496     12    388 2016-08-20 12:08:15 UTC+0000</span><br><span class="line">... 0x840fdc10:dllhost.exe                           3708    660      7     96 2016-11-02 03:56:20 UTC+0000</span><br><span class="line">... 0x832b1b78:WmiPrvSE.exe                          6540    660      9    123 2016-11-02 03:55:43 UTC+0000</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f win7.raw --profile=Win7SP1x86 hivelist</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Virtual    Physical   Name</span><br><span class="line">---------- ---------- ----</span><br><span class="line">0x8f4b69d0 0x1def59d0 \SystemRoot\System32\Config\SECURITY</span><br><span class="line">0x90941008 0x28813008 \SystemRoot\System32\Config\DEFAULT</span><br><span class="line">0x99034008 0x22649008 \Device\HarddiskVolume1\Boot\BCD</span><br><span class="line">0x990a0750 0x34386750 \??\C:\Windows\ServiceProfiles\NetworkService\NTUSER.DAT</span><br><span class="line">0xa92457f0 0x318d97f0 \??\C:\Windows\ServiceProfiles\LocalService\NTUSER.DAT</span><br><span class="line">0xaa2b79d0 0x11de79d0 \??\C:\System Volume Information\Syscache.hve</span><br><span class="line">0xaea2f008 0x1cd47008 \??\C:\Users\Administrator\ntuser.dat</span><br><span class="line">0xaea309d0 0x3cd1f9d0 \??\C:\Users\Administrator\AppData\Local\Microsoft\Windows\UsrClass.dat</span><br><span class="line">0x8700d008 0x38429008 [no name]</span><br><span class="line">0x8701c008 0x2a29a008 \REGISTRY\MACHINE\SYSTEM</span><br><span class="line">0x87040008 0x24050008 \REGISTRY\MACHINE\HARDWARE</span><br><span class="line">0x8f4ae758 0x070a4758 \SystemRoot\System32\Config\SAM</span><br><span class="line">0x8f4b6008 0x1def5008 \SystemRoot\System32\Config\SOFTWARE</span><br></pre></td></tr></table></figure>
+<p>按内存地址查看注册表的内容,第一个地址，虚内存地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f win7.raw --profile=Win7SP1x86 hivdump -o 内存地址</span><br></pre></td></tr></table></figure>
+<p>这里好像没有成功显示</p>
+<p>查看有多少用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f win7.raw --profile=Win7SP1x86 printkey -K &quot;SAM\Domains\Account\Users\Names&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">egend: (S) = Stable   (V) = Volatile</span><br><span class="line"></span><br><span class="line">----------------------------</span><br><span class="line">Registry: \SystemRoot\System32\Config\SAM</span><br><span class="line">Key name: Names (S)</span><br><span class="line">Last updated: 2016-07-13 13:53:10 UTC+0000</span><br><span class="line"></span><br><span class="line">Subkeys:</span><br><span class="line">  (S) Administrator</span><br><span class="line">  (S) Guest</span><br><span class="line"></span><br><span class="line">Values:</span><br><span class="line">REG_DWORD                     : (S) 0</span><br></pre></td></tr></table></figure>
+<p>最后登录的用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f wi7.raw --profile=Win7SP1x64 printkey -K &quot;SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&quot;</span><br></pre></td></tr></table></figure>
+<p>正在运行的程序、运行过多少次、最后一次运行时间等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f wi7.raw --profile=Win7SP1x64 userassist</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">REG_BINARY    %ProgramFiles%\Acunetix\Web Vulnerability Scanner 10\wvs.exe : </span><br><span class="line">Count:          12</span><br><span class="line">Focus Count:    53</span><br><span class="line">Time Focused:   0:38:54.147000</span><br><span class="line">Last updated:   2016-10-29 02:33:22 UTC+0000</span><br><span class="line">Raw Data:</span><br><span class="line">0x00000000  00 00 00 00 0c 00 00 00 35 00 00 00 cf 9b 23 00   ........5.....#.</span><br><span class="line">0x00000010  00 00 80 bf 00 00 80 bf 00 00 80 bf 00 00 80 bf   ................</span><br><span class="line">0x00000020  00 00 80 bf 00 00 80 bf 00 00 80 bf 00 00 80 bf   ................</span><br><span class="line">0x00000030  00 00 80 bf 00 00 80 bf ff ff ff ff f0 8d 87 d1   ................</span><br><span class="line">0x00000040  8c 31 d2 01 00 00 00 00</span><br></pre></td></tr></table></figure>
+<p>提取进程中的内容<br>-D参数是指定目录<br>通过hexeditor工具来查看内存文件内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f win7.raw --profile=Win7SP1x86 memdump -p 6656 -D test</span><br></pre></td></tr></table></figure>
+<p>这里我通过pslist提取了notepad++<br>应该是提取的这个没有内容都显示这个：<br><img src="http://i.imgur.com/IvEpLuX.jpg" alt=""></p>
+<p>提取字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">strings 1456.dump &gt; 111.txt</span><br><span class="line">通过grep去查找</span><br></pre></td></tr></table></figure>
+<p>命令历史</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility cmdscan -f win7.raw --profile=Win7SP1x86</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Volatility Foundation Volatility Framework 2.5</span><br><span class="line">**************************************************</span><br><span class="line">CommandProcess: conhost.exe Pid: 4312</span><br><span class="line">CommandHistory: 0x30f2a0 Application: DumpIt.exe Flags: Allocated</span><br><span class="line">CommandCount: 0 LastAdded: -1 LastDisplayed: -1</span><br><span class="line">FirstCommand: 0 CommandCountMax: 50</span><br><span class="line">ProcessHandle: 0xc</span><br><span class="line">Cmd #3 @ 0x300033: ?????????????</span><br><span class="line">Cmd #7 @ 0x300031: ??????????????</span><br></pre></td></tr></table></figure>
+<p>网络连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility netscan -f 7.raw --profile=Win7SP1x64</span><br></pre></td></tr></table></figure>
+<p>我都怀疑虚拟机都中毒了<br><img src="http://i.imgur.com/50Q6iWZ.jpg" alt=""></p>
+<p>ie浏览器记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility iehistory -f 7.raw --profile=Win7SP1x64</span><br></pre></td></tr></table></figure>
+<p>提取hash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">volatility  -f 7.raw --profile=Win7SP1x64 hivelist</span><br><span class="line"></span><br><span class="line">volatility  -f 7.raw --profile=Win7SP1x64 hashdump -y [system目录的内存地址] -s [sam目录的内存地址]</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.imgur.com/LfmCmie.jpg" alt=""></p>
+<p>firefox插件，查找记录<br>安装放在：/usr/lib/python2.7/dist-packages/volatility/plugins/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f 7.raw --profile=Win7SP1x64 firefoxhistory</span><br></pre></td></tr></table></figure>
+<p>从多个位置收集大量系统活动信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f 7.raw --profile=Win7SP1x64 timeliner</span><br></pre></td></tr></table></figure>
+<p>活取证</p>
+<p>  Windows  下：<br>  <a href="https://technet.microsoft.com/en-us/sysinternals/dd996900.aspx" target="_blank" rel="external">https://technet.microsoft.com/en-us/sysinternals/dd996900.aspx</a></p>
+<p>  procdump -ma notepad.exe notepad.dmp<br>  <a href="https://technet.microsoft.com/en-us/sysinternals/bb897439.aspx" target="_blank" rel="external">https://technet.microsoft.com/en-us/sysinternals/bb897439.aspx</a><br>  strings notepad.dmp &gt; notepad.txt<br>  主要提取文本输入过的文字等恢复：<br>  <img src="http://i.imgur.com/wujb3jt.jpg" alt=""></p>
+<p>  从内存中提取明文密码</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">procdump -ma lsass.exe lsass.dmp</span><br><span class="line">Mimikatz</span><br><span class="line">sekurlsa::minidump lsass.dmp</span><br><span class="line">sekurlsa::logonPasswords</span><br></pre></td></tr></table></figure>
+<p>  <img src="http://i.imgur.com/zTxvnmu.jpg" alt=""></p>
+<p>也可以通过volatility的mimikatz插件</p>
+<blockquote>
+<p><a href="https://github.com/sans-dfir/sift-files/blob/master/volatility/mimikatz.py" target="_blank" rel="external">https://github.com/sans-dfir/sift-files/blob/master/volatility/mimikatz.py</a></p>
+</blockquote>
+<p>firefox浏览器审计工具</p>
+<blockquote>
+<p>dumpzilla /root/.mozilla/firefox/bvpenhsu.default/ –All</p>
+</blockquote>
+<p>死取证</p>
+<blockquote>
+<p>硬盘镜像<br>使用kali光盘启动计算机创建硬盘镜像文件<br>dc3dd来自美国空军计算机犯罪中心<br>Dcfldd<br>Guymager   u盘进入kali系统之后复制硬盘<br>计算机取证技术参考数据集<br><a href="http://www.cfreds.nist.gov/Controlv1_0/control.dd" target="_blank" rel="external">http://www.cfreds.nist.gov/Controlv1_0/control.dd</a></p>
+</blockquote>
+<p>DFF(Digital Forensics Framework)<br>Open Evidence  红色表示已经删除的文件<br>发现恢复已经删除和隐藏的文件</p>
+<p>Autopsy<br>非常浒的硬盘镜像分析工具<br>WebServer+客房端 架构</p>
+<p>extundelete<br>适用ext3  ext4文件系统的反删除工具</p>
+<p> <img src="http://i.imgur.com/tMxvDTe.jpg" alt=""></p>
+<p>  Iphone Backup Analyzer<br>  分析iTunes生成的Iphone手机备份文件，并非电话image</p>
+<p>  Foremost 美国政府开发<br>  从内存dump中恢复文档图片，支持raw dd iso vmem等格式<br>  foremost -t jpeg,gif,png,doc -i 7.raw</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/30/运维复习笔记一/" rel="next" title="运维复习笔记一">
+                <i class="fa fa-chevron-left"></i> 运维复习笔记一
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/06/zabbix笔记/" rel="prev" title="zabbix笔记">
+                zabbix笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/02/计算机取证分析学习笔记/"
+           data-title="计算机取证分析学习笔记" data-url="http://yoursite.com/2016/11/02/计算机取证分析学习笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

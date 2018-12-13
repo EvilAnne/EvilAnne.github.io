@@ -1,0 +1,819 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这段时间看审计，看到了很多自己无法看懂的所以无法进行跟踪程序，看到一些框架比如像thinkphp yii之类的，而这里我想要继续往下看就得明白thinkphp的一些操作。其实对于php我而言，大多数东西我都懂只是很少去写代码，所以暂时还没有开发的能力〜 哈哈哈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ThinkPhP笔记">
+<meta property="og:url" content="http://yoursite.com/2016/08/12/ThinkPhP笔记/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="这段时间看审计，看到了很多自己无法看懂的所以无法进行跟踪程序，看到一些框架比如像thinkphp yii之类的，而这里我想要继续往下看就得明白thinkphp的一些操作。其实对于php我而言，大多数东西我都懂只是很少去写代码，所以暂时还没有开发的能力〜 哈哈哈">
+<meta property="og:updated_time" content="2016-08-12T07:37:57.028Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ThinkPhP笔记">
+<meta name="twitter:description" content="这段时间看审计，看到了很多自己无法看懂的所以无法进行跟踪程序，看到一些框架比如像thinkphp yii之类的，而这里我想要继续往下看就得明白thinkphp的一些操作。其实对于php我而言，大多数东西我都懂只是很少去写代码，所以暂时还没有开发的能力〜 哈哈哈">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> ThinkPhP笔记 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ThinkPhP笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-12T03:29:08+08:00" content="2016-08-12">
+              2016-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/12/ThinkPhP笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/12/ThinkPhP笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这段时间看审计，看到了很多自己无法看懂的所以无法进行跟踪程序，看到一些框架比如像thinkphp yii之类的，而这里我想要继续往下看就得明白thinkphp的一些操作。其实对于php我而言，大多数东西我都懂只是很少去写代码，所以暂时还没有开发的能力〜 哈哈哈</p>
+<a id="more"></a>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">www  WEB部署目录（或者子目录）</span><br><span class="line">├─index.php       入口文件</span><br><span class="line">├─README.md       README文件</span><br><span class="line">├─composer.json   Composer定义文件</span><br><span class="line">├─Application     应用目录</span><br><span class="line">├─Public          资源文件目录</span><br><span class="line">└─ThinkPHP        框架目录</span><br></pre></td></tr></table></figure>
+<h5 id="框架核心目录"><a href="#框架核心目录" class="headerlink" title="框架核心目录"></a>框架核心目录</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">├─ThinkPHP 框架系统目录（可以部署在非web目录下面）</span><br><span class="line">│  ├─Common       核心公共函数目录</span><br><span class="line">│  ├─Conf         核心配置目录 </span><br><span class="line">│  ├─Lang         核心语言包目录</span><br><span class="line">│  ├─Library      框架类库目录</span><br><span class="line">│  │  ├─Think     核心Think类库包目录</span><br><span class="line">│  │  ├─Behavior  行为类库目录</span><br><span class="line">│  │  ├─Org       Org类库包目录</span><br><span class="line">│  │  ├─Vendor    第三方类库目录</span><br><span class="line">│  │  ├─ ...      更多类库目录</span><br><span class="line">│  ├─Mode         框架应用模式目录</span><br><span class="line">│  ├─Tpl          系统模板目录</span><br><span class="line">│  ├─LICENSE.txt  框架授权协议文件</span><br><span class="line">│  ├─logo.png     框架LOGO文件</span><br><span class="line">│  ├─README.txt   框架README文件</span><br><span class="line">│  └─index.php    框架入口文件</span><br></pre></td></tr></table></figure>
+<h4 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'APP_PATH'</span>,<span class="string">'./Application/'</span>);</span><br><span class="line"><span class="keyword">require</span> <span class="string">'./ThinkPHP/ThinkPHP.php'</span>;</span><br></pre></td></tr></table></figure>
+<p>当执行时，会在Application生成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Application</span><br><span class="line">├─Common         应用公共模块</span><br><span class="line">│  ├─Common      应用公共函数目录</span><br><span class="line">│  └─Conf        应用公共配置文件目录</span><br><span class="line">├─Home           默认生成的Home模块</span><br><span class="line">│  ├─Conf        模块配置文件目录</span><br><span class="line">│  ├─Common      模块函数公共目录</span><br><span class="line">│  ├─Controller  模块控制器目录</span><br><span class="line">│  ├─Model       模块模型目录</span><br><span class="line">│  └─View        模块视图文件目录</span><br><span class="line">├─Runtime        运行时目录</span><br><span class="line">│  ├─Cache       模版缓存目录</span><br><span class="line">│  ├─Data        数据目录</span><br><span class="line">│  ├─Logs        日志目录</span><br><span class="line">│  └─Temp        缓存目录模块设计</span><br></pre></td></tr></table></figure>
+<h4 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h4><p>开启调试模式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'APP_DEBUG'</span>, <span class="keyword">true</span>); <span class="comment">// 开启调试模式</span></span><br></pre></td></tr></table></figure>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>每个应用模块都有独立的配置文件（位于模块目录的Conf/config.php），配置文件的定义格式支持PHP/JSON/YAML/INI/XML等方式，默认采用PHP数组定义，例如：<br><code>// 配置文件
+return array(
+    &#39;配置参数&#39; =&gt; &#39;配置值&#39;,
+    // 更多配置参数
+    //...
+);</code></p>
+<h4 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h4><p>需要为每个控制器定义一个控制器类，控制器类的命名规范是：<br>控制器名+Controller.class.php （模块名采用驼峰法并且首字母大写）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">($name=<span class="string">'thinkphp'</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'hello,'</span>.$name.<span class="string">'!'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>访问：<a href="http://localhost/index.php/home/index/hello/name/baby" target="_blank" rel="external">http://localhost/index.php/home/index/hello/name/baby</a></p>
+<p>会输出：hello,baby!</p>
+<p>一个模块可以包括多个操作方法</p>
+<h4 id="URL请求"><a href="#URL请求" class="headerlink" title="URL请求"></a>URL请求</h4><p>标准的URL访问格式：<br><code>http://serverName/index.php/模块/控制器/操作</code></p>
+<blockquote>
+<p>ThinkPHP支持的URL模式有四种：普通模式、PATHINFO、REWRITE和兼容模式。</p>
+</blockquote>
+<p>1 普通模式<br>普通模式也就是使用传统的GET传参方式来指定当前访问的模块、控制器和操作，例如：</p>
+<p><code>http://localhost/?m=home&amp;c=index&amp;a=hello&amp;name=thinkphp</code></p>
+<p>m参数表示模块，c表示控制器，a表示操作</p>
+<p>2 PATHINFO模式<br>PATHINFO模式是系统的默认URL模式</p>
+<p>对应上面的URL模式，PATHINFO模式下面的URL访问地址是：<br><code>http://localhost/index.php/home/index/hello/name/thinkphp/</code></p>
+<p>3 REWRITE模式 </p>
+<p>REWRITE模式是在PATHINFO模式的基础上添加了重写规则的支持，可以去掉URL地址里面的入口文件index.php，但是需要额外配置WEB服务器的重写规则。<br>如果是Apache则需要在入口文件的同级添加.htaccess文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule mod_rewrite.c&gt;</span><br><span class="line">RewriteEngine on</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
+<p>接下来就可以使用下面的URL地址访问了<br><code>http://localhost/home/index/hello/name/thinkphp/</code></p>
+<p>4 兼容模式<br><code>http://localhost/?s=/home/index/hello/name/thinkphp</code></p>
+<hr>
+<h3 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h3><p>CURD是一个数据库技术中的缩写词，一般的项目开发的各种参数的基本功能都是CURD。它代表创建（Create）、更新（Update）、读取（Read）和删除（Delete）操作。CURD 定义了用于处理数据的基本原子操作。之所以将CURD 提升到一个技术难题的高度是因为完成一个涉及在多个数据库系统中进行CURD操作的汇总相关的活动，其性能可能会随数据关系的变化而有非常大的差异。</p>
+<p>ThinkPHP就是使用add、save、select和delete方法表示模型的CURD操作。</p>
+<h4 id="创建数据"><a href="#创建数据" class="headerlink" title="创建数据"></a>创建数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FormController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">insert</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $Form   =   D(<span class="string">'Form'</span>);</span><br><span class="line">        <span class="keyword">if</span>($Form-&gt;create()) &#123;</span><br><span class="line">            $result =   $Form-&gt;add();</span><br><span class="line">            <span class="keyword">if</span>($result) &#123;</span><br><span class="line">                $this-&gt;success(<span class="string">'数据添加成功！'</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                $this-&gt;error(<span class="string">'数据添加错误！'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            $this-&gt;error($Form-&gt;getError());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span><span class="params">($id=<span class="number">0</span>)</span></span>&#123;</span><br><span class="line">    $Form   =   M(<span class="string">'Form'</span>);</span><br><span class="line">    <span class="comment">// 读取数据</span></span><br><span class="line">    $data =   $Form-&gt;find($id);</span><br><span class="line">    <span class="keyword">if</span>($data) &#123;</span><br><span class="line">        $this-&gt;assign(<span class="string">'data'</span>,$data);<span class="comment">// 模板变量赋值</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        $this-&gt;error(<span class="string">'数据错误'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    $this-&gt;display();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">edit</span><span class="params">($id=<span class="number">0</span>)</span></span>&#123;</span><br><span class="line">    $Form   =   M(<span class="string">'Form'</span>);</span><br><span class="line">    $this-&gt;assign(<span class="string">'vo'</span>,$Form-&gt;find($id));</span><br><span class="line">    $this-&gt;display();</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">()</span></span>&#123;</span><br><span class="line">    $Form   =   D(<span class="string">'Form'</span>);</span><br><span class="line">    <span class="keyword">if</span>($Form-&gt;create()) &#123;</span><br><span class="line">        $result =   $Form-&gt;save();</span><br><span class="line">        <span class="keyword">if</span>($result) &#123;</span><br><span class="line">            $this-&gt;success(<span class="string">'操作成功！'</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            $this-&gt;error(<span class="string">'写入错误！'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        $this-&gt;error($Form-&gt;getError());</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$User = M(<span class="string">"User"</span>); <span class="comment">// 实例化User对象</span></span><br><span class="line">$User-&gt;where(<span class="string">'id=5'</span>)-&gt;delete(); <span class="comment">// 删除id为5的用户数据</span></span><br><span class="line">$User-&gt;delete(<span class="string">'1,2,5'</span>); <span class="comment">// 删除主键为1,2和5的用户数据</span></span><br><span class="line">$User-&gt;where(<span class="string">'status=0'</span>)-&gt;delete(); <span class="comment">// 删除所有状态为0的用户数据</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询语言"><a href="#查询语言" class="headerlink" title="查询语言"></a>查询语言</h3><h4 id="查询方式"><a href="#查询方式" class="headerlink" title="查询方式"></a>查询方式</h4><h5 id="使用字符串作为查询条件"><a href="#使用字符串作为查询条件" class="headerlink" title="使用字符串作为查询条件"></a>使用字符串作为查询条件</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$User = M(<span class="string">"User"</span>); <span class="comment">// 实例化User对象</span></span><br><span class="line">$User-&gt;where(<span class="string">'type=1 AND status=1'</span>)-&gt;select();</span><br></pre></td></tr></table></figure>
+<p>最后生成的SQL语句是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM think_user WHERE type=1 AND status=1</span><br></pre></td></tr></table></figure>
+<h5 id="使用数组作为查询条件"><a href="#使用数组作为查询条件" class="headerlink" title="使用数组作为查询条件"></a>使用数组作为查询条件</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$User = M(<span class="string">"User"</span>); <span class="comment">// 实例化User对象</span></span><br><span class="line">$condition[<span class="string">'name'</span>] = <span class="string">'thinkphp'</span>;</span><br><span class="line">$condition[<span class="string">'status'</span>] = <span class="number">1</span>;</span><br><span class="line"> <span class="comment">// 把查询条件传入查询方法</span></span><br><span class="line">$User-&gt;where($condition)-&gt;select();</span><br></pre></td></tr></table></figure>
+<p>最后生成的SQL语句是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM think_user WHERE `name`=&apos;thinkphp&apos; AND status=1</span><br></pre></td></tr></table></figure>
+<p>默认逻辑关系是 逻辑与 AND,通过使用 _logic 定义查询逻辑：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$User = M(<span class="string">"User"</span>); <span class="comment">// 实例化User对象</span></span><br><span class="line">$condition[<span class="string">'name'</span>] = <span class="string">'thinkphp'</span>;</span><br><span class="line">$condition[<span class="string">'account'</span>] = <span class="string">'thinkphp'</span>;</span><br><span class="line">$condition[<span class="string">'_logic'</span>] = <span class="string">'OR'</span>;</span><br><span class="line"> <span class="comment">// 把查询条件传入查询方法</span></span><br><span class="line">$User-&gt;where($condition)-&gt;select();</span><br></pre></td></tr></table></figure>
+<p>最后生成的SQL语句是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM think_user WHERE `name`=&apos;thinkphp&apos; OR `account`=&apos;thinkphp&apos;</span><br></pre></td></tr></table></figure>
+<h5 id="使用对象方式来查询"><a href="#使用对象方式来查询" class="headerlink" title="使用对象方式来查询"></a>使用对象方式来查询</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$User = M(<span class="string">"User"</span>); <span class="comment">// 实例化User对象</span></span><br><span class="line"> <span class="comment">// 定义查询条件</span></span><br><span class="line">$condition = <span class="keyword">new</span> stdClass(); <span class="comment">//stdclass为内置对象</span></span><br><span class="line">$condition-&gt;name = <span class="string">'thinkphp'</span>; </span><br><span class="line">$condition-&gt;status= <span class="number">1</span>; </span><br><span class="line">$User-&gt;where($condition)-&gt;select();</span><br></pre></td></tr></table></figure>
+<p>最后生成的SQL语句和上面一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM think_user WHERE `name`=&apos;thinkphp&apos; AND status=1</span><br></pre></td></tr></table></figure>
+<h5 id="表达式查询"><a href="#表达式查询" class="headerlink" title="表达式查询"></a>表达式查询</h5><p><code>$map[&#39;字段名&#39;] = array(&#39;表达式&#39;,&#39;查询条件&#39;);</code><br>表达式不分大小写，支持的查询表达式有下面几种，分别表示的含义是：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EQ</td>
+<td>等于（=）</td>
+<td></td>
+</tr>
+<tr>
+<td>NEQ</td>
+<td>不等于（&lt;&gt;）</td>
+</tr>
+<tr>
+<td>GT</td>
+<td>大于（&gt;）</td>
+</tr>
+<tr>
+<td>EGT</td>
+<td>大于等于（&gt;=）</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>小于（&lt;）</td>
+</tr>
+<tr>
+<td>ELT</td>
+<td>小于等于（&lt;=）</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>模糊查询</td>
+</tr>
+<tr>
+<td>[NOT] BETWEEN</td>
+<td>（不在）区间查询</td>
+</tr>
+<tr>
+<td>[NOT] IN</td>
+<td>（不在）IN 查询</td>
+</tr>
+<tr>
+<td>EXP</td>
+<td>表达式查询，支持SQL语法</td>
+</tr>
+</tbody>
+</table>
+<p>例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$map[<span class="string">'id'</span>]  = <span class="keyword">array</span>(<span class="string">'eq'</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="SQL查询"><a href="#SQL查询" class="headerlink" title="SQL查询"></a>SQL查询</h4><h5 id="query方法"><a href="#query方法" class="headerlink" title="query方法"></a>query方法</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$Model = <span class="keyword">new</span> Model() <span class="comment">// 实例化一个model对象 没有对应任何数据表</span></span><br><span class="line">$Model-&gt;query(<span class="string">"select * from think_user where status=1"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="execute方法"><a href="#execute方法" class="headerlink" title="execute方法"></a>execute方法</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$Model = <span class="keyword">new</span> Model() <span class="comment">// 实例化一个model对象 没有对应任何数据表</span></span><br><span class="line">$Model-&gt;execute(<span class="string">"update think_user set name='thinkPHP' where status=1"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h4><h5 id="使用select方法"><a href="#使用select方法" class="headerlink" title="使用select方法"></a>使用select方法</h5><p>当select方法的参数为false的时候，表示不进行查询只是返回构建SQL，例如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先构造子查询SQL </span></span><br><span class="line">$subQuery = $model-&gt;field(<span class="string">'id,name'</span>)-&gt;table(<span class="string">'tablename'</span>)-&gt;group(<span class="string">'field'</span>)-&gt;where($where)-&gt;order(<span class="string">'status'</span>)-&gt;select(<span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="使用buildSql方法"><a href="#使用buildSql方法" class="headerlink" title="使用buildSql方法"></a>使用buildSql方法</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$subQuery = $model-&gt;field(<span class="string">'id,name'</span>)-&gt;table(<span class="string">'tablename'</span>)-&gt;group(<span class="string">'field'</span>)-&gt;where($where)-&gt;order(<span class="string">'status'</span>)-&gt;buildSql();</span><br></pre></td></tr></table></figure>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="获取变量"><a href="#获取变量" class="headerlink" title="获取变量"></a>获取变量</h4><p>I方法是ThinkPHP用于更加方便和安全的获取系统输入变量，可以用于任何地方，用法格式如下：</p>
+<p><code>I(&#39;变量类型.变量名/修饰符&#39;,[&#39;默认值&#39;],[&#39;过滤方法&#39;],[&#39;额外数据源&#39;])</code><br>变量类型是指请求方式或者输入类型，包括：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get</td>
+<td>获取GET参数</td>
+</tr>
+<tr>
+<td>post</td>
+<td>获取POST参数</td>
+</tr>
+<tr>
+<td>param</td>
+<td>自动判断请求类型获取GET、POST或者PUT参数</td>
+</tr>
+<tr>
+<td>request</td>
+<td>获取REQUEST 参数</td>
+</tr>
+<tr>
+<td>put</td>
+<td>获取PUT 参数</td>
+</tr>
+<tr>
+<td>session</td>
+<td>获取 $_SESSION 参数</td>
+</tr>
+<tr>
+<td>cookie</td>
+<td>获取 $_COOKIE 参数</td>
+</tr>
+<tr>
+<td>server</td>
+<td>获取 $_SERVER 参数</td>
+</tr>
+<tr>
+<td>globals</td>
+<td>获取 $GLOBALS参数</td>
+</tr>
+<tr>
+<td>path</td>
+<td>获取 PATHINFO模式的URL参数</td>
+</tr>
+<tr>
+<td>data</td>
+<td>获取 其他类型的参数，需要配合额外数据源参数</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> I(<span class="string">'get.id'</span>); <span class="comment">// 相当于 $_GET['id']</span></span><br><span class="line"><span class="keyword">echo</span> I(<span class="string">'get.name'</span>); <span class="comment">// 相当于 $_GET['name']</span></span><br></pre></td></tr></table></figure>
+<p>支持默认值：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> I(<span class="string">'get.id'</span>,<span class="number">0</span>); <span class="comment">// 如果不存在$_GET['id'] 则返回0</span></span><br><span class="line"><span class="keyword">echo</span> I(<span class="string">'get.name'</span>,<span class="string">''</span>); <span class="comment">// 如果不存在$_GET['name'] 则返回空字符串</span></span><br></pre></td></tr></table></figure></p>
+<p>采用方法过滤：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 采用htmlspecialchars方法对$_GET['name'] 进行过滤，如果不存在则返回空字符串</span></span><br><span class="line"><span class="keyword">echo</span> I(<span class="string">'get.name'</span>,<span class="string">''</span>,<span class="string">'htmlspecialchars'</span>);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I(<span class="string">'post.name'</span>,<span class="string">''</span>,<span class="string">'htmlspecialchars'</span>); <span class="comment">// 采用htmlspecialchars方法对$_POST['name'] 进行过滤，如果不存在则返回空字符串</span></span><br><span class="line">I(<span class="string">'session.user_id'</span>,<span class="number">0</span>); <span class="comment">// 获取$_SESSION['user_id'] 如果不存在则默认为0</span></span><br><span class="line">I(<span class="string">'cookie.'</span>); <span class="comment">// 获取整个 $_COOKIE 数组</span></span><br><span class="line">I(<span class="string">'server.REQUEST_METHOD'</span>); <span class="comment">// 获取 $_SERVER['REQUEST_METHOD']</span></span><br></pre></td></tr></table></figure>
+<p>param变量类型是框架特有的支持自动判断当前请求类型的变量获取方式，例如：</p>
+<p><code>echo I(&#39;param.id&#39;);</code></p>
+<h4 id="变量过滤"><a href="#变量过滤" class="headerlink" title="变量过滤"></a>变量过滤</h4><p>如果你没有在调用I函数的时候指定过滤方法的话，系统会采用默认的过滤机制（由DEFAULT_FILTER配置），事实上，该参数的默认设置是：</p>
+<p><code>// 系统默认的变量过滤机制
+&#39;DEFAULT_FILTER&#39;        =&gt; &#39;htmlspecialchars&#39;</code><br>该参数也可以设置支持多个过滤<br><code>&#39;DEFAULT_FILTER&#39;        =&gt; &#39;strip_tags,htmlspecialchars&#39;</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/07/审计学习笔记三/" rel="next" title="审计学习笔记三">
+                <i class="fa fa-chevron-left"></i> 审计学习笔记三
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/14/审计学习笔记四/" rel="prev" title="审计学习笔记四">
+                审计学习笔记四 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/12/ThinkPhP笔记/"
+           data-title="ThinkPhP笔记" data-url="http://yoursite.com/2016/08/12/ThinkPhP笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录结构"><span class="nav-number">1.1.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#框架核心目录"><span class="nav-number">1.1.1.</span> <span class="nav-text">框架核心目录</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#入口文件"><span class="nav-number">1.2.</span> <span class="nav-text">入口文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调试模式"><span class="nav-number">1.3.</span> <span class="nav-text">调试模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">1.4.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制器"><span class="nav-number">1.5.</span> <span class="nav-text">控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL请求"><span class="nav-number">1.6.</span> <span class="nav-text">URL请求</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CURD"><span class="nav-number">2.</span> <span class="nav-text">CURD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建数据"><span class="nav-number">2.1.</span> <span class="nav-text">创建数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取数据"><span class="nav-number">2.2.</span> <span class="nav-text">读取数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新数据"><span class="nav-number">2.3.</span> <span class="nav-text">更新数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据"><span class="nav-number">2.4.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询语言"><span class="nav-number">3.</span> <span class="nav-text">查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询方式"><span class="nav-number">3.1.</span> <span class="nav-text">查询方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用字符串作为查询条件"><span class="nav-number">3.1.1.</span> <span class="nav-text">使用字符串作为查询条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用数组作为查询条件"><span class="nav-number">3.1.2.</span> <span class="nav-text">使用数组作为查询条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用对象方式来查询"><span class="nav-number">3.1.3.</span> <span class="nav-text">使用对象方式来查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表达式查询"><span class="nav-number">3.1.4.</span> <span class="nav-text">表达式查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL查询"><span class="nav-number">3.2.</span> <span class="nav-text">SQL查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#query方法"><span class="nav-number">3.2.1.</span> <span class="nav-text">query方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#execute方法"><span class="nav-number">3.2.2.</span> <span class="nav-text">execute方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子查询"><span class="nav-number">3.3.</span> <span class="nav-text">子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用select方法"><span class="nav-number">3.3.1.</span> <span class="nav-text">使用select方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用buildSql方法"><span class="nav-number">3.3.2.</span> <span class="nav-text">使用buildSql方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">4.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取变量"><span class="nav-number">4.1.</span> <span class="nav-text">获取变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量过滤"><span class="nav-number">4.2.</span> <span class="nav-text">变量过滤</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

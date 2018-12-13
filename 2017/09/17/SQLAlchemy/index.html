@@ -1,0 +1,682 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLAlchemy">
+<meta property="og:url" content="http://yoursite.com/2017/09/17/SQLAlchemy/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description">
+<meta property="og:image" content="https://i.imgur.com/I0XlA0g.jpg">
+<meta property="og:updated_time" content="2017-09-17T12:35:59.823Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQLAlchemy">
+<meta name="twitter:description">
+<meta name="twitter:image" content="https://i.imgur.com/I0XlA0g.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> SQLAlchemy | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQLAlchemy
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-17T20:28:36+08:00" content="2017-09-17">
+              2017-09-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/17/SQLAlchemy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/17/SQLAlchemy/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/I0XlA0g.jpg" alt=""></p>
+<a id="more"></a>
+<h2 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h2><p>创建一个数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE demo CHARSET &apos;utf-8&apos;;</span><br><span class="line"></span><br><span class="line">use demo;</span><br><span class="line"></span><br><span class="line">SHOW DATABASE;		#查看当前数据库</span><br><span class="line"></span><br><span class="line">SHOW PROCESSLIST	#查看当前连接</span><br><span class="line"></span><br><span class="line">mysql&gt; CREATE TABLE user(</span><br><span class="line">    -&gt; id INT NOT NULL AUTO_INCREMENT,</span><br><span class="line">    -&gt; name VARCHAR(64) NOT NULL,</span><br><span class="line">    -&gt; age INT,</span><br><span class="line">    -&gt; PRIMARY KEY(id),</span><br><span class="line">    -&gt; UNIQUE INDEX name_uniq(name));</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">INSERT user(name,age) VALUE (&apos;ccav&apos;,18);</span><br><span class="line">SELECT * FROM user where name=&apos;ccav&apos;;</span><br><span class="line">UPDATE user SET age=17 WHERE name=&apos;ccav&apos;;</span><br><span class="line">DELETE user WHERE name=&apos;ccav&apos;;</span><br></pre></td></tr></table></figure>
+<p>通常用图形化来创表</p>
+<p><code>Mysqldb</code>,<code>pymysql</code> 目前最流行的</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>pip3 install pymysql</code></p>
+<h2 id="pymysql连接数据库"><a href="#pymysql连接数据库" class="headerlink" title="pymysql连接数据库"></a>pymysql连接数据库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line">conn = pymysql.connect(host=<span class="string">'127.0.0.1'</span>,user=<span class="string">'root'</span>,password=<span class="string">'123456'</span>,database=<span class="string">'demo'</span>,port=<span class="number">3306</span>)		<span class="comment">#连接数据库</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cur = conn.cursor()		<span class="comment">#获取游标</span></span><br><span class="line"></span><br><span class="line">cur.execute(<span class="string">'''INSERT INTO user(name,age) VALUE ('aaa',17)'''</span>)    <span class="comment">#执行命令</span></span><br><span class="line"></span><br><span class="line">conn.commit()		<span class="comment">#提交事务</span></span><br><span class="line"></span><br><span class="line">conn.close()	<span class="comment">#关闭</span></span><br></pre></td></tr></table></figure>
+<p>非查询性请求的四个步骤：<br>1.创建连接<br>2.获取游标<br>3.执行SQL<br>4.提交事务</p>
+<p>游标可以执行多个请求，在close之前，可以反复使用</p>
+<h2 id="查询获取数据"><a href="#查询获取数据" class="headerlink" title="查询获取数据"></a>查询获取数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cur.execute(&apos;&apos;&apos;SELECT * FROM `user` WHERE `age` &lt;=18&apos;&apos;&apos;)</span><br><span class="line"></span><br><span class="line">cur.fetchall()		#获取数据，返回所有数据</span><br><span class="line">((1, &apos;ccc&apos;, 18), (2, &apos;aaa&apos;, 17), (3, &apos;bbb&apos;, 17))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cur.fetchmany(1)	#指定返回数据行数</span><br><span class="line">((1, &apos;ccc&apos;, 18),)</span><br><span class="line"></span><br><span class="line">cur.fetchone()		#返回一行数据</span><br><span class="line">(2, &apos;aaa&apos;, 17)</span><br></pre></td></tr></table></figure>
+<p>fetchall        反回行的元组<br>fetchmany    反回行的元组，可以指定反回n行，相当于fetchall():N<br>fetchone        返回首行，相当于fetchall[0]</p>
+<p>每行数据也是一个元组，元组的内容由sql决定</p>
+<p>fetchall，fetchmany，fetchone的差异是在客房端决定的，无论执行哪个，数据都会全部发送到客户端，如果要限制反回数据行数，应该在sql里限制，而不是通过fetch方法</p>
+<p>如何让反回数据带列表，也就是反回字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pymysql.cursors <span class="keyword">import</span> DictCursor</span><br><span class="line"></span><br><span class="line">cur = conn.cursor(cursor=DictCursor)</span><br><span class="line"><span class="comment">#当指定cursor为DictCursor的时候，返回字典</span></span><br><span class="line"></span><br><span class="line">cur.execute(<span class="string">'SELECT * FROM user'</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line">cur.fetchall()</span><br><span class="line">[&#123;<span class="string">'age'</span>: <span class="number">18</span>, <span class="string">'id'</span>: <span class="number">1</span>, <span class="string">'name'</span>: <span class="string">'ccc'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'age'</span>: <span class="number">17</span>, <span class="string">'id'</span>: <span class="number">2</span>, <span class="string">'name'</span>: <span class="string">'aaa'</span>&#125;,</span><br><span class="line"> &#123;<span class="string">'age'</span>: <span class="number">17</span>, <span class="string">'id'</span>: <span class="number">3</span>, <span class="string">'name'</span>: <span class="string">'bbb'</span>&#125;]</span><br></pre></td></tr></table></figure>
+<h2 id="参数化查询"><a href="#参数化查询" class="headerlink" title="参数化查询"></a>参数化查询</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_juveniles</span><span class="params">(age=<span class="number">18</span>)</span>:</span></span><br><span class="line">		query = <span class="string">'''SELECT * FROM user WHERE age &lt; %s FOR UPDATE'''</span></span><br><span class="line">		<span class="comment">#不管数据库定义的是什么类型，统一用%s</span></span><br><span class="line">		cur.execute(query,(age,))    <span class="comment">#参数化查询</span></span><br><span class="line">		<span class="keyword">return</span> cur.fetchall()</span><br><span class="line">		</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_juveniles</span><span class="params">(age=<span class="number">18</span>)</span>:</span></span><br><span class="line">		query = <span class="string">'''SELECT * FROM user WHERE age &lt; %(age)s FOR UPDATE'''</span></span><br><span class="line">		<span class="comment">#不管数据库定义的是什么类型，统一用%s</span></span><br><span class="line">		cur.execute(query,&#123;<span class="string">'age'</span>:age&#125;)    <span class="comment">#参数化查询</span></span><br><span class="line">		<span class="keyword">return</span> cur.fetchall()</span><br></pre></td></tr></table></figure>
+<p>参数化查询最大的优势是避免了SQL注入<br>参数化查询能提交查询效率</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">with cur:	#自动关闭游标</span><br><span class="line">	cur.execute(''' UPDATE user SET age=16 WHERE name='aaa' ''')</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">with conn as cur:		#自动提交事务，并不关闭游标</span><br><span class="line">	cur.execute('''UPDATE user SET age=16 WHERE name='aaa'''')</span><br><span class="line">	</span><br><span class="line">with conn as cur:		#自动提交事务</span><br><span class="line">	with cur:		#自动关闭</span><br><span class="line">		cur.execute('''SQL''')</span><br></pre></td></tr></table></figure>
+<h2 id="SQLAlchemy"><a href="#SQLAlchemy" class="headerlink" title="SQLAlchemy"></a>SQLAlchemy</h2><p>Document:<code>http://docs.sqlalchemy.org/en/latest/orm/tutorial.html</code></p>
+<p>安装：<br><code>pip install sqlalchemy</code></p>
+<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine   </span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@127.0.0.1:3306/demo'</span></span><br><span class="line"> ,echo=<span class="keyword">True</span>)		<span class="comment">#连接mysql，echo=True显示打印sql语句</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br></pre></td></tr></table></figure>
+<h3 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column,Integer,String</span><br><span class="line"></span><br><span class="line">Base = declarative_base()		<span class="comment"># 生成Model类的基类</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span>  <span class="comment"># 描述了类到表的映射</span></span><br><span class="line">    __tablename__ = <span class="string">'user'</span></span><br><span class="line">    </span><br><span class="line">    extend_existing = <span class="keyword">True</span></span><br><span class="line">    </span><br><span class="line">    id = Column(Integer, autoincrement=<span class="keyword">True</span>, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String(<span class="number">64</span>), unique=<span class="keyword">True</span>, nullable=<span class="keyword">False</span>)</span><br><span class="line">    age = Column(Integer)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span> </span><br><span class="line">    		<span class="keyword">return</span> <span class="string">'User(id=&#123;&#125;, name=&#123;&#125;, age=&#123;&#125;)'</span>.format(self.id, self.name, self.age)</span><br><span class="line">    		</span><br><span class="line">Base.metadata.create_all(engine)    <span class="comment">#创建所有表</span></span><br></pre></td></tr></table></figure>
+<p>执行完之后类似于创建一个表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE user (</span><br><span class="line">	id INTEGER NOT NULL AUTO_INCREMENT, </span><br><span class="line">	name VARCHAR(64) NOT NULL, </span><br><span class="line">	age INTEGER, </span><br><span class="line">	PRIMARY KEY (id), </span><br><span class="line">	UNIQUE (name)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Base.metadata.drop_all(engine)    <span class="comment">#删除所有表</span></span><br></pre></td></tr></table></figure>
+<h3 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line">Session = sessionmaker(bind=engine) <span class="comment"># Session类是线程安全的， 只需要一个Session类</span></span><br><span class="line">session = Session() <span class="comment"># session是线程不安全的，即不同的线程里，应该使用不同的session对象</span></span><br><span class="line">user = User()</span><br><span class="line">user.name = <span class="string">'ccc'</span></span><br><span class="line">user.age = <span class="number">18</span></span><br><span class="line"></span><br><span class="line">session.add(user)		<span class="comment">#把user加入到数据库中</span></span><br><span class="line">session.commit()		<span class="comment">#提交事务</span></span><br></pre></td></tr></table></figure>
+<p>一旦commit发生异常，后续的commit都无法执行</p>
+<p><code>session.rollback()</code></p>
+<p>所以执行commit的时候，通常使用try except语句</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    session.commit()</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    session.rollback()</span><br><span class="line">    <span class="keyword">raise</span> e</span><br></pre></td></tr></table></figure>
+<h3 id="删除session"><a href="#删除session" class="headerlink" title="删除session"></a>删除session</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session.delete(user)</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
+<h3 id="查询-SELECT"><a href="#查询-SELECT" class="headerlink" title="查询(SELECT)"></a>查询(SELECT)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">q = session.query(User)</span><br><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> q:</span><br><span class="line">    print(u)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#条件查询,增加了where条件查询</span></span><br><span class="line">q = q.filter(User.age &lt; <span class="number">18</span>)</span><br><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> q:</span><br><span class="line">    print(u)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#多个where条件</span></span><br><span class="line"><span class="comment"># 多个filter是and关系</span></span><br><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).filter(User.age &lt; <span class="number">18</span>).filter(User.age &gt; <span class="number">12</span>): </span><br><span class="line">    print(u)</span><br><span class="line">SQL:</span><br><span class="line">INFO sqlalchemy.engine.base.Engine SELECT user.id AS user_id, user.name AS user_name, user.age AS user_age FROM user WHERE user.age &lt; %(age_1)s AND user.age &gt; %(age_2)s</span><br></pre></td></tr></table></figure>
+<h4 id="使用OR、AND、NOT"><a href="#使用OR、AND、NOT" class="headerlink" title="使用OR、AND、NOT"></a>使用OR、AND、NOT</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_, and_, not_</span><br><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).filter(or_(User.age &lt; <span class="number">18</span>, User.age &gt; <span class="number">70</span>)): <span class="comment"># or</span></span><br><span class="line">    print(u)</span><br></pre></td></tr></table></figure>
+<h4 id="or和and组合使用"><a href="#or和and组合使用" class="headerlink" title="or和and组合使用"></a>or和and组合使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).filter(or_(and_(User.age &lt; <span class="number">18</span>, User.age &gt; <span class="number">12</span>), and_(User.age &gt; <span class="number">70</span>, User.age &lt; <span class="number">80</span>))): </span><br><span class="line">    print(u)</span><br><span class="line"></span><br><span class="line">sql:</span><br><span class="line">SELECT user.id AS user_id, user.name AS user_name, user.age AS user_age </span><br><span class="line">FROM user </span><br><span class="line">WHERE user.age &lt; %(age_1)s AND user.age &gt; %(age_2)s OR user.age &gt; %(age_3)s AND user.age &lt; %(age_4)s</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).filter(User.age.in_([<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>])): <span class="comment"># in</span></span><br><span class="line">    print(u)</span><br><span class="line"> </span><br><span class="line">FROM user WHERE user.age IN (%(age_1)s, %(age_2)s, %(age_3)s)   </span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).filter(not_(User.age.in_([<span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>]))): <span class="comment"># not in</span></span><br><span class="line">    print(u)</span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">FROM user WHERE user.age NOT IN (%(age_1)s, %(age_2)s, %(age_3)s)</span><br></pre></td></tr></table></figure>
+<h4 id="排序DESC"><a href="#排序DESC" class="headerlink" title="排序DESC"></a>排序DESC</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).filter(User.age &lt; <span class="number">18</span>).order_by(User.age.desc()): </span><br><span class="line">    print(u)</span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">FROM user WHERE user.age &lt; %(age_1)s ORDER BY user.age DESC</span><br></pre></td></tr></table></figure>
+<h4 id="多条件排序"><a href="#多条件排序" class="headerlink" title="多条件排序"></a>多条件排序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).filter(User.age &lt; <span class="number">18</span>).order_by(User.age.asc()).order_by(User.id.asc()): </span><br><span class="line">    print(u)</span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">FROM user WHERE user.age &lt; %(age_1)s ORDER BY user.age ASC, user.id ASC</span><br></pre></td></tr></table></figure>
+<h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).limit(<span class="number">5</span>):</span><br><span class="line">    print(u)</span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">FROM user LIMIT %(param_1)s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分页 limi 5,5</span></span><br><span class="line"><span class="keyword">for</span> u <span class="keyword">in</span> session.query(User).offset(<span class="number">5</span>).limit(<span class="number">5</span>): </span><br><span class="line">    print(u)</span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">FROM user LIMIT %(param_1)s, %(param_2)s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这是靠谱的</span></span><br><span class="line">session.query(User).filter(User.age &lt; <span class="number">18</span>).count() </span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">FROM user WHERE user.age &lt; %(age_1)s) AS anon_1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把结果转化为list 等价于 list(session.query(User).filter(User.age &lt; 18))</span></span><br><span class="line">session.query(User).filter(User.age &lt; <span class="number">18</span>).all() </span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">FROM user WHERE user.age &lt; %(age_1)s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回第一个对象 自动增加 limit 1</span></span><br><span class="line">session.query(User).filter(User.age &lt; <span class="number">18</span>).first() </span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">FROM user WHERE user.age &lt; %(age_1)s  LIMIT %(param_1)s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回第一个对象</span></span><br><span class="line">session.query(User).filter(User.age &lt; <span class="number">18</span>).limit(<span class="number">1</span>).one() </span><br><span class="line">FROM user WHERE user.age &lt; %(age_1)s  LIMIT %(param_1)s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果得到多条结果会抛出异常</span></span><br><span class="line">session.query(User).filter(User.age &lt; <span class="number">18</span>).one() </span><br><span class="line"></span><br><span class="line"><span class="comment"># delete by query</span></span><br><span class="line">session.query(User).filter(User.age &lt; <span class="number">18</span>).delete() </span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">DELETE FROM user WHERE user.age &lt; %(age_1)s</span><br></pre></td></tr></table></figure>
+<h4 id="聚合函数、max、avg"><a href="#聚合函数、max、avg" class="headerlink" title="聚合函数、max、avg"></a>聚合函数、max、avg</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> func</span><br><span class="line">session.query(func.count(User.id)).first() </span><br><span class="line"></span><br><span class="line">SQL:</span><br><span class="line">SELECT count(user.id) AS count_1 FROM user  LIMIT %(param_1)s</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/17/NodeJS基础/" rel="next" title="NodeJS基础">
+                <i class="fa fa-chevron-left"></i> NodeJS基础
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/24/冰山一角/" rel="prev" title="冰山一角">
+                冰山一角 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/17/SQLAlchemy/"
+           data-title="SQLAlchemy" data-url="http://yoursite.com/2017/09/17/SQLAlchemy/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库基本操作"><span class="nav-number">1.</span> <span class="nav-text">数据库基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pymysql连接数据库"><span class="nav-number">3.</span> <span class="nav-text">pymysql连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询获取数据"><span class="nav-number">4.</span> <span class="nav-text">查询获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数化查询"><span class="nav-number">5.</span> <span class="nav-text">参数化查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLAlchemy"><span class="nav-number">6.</span> <span class="nav-text">SQLAlchemy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接数据库"><span class="nav-number">6.1.</span> <span class="nav-text">连接数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建表"><span class="nav-number">6.2.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话"><span class="nav-number">6.3.</span> <span class="nav-text">会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除session"><span class="nav-number">6.4.</span> <span class="nav-text">删除session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询-SELECT"><span class="nav-number">6.5.</span> <span class="nav-text">查询(SELECT)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用OR、AND、NOT"><span class="nav-number">6.5.1.</span> <span class="nav-text">使用OR、AND、NOT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#or和and组合使用"><span class="nav-number">6.5.2.</span> <span class="nav-text">or和and组合使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序DESC"><span class="nav-number">6.5.3.</span> <span class="nav-text">排序DESC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多条件排序"><span class="nav-number">6.5.4.</span> <span class="nav-text">多条件排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分页"><span class="nav-number">6.5.5.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚合函数、max、avg"><span class="nav-number">6.5.6.</span> <span class="nav-text">聚合函数、max、avg</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

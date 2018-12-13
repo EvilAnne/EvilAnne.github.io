@@ -1,0 +1,678 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以暂停音乐哦！ 
+
+
+
+
+看了挺多审计的文章，SqlInject占了大半部分，所以我大概知道原理之后不再找sqlinject，现在除了比如说某个变量没有过滤之后，已经发展到了，如何去绕过哪些函数的问题了，以及php有什么样的特性。现在对于我来说，看的程序还是比较少的，这也是一个积累的过程阅读的多了也有感觉和想法也有经验知道哪些地方会出现哪些问题，我现在要做的是大概掌握方法之后，就不再阅读文章了慢">
+<meta property="og:type" content="article">
+<meta property="og:title" content="审计学习笔记五">
+<meta property="og:url" content="http://yoursite.com/2016/08/18/审计学习笔记五/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以暂停音乐哦！ 
+
+
+
+
+看了挺多审计的文章，SqlInject占了大半部分，所以我大概知道原理之后不再找sqlinject，现在除了比如说某个变量没有过滤之后，已经发展到了，如何去绕过哪些函数的问题了，以及php有什么样的特性。现在对于我来说，看的程序还是比较少的，这也是一个积累的过程阅读的多了也有感觉和想法也有经验知道哪些地方会出现哪些问题，我现在要做的是大概掌握方法之后，就不再阅读文章了慢">
+<meta property="og:updated_time" content="2016-08-17T17:22:31.112Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="审计学习笔记五">
+<meta name="twitter:description" content="可以暂停音乐哦！ 
+
+
+
+
+看了挺多审计的文章，SqlInject占了大半部分，所以我大概知道原理之后不再找sqlinject，现在除了比如说某个变量没有过滤之后，已经发展到了，如何去绕过哪些函数的问题了，以及php有什么样的特性。现在对于我来说，看的程序还是比较少的，这也是一个积累的过程阅读的多了也有感觉和想法也有经验知道哪些地方会出现哪些问题，我现在要做的是大概掌握方法之后，就不再阅读文章了慢">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 审计学习笔记五 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                审计学习笔记五
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-18T01:21:27+08:00" content="2016-08-18">
+              2016-08-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/代码审计/" itemprop="url" rel="index">
+                    <span itemprop="name">代码审计</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/18/审计学习笔记五/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/18/审计学习笔记五/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以暂停音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=25657573&auto=0&height=66"></iframe>
+
+
+<p>看了挺多审计的文章，SqlInject占了大半部分，所以我大概知道原理之后不再找sqlinject，现在除了比如说某个变量没有过滤之后，已经发展到了，如何去绕过哪些函数的问题了，以及php有什么样的特性。现在对于我来说，看的程序还是比较少的，这也是一个积累的过程阅读的多了也有感觉和想法也有经验知道哪些地方会出现哪些问题，我现在要做的是大概掌握方法之后，就不再阅读文章了慢慢的实践起来，只有实践才能进步。</p>
+<p>这里还是找了一个已公开漏洞，先开始挖实在找不到再参考别人是如何挖的。这套程序也是用ThinkPhP框架来开发，还有其它Yii框架和CI框架比较常用的，暂时不去学，等需要用的时候再学，我想有目的去学习效率会更高一点。</p>
+<a id="more"></a>
+<p>File：App/Lib/Action/FileAction.class.php<br>Code：163</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">filedownload</span><span class="params">()</span></span>&#123;</span><br><span class="line">	$path = trim(urldecode($_GET[<span class="string">'path'</span>]));</span><br><span class="line">	$name = substr(trim(urldecode($_GET[<span class="string">'name'</span>])),<span class="number">0</span>,<span class="number">-4</span>);</span><br><span class="line">	<span class="keyword">if</span>($path &amp;&amp; $name)	download($path,$name);</span><br><span class="line">	<span class="keyword">else</span> $this-&gt;error(<span class="string">'非法操作！'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有个方法<code>filedownload()</code>，这里先获取路径并给言火日王$path，获取name给变量name，这里判断如果两个条件都成立的话则调用<code>download()</code>方法，所以这里跟进。</p>
+<p>File：App/Common/common.php<br>Code：1201</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">download</span><span class="params">($file,$name=<span class="string">''</span>)</span></span>&#123;</span><br><span class="line">   $fileName = $name ? $name : pathinfo($file,PATHINFO_FILENAME);</span><br><span class="line">   $filePath = realpath($file);</span><br><span class="line">   </span><br><span class="line">   $fp = fopen($filePath,<span class="string">'rb'</span>);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">if</span>(!$filePath || !$fp)&#123;</span><br><span class="line">       header(<span class="string">'HTTP/1.1 404 Not Found'</span>);</span><br><span class="line">       <span class="keyword">echo</span> <span class="string">"Error: 404 Not Found.(server file path error)&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;&lt;!-- Padding --&gt;"</span>;</span><br><span class="line">       <span class="keyword">exit</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   $fileName = $fileName .<span class="string">'.'</span>. pathinfo($filePath,PATHINFO_EXTENSION);</span><br><span class="line">   $encoded_filename = urlencode($fileName);</span><br><span class="line">   $encoded_filename = str_replace(<span class="string">"+"</span>, <span class="string">"%20"</span>, $encoded_filename);</span><br><span class="line">   </span><br><span class="line">   header(<span class="string">'HTTP/1.1 200 OK'</span>);</span><br><span class="line">   header( <span class="string">"Pragma: public"</span> );</span><br><span class="line">   header( <span class="string">"Expires: 0"</span> );</span><br><span class="line">   header(<span class="string">"Content-type: application/octet-stream"</span>);</span><br><span class="line">   header(<span class="string">"Content-Length: "</span>.filesize($filePath));</span><br><span class="line">   header(<span class="string">"Accept-Ranges: bytes"</span>);</span><br><span class="line">   header(<span class="string">"Accept-Length: "</span>.filesize($filePath));</span><br><span class="line">   </span><br><span class="line">   $ua = $_SERVER[<span class="string">"HTTP_USER_AGENT"</span>];</span><br><span class="line">   <span class="keyword">if</span> (preg_match(<span class="string">"/MSIE/"</span>, $ua)) &#123;</span><br><span class="line">       header(<span class="string">'Content-Disposition: attachment; filename="'</span> . $encoded_filename . <span class="string">'"'</span>);</span><br><span class="line">   &#125; <span class="keyword">else</span> <span class="keyword">if</span> (preg_match(<span class="string">"/Firefox/"</span>, $ua)) &#123;</span><br><span class="line">       header(<span class="string">'Content-Disposition: attachment; filename*="utf8\'\''</span> . $fileName . <span class="string">'"'</span>);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       header(<span class="string">'Content-Disposition: attachment; filename="'</span> . $fileName . <span class="string">'"'</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// ob_end_clean(); &lt;--有些情况可能需要调用此函数</span></span><br><span class="line">   <span class="comment">// 输出文件内容</span></span><br><span class="line">   fpassthru($fp);</span><br><span class="line">   <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里通过<code>realpath()</code>方法来处理过路径，返回规范化的绝对路径名，不允许有../之类的，而下面：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$fp = fopen($filePath,<span class="string">'rb'</span>);</span><br></pre></td></tr></table></figure>
+<p>又打开这个文件。</p>
+<p>这里自己一直利用不成功，最后一看别人的利用方法也是傻了，原来name是写下载后保存的文件名称。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.0.105/wukongcrm/index.php?m=File&amp;a=filedownload&amp;path=C:\www\wukongcrm\App\Lib\Action\FileAction.class.php&amp;name=test.t</span><br></pre></td></tr></table></figure>
+<p>会反回te.php文件下载</p>
+<p>除此之外如果并不知道绝对路径，可以下载其它系统配置文件，比如linux中的/etc/passwd和shadow 可以破解。</p>
+<p>这次的笔记比较短，也没有什么技术，个人认为代码审计中也分为很多分支，如果想玩好sql一些waf肯定要绕过，上传 逻辑漏洞 算法 验证码 命令执行 代码执行 文件包含等等。</p>
+<p>这里将就抄抄了事这周的文章，去做其它的事为了12月份的计划。 希望到那个时候我能静下心来看代码还有写代码。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/14/审计学习笔记四/" rel="next" title="审计学习笔记四">
+                <i class="fa fa-chevron-left"></i> 审计学习笔记四
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/18/深夜感想/" rel="prev" title="深夜感想">
+                深夜感想 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/18/审计学习笔记五/"
+           data-title="审计学习笔记五" data-url="http://yoursite.com/2016/08/18/审计学习笔记五/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

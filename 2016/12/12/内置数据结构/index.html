@@ -1,0 +1,733 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="可以暂停音乐哦！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内置数据结构">
+<meta property="og:url" content="http://yoursite.com/2016/12/12/内置数据结构/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="可以暂停音乐哦！">
+<meta property="og:updated_time" content="2016-12-12T09:26:58.392Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内置数据结构">
+<meta name="twitter:description" content="可以暂停音乐哦！">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> 内置数据结构 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                内置数据结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-12T17:24:58+08:00" content="2016-12-12">
+              2016-12-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/12/内置数据结构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/12/内置数据结构/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="red">可以暂停音乐哦！ </font>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28864449&auto=0&height=66"></iframe>
+
+<a id="more"></a>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表是一个序列，用于顺序的存储数据<br>list()是一个内置函数，初始化一个空的列表<br>也可以用[ ] 来初始化</p>
+<p>定义初始化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lst = list()</span><br><span class="line"></span><br><span class="line">lst = []</span><br></pre></td></tr></table></figure>
+<p>使用list函数把可迭代对象转化为列表<br>通常在定义列表的时候，使用中括号，在转化可迭代对象为列表时用list函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lst = list(range(<span class="number">0</span>,<span class="number">11</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="访问列表元素"><a href="#访问列表元素" class="headerlink" title="访问列表元素"></a>访问列表元素</h4><p>下标/索引操作,其实下标和索引都是一个意思不要被误导。<br>Python中list的索引从0开始</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lst = list(range(<span class="number">0</span>,<span class="number">11</span>))</span><br><span class="line"></span><br><span class="line">lst</span><br><span class="line">Out[<span class="number">2</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line">lst[<span class="number">0</span>]</span><br><span class="line">Out[<span class="number">3</span>]: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>负数索引表示从后往前，由-1开始, －1表示最后一个元素<br>如果索引超出范围或负数超出索引，将引发IndexError</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lst[11]</span><br><span class="line">--------------------------------------------------</span><br><span class="line">IndexError       Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input-6-98fb25789163&gt; in &lt;module&gt;()</span><br><span class="line">----&gt; 1 lst[11]</span><br><span class="line"></span><br><span class="line">IndexError: list index out of range</span><br></pre></td></tr></table></figure>
+<h4 id="查找-统计元素-index"><a href="#查找-统计元素-index" class="headerlink" title="查找/统计元素 index()"></a>查找/统计元素 index()</h4><p>index方法根据值找索引</p>
+<p>start 参数指定从哪个索引开始查找<br>end 参数指定到哪个索引结束，并且不包含该索引 当值不存在该范围的时候，会抛出ValueError异常</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lst</span><br><span class="line">Out[<span class="number">7</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line">lst.index(<span class="number">9</span>)</span><br><span class="line">Out[<span class="number">8</span>]: <span class="number">9</span></span><br></pre></td></tr></table></figure>
+<h4 id="count"><a href="#count" class="headerlink" title="count()"></a>count()</h4><p>反回值在列表里出现的次数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lst.count(<span class="number">4</span>)</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>用函数实现<code>count()</code>方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">(lst,value)</span>:</span></span><br><span class="line">    c = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> lst:</span><br><span class="line">        <span class="keyword">if</span> x == value:</span><br><span class="line">            c += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> c</span><br></pre></td></tr></table></figure>
+<h4 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h4><p>修改列表元素直接使用下标操作取出元素并对其赋值<br>修改元素只有这一种方法<br>对超出范围的索引修改元素，会抛出indexError</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lst</span><br><span class="line">Out[<span class="number">16</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line">lst[<span class="number">3</span>] = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">lst</span><br><span class="line">Out[<span class="number">18</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="添加-append"><a href="#添加-append" class="headerlink" title="添加 append()"></a>添加 append()</h4><p>append方法原地修改list,给list增加一个元素，append的方法的反回值是None</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lst</span><br><span class="line">Out[<span class="number">20</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line">lst.append(<span class="string">'vvv'</span>)</span><br><span class="line"></span><br><span class="line">lst</span><br><span class="line">Out[<span class="number">22</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="string">'vvv'</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="插入-insert"><a href="#插入-insert" class="headerlink" title="插入 insert()"></a>插入 insert()</h4><p>指定一个位置添加<br>insert操作的索引超出范围，<br>索引是负数 会在第0个元素前插入<br>索引是正数 会在最后一个元素后插入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lst.insert(<span class="number">0</span>,<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">25</span>]: lst</span><br><span class="line">Out[<span class="number">25</span>]: [<span class="number">7</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="string">'vvv'</span>]</span><br><span class="line"></span><br><span class="line">lst.insert(<span class="number">-1</span>,<span class="number">7</span>)</span><br><span class="line">Out[<span class="number">27</span>]: [<span class="number">7</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">7</span>, <span class="string">'vvv'</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="追加-extend"><a href="#追加-extend" class="headerlink" title="追加 extend()"></a>追加 extend()</h4><p>追加一个列表<br>和append的区别：<br>append操作单个元素<br>extend操作可迭代对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lst.extend([<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>])</span><br><span class="line"></span><br><span class="line">lst</span><br><span class="line">Out[<span class="number">29</span>]: [<span class="number">7</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">7</span>, <span class="string">'vvv'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="删除元素-remove-、pop"><a href="#删除元素-remove-、pop" class="headerlink" title="删除元素 remove()、pop()"></a>删除元素 remove()、pop()</h4><p>原地修改，反回None,根据值删除元素</p>
+<p>pop是删除索引对应的值，remove是删除最左边的一个值，  pop针对索引 remove针对值<br>remove的时候，如果值不存在，会抛出ValueError</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lst.remove(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">lst</span><br><span class="line">Out[<span class="number">34</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">7</span>, <span class="string">'vvv'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"></span><br><span class="line">lst.pop()</span><br><span class="line">Out[<span class="number">35</span>]: <span class="string">'c'</span></span><br></pre></td></tr></table></figure>
+<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p><code>clear()</code><br>删除所有元素</p>
+<p><code>len()</code><br>检查列表的长度</p>
+<p><code>sort()</code><br>排序</p>
+<p><code>lst.sort(reverse=True)</code><br>倒序</p>
+<p><code>copy()</code><br>复制操作，对可变对象是引用传递，对不可变对象是值传递</p>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>tuple()</p>
+<p>t=(1,2,3)<br>元组是不可变的<br>只有两个方法：<br><code>count()</code><br><code>index()</code></p>
+<h4 id="命令元组"><a href="#命令元组" class="headerlink" title="命令元组"></a>命令元组</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from collections import namedtuple</span><br><span class="line">User = namedtuple(‘User’,[’name’,’age'])</span><br><span class="line">me = User(‘ccav’,18)</span><br><span class="line">me.name</span><br><span class="line">me.age</span><br></pre></td></tr></table></figure>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>字符串是集合类型<br>py3是unicode序列<br>py2是byte序列</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">'</span><br><span class="line">"</span><br><span class="line">'''</span><br><span class="line">"""</span><br></pre></td></tr></table></figure>
+<p>字符串是不可变的<br>字符串是可迭代对象</p>
+<h4 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h4><p>在单引号中，特殊字符串需要转义，否则会出错。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = ‘i love \npython'</span><br><span class="line"></span><br><span class="line">s= ‘i\’ love python'</span><br></pre></td></tr></table></figure></p>
+<p>比如：</p>
+<p>因为\n是换行符这里是会出错的。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">path = ‘c:\windows\nt\system32'</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">转义：</span><br><span class="line">path = ‘c:\\windows\\nt\\system32'</span><br></pre></td></tr></table></figure></p>
+<p>加r前缀代表此字符串是自然字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path = <span class="string">r'c:\windows\nt\system32'</span></span><br></pre></td></tr></table></figure>
+<h4 id="连接字符串-join"><a href="#连接字符串-join" class="headerlink" title="连接字符串 join()"></a>连接字符串 join()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">lst</span><br><span class="line">Out[<span class="number">43</span>]: [<span class="string">'I'</span>, <span class="string">'Love'</span>, <span class="string">'Python'</span>]</span><br><span class="line"></span><br><span class="line"><span class="string">' '</span>.join(lst)</span><br><span class="line">Out[<span class="number">44</span>]: <span class="string">'I Love Python'</span></span><br><span class="line"></span><br><span class="line">可以用多个空格和其它符号：</span><br><span class="line"><span class="string">'        '</span>.join(lst)</span><br><span class="line">Out[<span class="number">46</span>]: <span class="string">'I        Love        Python'</span></span><br></pre></td></tr></table></figure>
+<h4 id="字符串分割-split"><a href="#字符串分割-split" class="headerlink" title="字符串分割 split()"></a>字符串分割 split()</h4><p>split()函数，从左边开始分割<br>maxsplist参数表示分割多少次，默认值为-1，表示分割所有分割</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'I love Python'</span></span><br><span class="line"></span><br><span class="line">s.split()</span><br><span class="line">Out[<span class="number">48</span>]: [<span class="string">'I'</span>, <span class="string">'love'</span>, <span class="string">'Python'</span>]</span><br><span class="line"></span><br><span class="line">分割一次：</span><br><span class="line">s.split(<span class="string">' '</span>,<span class="number">1</span>)</span><br><span class="line">Out[<span class="number">50</span>]: [<span class="string">'I'</span>, <span class="string">'love Python'</span>]</span><br><span class="line"></span><br><span class="line">s.split(<span class="string">' '</span>,maxsplit=<span class="number">2</span>)</span><br><span class="line">Out[<span class="number">66</span>]: [<span class="string">'i'</span>, <span class="string">'love'</span>, <span class="string">'python he he he he he '</span>]</span><br></pre></td></tr></table></figure>
+<p><code>rsplit()</code>：和<code>split()</code>相反，是从右往左分割的</p>
+<p><code>plitlines</code>：分割段<br>s.splitlines(True) #默认是False，即去掉换行符\n,True的话即保留换行符</p>
+<h4 id="大小写、其它"><a href="#大小写、其它" class="headerlink" title="大小写、其它"></a>大小写、其它</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">'I love Python'</span></span><br><span class="line"></span><br><span class="line">s.capitalize()       <span class="comment">#首字母大写</span></span><br><span class="line"></span><br><span class="line">s.title()            <span class="comment">#所有单词首字母大写</span></span><br><span class="line"></span><br><span class="line">s.lower()            <span class="comment">#所有字母小写</span></span><br><span class="line"></span><br><span class="line">s.upper()            <span class="comment">#所有字母大写</span></span><br><span class="line"></span><br><span class="line">s.swapcase()         <span class="comment">#所有字母大小写反转</span></span><br></pre></td></tr></table></figure>
+<p>大小写转化通常用在做比较得时候，当我们需要忽略大小写比较时，通常统一转化为全部大写民或者全部小写再做比较</p>
+<p><code>center(80)   填充
+center(80,’#&#39;)
+s.ljust(80)    右边宽
+s.rijust(80)  左边宽
+s.zfill(80)   零填充</code></p>
+<p>字符串查找<br><code>count(‘a’)    查找a出现的次数
+index(‘a’)    查找出现第一次的位置
+rindex(‘a’)   查找右边第一次出现的位置
+find(‘a’)   查找第一次出现的位置
+find(‘a’,50,100)   查找从第50到100行第一次出现的位置
+rfind(‘a’)   查找右边出现第一次的位置</code></p>
+<p><code>replace()  替换
+replace(‘root’,’ccc’)   替换所有root为ccc
+replace(‘root’,’ccc’,1)  只替换一次
+replace(‘root’,’ccc’,-1)   替换所有的，和默认没有区别</code><br><code>strip()   消除前后空格  可以指定移除字符
+lstrip()   消除左空格
+rstrip()   消除右空格</code></p>
+<p>判断<br><code>s.startswith
+s.startwitch(‘i&#39;)
+反回值为true或false，判断是否存在
+s.endswith   判断字符串是否以某个后缀结尾
+s.isalnum()  判断是否是一个数字，还有其它类似方法</code></p>
+<h3 id="printf-style字符串格式化"><a href="#printf-style字符串格式化" class="headerlink" title="printf style字符串格式化"></a>printf style字符串格式化</h3><p>用百分号<code>%</code>来作为占位符。</p>
+<p>前面字符串中占位符后面的type，以下为常用的几个：</p>
+<p><code>‘I Love %s’ % (‘Python’,)</code><br>采用字典方式<br><code>‘I Love %{name}s this is %{name}s’ % {’name’:’Python&#39;}</code></p>
+<p>占位符个多和参数不匹配的时候，会抛出TypeError,类型不匹配也会抛出异常</p>
+<p>format<br>Python3推荐format格式的格式化输出，功能更强大。<br>字符串中的占位符用{}或者带索引的{INDEX}，或者更详细的格式（索引后面加冒号），如{0:10.3f}等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'I am Love &#123;&#125;'</span>.format(<span class="string">'Python'</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">'I am &#123;1&#125; Love This is &#123;0&#125; ttt'</span>.format(<span class="string">'python'</span>,<span class="number">17</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">'My &#123;config[spam]&#125; runs &#123;sys.platform&#125;'</span>.format(sys=sys, config = &#123;<span class="string">'spam'</span>: <span class="string">'laptop'</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="string">'first=&#123;0[0]&#125;, third=&#123;0[2]&#125;'</span>.format(lst)</span><br></pre></td></tr></table></figure>
+<p>sys.platform调用的sys的platform<br>config[spam]是用的字典的下标操作<br>{0[1]使用的是列表的下标操作<br>*part调用的是位置参数</p>
+<p>字符串也有具体的格式化，如字段宽度、对齐方式、补零、小数点精度，填充字符等。</p>
+<p>字段宽度：整数部分大小<br>对齐方式：&gt;右对齐，&lt;左对齐，^居中对齐（和printf style有所不同）<br>补零：资源宽度的数字前面加0，默认为右对齐<br>小数点精度：宽度后面加.数字f，f处也可以用g，e<br>填充字符需要和对齐方式一起使用</p>
+<h3 id="字符串与bytes"><a href="#字符串与bytes" class="headerlink" title="字符串与bytes"></a>字符串与bytes</h3><p>bytes是字节序列<br>Python3特有的，python2里不区分bytes和str<br>bytes和str的区别在于bytes是byte的序列 而str是unicode的序列<br>文本是有编码的（utf-8，gbk,GB18030等）<br>字节没有编码这种说法<br>文本的编码指的是字符如何使用字节来表示</p>
+<p>Python字符串默认使用utf-8编码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'这是中文'</span></span><br><span class="line">b = s.encode()   把字符串编码为bytes</span><br><span class="line">b.decode()   把bytes转化为str</span><br></pre></td></tr></table></figure>
+<p>bytes<br>bytes由str通过encode方法转化得到<br>通过b前缀定义bytes<br>除了encode外，str操作，都有对应bytes的版本，但是传入参数也必须是bytes<br>b’abc’.find(b’b’)<br>‘马了个鸡’.encode().find(b’\xa9’)     bytes的操作是按字节来的</p>
+<p>b.hex()   转化为16进制</p>
+<p>bytearray<br>bytearray是bytes的可变版本<br>图片处理<br>相对bytes来说，多了<code>insert   append extend pop remove clear reverse</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/03/pyenv、ipython、Shodan/" rel="next" title="pyenv、ipython、Shodan">
+                <i class="fa fa-chevron-left"></i> pyenv、ipython、Shodan
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/19/集合、字典、解析式、迭代器/" rel="prev" title="集合、字典、解析式、迭代器">
+                集合、字典、解析式、迭代器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/12/内置数据结构/"
+           data-title="内置数据结构" data-url="http://yoursite.com/2016/12/12/内置数据结构/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">1.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#访问列表元素"><span class="nav-number">1.1.</span> <span class="nav-text">访问列表元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找-统计元素-index"><span class="nav-number">1.2.</span> <span class="nav-text">查找/统计元素 index()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#count"><span class="nav-number">1.3.</span> <span class="nav-text">count()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改"><span class="nav-number">1.4.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加-append"><span class="nav-number">1.5.</span> <span class="nav-text">添加 append()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入-insert"><span class="nav-number">1.6.</span> <span class="nav-text">插入 insert()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#追加-extend"><span class="nav-number">1.7.</span> <span class="nav-text">追加 extend()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除元素-remove-、pop"><span class="nav-number">1.8.</span> <span class="nav-text">删除元素 remove()、pop()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它"><span class="nav-number">1.9.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组"><span class="nav-number">2.</span> <span class="nav-text">元组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令元组"><span class="nav-number">2.1.</span> <span class="nav-text">命令元组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#转义"><span class="nav-number">3.1.</span> <span class="nav-text">转义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接字符串-join"><span class="nav-number">3.2.</span> <span class="nav-text">连接字符串 join()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串分割-split"><span class="nav-number">3.3.</span> <span class="nav-text">字符串分割 split()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大小写、其它"><span class="nav-number">3.4.</span> <span class="nav-text">大小写、其它</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#printf-style字符串格式化"><span class="nav-number">4.</span> <span class="nav-text">printf style字符串格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串与bytes"><span class="nav-number">5.</span> <span class="nav-text">字符串与bytes</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

