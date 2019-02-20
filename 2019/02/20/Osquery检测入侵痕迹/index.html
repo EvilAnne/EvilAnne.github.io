@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="EvilAnne,黑客学习,黑客笔记,二进制,Linux运维,Hexo,博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Osquery检测入侵痕迹">
+<meta property="og:url" content="http://yoursite.com/2019/02/20/Osquery检测入侵痕迹/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description">
+<meta property="og:image" content="https://i.imgur.com/oknGY1J.jpg">
+<meta property="og:image" content="https://i.imgur.com/OMOfR0q.jpg">
+<meta property="og:image" content="https://i.imgur.com/3k4EFvj.jpg">
+<meta property="og:image" content="https://i.imgur.com/TnD2yAo.jpg">
+<meta property="og:image" content="https://i.imgur.com/r9neZqy.jpg">
+<meta property="og:image" content="https://i.imgur.com/FdftZoP.jpg">
+<meta property="og:image" content="https://i.imgur.com/O37nXSV.jpg">
+<meta property="og:image" content="https://i.imgur.com/NUutLIX.jpg">
+<meta property="og:image" content="https://i.imgur.com/6rGb635.jpg">
+<meta property="og:image" content="https://i.imgur.com/1T2Hjvi.jpg">
+<meta property="og:updated_time" content="2019-02-20T05:31:06.057Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Osquery检测入侵痕迹">
+<meta name="twitter:description">
+<meta name="twitter:image" content="https://i.imgur.com/oknGY1J.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> Osquery检测入侵痕迹 | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+	<a href="https://github.com/evilanne" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Osquery检测入侵痕迹
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-02-20T13:29:59+08:00" content="2019-02-20">
+              2019-02-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux运维/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2019/02/20/Osquery检测入侵痕迹/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/02/20/Osquery检测入侵痕迹/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://i.imgur.com/oknGY1J.jpg" alt=""></p>
+<a id="more"></a>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>osquery是一个由FaceBook开源用于对系统进行查询、监控以及分析的一款软件。<br>支持<code>MacOS</code>、<code>CentOS</code>、<code>Ubuntu</code>、<code>Windows</code>等操作系统；<br>将操作系统当作是一个关系型数据库,使用SQL语句的方式去查询操作系统中的信息，比如：运行的进程信息、加载内核模块、网络连接等等信息。</p>
+<p>官网地址：<code>https://osquery.io/</code></p>
+<h3 id="Centos7安装osquery"><a href="#Centos7安装osquery" class="headerlink" title="Centos7安装osquery"></a>Centos7安装osquery</h3><p>安装yum源<br><code>rpm -ivh https://osquery-packages.s3.amazonaws.com/centos7/noarch/osquery-s3-centos7-repo-1-0.0.noarch.rpm</code></p>
+<p>安装<br><code>yum install osquery.x86_64 -y</code></p>
+<p>或者直接在官网上对应版本。<br><code>https://osquery.io/downloads/official/3.3.2</code><br><img src="https://i.imgur.com/OMOfR0q.jpg" alt=""></p>
+<p>配置<br><code>cp /usr/share/osquery/osquery.example.conf /etc/osquery/osquery.conf</code></p>
+<p>osquery存在两种运行模式，分别是osqueryi(交互式模式)、osqueryd(后台进程模式)。</p>
+<p>启动<br><code>systemctl start osqueryd</code></p>
+<p>执行<br><code>osqueryi</code></p>
+<p><code>.table</code>展示当前操作系统中能够支持的表名<br>而这些表中的含义无需去记住，只需要查看官网的手册<br><code>https://osquery.io/schema/3.3.2</code><br><img src="https://i.imgur.com/3k4EFvj.jpg" alt=""></p>
+<p>查看系统信息<br><code>select * from system_info;</code></p>
+<p>查看OS版本<br><code>select * from os_version;</code></p>
+<p>查看内核信息版本<br><code>SELECT * FROM kernel_info;</code></p>
+<p>内存信息<br><code>select * from memory_info;</code></p>
+<p>查询用户信息<br><code>select * from users;</code><br><code>select * from users where uid=0;</code></p>
+<p>检查计划任务<br><code>select * from crontab;</code></p>
+<p>日志默认保存在<code>/var/log/osquery</code>中</p>
+<h4 id="Osqueryd-conf简单说明"><a href="#Osqueryd-conf简单说明" class="headerlink" title="Osqueryd.conf简单说明"></a>Osqueryd.conf简单说明</h4><p><strong>Options</strong><br>设置<code>osquery daemon的一些配置，日志产生路径、线程数等</code></p>
+<p><strong>Schedule</strong><br>设置定时任务<br><img src="https://i.imgur.com/TnD2yAo.jpg" alt=""></p>
+<ul>
+<li>query：查询的SQL语句</li>
+<li>interval：查询间隔，单位时间为秒</li>
+<li>removed: 是否生成减少的记录</li>
+</ul>
+<p><strong>Packs</strong><br>packs可以看做是一系列schedule的集合。<br>可以理解为规则.</p>
+<p>默认有很多规则是注释掉并没有启用。<br><img src="https://i.imgur.com/r9neZqy.jpg" alt=""></p>
+<p>内容非常的丰富<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "platform": "windows",</span><br><span class="line">  "queries": &#123;</span><br><span class="line">    "CCleaner_Trojan.Floxif": &#123;</span><br><span class="line">      "query" : "select * from registry where path like 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Piriform\\Agomo%';",</span><br><span class="line">      "interval" : "3600",</span><br><span class="line">      "version": "2.2.1",</span><br><span class="line">      "description" : "(https://sensorstechforum.com/ccleaner-trojan-floxif-malware-how-to-remove/)",</span><br><span class="line">      "value" : "Artifact used by this malware"</span><br><span class="line">    &#125;,</span><br><span class="line">    "CCleaner_Trojan_stage2.Floxif": &#123;</span><br><span class="line">      "query": "select h.md5, h.sha1, h.sha256, s.name, s.service_type, s.display_name, s.module_path, s.user_account from services s, hash h where h.path = s.module_path and ((s.module_path like '%GeeSetup_x86%' and h.sha256 = 'dc9b5e8aa6ec86db8af0a7aa897ca61db3e5f3d2e0942e319074db1aaccfdc83') or (s.module_path like '%EFACli64%' and h.sha256 = '128aca58be325174f0220bd7ca6030e4e206b4378796e82da460055733bb6f4f') or (s.module_path like '%TSMSISrv%' and h.sha256 = '07fb252d2e853a9b1b32f30ede411f2efbb9f01e4a7782db5eacf3f55cf34902'));",</span><br><span class="line">      "interval" : "3600",</span><br><span class="line">      "version": "2.1.0",</span><br><span class="line">      "description" : "(https://sensorstechforum.com/ccleaner-trojan-floxif-malware-how-to-remove/)",</span><br><span class="line">      "value" : "Artifact used by this malware"</span><br><span class="line">    &#125;,</span><br><span class="line">    "Winsecurity_info_1": &#123;</span><br><span class="line">      "query" : "select * from programs where name = 'Winsecurity.info';",</span><br><span class="line">      "interval" : "3600",</span><br><span class="line">      "version": "2.2.1",</span><br><span class="line">      "description" : "(https://sensorstechforum.com/windows-infected-2-viruses-scam-remove/)",</span><br><span class="line">      "value" : "Artifact used by this malware"</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure></p>
+<p>可以使用<code>MITRE ATT&amp;CK</code>框架规则：<br><a href="https://github.com/teoseller/osquery-attck" target="_blank" rel="external">https://github.com/teoseller/osquery-attck</a><br>非常有意思<br><img src="https://i.imgur.com/FdftZoP.jpg" alt=""></p>
+<h3 id="osquery-ELK-Kolide-Fleet"><a href="#osquery-ELK-Kolide-Fleet" class="headerlink" title="osquery+ELK+Kolide Fleet"></a>osquery+ELK+Kolide Fleet</h3><h4 id="安装ELK"><a href="#安装ELK" class="headerlink" title="安装ELK"></a>安装ELK</h4><ul>
+<li><p>ElasticSearch：是实时全文搜索和分析引擎，提供搜集、分析、存储数据三大功能；是一套开放REST和JAVA API等结构提供高效搜索功能，可扩展的分布式系统。它构建于Apache Lucene搜索引擎库之上。</p>
+</li>
+<li><p>Logstash：是一个用来搜集、分析、过滤日志的工具。它支持几乎任何类型的日志，包括系统日志、错误日志和自定义应用程序日志。它可以从许多来源接收日志，这些来源包括syslog、消息传递（例如：RabbitMQ）和JMX，它能够以多种方式输出数据，包括电子邮件、WebSocket和ElasticSearch等。</p>
+</li>
+<li><p>Kibana：是一个基于Web的图形界面，用于搜索、分析和可视化存储在ElasticSearch指标中的日志数据。它利用Elasticsearch的REST接口来检索数据，不仅允许用户创建他们自己的数据的定制仪表板视图，还允许他们以特殊的方式查询和过滤数据。</p>
+</li>
+</ul>
+<p>安装java 8<br><code>yum install java-1.8.0-openjdk.x86_64 java-1.8.0-openjdk-devel.x86_64 -y</code></p>
+<p><code>rpm安装</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh elasticsearch-6.2.4.rpm</span><br><span class="line">rpm -ivh kibana-6.2.4-x86_64.rpm</span><br><span class="line">rpm -ivh logstash-6.6.0.rpm</span><br></pre></td></tr></table></figure>
+<p>修改es的java环境变量<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/elasticsearch</span><br><span class="line">    JAVA_HOME=/usr/share/jdk1.8.0_171</span><br><span class="line">source /etc/sysconfig/elasticsearch</span><br></pre></td></tr></table></figure></p>
+<h5 id="配置elasticsearch-yml"><a href="#配置elasticsearch-yml" class="headerlink" title="配置elasticsearch.yml"></a>配置elasticsearch.yml</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: my-application # 集群名称</span><br><span class="line">node.name: node-1 # 节点名称</span><br><span class="line">node.attr.rack: r1 # 节点属性</span><br><span class="line">path.data: /var/lib/elasticsearch # 数据存储目录</span><br><span class="line">path.logs: /var/log/elasticsearch # 日志存储目录</span><br><span class="line">bootstrap.memory_lock: true # 内存锁定，禁用虚拟内存</span><br><span class="line">network.host: 127.0.0.1 # 绑定主机</span><br><span class="line">http.port: 9200 # 绑定端口</span><br><span class="line">discovery.zen.ping.unicast.hosts: ["host1", "host2"] # 启动新节点时，传递初始主机列表用于发现主机</span><br><span class="line">discovery.zen.minimum_master_nodes: # 配置节点数防止脑裂</span><br><span class="line">gateway.recover_after_nodes: 3 # 在N个节点后阻塞恢复</span><br><span class="line">action.destructive_requires_name: true # 删除索引需要显示名称</span><br></pre></td></tr></table></figure>
+<h5 id="ogstash-yml"><a href="#ogstash-yml" class="headerlink" title="ogstash.yml"></a>ogstash.yml</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">node.name: test # 节点名称</span><br><span class="line">path.data: /var/lib/logstash # 数据存储目录</span><br><span class="line">path.logs: /var/log/logstash # 日志存储目录</span><br><span class="line">pipeline.id: main # pipeline ID</span><br><span class="line">pipeline.workers: 2 # 输出通道的worker数量，默认为CPU核数</span><br><span class="line">pipeline.batch.size: 125 # 设定批处理数据的大小</span><br><span class="line">pipeline.batch.delay: 50 # 设定批处理数据的延迟</span><br><span class="line">pipeline.unsafe_shutdown: false # </span><br><span class="line">path.config: # 过滤配置文件目录</span><br><span class="line">path.plugins: # 自定义插件目录</span><br><span class="line">config.string: # </span><br><span class="line">config.test_and_exit: false # </span><br><span class="line">config.reload.automatic: false # 自动重载被修改的配置文件</span><br><span class="line">config.reload.interval: 3s # 配置文件检查时间</span><br><span class="line">http.host # 绑定主机</span><br><span class="line">http.port # 绑定端口</span><br><span class="line">log.level: # 日志输出级别，如果confie.dubug开启，这里一定要匹配debug</span><br><span class="line">config.debug: false # </span><br><span class="line">log.format # 日志格式</span><br><span class="line">config.support_escapes: false #</span><br></pre></td></tr></table></figure>
+<h5 id="kibana-yml"><a href="#kibana-yml" class="headerlink" title="kibana.yml"></a>kibana.yml</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server.port: 5601 # 绑定端口</span><br><span class="line">server.host: "127.0.0.1" # 绑定主机</span><br><span class="line">server.basePath: "" # </span><br><span class="line">server.name: "your-hostname" # hostname名称</span><br><span class="line">elasticsearch.url: "http://localhost:9200" # ElasticSearch地址</span><br></pre></td></tr></table></figure>
+<h5 id="logstash配置文件"><a href="#logstash配置文件" class="headerlink" title="logstash配置文件"></a>logstash配置文件</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    file &#123;</span><br><span class="line">        path =&gt; ["/var/log/httpd/access_log"]</span><br><span class="line">        type =&gt; "httpd"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">filter &#123;</span><br><span class="line">    grok &#123;</span><br><span class="line">        match =&gt; &#123; "message" =&gt; "%&#123;COMBINEDAPACHELOG&#125;" &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output &#123;</span><br><span class="line">    elasticsearch &#123;</span><br><span class="line">        hosts =&gt; ["127.0.0.1:9200"]</span><br><span class="line">        index =&gt; "logstash-httpd-%&#123;+YYYY.MM.dd&#125;"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="安装Kolide-Fleet"><a href="#安装Kolide-Fleet" class="headerlink" title="安装Kolide Fleet"></a>安装Kolide Fleet</h4><p>Kolide Fleet是为安全专家量身打造的最先进的主机监控平台。</p>
+<p>fleet依赖于mysql以及redis，所以需要安装mysql和redis</p>
+<p>安装mysql</p>
+<p>``html<br>wget <a href="https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm" target="_blank" rel="external">https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm</a><br>rpm -ivh mysql80-community-release-el7-1.noarch.rpm<br>yum update<br>yum install mysql-community-server.x86_64 mysql-community-client.x86_64 -y<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">启动Mysql服务：</span><br><span class="line">`systemctl start mysqld`</span><br><span class="line"></span><br><span class="line">安装的时候自动生成的数据库密码在`/var/log/mysqld.log`中</span><br><span class="line"></span><br><span class="line">修改密码：</span><br><span class="line">```html</span><br><span class="line">mysql&gt; ALTER USER &quot;root&quot;@&quot;localhost&quot; IDENTIFIED BY &quot;Root123...&quot;;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; exit</span><br></pre></td></tr></table></figure></p>
+<p>创建数据库<br><code>create database kolide;</code></p>
+<p>安装redis<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/redis-stable.tar.gz</span><br><span class="line">tar zxf redis-stable.tar.gz</span><br><span class="line">cd redis-stable</span><br><span class="line">make </span><br><span class="line">make install</span><br><span class="line">cp redis.conf /etc/redis.conf</span><br><span class="line">redis-server /etc/redis.conf</span><br></pre></td></tr></table></figure></p>
+<p>或者yum安装redis也可以<br>启动服务<br><code>systemctl start redis.service</code></p>
+<p>安装Fleet</p>
+<p><code>wget https://dl.kolide.co/bin/fleet_latest.zip</code><br><code>unzip fleet_latest.zip &#39;linux/*&#39; -d fleet</code></p>
+<p>拷贝执行命令到bin目录<br><code>cp fleet/linux/fleet /usr/bin/fleet</code><br><code>cp fleet/linux/fleetctl /usr/bin/fleetctl</code></p>
+<p>连接数据库<br><code>/usr/bin/fleet prepare db --mysql_address=127.0.0.1:3306 --mysql_database=kolide --mysql_username=root --mysql_password=password</code></p>
+<p>配置证书</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out /etc/pki/tls/private/server.key 4096</span><br><span class="line"></span><br><span class="line">openssl req -new -key /etc/pki/tls/private/server.key -out /etc/pki/tls/certs/server.csr</span><br><span class="line"></span><br><span class="line">openssl x509 -req -days 366 -in /etc/pki/tls/certs/server.csr -signkey /etc/pki/tls/private/server.key -out /etc/pki/tls/certs/server.cert</span><br></pre></td></tr></table></figure>
+<p>#启动Fleet Server</p>
+<p>#创建日志目录<br><code>mkdir /var/log/kolide</code></p>
+<p>#启动服务</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/fleet serve \</span><br><span class="line">    --mysql_address=127.0.0.1:3306 \</span><br><span class="line">    --mysql_database=kolide \</span><br><span class="line">    --mysql_username=root \</span><br><span class="line">    --mysql_password=password \</span><br><span class="line">    --redis_address=127.0.0.1:6379 \</span><br><span class="line">    --server_cert=/etc/pki/tls/certs/server.cert \</span><br><span class="line">    --server_key=/etc/pki/tls/private/server.key \</span><br><span class="line">    --logging_json \</span><br><span class="line">    --osquery_result_log_file=/var/log/kolide/osquery_result \</span><br><span class="line">    --osquery_status_log_file=/var/log/kolide/osquery_status</span><br></pre></td></tr></table></figure>
+<p>这个时候会报错<br><img src="https://i.imgur.com/O37nXSV.jpg" alt=""></p>
+<p>使用它推荐的<code>--auth_jwt_key</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/fleet serve \</span><br><span class="line">    --mysql_address=127.0.0.1:3306 \</span><br><span class="line">    --mysql_database=kolide \</span><br><span class="line">    --mysql_username=root \</span><br><span class="line">    --mysql_password==password \</span><br><span class="line">    --redis_address=127.0.0.1:6379 \</span><br><span class="line">    --server_cert=/etc/pki/tls/certs/server.cert \</span><br><span class="line">    --server_key=/etc/pki/tls/private/server.key \</span><br><span class="line">    --logging_json \</span><br><span class="line">    --osquery_result_log_file=/var/log/kolide/osquery_result \</span><br><span class="line">    --osquery_status_log_file=/var/log/kolide/osquery_status \</span><br><span class="line">    --auth_jwt_key=zJ+TKjgtGqCFX6XcF5SmDDxxxxxxx</span><br></pre></td></tr></table></figure>
+<p>#成功运行，访问Web界面进行安装</p>
+<p>#<a href="https://192.168.4.108:8080/" target="_blank" rel="external">https://192.168.4.108:8080/</a></p>
+<p>使用它推荐的<code>--auth_jwt_key</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/fleet serve \</span><br><span class="line">    --mysql_address=127.0.0.1:3306 \</span><br><span class="line">    --mysql_database=kolide \</span><br><span class="line">    --mysql_username=root \</span><br><span class="line">    --mysql_password==password \</span><br><span class="line">    --redis_address=127.0.0.1:6379 \</span><br><span class="line">    --server_cert=/etc/pki/tls/certs/server.cert \</span><br><span class="line">    --server_key=/etc/pki/tls/private/server.key \</span><br><span class="line">    --logging_json \</span><br><span class="line">    --osquery_result_log_file=/var/log/kolide/osquery_result \</span><br><span class="line">    --osquery_status_log_file=/var/log/kolide/osquery_status \</span><br><span class="line">    --auth_jwt_key=zJ+TKjgtGqCFX6XcF5SmDDxxxxxxx</span><br></pre></td></tr></table></figure>
+<p>成功运行，访问Web界面进行安装<br><a href="https://192.168.4.108:8080/" target="_blank" rel="external">https://192.168.4.108:8080/</a></p>
+<p>使用它推荐的<code>--auth_jwt_key</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/fleet serve \</span><br><span class="line">    --mysql_address=127.0.0.1:3306 \</span><br><span class="line">    --mysql_database=kolide \</span><br><span class="line">    --mysql_username=root \</span><br><span class="line">    --mysql_password==password \</span><br><span class="line">    --redis_address=127.0.0.1:6379 \</span><br><span class="line">    --server_cert=/etc/pki/tls/certs/server.cert \</span><br><span class="line">    --server_key=/etc/pki/tls/private/server.key \</span><br><span class="line">    --logging_json \</span><br><span class="line">    --osquery_result_log_file=/var/log/kolide/osquery_result \</span><br><span class="line">    --osquery_status_log_file=/var/log/kolide/osquery_status \</span><br><span class="line">    --auth_jwt_key=zJ+TKjgtGqCFX6XcF5SmDDxxxxxxx</span><br></pre></td></tr></table></figure>
+<p>成功运行，访问Web界面进行安装<br><code>https://192.168.4.108:8080/</code></p>
+<h4 id="利用osquery添加主机"><a href="#利用osquery添加主机" class="headerlink" title="利用osquery添加主机"></a>利用osquery添加主机</h4><p><img src="https://i.imgur.com/NUutLIX.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/6rGb635.jpg" alt=""></p>
+<p>创建密钥<br><code>echo &#39;OB+ltcnAmEqykZXNthWNRv4qQMhxxxx&#39; &gt; /var/osquery/enroll_secret</code></p>
+<p>#配置证书，证书下载位置如图，下载完成后进行改名<br><code>mv 10.10.10.5_8080.pem /var/osquery/server.pem</code></p>
+<p>#执行osqueryd</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/osqueryd \</span><br><span class="line">    --enroll_secret_path=/var/osquery/enroll_secret \</span><br><span class="line">    --tls_server_certs=/var/osquery/server.pem \</span><br><span class="line">    --tls_hostname=10.10.10.5:8080 \</span><br><span class="line">    --host_identifier=hostname \</span><br><span class="line">    --enroll_tls_endpoint=/api/v1/osquery/enroll \</span><br><span class="line">    --config_plugin=tls \</span><br><span class="line">    --config_tls_endpoint=/api/v1/osquery/config \</span><br><span class="line">    --config_tls_refresh=10 \</span><br><span class="line">    --disable_distributed=false \</span><br><span class="line">    --distributed_plugin=tls \</span><br><span class="line">    --distributed_interval=3 \</span><br><span class="line">    --distributed_tls_max_attempts=3 \</span><br><span class="line">    --distributed_tls_read_endpoint=/api/v1/osquery/distributed/read \</span><br><span class="line">    --distributed_tls_write_endpoint=/api/v1/osquery/distributed/write \</span><br><span class="line">    --logger_plugin=tls \</span><br><span class="line">    --logger_tls_endpoint=/api/v1/osquery/log \</span><br><span class="line">    --logger_tls_period=10</span><br></pre></td></tr></table></figure>
+<p>然后就添加上了。<br><img src="https://i.imgur.com/1T2Hjvi.jpg" alt=""></p>
+<p>可以做的事情特别多</p>
+<p>使用Osquery的恶意软件分析第1部分<br><a href="https://www.alienvault.com/blogs/labs-research/malware-analysis-using-osquery-part-1" target="_blank" rel="external">https://www.alienvault.com/blogs/labs-research/malware-analysis-using-osquery-part-1</a></p>
+<p>使用Osquery的恶意软件分析第2部分<br><a href="https://www.alienvault.com/blogs/labs-research/malware-analysis-using-osquery-part-2" target="_blank" rel="external">https://www.alienvault.com/blogs/labs-research/malware-analysis-using-osquery-part-2</a></p>
+<p>国外资料：</p>
+<ul>
+<li><a href="https://jordanpotti.com/2018/02/16/elk-osquery-kolide-fleet-love/" target="_blank" rel="external">Elk + Osquery + Kolide Fleet = Love</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/04/一周入门渗透/" rel="next" title="一周入门渗透">
+                <i class="fa fa-chevron-left"></i> 一周入门渗透
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2019/02/20/Osquery检测入侵痕迹/"
+           data-title="Osquery检测入侵痕迹" data-url="http://yoursite.com/2019/02/20/Osquery检测入侵痕迹/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">130</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Centos7安装osquery"><span class="nav-number">2.</span> <span class="nav-text">Centos7安装osquery</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Osqueryd-conf简单说明"><span class="nav-number">2.1.</span> <span class="nav-text">Osqueryd.conf简单说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#osquery-ELK-Kolide-Fleet"><span class="nav-number">3.</span> <span class="nav-text">osquery+ELK+Kolide Fleet</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装ELK"><span class="nav-number">3.1.</span> <span class="nav-text">安装ELK</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#配置elasticsearch-yml"><span class="nav-number">3.1.1.</span> <span class="nav-text">配置elasticsearch.yml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ogstash-yml"><span class="nav-number">3.1.2.</span> <span class="nav-text">ogstash.yml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#kibana-yml"><span class="nav-number">3.1.3.</span> <span class="nav-text">kibana.yml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#logstash配置文件"><span class="nav-number">3.1.4.</span> <span class="nav-text">logstash配置文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Kolide-Fleet"><span class="nav-number">3.2.</span> <span class="nav-text">安装Kolide Fleet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用osquery添加主机"><span class="nav-number">3.3.</span> <span class="nav-text">利用osquery添加主机</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="theme-info">
+	-
+  <a class="theme-link" href="">
+    不为虚度年华而悔恨，不因碌碌无为而羞耻，不负此生。
+  </a>
+</div>
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>
