@@ -1,3 +1,19 @@
+font:enable: true global:external: true {
+  family: YouYuan;
+}
+font:enable: true headings:external: true {
+  family: YouYuan;
+}
+font:enable: true posts:external: true {
+  family: YouYuan;
+}
+font:enable: true logo:external: true {
+  family: YouYuan;
+  size: 24;
+}
+font:enable: true codes:external: true {
+  family: YouYuan;
+}
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif; /* 1 */
@@ -185,7 +201,7 @@ th {
 }
 body {
   position: relative;
-  font-family: "YouYuan";
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 14px;
   line-height: 2;
   color: #555;
@@ -216,7 +232,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1.5;
-  font-family: YouYuan;
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 h2,
 h3,
@@ -1551,7 +1567,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #40cfff;
+  background: #c6ff32;
 }
 .links-of-blogroll {
   font-size: 13px;
