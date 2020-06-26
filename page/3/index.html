@@ -256,6 +256,181 @@
             
               
                 
+                <a class="post-title-link" href="/2019/06/24/LinuxPAM登录认证机制/" itemprop="url">
+                  LinuxPAM登录认证机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-06-24T21:43:58+08:00" content="2019-06-24">
+              2019-06-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux运维/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux运维</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2019/06/24/LinuxPAM登录认证机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/06/24/LinuxPAM登录认证机制/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>Linux-PAM（即linux可插入认证模块）是一套共享库,不用(重新编写)重新编译一个包含PAM功能的应用程序，就可以改变它使用的认证机制，这种方式下，就算升级本地认证机制,也不用修改程序。</p>
+<p>PAM配置文件放到<code>/etc/pam.d/</code>,目录下文件的名字就是服务名称。</p>
+<p>sshd:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#%PAM-<span class="number">1.0</span></span><br><span class="line">auth       required     pam_sepermit.<span class="keyword">so</span></span><br><span class="line">auth       substack     password-auth</span><br><span class="line">auth       include      postlogin</span><br><span class="line"># Used with polkit <span class="keyword">to</span> reauthorize users in remote sessions</span><br><span class="line">-auth      optional     pam_reauthorize.<span class="keyword">so</span> prepare</span><br><span class="line">account    required     pam_nologin.<span class="keyword">so</span></span><br><span class="line">account    include      password-auth</span><br><span class="line">password   include      password-auth</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一列代表模块类型<ul>
+<li>认证管理（auth）</li>
+<li>账号管理（account）</li>
+<li>会话管理（session）</li>
+<li>密码（password）</li>
+</ul>
+</li>
+<li>第二列代表控制标记<ul>
+<li>required</li>
+<li>requisite</li>
+<li>sufficient</li>
+<li>optional</li>
+<li>include</li>
+</ul>
+</li>
+<li>第三列代表模块路径<ul>
+<li><code>/lib64/security</code></li>
+</ul>
+</li>
+<li>第四列代表模块参数</li>
+</ul>
+<h4 id="登录认证过程"><a href="#登录认证过程" class="headerlink" title="登录认证过程"></a>登录认证过程</h4><p>认证文件：<code>/etc/pam.d/system-auth</code></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">auth        required      pam_env.<span class="keyword">so</span></span><br><span class="line">auth        sufficient    pam_unix.<span class="keyword">so</span> nullok try_first_pass</span><br><span class="line">auth        requisite     pam_succeed_if.<span class="keyword">so</span> uid &gt;= <span class="number">1000</span> quiet_success</span><br><span class="line">auth        required      pam_deny.<span class="keyword">so</span></span><br><span class="line"></span><br><span class="line">account     required      pam_unix.<span class="keyword">so</span></span><br><span class="line">account     sufficient    pam_localuser.<span class="keyword">so</span></span><br><span class="line">account     sufficient    pam_succeed_if.<span class="keyword">so</span> uid &lt; <span class="number">1000</span> quiet</span><br><span class="line">account     required      pam_permit.<span class="keyword">so</span></span><br><span class="line"></span><br><span class="line">password    requisite     pam_pwquality.<span class="keyword">so</span> try_first_pass local_users_only retry=<span class="number">3</span> authtok_type=</span><br><span class="line">password    sufficient    pam_unix.<span class="keyword">so</span> sha512 shadow nullok try_first_pass use_authtok</span><br><span class="line">password    required      pam_deny.<span class="keyword">so</span></span><br><span class="line"></span><br><span class="line">session     optional      pam_keyinit.<span class="keyword">so</span> revoke</span><br><span class="line">session     required      pam_limits.<span class="keyword">so</span></span><br><span class="line">-session     optional      pam_systemd.<span class="keyword">so</span></span><br><span class="line">session     [success=<span class="number">1</span> default=ignore] pam_succeed_if.<span class="keyword">so</span> service in crond quiet use_uid</span><br><span class="line">session     required      pam_unix.<span class="keyword">so</span></span><br></pre></td></tr></table></figure>
+<p>第一部分：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">auth        required      pam_env.so</span><br><span class="line">auth        sufficient    pam_unix.so nullok try_first_pass</span><br><span class="line">auth        requisite     pam_succeed_if.so uid &gt;= 1000 quiet_success</span><br><span class="line">auth        required      pam_deny.so</span><br></pre></td></tr></table></figure>
+<ol>
+<li>通过<code>pam_env.so</code>模块来定义用户登录之后的环境变量</li>
+<li>通过<code>pam_unix.so</code>模块来提示用户输入密码,并将用户密码与<code>/etc/shadow</code>中记录的密码信息进行对比，如果密码比对结果正确则允许用户登录</li>
+<li>通过<code>pam_succeed_if.so</code>对用户的登录条件做一些限制，表示允许uid大于1000的用户在通过密码验证的情况下登录</li>
+<li>最后通过<code>pam_deny.so</code>模块对所有不满足上述任意条件的登录请求直接拒绝</li>
+</ol>
+<p>第二部分:<br>主要表示通过account账户类接口来识别账户的合法性以及登录权限。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">account     required      pam_unix.so</span><br><span class="line">account     sufficient    pam_localuser.so</span><br><span class="line">account     sufficient    pam_succeed_if.so uid &lt; 1000 quiet</span><br><span class="line">account     required      pam_permit.so</span><br></pre></td></tr></table></figure>
+<ol>
+<li>仍然使用<code>pam_unix.so</code>模块来声明用户需要通过密码认证。</li>
+<li><code>pam_succeed_if.so</code>承认了系统中uid小于1000的系统用户的合法性.</li>
+<li><code>pam_permit.so</code>之后对所有类型的用户登录请求都开放控制台。</li>
+</ol>
+<p>第三部分：<br>通过password口另类接口来确认用户使用的密码或者口令的合法性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">password    requisite     pam_pwquality.so try_first_pass <span class="built_in">local</span>_users_only retry=3 authtok_<span class="built_in">type</span>=</span><br><span class="line">password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok</span><br><span class="line">password    required      pam_deny.so</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>pam_pwquality.so</code>验证密码的复杂度。</li>
+<li><code>pam_unix.so</code>和<code>pam_deny.so</code>的两行配置项的意思与之前类似。都表示需要通过密码认证并对不符合上述任何配置项要求的登录请求直接予以拒绝。</li>
+</ol>
+<p>第四部分：<br>主要将通过session会话类接口为用户初始化会话连接。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">session     optional      pam_keyinit.so revoke</span><br><span class="line">session     required      pam_limits.so</span><br><span class="line">-session     optional      pam_systemd.so</span><br><span class="line">session     [success=1 default=ignore] pam_succeed_if.so service <span class="keyword">in</span> crond quiet use_uid</span><br><span class="line">session     required      pam_unix.so</span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用<code>pam_keyinit.so</code>表示当用户登录的时候为其建立相应的密钥环，并在用户登出的时候予以撤销。</li>
+<li>之后通过<code>pam_limits.so</code>限制用户登录时的会话连接资源，相关配置文件是<code>/etc/security/limits.conf</code>，默认情况下对每个登录用户都没有限制。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2019/05/03/C-笔记/" itemprop="url">
                   C++笔记
                 </a>
@@ -724,132 +899,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/01/04/一周入门渗透/" itemprop="url">
-                  一周入门渗透
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2019-01-04T06:27:42+08:00" content="2019-01-04">
-              2019-01-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/网络安全/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2019/01/04/一周入门渗透/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/01/04/一周入门渗透/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="https://i.imgur.com/DMvBA6T.jpg" alt=""></p>
-<p>最近醒的特别早,有时候4､5点就起床没有睡意。</p>
-<p>今天也是如此，看着有很多时间就完成之前在公司里未完成的一件事。</p>
-<p>招聘安全岗位确实非常难招人，想要招到合适的人也非常难，那么外部招不到合适的不如招些好苗子进来内部培养也是可以的，而且招进来要如何以最短的时间判断这个人是否符合培养。</p>
-<p>这是我在接触很多面试者和入职工作者中总结出来的。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2019/01/04/一周入门渗透/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -895,7 +944,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">142</span>
+              <span class="site-state-item-count">143</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
